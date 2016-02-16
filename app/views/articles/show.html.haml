@@ -7,7 +7,7 @@
           = link_to [:edit, @article] do
             %i.fa.fa-edit
       %p.issue
-        = link_to @article.issue.title, @article.issue
+        = link_to @article.issue.title, issue_home_path(@article.issue)
       %p.byline= byline @article.user
       %p= link_to truncate(@article.link), @article.link, target: '_blank'
       %p= @article.body
