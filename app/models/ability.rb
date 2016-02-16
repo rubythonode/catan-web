@@ -6,6 +6,8 @@ class Ability
     if user
       can :create, Article
       can :manage, Article, user_id: user.id
+      can :create, Opinion
+      can :manage, Opinion, user_id: user.id
     end
   end
 end

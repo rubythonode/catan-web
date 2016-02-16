@@ -1,0 +1,13 @@
+.bs-component
+  %section#opinion
+    .container
+      %h2.page-header
+        = @opinion.title
+        %small
+          = link_to [:edit, @opinion] do
+            %i.fa.fa-edit
+      %p.issue
+        = link_to @opinion.issue.title, issue_home_path(@opinion.issue)
+      %p.byline= byline @opinion.user
+      %p= @opinion.body
+

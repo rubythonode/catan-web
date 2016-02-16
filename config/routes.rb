@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   resources :articles
   resources :issues
+  resources :opinions
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
 end
