@@ -1,0 +1,13 @@
+.bs-component
+  %section#issue
+    .container
+      %h2.page-header
+        = @issue.title
+        %small
+          = link_to new_article_path(issue_id: @issue.id), class: 'btn.btn-default' do
+            뉴스 컬럼 만들기
+
+  %section#issue-items
+    .container
+      %ul.list-group
+        = render @articles
