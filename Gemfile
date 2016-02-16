@@ -8,6 +8,7 @@ gem 'sqlite3'
 
 # auth
 gem 'parti_sso_client', github: 'parti-xyz/parti_sso_client'
+gem 'cancancan', '~> 1.10'
 
 # ui
 gem 'sass-rails', '~> 5.0'
@@ -23,10 +24,14 @@ gem 'jbuilder', '~> 2.0'
 
 group :development, :test do
   gem 'byebug'
+  gem 'minitest-focus',     '~> 1.1', '>= 1.1.2'
+  gem 'guard', '~> 2.13.0'
+  gem 'guard-minitest',     '~> 2.4.4'
+  gem 'timecop', '~> 0.8.0'
+  gem 'spring'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
-  gem 'spring'
 end
 

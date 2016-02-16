@@ -1,0 +1,13 @@
+.bs-component
+  %section#article-form
+    .container
+      %h2.page-header
+        = @article.title
+        %small
+          = link_to [:edit, @article] do
+            %i.fa.fa-edit
+      %p.issue= @article.issue.title
+      %p.byline= byline @article.user
+      %p= link_to truncate(@article.link), @article.link
+      %p= @article.body
+
