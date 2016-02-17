@@ -10,7 +10,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    set_issue
     @article.user = current_user
     if @article.save
       redirect_to @article
@@ -20,7 +19,6 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    set_issue
     @article.assign_attributes(article_params)
     if @article.save
       redirect_to @article
@@ -32,11 +30,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :link)
-  end
-
-  def set_issue
-    @issue = Issue.find_or_create_by title: params[:issue_title]
-    @article.issue = @issue
+    params.require(:article).permit(:title, :body, :link, :issue_id)
   end
 end

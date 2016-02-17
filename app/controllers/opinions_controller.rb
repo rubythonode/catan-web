@@ -10,7 +10,6 @@ class OpinionsController < ApplicationController
   end
 
   def create
-    set_issue
     @opinion.user = current_user
     if @opinion.save
       redirect_to @opinion
@@ -20,7 +19,6 @@ class OpinionsController < ApplicationController
   end
 
   def update
-    set_issue
     @opinion.assign_attributes(opinion_params)
     if @opinion.save
       redirect_to @opinion
@@ -32,11 +30,6 @@ class OpinionsController < ApplicationController
   private
 
   def opinion_params
-    params.require(:opinion).permit(:title, :body)
-  end
-
-  def set_issue
-    @issue = Issue.find_or_create_by title: params[:issue_title]
-    @opinion.issue = @issue
+    params.require(:opinion).permit(:title, :body, :issue_id)
   end
 end
