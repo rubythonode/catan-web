@@ -1,3 +1,5 @@
 %li.list-group-item
-  [주장]
+  %i.fa.fa-bullhorn
+  - if local_assigns[:show_issue]
+    [#{link_to opinion.issue.title, issue_home_path(opinion.issue)}]
   = link_to opinion.title, opinion

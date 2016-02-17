@@ -1,7 +1,16 @@
 .bs-component
   %section#home
     .container
-      %h1 welcome
-      %p hello world
-      = link_to new_article_path, class: 'btn.btn-default' do
-        뉴스 컬럼 만들기
+      %h2.page-header
+        All Posts
+        %small
+          - if can? :create, Issue
+            = link_to new_issue_path, class: 'btn btn-default' do
+              이슈 열기
+          = link_to new_article_path, class: 'btn btn-default' do
+            뉴스컬럼 쓰기
+          = link_to new_opinion_path, class: 'btn btn-default' do
+            주장 하기
+
+      %ul.list-group
+        = render @postables, show_issue: true

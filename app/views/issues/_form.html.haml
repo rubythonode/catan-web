@@ -1,0 +1,16 @@
+= form_for @issue do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: 'form-control'
+  .form-group
+    = f.label :logo
+    = f.file_field :logo, class: 'form-control'
+  .form-group
+    = f.label :cover
+    = f.file_field :cover, class: 'form-control'
+  = f.submit '저장', class: 'btn btn-primary'
+  = link_to (@issue.new_record? ? root_path : @issue), class: 'btn btn-default btn-xs' do
+    취소

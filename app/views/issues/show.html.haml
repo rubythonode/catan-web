@@ -2,7 +2,14 @@
   %section#issue
     .container
       %h2.page-header
+        - if @issue.logo.file.present?
+          .thumbnail
+            %img{src: @issue.logo_url}
         = @issue.title
+        %small
+          - if can? :edit, @issue
+            = link_to [:edit, @issue] do
+              %i.fa.fa-edit>
         %small
           = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-default' do
             뉴스컬럼 쓰기

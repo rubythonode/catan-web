@@ -4,4 +4,7 @@ class Issue < ActiveRecord::Base
   has_many :opinions, through: :posts, source: :postable, source_type: Opinion
 
   validates :title, presence: true
+
+  mount_uploader :logo, ImageUploader
+  mount_uploader :cover, ImageUploader
 end

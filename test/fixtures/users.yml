@@ -1,6 +1,9 @@
 one:
-  email: 'one@gmail.com'
-  nickname: 'nick1'
+  email: one@gmail.com
+  nickname: nick1
 two:
-  email: 'two@gmail.com'
-  nickname: 'nick2'
+  email: two@gmail.com
+  nickname: nick2
+admin:
+  email: dali@gmail.com
+  nickname: admin

@@ -1,5 +1,7 @@
 class IssuesController < ApplicationController
   respond_to :json, :html
+  before_filter :authenticate_user!, except: [:show, :index, :slug]
+  load_and_authorize_resource
 
   def index
     @issues = Issue.limit(10)
@@ -19,5 +21,27 @@ class IssuesController < ApplicationController
     @posts = @issue.posts
     @postables = @posts.map &:postable
     render template: 'issues/show'
+  end
+
+  def create
+    if @issue.save
+      redirect_to @issue
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    if @issue.update_attributes(issue_params)
+      redirect_to @issue
+    else
+      render 'edit'
+    end
+  end
+
+  private
+
+  def issue_params
+    params.require(:issue).permit(:title, :body, :logo, :cover)
   end
 end

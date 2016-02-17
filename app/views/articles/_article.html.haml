@@ -1,3 +1,5 @@
 %li.list-group-item
-  [뉴스컬럼]
+  %i.fa.fa-newspaper-o
+  - if local_assigns[:show_issue]
+    [#{link_to article.issue.title, issue_home_path(article.issue)}]
   = link_to article.title, article
