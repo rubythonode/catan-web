@@ -21,8 +21,7 @@ class ArticlesController < ApplicationController
 
   def update
     set_issue
-    @article.assign_attributes(article_params)
-    if @article.save
+    if @article.update_attributes(article_params)
       redirect_to @article
     else
       render 'edit'
@@ -36,7 +35,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_issue
-    @issue = Issue.find_by title: params[:issue_title]
+    @issue ||= Issue.find_by title: params[:issue_title]
     @article.issue = @issue
   end
 end

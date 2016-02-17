@@ -16,7 +16,8 @@ class IssuesController < ApplicationController
 
   def slug
     @issue = Issue.find_by! title: params[:slug]
-    @articles = @issue.articles
+    @posts = @issue.posts
+    @postables = @posts.map &:postable
     render template: 'issues/show'
   end
 end

@@ -21,8 +21,7 @@ class OpinionsController < ApplicationController
 
   def update
     set_issue
-    @opinion.assign_attributes(opinion_params)
-    if @opinion.save
+    if @opinion.update_attributes(opinion_params)
       redirect_to @opinion
     else
       render 'edit'
@@ -36,7 +35,7 @@ class OpinionsController < ApplicationController
   end
 
   def set_issue
-    @issue = Issue.find_by title: params[:issue_title]
+    @issue ||= Issue.find_by title: params[:issue_title]
     @opinion.issue = @issue
   end
 end

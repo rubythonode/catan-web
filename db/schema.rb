@@ -11,20 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216074633) do
+ActiveRecord::Schema.define(version: 20160217125225) do
 
   create_table "articles", force: :cascade do |t|
-    t.integer  "user_id",    null: false
     t.string   "title",      null: false
     t.text     "body"
     t.string   "link"
-    t.integer  "issue_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "articles", ["issue_id"], name: "index_articles_on_issue_id"
-  add_index "articles", ["user_id"], name: "index_articles_on_user_id"
 
   create_table "issues", force: :cascade do |t|
     t.string   "title",      null: false
@@ -35,16 +30,11 @@ ActiveRecord::Schema.define(version: 20160216074633) do
   add_index "issues", ["title"], name: "index_issues_on_title"
 
   create_table "opinions", force: :cascade do |t|
-    t.integer  "user_id",    null: false
     t.string   "title",      null: false
     t.text     "body"
-    t.integer  "issue_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "opinions", ["issue_id"], name: "index_opinions_on_issue_id"
-  add_index "opinions", ["user_id"], name: "index_opinions_on_user_id"
 
   create_table "parti_sso_client_api_keys", force: :cascade do |t|
     t.integer  "user_id",                           null: false
@@ -60,6 +50,19 @@ ActiveRecord::Schema.define(version: 20160216074633) do
 
   add_index "parti_sso_client_api_keys", ["client"], name: "index_parti_sso_client_api_keys_on_client"
   add_index "parti_sso_client_api_keys", ["user_id", "client"], name: "index_parti_sso_client_api_keys_on_user_id_and_client", unique: true
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "issue_id",      null: false
+    t.integer  "postable_id",   null: false
+    t.string   "postable_type", null: false
+    t.integer  "user_id",       null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"
+  add_index "posts", ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",      null: false

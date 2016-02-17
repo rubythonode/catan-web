@@ -6,6 +6,7 @@ class OpinionsTest < ActionDispatch::IntegrationTest
 
     post opinions_path(opinion: { title: 'title', body: 'body' }, issue_title: issues(:issue1).title)
 
+    assert assigns(:opinion).persisted?
     assert_equal 'title', assigns(:opinion).title
     assert_equal users(:one), assigns(:opinion).user
     assert_equal issues(:issue1).title, assigns(:opinion).issue.title
@@ -16,6 +17,7 @@ class OpinionsTest < ActionDispatch::IntegrationTest
 
     put opinion_path(opinions(:opinion1), opinion: { title: 'title x', body: 'body x' }, issue_title: issues(:issue2).title)
 
+    assigns(:opinion).reload
     assert_equal 'title x', assigns(:opinion).title
     assert_equal users(:one), assigns(:opinion).user
     assert_equal issues(:issue2).title, assigns(:opinion).issue.title

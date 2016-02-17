@@ -6,6 +6,9 @@ gem 'rails', '4.2.5.1'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'sqlite3'
 
+# model
+gem 'active_record-acts_as', '~> 1.0', '>= 1.0.7'
+
 # auth
 gem 'parti_sso_client', github: 'parti-xyz/parti_sso_client'
 gem 'cancancan', '~> 1.10'

@@ -1,11 +1,7 @@
 opinion1:
   title: opinion1 title
   body: opinion1 body
-  user: one
-  issue: issue1
 
 opinion2:
   title: opinion2 title
   body: opinion2 body
-  user: one
-  issue: issue1

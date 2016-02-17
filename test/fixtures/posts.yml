@@ -1,0 +1,12 @@
+post_article1:
+  user: one
+  issue: issue1
+  postable: article1 (Article)
+post_opinion1:
+  user: one
+  issue: issue1
+  postable: opinion1 (Opinion)
+post_opinion2:
+  user: one
+  issue: issue1
+  postable: opinion2 (Opinion)

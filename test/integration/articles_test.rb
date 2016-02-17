@@ -6,6 +6,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
 
     post articles_path(article: { title: 'title', body: 'body', link: 'link' }, issue_title: issues(:issue1).title)
 
+    assert assigns(:article).persisted?
     assert_equal 'title', assigns(:article).title
     assert_equal users(:one), assigns(:article).user
     assert_equal issues(:issue1).title, assigns(:article).issue.title
@@ -16,6 +17,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
 
     put article_path(articles(:article1), article: { title: 'title x', body: 'body x', link: 'link x' }, issue_title: issues(:issue2).title)
 
+    assigns(:article).reload
     assert_equal 'title x', assigns(:article).title
     assert_equal users(:one), assigns(:article).user
     assert_equal issues(:issue2).title, assigns(:article).issue.title
@@ -34,7 +36,6 @@ class ArticlesTest < ActionDispatch::IntegrationTest
 
     previous_count = Article.count
     post articles_path(article: { title: 'title', body: 'body' }, issue_title: '')
-
     assert_equal previous_count, Article.count
   end
 end
