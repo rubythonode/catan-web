@@ -4,7 +4,7 @@ class OpinionsTest < ActionDispatch::IntegrationTest
   test '만들어요' do
     sign_in(users(:one))
 
-    post opinions_path(opinion: { title: 'title', body: 'body', issue_id: issues(:issue1).id })
+    post opinions_path(opinion: { title: 'title', body: 'body' }, issue_title: issues(:issue1).title)
 
     assert_equal 'title', assigns(:opinion).title
     assert_equal users(:one), assigns(:opinion).user
@@ -14,7 +14,7 @@ class OpinionsTest < ActionDispatch::IntegrationTest
   test '고쳐요' do
     sign_in(users(:one))
 
-    put opinion_path(opinions(:opinion1), opinion: { title: 'title x', body: 'body x', issue_id: issues(:issue2).id })
+    put opinion_path(opinions(:opinion1), opinion: { title: 'title x', body: 'body x' }, issue_title: issues(:issue2).title)
 
     assert_equal 'title x', assigns(:opinion).title
     assert_equal users(:one), assigns(:opinion).user
@@ -25,8 +25,16 @@ class OpinionsTest < ActionDispatch::IntegrationTest
     sign_in(users(:one))
 
     previous_count = Opinion.count
-    post opinions_path(opinion: { title: 'title', body: 'body', issue_id: '' })
+    post opinions_path(opinion: { title: 'title', body: 'body' }, issue_title: '세상에 없었던 이슈')
     assert_equal previous_count, Opinion.count
   end
 
+  test '제목없는 이슈는 싫어요' do
+    sign_in(users(:one))
+
+    previous_count = Opinion.count
+    post opinions_path(opinion: { title: 'title', body: 'body' }, issue_title: '')
+
+    assert_equal previous_count, Opinion.count
+  end
 end

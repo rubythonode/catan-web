@@ -1,6 +1,12 @@
 class IssuesController < ApplicationController
+  respond_to :json, :html
+
   def index
-    @issues = Issue.all
+    @issues = Issue.limit(10)
+    if params[:query].present?
+      @issues = @issues.where("title like ?", "%#{params[:query]}%" )
+    end
+    respond_with @issues
   end
 
   def show
