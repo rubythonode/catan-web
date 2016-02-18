@@ -24,7 +24,7 @@ class IssuesController < ApplicationController
   end
 
   def create
-    if @issue.save
+    if !%w(all).include?(@issue.title) and @issue.save
       redirect_to @issue
     else
       render 'new'

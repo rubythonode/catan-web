@@ -18,4 +18,12 @@ class IssuesTest < ActionDispatch::IntegrationTest
     assigns(:issue).reload
     assert_equal 'title x', assigns(:issue).title
   end
+
+  test 'all이라는 이슈는 못만들어요' do
+    sign_in(users(:admin))
+
+    post issues_path(issue: { title: 'all', body: 'body' })
+
+    refute assigns(:issue).persisted?
+  end
 end
