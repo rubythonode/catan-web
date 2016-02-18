@@ -7,4 +7,6 @@ class Post < ActiveRecord::Base
 
   validates :user, presence: true
   validates :issue, presence: true
+
+  default_scope -> { joins(:issue) }
 end

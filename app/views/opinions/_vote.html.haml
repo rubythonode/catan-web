@@ -1,0 +1,38 @@
+- if !user_signed_in?
+  %p 찬반 투표하려면 로그인해 주세요.
+- elsif @opinion.voted_by? current_user
+  .result-box.text-center(style="margin-top: 50px")
+    .row
+      .col-xs-6
+        %h5
+          찬성
+          .lead
+            %strong= @opinion.votes.with_choice(:agree).count
+        - @opinion.votes.with_choice(:agree).recent.limit(10).each do |vote|
+          = byline vote.user
+      .col-xs-6
+        %h5
+          반대
+          .lead
+            %strong= @opinion.votes.with_choice(:disagree).count
+        - @opinion.votes.with_choice(:disagree).recent.limit(10).each do |vote|
+          = byline vote.user
+
+
+  %div
+    %p
+      투표를 변경합니다.
+      - if @opinion.agreed_by? current_user
+        = link_to opinion_votes_path(@opinion, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
+          반대
+      - if @opinion.disagreed_by? current_user
+        = link_to opinion_votes_path(@opinion, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
+          찬성
+
+- else
+  %div
+    = link_to opinion_votes_path(@opinion, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
+      찬성
+    = link_to opinion_votes_path(@opinion, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
+      반대
+  %p 찬반 투표하시면 자세한 결과를 볼 수 있습니다.

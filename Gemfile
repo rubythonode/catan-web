@@ -9,6 +9,7 @@ gem 'sqlite3'
 # model
 gem 'active_record-acts_as', '~> 1.0', '>= 1.0.7'
 gem 'carrierwave', '~> 0.10.0'
+gem 'enumerize', '~> 1.1'
 
 # auth
 gem 'parti_sso_client', github: 'parti-xyz/parti_sso_client'

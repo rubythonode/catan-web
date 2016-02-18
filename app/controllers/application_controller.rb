@@ -8,4 +8,9 @@ class ApplicationController < ActionController::Base
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
   end
+
+  helper_method :issue_home_path
+  def issue_home_path(issue)
+    view_context.slug_issue_path(slug: issue.title)
+  end
 end

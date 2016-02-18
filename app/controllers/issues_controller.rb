@@ -39,6 +39,11 @@ class IssuesController < ApplicationController
     end
   end
 
+  def destroy
+    @issue.destroy
+    redirect_to root_path
+  end
+
   private
 
   def issue_params

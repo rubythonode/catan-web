@@ -28,6 +28,11 @@ class OpinionsController < ApplicationController
     end
   end
 
+  def destroy
+    @opinion.destroy
+    redirect_to issue_home_path(@opinion.issue)
+  end
+
   private
 
   def opinion_params

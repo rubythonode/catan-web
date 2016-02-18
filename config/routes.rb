@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :articles
-  resources :opinions
+  resources :opinions do
+    resources :votes
+  end
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
 end

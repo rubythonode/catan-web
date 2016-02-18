@@ -1,7 +1,12 @@
 %li.list-group-item
-  - if can? :edit, comment
+  - if can? :update, comment
     = link_to [:edit, comment] do
-      %i.fa.fa-edit
+      %i.fa.fa-edit>
+  - if can? :destroy, comment
+    = link_to comment, method: :delete do
+      %i.fa.fa-trash-o>
+  = if comment.choice.present?
+    = comment.choice
   = byline comment.user
   = comment.created_at
   = comment.body

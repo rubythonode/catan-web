@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217180810) do
+ActiveRecord::Schema.define(version: 20160217194650) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160217180810) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "choice"
   end
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
@@ -87,5 +88,17 @@ ActiveRecord::Schema.define(version: 20160217180810) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "opinion_id", null: false
+    t.string   "choice",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "votes", ["opinion_id", "user_id"], name: "index_votes_on_opinion_id_and_user_id", unique: true
+  add_index "votes", ["opinion_id"], name: "index_votes_on_opinion_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

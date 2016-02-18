@@ -7,9 +7,12 @@
             %img{src: @issue.logo_url}
         = @issue.title
         %small
-          - if can? :edit, @issue
+          - if can? :update, @issue
             = link_to [:edit, @issue] do
               %i.fa.fa-edit>
+          - if can? :destroy, @issue
+            = link_to @issue, method: :delete do
+              %i.fa.fa-trash-o>
         %small
           = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-default' do
             뉴스컬럼 쓰기

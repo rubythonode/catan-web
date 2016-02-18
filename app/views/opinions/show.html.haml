@@ -2,14 +2,19 @@
   %section#opinion
     .container
       %h2.page-header
+        %i.fa.fa-bullhorn
         = @opinion.title
         %small
-          - if can? :edit, @opinion
+          - if can? :update, @opinion
             = link_to [:edit, @opinion] do
-              %i.fa.fa-edit
+              %i.fa.fa-edit>
+          - if can? :destroy, @opinion
+            = link_to @opinion, method: :delete do
+              %i.fa.fa-trash-o>
       %p.issue
         = link_to @opinion.issue.title, issue_home_path(@opinion.issue)
       %p.byline= byline @opinion.user
       %p= @opinion.body
+      = render 'vote'
 
 = render 'comments/comments', postable: @opinion

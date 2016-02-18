@@ -28,6 +28,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article.destroy
+    redirect_to issue_home_path(@article.issue)
+  end
+
   private
 
   def article_params

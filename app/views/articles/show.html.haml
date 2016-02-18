@@ -2,11 +2,15 @@
   %section#article
     .container
       %h2.page-header
+        %i.fa.fa-newspaper-o
         = @article.title
         %small
-          - if can? :edit, @article
+          - if can? :update, @article
             = link_to [:edit, @article] do
-              %i.fa.fa-edit
+              %i.fa.fa-edit>
+          - if can? :destroy, @article
+            = link_to @article, method: :delete do
+              %i.fa.fa-trash-o>
       %p.issue
         = link_to @article.issue.title, issue_home_path(@article.issue)
       %p.byline= byline @article.user
