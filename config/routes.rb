@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :issues
 
   resources :posts, only: [] do
-    resources :comments, shallow: true
+    shallow do
+      resources :comments
+      resources :likes do
+        delete :cancel, on: :collection
+      end
+    end
   end
 
   resources :articles

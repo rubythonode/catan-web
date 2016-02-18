@@ -18,6 +18,8 @@
       %h3 tags
       - @opinion.tags.each do |tag|
         = link_to "##{tag.name}", tag_home_path(tag)
+      %h3 likes
+      %p= render 'likes/like', post: @opinion.acting_as
       = render 'vote'
 
 = render 'comments/comments', postable: @opinion

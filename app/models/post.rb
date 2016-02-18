@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
   has_many :comments
-
+  has_many :likes, counter_cache: true
 
   validates :user, presence: true
   validates :issue, presence: true
@@ -15,6 +15,9 @@ class Post < ActiveRecord::Base
 
   before_save :update_touched_at
 
+  def liked_by? someone
+    likes.exists? user: someone
+  end
   private
 
   def update_touched_at

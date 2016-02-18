@@ -3,3 +3,5 @@
   - if local_assigns[:show_issue]
     [#{link_to opinion.issue.title, issue_home_path(opinion.issue)}]
   = link_to opinion.title, opinion
+  = byline opinion.user
+  = render 'likes/like', post: opinion.acting_as

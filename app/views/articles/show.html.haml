@@ -19,5 +19,6 @@
       %h3 tags
       - @article.tags.each do |tag|
         = link_to "##{tag.name}", tag_home_path(tag)
-
+      %h3 likes
+      %p= render 'likes/like', post: @article.acting_as
 = render 'comments/comments', postable: @article
