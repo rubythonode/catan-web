@@ -1,0 +1,7 @@
+= form_for @comment do |f|
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: 'form-control'
+  = f.submit '저장', class: 'btn btn-primary'
+  = link_to @comment.post.specific, class: 'btn btn-default btn-xs' do
+    취소

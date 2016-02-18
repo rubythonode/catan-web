@@ -10,8 +10,11 @@
     = f.text_area :body, class: 'form-control'
   = f.submit '저장', class: 'btn btn-primary'
   - if @opinion.new_record?
-    = link_to root_path, class: 'btn btn-default btn-xs' do
-      취소
+    - if @opinion.issue.present?
+      - back_to = issue_home_path(@opinion.issue)
+    - else
+      - back_to = root_path
   - else
-    = link_to @opinion, class: 'btn btn-default btn-xs' do
-      취소
+    - back_to = @opinion
+  = link_to back_to, class: 'btn btn-default btn-xs' do
+    취소

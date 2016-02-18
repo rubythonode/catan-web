@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   sso_devise
   root 'pages#home'
-  resources :articles
+
   resources :issues
+
+  resources :posts, only: [] do
+    resources :comments, shallow: true
+  end
+
+  resources :articles
   resources :opinions
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'

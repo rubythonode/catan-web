@@ -4,10 +4,12 @@
       %h2.page-header
         = @opinion.title
         %small
-          = link_to [:edit, @opinion] do
-            %i.fa.fa-edit
+          - if can? :edit, @opinion
+            = link_to [:edit, @opinion] do
+              %i.fa.fa-edit
       %p.issue
         = link_to @opinion.issue.title, issue_home_path(@opinion.issue)
       %p.byline= byline @opinion.user
       %p= @opinion.body
 
+= render 'comments/comments', postable: @opinion

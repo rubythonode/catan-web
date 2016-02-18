@@ -1,0 +1,7 @@
+%li.list-group-item
+  - if can? :edit, comment
+    = link_to [:edit, comment] do
+      %i.fa.fa-edit
+  = byline comment.user
+  = comment.created_at
+  = comment.body

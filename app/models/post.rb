@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :issue
   belongs_to :user
+  has_many :comments
 
   validates :user, presence: true
   validates :issue, presence: true
