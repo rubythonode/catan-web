@@ -16,5 +16,8 @@
       %p.byline= byline @article.user
       %p= link_to truncate(@article.link), @article.link, target: '_blank'
       %p= @article.body
+      %h3 tags
+      - @article.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
 
 = render 'comments/comments', postable: @article

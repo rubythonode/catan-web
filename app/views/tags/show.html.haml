@@ -1,0 +1,9 @@
+.bs-component
+  %section#tag
+    .container
+      %h2.page-header
+        \##{params[:name]}
+  %section#issue-items
+    .container
+      %ul.list-group
+        = render @postables, show_issue: true

@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
+  get '/tags/:name', to: "tags#show", as: 'show_tag'
 end

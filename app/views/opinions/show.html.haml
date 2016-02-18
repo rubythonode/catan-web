@@ -15,6 +15,9 @@
         = link_to @opinion.issue.title, issue_home_path(@opinion.issue)
       %p.byline= byline @opinion.user
       %p= @opinion.body
+      %h3 tags
+      - @opinion.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
       = render 'vote'
 
 = render 'comments/comments', postable: @opinion

@@ -5,6 +5,18 @@
 //= require_tree .
 
 $(document).on('ready', function(e) {
+  $('[data-action="add-tag"]').on('click', function(e) {
+    e.preventDefault();
+    var tag_name = $(e.currentTarget).data('tag-name');
+    var form_control = $(e.currentTarget).data('form-control');
+    var $form_control = $(form_control);
+    if($form_control) {
+      var val = $form_control.val();
+      if($.inArray(tag_name, val.split(' ')) == -1) {
+        $form_control.val(val + ' ' + tag_name);
+      }
+    }
+  });
   $('[data-provider="typeahead"]').each(function(i, elm) {
     var $elm = $(elm);
     var $target = $($elm.data('typeahead-target'));

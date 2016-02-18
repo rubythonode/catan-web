@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   actable as: :postable
+  acts_as_taggable
 
   belongs_to :issue
   belongs_to :user

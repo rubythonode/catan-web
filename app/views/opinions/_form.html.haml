@@ -8,6 +8,15 @@
   .form-group
     = f.label :body
     = f.text_area :body, class: 'form-control'
+  .form-group
+    = f.label :tag_list
+    = f.text_field :tag_list, class: 'form-control'
+    - if ActsAsTaggableOn::Tag.most_used.any?
+      %p.help-block
+        많이 쓰이는 태그
+        - ActsAsTaggableOn::Tag.most_used.each do |tag|
+          %a(href='#' data-action="add-tag" data-form-control="#opinion_tag_list" data-tag-name="#{tag.name}")
+            = tag.name
   = f.submit '저장', class: 'btn btn-primary'
   - if @opinion.new_record?
     - if @opinion.issue.present?

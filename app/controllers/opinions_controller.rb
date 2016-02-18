@@ -36,7 +36,7 @@ class OpinionsController < ApplicationController
   private
 
   def opinion_params
-    params.require(:opinion).permit(:title, :body)
+    params.require(:opinion).permit(:title, :body, :tag_list)
   end
 
   def set_issue
