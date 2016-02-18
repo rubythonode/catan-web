@@ -2,11 +2,14 @@ post_article1:
   user: one
   issue: issue1
   postable: article1 (Article)
+  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_opinion1:
   user: one
   issue: issue1
   postable: opinion1 (Opinion)
+  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_opinion2:
   user: one
   issue: issue1
   postable: opinion2 (Opinion)
+  touched_at: <%= 5.day.ago.to_s(:db) %>
