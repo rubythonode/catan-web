@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   sso_devise
-  root 'pages#home'
+  root 'issues#show', :id => 2
 
   resources :issues do
     resources :watches do
