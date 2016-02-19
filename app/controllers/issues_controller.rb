@@ -6,7 +6,7 @@ class IssuesController < ApplicationController
   def index
     @issues = Issue.all
     if request.format.json?
-      @issues = issues.limit(10)
+      @issues = @issues.limit(10)
     else
       @issue_of_all = Issue::OF_ALL
     end
