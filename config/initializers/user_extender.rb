@@ -6,7 +6,7 @@ Rails.application.config.to_prepare do
     after_create :watch_default_issues
 
     def admin?
-      if Rails.env.staging?
+      if Rails.env.staging? or Rails.env.production?
         %w(rest515@parti.xyz berry@parti.xyz royjung@parti.xyz mozo@parti.xyz dalikim@parti.xyz).include? email
       else
         %w(admin@test.com dali@gmail.com).include? email
