@@ -6,7 +6,18 @@
 
 
 body {
-  padding-top: 5em;
+  padding-top: 3em;
+}
+
+.brand {
+  margin-bottom: 1em;
+  #logo {
+    width: 60px;
+    margin: 0 1em 1em 0;
+  }
+  h2 {
+    margin-top: 10px;
+  }
 }
 
 .post {

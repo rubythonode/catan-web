@@ -1,8 +1,10 @@
 .bs-component
   %section#home
-    .container
-      .jumbotron
-        %h2.text-primary 빠띠
+    .jumbotron
+      .container
+        .brand.clearfix
+          %img#logo.pull-left.img-rounded{ alt: 'parti', src: asset_path('logo_icon_p.png'), style: ('max-width: 3.5em;'), alt: 'parti logo'}
+          %h2.text-primary 빠띠
         %p
           - if can? :create, Issue
             = link_to new_issue_path, class: 'btn btn-default' do
