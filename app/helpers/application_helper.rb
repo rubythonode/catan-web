@@ -20,6 +20,10 @@ module ApplicationHelper
     end
   end
 
+  def fa_icon(name)
+    content_tag(:i, nil, class: "fa fa-#{name}")
+  end
+
   def date_f(date)
     if date.today?
       date.strftime("%H:%M")

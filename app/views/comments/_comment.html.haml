@@ -5,8 +5,8 @@
     - if comment.choice.present?
       %p.text-center.text-muted
         %small
-          = choice_icon(opinion)
-          = opinion.choice_text
+          = choice_icon(comment)
+          = comment.choice
   .media-body
     %strong= comment.user.nickname
     = date_f comment.created_at
