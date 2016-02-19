@@ -20,4 +20,13 @@ class LikesController < ApplicationController
       format.js
     end
   end
+
+  def by_me
+    @likes = Like.joins(:post).recent.where(user: current_user)
+    if params[:t].present?
+      @likes = @likes.merge(Post.by_postable_type(params[:t]))
+    end
+    @posts = @likes.map(&:post)
+    @postable = @posts.map(&:postable)
+  end
 end

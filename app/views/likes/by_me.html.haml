@@ -1,0 +1,10 @@
+.bs-component
+  %section#likes
+    .container
+      %h2.page-header
+        Likes
+      = render 'post_type_filter'
+  %section#issue-items
+    .container
+      %ul.list-group
+        = render @postable, show_issue: true
