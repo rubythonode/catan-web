@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218183145) do
+ActiveRecord::Schema.define(version: 20160219033641) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -79,14 +79,18 @@ ActiveRecord::Schema.define(version: 20160218183145) do
   add_index "parti_sso_client_api_keys", ["user_id", "client"], name: "index_parti_sso_client_api_keys_on_user_id_and_client", unique: true
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "issue_id",                  null: false
-    t.integer  "postable_id",               null: false
-    t.string   "postable_type",             null: false
-    t.integer  "user_id",                   null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.datetime "touched_at",                null: false
-    t.integer  "likes_count",   default: 0
+    t.integer  "issue_id",                               null: false
+    t.integer  "postable_id",                            null: false
+    t.string   "postable_type",                          null: false
+    t.integer  "user_id",                                null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.datetime "touched_at",                             null: false
+    t.integer  "likes_count",         default: 0
+    t.string   "last_touched_action", default: "create"
+    t.string   "last_touched_params"
+    t.integer  "comments_count",      default: 0
+    t.integer  "votes_count",         default: 0
   end
 
   add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"
@@ -125,14 +129,13 @@ ActiveRecord::Schema.define(version: 20160218183145) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",    null: false
-    t.integer  "opinion_id", null: false
     t.string   "choice",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "post_id",    null: false
   end
 
-  add_index "votes", ["opinion_id", "user_id"], name: "index_votes_on_opinion_id_and_user_id", unique: true
-  add_index "votes", ["opinion_id"], name: "index_votes_on_opinion_id"
+  add_index "votes", ["post_id", "user_id"], name: "index_votes_on_post_id_and_user_id", unique: true
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
   create_table "watches", force: :cascade do |t|

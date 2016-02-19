@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
+  include PostTouchable
+
   belongs_to :user
-  belongs_to :post
+  belongs_to :post, counter_cache: true
 
   validates :user, presence: true
   validates :post, presence: true
@@ -8,11 +10,5 @@ class Comment < ActiveRecord::Base
   scope :recent, -> { order(created_at: :desc) }
   scope :persisted, -> { where "id IS NOT NULL" }
 
-  before_create :touch_post
-
-  private
-
-  def touch_post
-    post.touch(:touched_at)
-  end
+  before_save :touch_post_by_comment
 end

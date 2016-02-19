@@ -41,15 +41,4 @@ class CommentsTest < ActionDispatch::IntegrationTest
     assigns(:comment).reload
     assert_equal 'body x', assigns(:comment).body
   end
-
-  test '만들면 뉴스컬럼의 터치 날짜가 최신으로 바뀌어져요' do
-    previous = articles(:article1).touched_at
-    Timecop.freeze(Date.today + 30) do
-      sign_in(users(:one))
-
-      post post_comments_path(post_id: articles(:article1).acting_as.id, comment: { body: 'body' })
-
-      refute_equal previous.to_s, articles(:article1).reload.touched_at.to_s
-    end
-  end
 end

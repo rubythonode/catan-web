@@ -23,16 +23,16 @@
     %p
       투표를 변경합니다.
       - if @opinion.agreed_by? current_user
-        = link_to opinion_votes_path(@opinion, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
+        = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
           반대
       - if @opinion.disagreed_by? current_user
-        = link_to opinion_votes_path(@opinion, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
+        = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
           찬성
 
 - else
   %div
-    = link_to opinion_votes_path(@opinion, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
+    = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
       찬성
-    = link_to opinion_votes_path(@opinion, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
+    = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
       반대
   %p 찬반 투표하시면 자세한 결과를 볼 수 있습니다.

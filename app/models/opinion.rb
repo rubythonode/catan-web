@@ -1,8 +1,6 @@
 class Opinion < ActiveRecord::Base
   acts_as :post, as: :postable
 
-  has_many :votes
-
   def voted_by voter
     votes.where(user: voter).first
   end

@@ -12,6 +12,7 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'enumerize', '~> 1.1'
 gem 'acts-as-taggable-on', '~> 3.5'
 gem 'recursive-open-struct', '~> 1.0', '>= 1.0.1'
+gem 'time_difference', '~> 0.4.2'
 
 # auth
 gem 'parti_sso_client', github: 'parti-xyz/parti_sso_client'

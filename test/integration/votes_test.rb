@@ -4,7 +4,7 @@ class VotesTest < ActionDispatch::IntegrationTest
   test '만들어요' do
     sign_in users(:one)
 
-    post opinion_votes_path(opinion_id: opinions(:opinion1).id, vote: { choice: :agree })
+    post post_votes_path(post_id: opinions(:opinion1).acting_as.id, vote: { choice: :agree })
 
     assert assigns(:vote).persisted?
     assert_equal users(:one), assigns(:vote).user
@@ -16,7 +16,7 @@ class VotesTest < ActionDispatch::IntegrationTest
     assert opinions(:opinion1).voted_by? users(:two)
 
     sign_in users(:two)
-    post opinion_votes_path(opinion_id: opinions(:opinion1).id, vote: { choice: :agree })
+    post post_votes_path(post_id: opinions(:opinion1).acting_as.id, vote: { choice: :agree })
 
     assert_equal previous_count, opinions(:opinion1).votes.count
   end
@@ -25,7 +25,7 @@ class VotesTest < ActionDispatch::IntegrationTest
     assert opinions(:opinion1).agreed_by? users(:two)
 
     sign_in users(:two)
-    post opinion_votes_path(opinion_id: opinions(:opinion1).id, vote: { choice: :disagree })
+    post post_votes_path(post_id: opinions(:opinion1).acting_as.id, vote: { choice: :disagree })
 
     refute opinions(:opinion1).reload.agreed_by? users(:two)
   end

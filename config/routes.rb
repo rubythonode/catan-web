@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :posts, only: [] do
     shallow do
       resources :comments
+      resources :votes
       resources :likes do
         delete :cancel, on: :collection
       end
@@ -19,9 +20,7 @@ Rails.application.routes.draw do
   get 'likes', to: "likes#by_me", as: 'likes_by_me'
 
   resources :articles
-  resources :opinions do
-    resources :votes
-  end
+  resources :opinions
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/tags/:name', to: "tags#show", as: 'show_tag'

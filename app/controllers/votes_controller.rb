@@ -1,10 +1,11 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource :opinion
-  load_and_authorize_resource :vote, through: :opinion, shallow: true
+  load_and_authorize_resource :post
+  load_and_authorize_resource :vote, through: :post, shallow: true
 
   def create
-    previous_vote = @opinion.voted_by current_user
+    @poinion = @post.specific
+    previous_vote = @poinion.voted_by current_user
     if previous_vote.present?
       @vote = previous_vote
       @vote.choice = params[:vote][:choice]
@@ -13,7 +14,7 @@ class VotesController < ApplicationController
     end
 
     @vote.save
-    redirect_to @opinion
+    redirect_to @poinion
   end
 
   private

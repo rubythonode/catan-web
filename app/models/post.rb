@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
   has_many :comments
+  has_many :votes
   has_many :likes, counter_cache: true
 
   validates :user, presence: true
@@ -15,7 +16,7 @@ class Post < ActiveRecord::Base
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
 
-  before_save :update_touched_at
+  before_save :set_touched_at
 
   def liked_by? someone
     likes.exists? user: someone
@@ -23,7 +24,7 @@ class Post < ActiveRecord::Base
 
   private
 
-  def update_touched_at
+  def set_touched_at
     self.touched_at = DateTime.now
   end
 end
