@@ -1,15 +1,15 @@
 class Vote < ActiveRecord::Base
   extend Enumerize
   include PostTouchable
+  include Choosable
 
   belongs_to :user
   belongs_to :post, counter_cache: true
 
-  enumerize :choice, in: [:agree, :disagree], predicates: true, scope: true
-
   validate :validate_post_type
   validates :user, uniqueness: {scope: [:post]}
   validates :post, presence: true
+  validates :choice, presence: true
 
   scope :recent, -> { order(updated_at: :desc) }
 

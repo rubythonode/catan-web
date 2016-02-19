@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   include PostTouchable
+  include Choosable
 
   belongs_to :user
   belongs_to :post, counter_cache: true

@@ -6,9 +6,10 @@
       %p.text-center.text-muted
         %small
           = choice_icon(comment)
-          = comment.choice
+          = comment.choice_text
   .media-body
     %strong= comment.user.nickname
+    %i.fa.fa-clock-o
     = date_f comment.created_at
     - if can? :update, comment
       = link_to [:edit, comment] do
