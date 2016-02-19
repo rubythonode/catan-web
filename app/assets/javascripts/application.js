@@ -2,9 +2,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-typeahead
+//= require masonry.pkgd
 //= require_tree .
 
-$(document).on('ready', function(e) {
+$(function(){
   $('[data-action="add-tag"]').on('click', function(e) {
     e.preventDefault();
     var tag_name = $(e.currentTarget).data('tag-name');
@@ -42,4 +43,13 @@ $(document).on('ready', function(e) {
       }
     });
   });
+
+  // masonry
+  var $container = $('.masonry-container');
+  $container.masonry({
+    percentPosition: true,
+    columnWidth: '.post',
+    itemSelector: '.post',
+  });
+
 });

@@ -1,8 +1,10 @@
-%li.list-group-item
-  %i.fa.fa-newspaper-o
-  - if local_assigns[:show_issue]
-    [#{link_to article.issue.title, issue_home_path(article.issue)}]
-  = link_to article.title, article
-  = byline article.user
-  = render 'likes/like', post: article.acting_as
+.post.article.col-md-4.col-sm-6
+  .well
+    %i.fa.fa-newspaper-o.pull-right
+    - if local_assigns[:show_issue]
+      [#{link_to article.issue.title, issue_home_path(article.issue)}]
+    %h3= link_to article.title, article
+    %p= truncate(article.body, length: 100)
+    %p= byline article.user
+    = render 'likes/like', post: article.acting_as
 

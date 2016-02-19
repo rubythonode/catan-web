@@ -2,3 +2,38 @@
 @import "variables";
 @import "bootstrap";
 @import "base";
+
+body {
+  padding-top: 5em;
+}
+
+.post {
+  .thumbnail {
+    padding: 19px;
+  }
+}
+
+blockquote {
+  padding: .5em;
+  border-left: 0;
+  quotes: "\201C""\201D""\2018""\2019";
+  p {
+    display: inline;
+  }
+  &:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 3em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  &:after {
+    color: #ccc;
+    content: close-quote;
+    font-size: 3em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -1em;
+  }
+}

@@ -1,6 +1,8 @@
 .bs-component
   %section#home
     .container
+      .jumbotron
+        %h2.text-primary 빠띠
       %h2.page-header
         - if user_signed_in?
           구독 중인 이슈의 글
@@ -17,5 +19,7 @@
 
       = render 'post_type_filter'
 
-      %ul.list-group
+  %section#posts
+    .container
+      .row.masonry-container
         = render @postables, show_issue: true

@@ -6,5 +6,5 @@
       = render 'post_type_filter'
   %section#issue-items
     .container
-      %ul.list-group
+      .row.masonry-container
         = render @postable, show_issue: true
