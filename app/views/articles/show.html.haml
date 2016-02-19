@@ -6,14 +6,13 @@
           = link_to issue_home_path(@article.issue) do
             %span.label.label-default= @article.issue.title
         .actions.pull-right
-          %small
-            = byline @article.user
-            - if can? :update, @article
-              = link_to [:edit, @article] do
-                %i.fa.fa-edit>
-            - if can? :destroy, @article
-              = link_to @article, method: :delete do
-                %i.fa.fa-trash-o>
+          = byline @article.user
+          - if can? :update, @article
+            = link_to [:edit, @article] do
+              %i.fa.fa-edit>
+          - if can? :destroy, @article
+            = link_to @article, method: :delete do
+              %i.fa.fa-trash-o>
         %h2.text-center{ style: 'font-weight: bold; padding: 0; margin-top: 40px; margin-bottom: 50px;' }= @article.title
 
         %div

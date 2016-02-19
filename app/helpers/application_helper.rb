@@ -1,7 +1,7 @@
 module ApplicationHelper
-  def byline user
+  def byline(user, options={})
     return if user.nil?
-    raw render(partial: 'users/byline', locals: { user: user })
+    raw render(partial: 'users/byline', locals: options.merge(user: user))
   end
 
   def issue_home_path(issue)

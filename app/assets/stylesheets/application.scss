@@ -44,3 +44,14 @@ blockquote {
   display: block;
 }
 
+.user-image {
+  width: 20px;
+  height: 20px;
+
+  h3 & {
+    max-width: 30px;
+    max-height: 30px;
+  }
+}
+
+

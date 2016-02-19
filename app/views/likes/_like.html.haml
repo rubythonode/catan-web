@@ -7,4 +7,4 @@
       %i.fa.fa-heart-o>
   = post.likes.count
   - post.likes.recent.limit(10).each do |like|
-    = byline(like.user)
+    = byline(like.user, hide_nickname: true)
