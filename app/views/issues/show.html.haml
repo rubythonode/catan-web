@@ -13,6 +13,9 @@
           - if can? :destroy, @issue
             = link_to @issue, method: :delete do
               %i.fa.fa-trash-o>
+          - if !@issue.is_all? and can?(:create, Watch)
+            %small(id="#{dom_id(@issue)}-watch")
+              = render 'watches/watch', issue: @issue
         %small
           = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-default' do
             뉴스컬럼 쓰기

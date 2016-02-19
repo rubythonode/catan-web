@@ -1,0 +1,10 @@
+- if issue.watched_by?(current_user)
+  %i.fa.fa-eye
+  구독 중
+  = link_to cancel_issue_watches_path(@issue), method: :delete, remote: true do
+    %i.fa.fa-close
+    구독 취소
+- else
+  = link_to issue_watches_path(issue), method: :post, remote: true do
+    %i.fa.fa-eye
+    구독 하기

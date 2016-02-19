@@ -4,7 +4,13 @@ class IssuesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @issues = Issue.limit(10)
+    @issues = Issue.all
+    if request.format.json?
+      @issues = issues.limit(10)
+    else
+      @issue_of_all = Issue::OF_ALL
+    end
+
     if params[:query].present?
       @issues = @issues.where("title like ?", "%#{params[:query]}%" )
     end
@@ -17,8 +23,13 @@ class IssuesController < ApplicationController
   end
 
   def slug
-    @issue = Issue.find_by! title: params[:slug]
-    @posts = @issue.posts
+    if params[:slug] == 'all'
+      @issue = Issue::OF_ALL
+      @posts = Post.all.recent
+    else
+      @issue = Issue.find_by! title: params[:slug]
+      @posts = @issue.posts.recent
+    end
     @postables = @posts.map &:postable
     render template: 'issues/show'
   end

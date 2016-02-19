@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   sso_devise
   root 'pages#home'
 
-  resources :issues
+  resources :issues do
+    resources :watches do
+      delete :cancel, on: :collection
+    end
+  end
 
   resources :posts, only: [] do
     shallow do

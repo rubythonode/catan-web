@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218143549) do
+ActiveRecord::Schema.define(version: 20160218183145) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -34,15 +34,16 @@ ActiveRecord::Schema.define(version: 20160218143549) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "issues", force: :cascade do |t|
-    t.string   "title",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "title",                     null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "body"
     t.string   "logo"
     t.string   "cover"
+    t.integer  "watches_count", default: 0
   end
 
-  add_index "issues", ["title"], name: "index_issues_on_title"
+  add_index "issues", ["title"], name: "index_issues_on_title", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -133,5 +134,16 @@ ActiveRecord::Schema.define(version: 20160218143549) do
   add_index "votes", ["opinion_id", "user_id"], name: "index_votes_on_opinion_id_and_user_id", unique: true
   add_index "votes", ["opinion_id"], name: "index_votes_on_opinion_id"
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+
+  create_table "watches", force: :cascade do |t|
+    t.integer  "issue_id",   null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "watches", ["issue_id"], name: "index_watches_on_issue_id"
+  add_index "watches", ["user_id", "issue_id"], name: "index_watches_on_user_id_and_issue_id", unique: true
+  add_index "watches", ["user_id"], name: "index_watches_on_user_id"
 
 end

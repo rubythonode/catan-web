@@ -10,6 +10,15 @@ class IssuesTest < ActionDispatch::IntegrationTest
     assert_equal 'title', assigns(:issue).title
   end
 
+  test '같은 이름으로는 못 만들어요' do
+    sign_in(users(:admin))
+
+    post issues_path(issue: { title: 'title', body: 'body' })
+    assert assigns(:issue).persisted?
+    post issues_path(issue: { title: 'title', body: 'body' })
+    refute assigns(:issue).persisted?
+  end
+
   test '고쳐요' do
     sign_in(users(:admin))
 

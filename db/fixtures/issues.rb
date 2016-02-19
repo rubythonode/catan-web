@@ -1,3 +1,3 @@
 Issue.seed(:title) do |s|
-  s.title = "ask-parti"
+  s.title = Issue::TITLE_OF_ASK_PARTI
 end
