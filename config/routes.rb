@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   sso_devise
-  root 'issues#show', :id => 2
+  root 'issues#slug', slug: '기본소득'
 
   resources :issues do
     resources :watches do
