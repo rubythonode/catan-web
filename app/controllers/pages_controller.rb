@@ -1,11 +1,13 @@
 class PagesController < ApplicationController
   def home
-    @postables = Post.recent
-    @postables = @postables.watched_by(current_user) if user_signed_in?
-
+    all_post = Post.recent
     if params[:t].present?
-      @postables = @postables.by_postable_type(params[:t])
+      all_post = all_post.by_postable_type(params[:t])
     end
-    @postables = @postables.all.map &:postable
+
+    @all_postables = all_post.all.map &:postable
+    if user_signed_in?
+      @watched_postables = all_post.watched_by(current_user).all.map &:postable
+    end
   end
 end

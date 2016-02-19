@@ -3,12 +3,7 @@
     .container
       .jumbotron
         %h2.text-primary 빠띠
-      %h2.page-header
-        - if user_signed_in?
-          구독 중인 이슈의 글
-        - else
-          최근 글
-        %small
+        %p
           - if can? :create, Issue
             = link_to new_issue_path, class: 'btn btn-default' do
               이슈 열기
@@ -16,10 +11,20 @@
             뉴스컬럼 쓰기
           = link_to new_opinion_path, class: 'btn btn-default' do
             주장 하기
+  - if @watched_postables.try(:any?)
+    %section#posts
+      .container
+        %h2.page-header
+          구독 중인 이슈의 글
+        = render 'post_type_filter'
+        .row.masonry-container
+          = render @watched_postables, show_issue: true
 
-      = render 'post_type_filter'
-
-  %section#posts
-    .container
-      .row.masonry-container
-        = render @postables, show_issue: true
+  - if @all_postables.try(:any?) and @watched_postables.try(:empty?)
+    %section#posts
+      .container
+        %h2.page-header
+          최신글
+        = render 'post_type_filter'
+        .row.masonry-container
+          = render @all_postables, show_issue: true
