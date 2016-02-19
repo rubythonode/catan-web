@@ -1,0 +1,10 @@
+ko:
+  activerecord:
+    models:
+      issue: 이슈
+    attributes:
+      issue:
+        title: 제목
+        body: 내용
+        logo: 대표 이미지
+        cover: 커버 이미지
