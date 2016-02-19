@@ -7,17 +7,13 @@ class WatchesController < ApplicationController
     @watch.user = current_user
     @watch.save
 
-    respond_to do |format|
-      format.js
-    end
+    redirect_to issue_home_path(@issue)
   end
 
   def cancel
     @watch = @issue.watches.find_by user: current_user
     @watch.destroy
 
-    respond_to do |format|
-      format.js
-    end
+    redirect_to issue_home_path(@issue)
   end
 end

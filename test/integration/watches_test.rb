@@ -4,7 +4,7 @@ class WatchesTest < ActionDispatch::IntegrationTest
   test '만들어요' do
     sign_in(users(:one))
 
-    post issue_watches_path(issue_id: issues(:issue1).id), format: :js
+    post issue_watches_path(issue_id: issues(:issue1).id)
 
     assert assigns(:watch).persisted?
     assert_equal issues(:issue1), assigns(:watch).issue
@@ -16,7 +16,7 @@ class WatchesTest < ActionDispatch::IntegrationTest
 
     sign_in(users(:two))
 
-    delete cancel_issue_watches_path(issue_id: issues(:issue1).id), format: :js
+    delete cancel_issue_watches_path(issue_id: issues(:issue1).id)
 
     refute issues(:issue1).watched_by? users(:two)
   end
@@ -26,10 +26,10 @@ class WatchesTest < ActionDispatch::IntegrationTest
 
     assert_equal 0, Post.watched_by(users(:one)).count
 
-    post issue_watches_path(issue_id: issues(:issue1).id), format: :js
+    post issue_watches_path(issue_id: issues(:issue1).id)
     assert_equal issues(:issue1).posts.count, Post.watched_by(users(:one)).count
 
-    post issue_watches_path(issue_id: issues(:issue2).id), format: :js
+    post issue_watches_path(issue_id: issues(:issue2).id)
     assert_equal issues(:issue1).posts.count + issues(:issue2).posts.count, Post.watched_by(users(:one)).count
   end
 end

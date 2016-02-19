@@ -13,11 +13,9 @@
             뉴스컬럼 쓰기
           = link_to new_opinion_path, class: 'btn btn-default' do
             주장 하기
-  - if user_signed_in? and current_user.watched_issues.any?
+  - if user_signed_in? and Post.watched_by(current_user).any?
     %section#posts
       .container
-        %h2.page-header
-          구독 중인 이슈의 글
         = render 'post_type_filter'
         - if @watched_postables.any?
           .row.masonry-container
@@ -29,8 +27,6 @@
   - else
     %section#posts
       .container
-        %h2.page-header
-          최신글
         = render 'post_type_filter'
         - if @all_postables.any?
           .row.masonry-container
