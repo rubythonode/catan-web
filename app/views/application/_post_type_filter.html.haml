@@ -1,0 +1,5 @@
+- current_params = params.except(:t, :action, :controller)
+%div.fitler
+  = link_to '모두 보기', url_for(current_params)
+  = link_to '뉴스컬럼만 보기', url_for(current_params.merge(t: :article))
+  = link_to '주장만 보기', url_for(current_params.merge(t: :opinion))

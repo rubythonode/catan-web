@@ -30,6 +30,9 @@ class IssuesController < ApplicationController
       @issue = Issue.find_by! title: params[:slug]
       @posts = @issue.posts.recent
     end
+    if params[:t].present?
+      @posts = @posts.by_postable_type(params[:t])
+    end
     @postables = @posts.map &:postable
     render template: 'issues/show'
   end
