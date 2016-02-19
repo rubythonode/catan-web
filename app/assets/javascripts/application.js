@@ -3,6 +3,7 @@
 //= require bootstrap
 //= require bootstrap-typeahead
 //= require masonry.pkgd
+//= require bootstrap.offcanvas
 //= require_tree .
 
 $(function(){

@@ -2,6 +2,8 @@
 @import "variables";
 @import "bootstrap";
 @import "base";
+@import "bootstrap.offcanvas";
+
 
 body {
   padding-top: 5em;
@@ -37,3 +39,8 @@ blockquote {
     vertical-align: -1em;
   }
 }
+
+.navbar-toggle.offcanvas-toggle {
+  display: block;
+}
+
