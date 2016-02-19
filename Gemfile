@@ -15,7 +15,7 @@ gem 'recursive-open-struct', '~> 1.0', '>= 1.0.1'
 gem 'time_difference', '~> 0.4.2'
 
 # auth
-gem 'parti_sso_client', github: 'parti-xyz/parti_sso_client'
+gem 'parti_sso_client', '~> 0.0.13', github: 'parti-xyz/parti_sso_client'
 gem 'cancancan', '~> 1.10'
 
 # ui
