@@ -1,25 +1,30 @@
-.bs-component
-  %section#opinion
+.bs-component(style='margin-bottom: 3em;')
+  %section#article
     .container
-      %h2.page-header
-        %i.fa.fa-bullhorn
-        = @opinion.title
-        %small
+      .jumbotron.jumbotron-transparent
+        .pull-left
+          = link_to issue_home_path(@opinion.issue) do
+            %span.label.label-default= @opinion.issue.title
+        .actions.pull-right
+          = byline @opinion.user
           - if can? :update, @opinion
             = link_to [:edit, @opinion] do
               %i.fa.fa-edit>
           - if can? :destroy, @opinion
             = link_to @opinion, method: :delete do
               %i.fa.fa-trash-o>
-      %p.issue
-        = link_to @opinion.issue.title, issue_home_path(@opinion.issue)
-      %p.byline= byline @opinion.user
-      %p= @opinion.body
-      %h3 tags
-      - @opinion.tags.each do |tag|
-        = link_to "##{tag.name}", tag_home_path(tag)
-      %h3 likes
-      %p= render 'likes/like', post: @opinion.acting_as
-      = render 'vote'
+        %h2.text-center{ style: 'font-weight: bold; padding: 0; margin-top: 40px; margin-bottom: 50px;' }= @opinion.title
 
+        .post-bg-opinion-item
+          .post-bg-content
+            %div{ style: 'margin-top: 2em' }
+              = simple_format @opinion.body, style: 'font-size: 120%'
+
+        .base{ style: 'margin-top: 2em' }
+          %sapn.tags
+          - @opinion.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag)
+          %sapn.likes
+            = render 'likes/like', post: @opinion.acting_as
+      = render 'vote'
 = render 'comments/comments', postable: @opinion

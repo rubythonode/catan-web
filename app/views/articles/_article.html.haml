@@ -1,10 +1,9 @@
-.post.article.col-md-4.col-sm-6
+.post.article.col-md-4.col-sm-6[article.acting_as]
   .panel.panel-default
     .panel-body.post-bg-article-collection
-      .post-bg-content
+      .post-bg-content.clearfix
         .pull-right
           %small= byline article.user
-        .pull-left
         - if local_assigns[:show_issue]
           = link_to issue_home_path(article.issue) do
             %span.label.label-default= article.issue.title

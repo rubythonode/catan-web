@@ -51,6 +51,11 @@ blockquote {
   }
 }
 
+.jumbotron-transparent {
+  background: none;
+  border: none;
+}
+
 .navbar-toggle.offcanvas-toggle {
   display: block;
 }
@@ -95,6 +100,35 @@ blockquote {
       top: -0.5em;
       right: -0.3em;
       content: "\f1ea";
+      color: rgba(220, 220, 220, 0.2);
+      font-size: 15em;
+    }
+  }
+
+  &-opinion-collection {
+    position: relative;
+    overflow: hidden;
+
+    &:after {
+      position: absolute;
+      font-family: 'FontAwesome';
+      bottom: -0.4em;
+      right: -0.3em;
+      content: "\f0a1";
+      color: rgba(220, 220, 220, 0.2);
+      font-size: 8em;
+    }
+  }
+
+  &-opinion-item {
+    position: relative;
+
+    &:after {
+      position: absolute;
+      font-family: 'FontAwesome';
+      top: -0.5em;
+      right: -0.3em;
+      content: "\f0a1";
       color: rgba(220, 220, 220, 0.2);
       font-size: 15em;
     }

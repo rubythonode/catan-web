@@ -1,29 +1,37 @@
-.bs-component
+.bs-component(style="background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;")
   %section#issue
     .container
-      %h2.page-header
-        - if @issue.logo.file.present?
-          .thumbnail
-            %img{src: @issue.logo_url}
-        = @issue.title
-        %small
-          - if can? :update, @issue
-            = link_to [:edit, @issue] do
-              %i.fa.fa-edit>
-          - if can? :destroy, @issue
-            = link_to @issue, method: :delete do
-              %i.fa.fa-trash-o>
-          - if !@issue.is_all? and can?(:create, Watch)
-            %small(id="#{dom_id(@issue)}-watch")
-              = render 'watches/watch', issue: @issue
-        %small
+      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
+        %div.clearfix
+          - if @issue.logo.file.present?
+            .pull-left
+              = image_tag @issue.logo_url, class: 'img-thumbnail', style: 'width: 125px; height: 125px; margin-right: 20px;'
+          %h2{ style: 'margin-top: 0;' }
+            = @issue.title
+            %small
+              - if can? :update, @issue
+                = link_to [:edit, @issue] do
+                  %i.fa.fa-edit>
+              - if can? :destroy, @issue
+                = link_to @issue, method: :delete do
+                  %i.fa.fa-trash-o>
+              - if !@issue.is_all? and can?(:create, Watch)
+                %small(id="#{dom_id(@issue)}-watch")
+                  = render 'watches/watch', issue: @issue
+
+          = simple_format @issue.body, style: 'font-size: 15px; color: white; text-shadow: 1px 1px 0px black; margin-left: 145px;'
+
+        .text-center
           = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-default' do
             뉴스컬럼 쓰기
           = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-default' do
             주장 하기
-      = render 'post_type_filter'
 
+.bs-component
   %section#issue-items
     .container
+
+      = render 'post_type_filter'
+
       .row.masonry-container
         = render @postables

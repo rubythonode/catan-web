@@ -2,10 +2,11 @@
   %section#comments
     .container
       %ul.media-list
-        %li.media
-          = form_for [postable.acting_as, postable.comments.build] do |f|
-            .form-group
-              = f.text_area :body, class: 'form-control', placeholder: '의견은...'
-            = f.submit '저장', class: 'btn btn-primary pull-right'
+        - if user_signed_in?
+          %li.media
+            = form_for [postable.acting_as, postable.comments.build] do |f|
+              .form-group
+                = f.text_area :body, class: 'form-control', placeholder: '의견은...'
+              = f.submit '저장', class: 'btn btn-primary pull-right'
         = render postable.comments.persisted.recent
 

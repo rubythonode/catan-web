@@ -1,7 +1,7 @@
 .bs-component
   %section#article
     .container
-      .jumbotron(style='background-color: #fff;')
+      .jumbotron.jumbotron-transparent
         .pull-left
           = link_to issue_home_path(@article.issue) do
             %span.label.label-default= @article.issue.title

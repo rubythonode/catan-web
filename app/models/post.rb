@@ -5,7 +5,16 @@ class Post < ActiveRecord::Base
   belongs_to :issue
   belongs_to :user
   has_many :comments
-  has_many :votes
+  has_many :votes do
+    def partial_included_with(someone)
+      partial = recent.limit(10)
+      if !partial.map(&:user).include?(someone)
+        (partial.all << find_by(user: someone)).compact
+      else
+        partial.all
+      end
+    end
+  end
   has_many :likes, counter_cache: true
 
   validates :user, presence: true
