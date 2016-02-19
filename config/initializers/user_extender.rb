@@ -9,7 +9,7 @@ Rails.application.config.to_prepare do
       if Rails.env.staging? or Rails.env.production?
         %w(rest515@parti.xyz berry@parti.xyz royjung@parti.xyz mozo@parti.xyz dalikim@parti.xyz).include? email
       else
-        %w(admin@test.com dali@gmail.com).include? email
+        %w(admin@test.com).include? email
       end
     end
 
