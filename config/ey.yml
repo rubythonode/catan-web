@@ -28,7 +28,7 @@ defaults:
 
   # Default migration command to run when migrations are enabled.
   #
-  migration_command: rake db:migrate --trace
+  migration_command: rake db:migrate --trace; rake db:seed_fu
 
   # Enables rails assets precompilation always and halts when the task fails.
   #

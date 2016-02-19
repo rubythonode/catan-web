@@ -28,6 +28,7 @@ gem 'bootswatch-rails'
 gem 'haml-rails', '~> 0.9.0'
 
 # tool
+gem 'envyable', '~> 0.2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'seed-fu', '~> 2.3', '>= 2.3.5'
 
