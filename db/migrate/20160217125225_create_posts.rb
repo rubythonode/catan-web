@@ -1,10 +1,5 @@
 class CreatePosts < ActiveRecord::Migration
   def up
-    articles_count = ActiveRecord::Base.connection.execute "SELECT count(1) as count FROM articles"
-    opinions_count = ActiveRecord::Base.connection.execute "SELECT count(1) as count FROM opinions"
-    if articles_count[0]['count'] > 0 or opinions_count[0]['count'] > 0
-      raise "Please destroy all articles and all opinions before migration!"
-    end
     create_table :posts do |t|
       t.references :issue, null: false, index: true
       t.references :postable, null: false, index: true, polymorphic: true
