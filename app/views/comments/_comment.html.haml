@@ -1,12 +1,20 @@
-%li.list-group-item
-  - if can? :update, comment
-    = link_to [:edit, comment] do
-      %i.fa.fa-edit>
-  - if can? :destroy, comment
-    = link_to comment, method: :delete do
-      %i.fa.fa-trash-o>
-  = if comment.choice.present?
-    = comment.choice
-  = byline comment.user
-  = comment.created_at
-  = comment.body
+%li.media
+  .media-left
+    %a(href="#")
+      = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:64px;height:64px;'
+    - if comment.choice.present?
+      %p.text-center.text-muted
+        %small
+          = choice_icon(opinion)
+          = opinion.choice_text
+  .media-body
+    %strong= comment.user.nickname
+    = date_f comment.created_at
+    - if can? :update, comment
+      = link_to [:edit, comment] do
+        %i.fa.fa-edit>
+    - if can? :destroy, comment
+      = link_to comment, method: :delete do
+        %i.fa.fa-trash-o>
+    %p
+      = simple_format comment.body

@@ -6,5 +6,8 @@
     = link_to post_likes_path(post), method: :post, remote: true do
       %i.fa.fa-heart-o>
   = post.likes.count
-  - post.likes.recent.limit(10).each do |like|
-    = byline(like.user, hide_nickname: true)
+  %span.recent_likes(style='position: relative;')
+    - recent_likes = post.likes.recent.limit(5).reverse
+    - recent_likes.each_with_index do |like, index|
+      %span(style="position: absolute; left: #{0.5 * (recent_likes.count - index)}em;")
+        = byline(like.user, hide_nickname: true)
