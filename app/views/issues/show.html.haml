@@ -14,7 +14,7 @@
                 = link_to [:edit, @issue], style: 'color: inherit;' do
                   %i.fa.fa-edit>
               - if can? :destroy, @issue
-                = link_to @issue, method: :delete, style: 'color: inherit;' do
+                = link_to @issue, method: :delete, style: 'color: inherit;', data: { confirm: '정말 삭제하시겠습니까?'} do
                   %i.fa.fa-trash-o>
           %div{ style: 'font-weight: bold; color:white; text-decoration: none;'}
             - if !@issue.is_all? and can?(:create, Watch)
