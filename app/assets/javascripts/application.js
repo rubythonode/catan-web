@@ -4,21 +4,10 @@
 //= require bootstrap-typeahead
 //= require masonry.pkgd
 //= require bootstrap.offcanvas
+//= require selectize
 //= require_tree .
 
 $(function(){
-  $('[data-action="add-tag"]').on('click', function(e) {
-    e.preventDefault();
-    var tag_name = $(e.currentTarget).data('tag-name');
-    var form_control = $(e.currentTarget).data('form-control');
-    var $form_control = $(form_control);
-    if($form_control) {
-      var val = $form_control.val();
-      if($.inArray(tag_name, val.split(' ')) == -1) {
-        $form_control.val(val + ' ' + tag_name);
-      }
-    }
-  });
   $('[data-provider="typeahead"]').each(function(i, elm) {
     var $elm = $(elm);
     var $target = $($elm.data('typeahead-target'));
@@ -53,4 +42,27 @@ $(function(){
     itemSelector: '.post',
   });
 
+  // tags
+  $('input#article_tag_list').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(tag_name) {
+      return {
+        value: tag_name,
+        text: tag_name
+      }
+    }
+  });
+  $('[data-action="add-tag"]').on('click', function(e) {
+    e.preventDefault();
+    var tag_name = $(e.currentTarget).data('tag-name');
+    var form_control = $(e.currentTarget).data('form-control');
+    var $form_control = $(form_control);
+    if($form_control) {
+      $form_control.each(function(i, elm) {
+        elm.selectize.addOption({value: tag_name, text: tag_name});
+        elm.selectize.addItem(tag_name);
+      });
+    }
+  });
 });
