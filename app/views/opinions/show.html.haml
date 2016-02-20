@@ -28,5 +28,6 @@
             = link_to "##{tag.name}", tag_home_path(tag)
           %sapn.likes
             = render 'likes/like', post: @opinion.acting_as
+            = render 'likes/like_detail', post: @opinion.acting_as
       = render 'vote'
 = render 'comments/comments', postable: @opinion
