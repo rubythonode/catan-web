@@ -14,7 +14,7 @@
 
         .tags(style='margin-top: 1em')
           - article.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag), style: 'color: #999;'
+            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
     .panel-footer
       .pull-right
         %span
