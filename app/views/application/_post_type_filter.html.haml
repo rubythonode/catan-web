@@ -15,3 +15,13 @@
       주장
       - if local_assigns[:posts]
         %small (#{posts.only_opinions.count})
+
+  - if @issue
+    %li
+      = link_to '#' do
+        지켜보는 사람
+        %small (#{@issue.watches.count})
+    %li
+      = link_to '#' do
+        활동하는 사람
+        %small (10)
