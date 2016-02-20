@@ -10,4 +10,8 @@ class PagesController < ApplicationController
       @watched_postables = all_post.watched_by(current_user).all.map &:postable
     end
   end
+
+  def basic_income
+    redirect_to slug_issue_path('기본소득')
+  end
 end

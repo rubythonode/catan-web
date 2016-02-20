@@ -14,8 +14,11 @@
         %li
           = link_to '이슈', issues_path
         %li
+          = link_to '대시보드', home_path
+        %li
           = link_to likes_by_me_path do
             %i.fa.fa-heart.text-danger
+
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li.dropdown

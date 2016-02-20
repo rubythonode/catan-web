@@ -2,10 +2,12 @@
   %section#home
     .jumbotron
       .container
-        .brand.clearfix
-          %img#logo.pull-left.img-rounded{ alt: 'parti', src: asset_path('logo_icon_p.png'), style: ('max-width: 3.5em;'), alt: 'parti logo'}
-          %h2.text-primary 빠띠
-        %p
+        %h3 대시보드
+        - if user_signed_in? and Post.watched_by(current_user).any?
+          구독하는 이슈의 글입니다.
+        - else
+          모든 이슈의 최근 글입니다.
+        %div.text-center(style='margin-top: 3em;')
           - if can? :create, Issue
             = link_to new_issue_path, class: 'btn btn-default' do
               이슈 열기

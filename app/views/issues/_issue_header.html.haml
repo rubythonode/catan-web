@@ -20,9 +20,12 @@
 
           %p.lead{ style: 'color: #fff;'}
             %i.fa.fa-eye
-            = @issue.watches.count
-            명이 지켜보고 있습니다
-
+            - if @issue.watched_by?(current_user)
+              %strong 나
+              이외 #{@issue.watches.count -1}명이
+            - else
+              #{@issue.watches.count}명이
+            지켜보고 있습니다
         .text-center
           %ul.list-inline
             %li

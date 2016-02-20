@@ -135,13 +135,3 @@ blockquote {
   }
 }
 
-.toggle-hover > .toggle-hover-item:nth-child(2) {
-  display: none;
-}
-.toggle-hover:hover > .toggle-hover-item:nth-child(1) {
-  display: none;
-}
-.toggle-hover:hover > .toggle-hover-item:nth-child(2) {
-  display: inherit;
-}
-
