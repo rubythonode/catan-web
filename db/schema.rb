@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219033641) do
+ActiveRecord::Schema.define(version: 20160220032816) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -41,9 +41,8 @@ ActiveRecord::Schema.define(version: 20160219033641) do
     t.string   "logo"
     t.string   "cover"
     t.integer  "watches_count", default: 0
+    t.string   "slug",                      null: false
   end
-
-  add_index "issues", ["title"], name: "index_issues_on_title", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    null: false

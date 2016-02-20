@@ -19,7 +19,7 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find params[:id]
-    redirect_to slug_issue_path(slug: @issue.title)
+    redirect_to slug_issue_path(slug: @issue.slug)
   end
 
   def slug
@@ -27,7 +27,7 @@ class IssuesController < ApplicationController
       @issue = Issue::OF_ALL
       @posts = Post.all.recent
     else
-      @issue = Issue.find_by! title: params[:slug]
+      @issue = Issue.find_by! slug: params[:slug]
       @posts = @issue.posts.recent
     end
     if params[:t].present?
@@ -38,7 +38,8 @@ class IssuesController < ApplicationController
   end
 
   def create
-    if !%w(all).include?(@issue.title) and @issue.save
+    @issue.set_slug
+    if !%w(all).include?(@issue.slug) and @issue.save
       redirect_to @issue
     else
       render 'new'
@@ -46,7 +47,9 @@ class IssuesController < ApplicationController
   end
 
   def update
-    if @issue.update_attributes(issue_params)
+    @issue.assign_attributes(issue_params)
+    @issue.set_slug
+    if @issue.save
       redirect_to @issue
     else
       render 'edit'

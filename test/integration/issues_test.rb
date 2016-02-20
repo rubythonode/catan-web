@@ -19,6 +19,15 @@ class IssuesTest < ActionDispatch::IntegrationTest
     refute assigns(:issue).persisted?
   end
 
+  test '대소문자를 안가려요' do
+    sign_in(users(:admin))
+
+    post issues_path(issue: { title: 'Title', body: 'body' })
+    assert assigns(:issue).persisted?
+    post issues_path(issue: { title: 'title', body: 'body' })
+    refute assigns(:issue).persisted?
+  end
+
   test '고쳐요' do
     sign_in(users(:admin))
 

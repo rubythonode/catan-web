@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :issue_home_path, :tag_home_path
   def issue_home_path(issue)
-    view_context.slug_issue_path(slug: issue.title)
+    view_context.slug_issue_path(slug: issue.slug)
   end
 
   def tag_home_path(tag)

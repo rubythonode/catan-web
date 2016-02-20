@@ -1,4 +1,6 @@
 issue1:
-  title: 'issue1'
+  title: issue1
+  slug: issue1
 issue2:
-  title: 'issue2'
+  title: issue2
+  slug: issue2
