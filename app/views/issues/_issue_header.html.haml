@@ -26,20 +26,26 @@
                 나를 포함한
               #{@issue.watches.count}명이 지켜 봅니다
         .text-center
-          %ul.list-inline
+          %ul.list-inline.issue-header-actions
             %li
               - if !@issue.is_all? and can?(:create, Watch)
                 %span(id="#{dom_id(@issue)}-watch")
                   = render 'watches/watch', issue: @issue
             %li
               = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-danger' do
-                %i.fa.fa-newspaper-o
-                뉴스 컬럼 쓰기
+                %i.fa.fa-file-text-o
+                %br
+                %small
+                  뉴스/컬럼 쓰기
             %li
               = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-danger' do
                 %i.fa.fa-pie-chart
-                주장하기
+                %br
+                %small
+                  주장하기
             %li
               = link_to '#', class: 'btn btn-danger',  disabled: "disabled" do
                 %i.fa.fa-list-ul
-                제안받기
+                %br
+                %small
+                  제안받기
