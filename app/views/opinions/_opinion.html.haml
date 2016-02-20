@@ -2,12 +2,23 @@
   .panel.panel-default
     .panel-body.post-bg-opinion-collection
       .post-bg-content
+        - if local_assigns[:show_issue]
+          = link_to issue_home_path(opinion.issue) do
+            %span.label.label-default= opinion.issue.title
         .clearfix
-          - if local_assigns[:show_issue]
-            = link_to issue_home_path(opinion.issue) do
-              %span.label.label-default= opinion.issue.title
-        %blockquote
-          %h3= link_to opinion.title, opinion
+          %blockquote
+            %h3= link_to opinion.title, opinion
+
+        %i.fa.fa-pie-chart #{opinion.votes.count}명이 투표했습니다.
+        - if user_signed_in? and opinion.voted_by?(current_user) and opinion.votes.any?
+          .result-box.text-center
+            .row
+              .col-xs-6
+                %h5 찬성
+                %strong{ style: (opinion.agreed_by?(current_user) ? 'font-size:150%;' : 'font-size:100%;'), class: ('text-success' if opinion.agreed_by?(current_user)) }= opinion.votes.with_choice(:agree).count
+              .col-xs-6
+                %h5 반대
+                %strong{ style: (opinion.disagreed_by?(current_user) ? 'font-size:150%;' : 'font-size:100%;'), class: ('text-danger' if opinion.disagreed_by?(current_user)) }= opinion.votes.with_choice(:disagree).count
 
     .panel-footer
       .pull-right
