@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   sso_devise
-  root 'issues#slug', slug: '기본소득'
 
   resources :issues do
     resources :watches do
@@ -24,4 +23,6 @@ Rails.application.routes.draw do
 
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
+
+  root to: redirect('/issues/2')
 end
