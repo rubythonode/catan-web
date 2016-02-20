@@ -16,7 +16,7 @@
           = link_to new_opinion_path, class: 'btn btn-default' do
             주장 하기
   - if user_signed_in? and Post.watched_by(current_user).any?
-    %section#posts
+    %section#issue-posts
       .container
         = render 'post_type_filter'
         - if @watched_postables.any?
@@ -27,7 +27,7 @@
             글이 없습니다.
 
   - else
-    %section#posts
+    %section#issue-posts
       .container
         = render 'post_type_filter'
         - if @all_postables.any?

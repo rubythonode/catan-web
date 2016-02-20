@@ -4,7 +4,7 @@
       %h2.page-header
         \##{params[:name]}
       = render 'post_type_filter'
-  %section#issue-items
+  %section#issue-posts
     .container
       %ul.list-group
         = render @postables, show_issue: true

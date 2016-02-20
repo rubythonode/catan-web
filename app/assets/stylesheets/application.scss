@@ -9,6 +9,13 @@ body {
   padding-top: 3em;
 }
 
+a.anchor {
+    display: block;
+    position: relative;
+    top: -80px;
+    visibility: hidden;
+}
+
 .brand {
   margin-bottom: 1em;
   #logo {

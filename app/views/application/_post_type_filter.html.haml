@@ -1,5 +1,5 @@
 - current_params = params.except(:t, :action, :controller)
 %ul.nav.nav-pills{role: 'tablist', style: 'margin-bottom: 20px'}
-  %li.active{role: 'presentation'}= link_to '모두', url_for(current_params)
-  %li{role: 'presentation'}= link_to '뉴스컬럼만', url_for(current_params.merge(t: :article))
-  %li{role: 'presentation'}= link_to '주장만', url_for(current_params.merge(t: :opinion))
+  %li{role: 'presentation', class: "#{'active' unless params.has_key?(:t)}"}= link_to '모두', url_for(current_params)
+  %li{role: 'presentation', class: "#{'active' if params[:t] == 'article'}"}= link_to '뉴스컬럼', url_for(current_params.merge(t: :article))
+  %li{role: 'presentation', class: "#{'active' if params[:t] == 'opinion'}"}= link_to '주장', url_for(current_params.merge(t: :opinion))
