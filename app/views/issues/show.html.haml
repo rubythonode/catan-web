@@ -1,33 +1,4 @@
-.bs-component(style="background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;")
-  %section#issue
-    .container
-      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
-        %div.clearfix
-          - if @issue.logo.file.present?
-            .pull-left
-              = image_tag @issue.logo_url, class: 'img-thumbnail', style: 'width: 125px; height: 125px; margin-right: 20px;'
-          %h2
-            %span{ style: 'font-weight: bold; color:white; text-shadow: 1px 2px 0px black;' }
-              = @issue.title
-            %small{ style: 'font-weight: bold; color:white; text-decoration: none;'}
-              - if can? :update, @issue
-                = link_to [:edit, @issue], style: 'color: inherit;' do
-                  %i.fa.fa-edit>
-              - if can? :destroy, @issue
-                = link_to @issue, method: :delete, style: 'color: inherit;', data: { confirm: '정말 삭제하시겠습니까?'} do
-                  %i.fa.fa-trash-o>
-          %div{ style: 'font-weight: bold; color:white; text-decoration: none;'}
-            - if !@issue.is_all? and can?(:create, Watch)
-              %span(id="#{dom_id(@issue)}-watch")
-                = render 'watches/watch', issue: @issue
-
-        = simple_format @issue.body, style: 'font-size: 15px; color: white; text-shadow: 1px 1px 0px black; margin-top: 2em;'
-
-        .text-center
-          = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-default' do
-            뉴스컬럼 쓰기
-          = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-default' do
-            주장 하기
+= render 'issue_header'
 
 .bs-component
   %section#issue-items
