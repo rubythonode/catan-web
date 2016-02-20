@@ -7,4 +7,7 @@
       = render 'post_type_filter'
 
       .row.masonry-container
-        = render @postables
+        - if @issue.is_all?
+          = render @postables, show_issue: true
+        - else
+          = render @postables

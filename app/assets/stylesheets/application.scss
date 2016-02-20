@@ -45,9 +45,7 @@ blockquote {
     color: #ccc;
     content: close-quote;
     font-size: 3em;
-    line-height: 0.1em;
-    margin-right: 0.25em;
-    vertical-align: -1em;
+    float: right;
   }
 }
 

@@ -1,12 +1,13 @@
 .post.article.col-md-4.col-sm-6[article.acting_as]
   .panel.panel-default
     .panel-body.post-bg-article-collection
-      .post-bg-content.clearfix
-        .pull-right
-          %small= byline article.user
-        - if local_assigns[:show_issue]
-          = link_to issue_home_path(article.issue) do
-            %span.label.label-default= article.issue.title
+      .post-bg-content
+        .clearfix
+          .pull-right
+            %small= byline article.user
+          - if local_assigns[:show_issue]
+            = link_to issue_home_path(article.issue) do
+              %span.label.label-default= article.issue.title
         %h5
           = link_to article.title, article
 

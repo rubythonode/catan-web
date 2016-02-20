@@ -18,14 +18,15 @@
 
           = simple_format @issue.body, style: 'font-size: 18px; color: white; text-shadow: 1px 1px 0px black; margin-top: 2em;'
 
-          %p.lead{ style: 'color: #fff;'}
-            %i.fa.fa-eye
-            - if @issue.watched_by?(current_user)
-              %strong 나
-              이외 #{@issue.watches.count -1}명이
-            - else
-              #{@issue.watches.count}명이
-            지켜보고 있습니다
+          - if !@issue.is_all?
+            %p.lead{ style: 'color: #fff;'}
+              %i.fa.fa-eye
+              - if @issue.watched_by?(current_user)
+                %strong 나
+                이외 #{@issue.watches.count -1}명이
+              - else
+                #{@issue.watches.count}명이
+              지켜보고 있습니다
         .text-center
           %ul.list-inline
             %li
