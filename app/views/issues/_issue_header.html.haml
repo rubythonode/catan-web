@@ -1,6 +1,6 @@
-.bs-component(style="background-size: cover; background-image: url('#{@issue.cover.file.present? ? @issue.cover_url : asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;")
+.bs-component( style="background-size: cover; background-image: url('#{@issue.cover.file.present? ? @issue.cover_url : asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;" )
   %section#issue
-    .container
+    .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         %div.clearfix.text-center
           - if @issue.logo.file.present?
@@ -12,13 +12,12 @@
           = image_tag issue_logo_url, style: 'width: 100px; height: 100px'
           %h2
             %span{ style: 'font-weight: bold; color:white;' }>= @issue.title
-            %small
-              - if can? :update, @issue
-                = link_to [:edit, @issue], style: 'color: inherit;' do
-                  수정
-              - if can? :destroy, @issue
-                = link_to @issue, method: :delete, style: 'color: inherit;', data: { confirm: '정말 삭제하시겠습니까?' } do
-                  삭제
+
+          %div.text-center
+            - if can? :update, @issue
+              = link_to '수정', [:edit, @issue], class: 'text-muted'
+            - if can? :destroy, @issue
+              = link_to '삭제', @issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
 
           = simple_format @issue.body, style: 'font-size: 18px; color: white; margin-top: 2em;'
 
@@ -46,6 +45,7 @@
                 %i.fa.fa-pie-chart
                 주장하기
             %li
-              = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-danger',  disabled: "disabled" do
+              = link_to '#', class: 'btn btn-danger',  disabled: "disabled" do
                 %i.fa.fa-list-ul
                 제안받기
+    }
