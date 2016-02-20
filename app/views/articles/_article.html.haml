@@ -3,8 +3,6 @@
     .panel-body.post-bg-article-collection
       .post-bg-content
         .clearfix
-          .pull-right
-            %small= byline article.user
           - if local_assigns[:show_issue]
             = link_to issue_home_path(article.issue) do
               %span.label.label-default= article.issue.title
@@ -14,8 +12,10 @@
         %p= truncate(article.body, length: 100)
 
     .panel-footer
-      %span
-        %i.fa.fa-comment
-        = article.comments_count
-      = render 'likes/like', post: article.acting_as
+      .pull-right
+        %span
+          %i.fa.fa-comment
+          = article.comments_count
+        = render 'likes/like', post: article.acting_as
 
+      %span= byline article.user

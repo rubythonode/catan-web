@@ -3,17 +3,17 @@
     .panel-body.post-bg-opinion-collection
       .post-bg-content
         .clearfix
-          .pull-right
-            %small= byline opinion.user
           - if local_assigns[:show_issue]
             = link_to issue_home_path(opinion.issue) do
               %span.label.label-default= opinion.issue.title
         %blockquote
           %h3= link_to opinion.title, opinion
-          %p= truncate(opinion.body, length: 150)
 
     .panel-footer
-      %span
-        %i.fa.fa-comment
-        = opinion.comments_count
-      = render 'likes/like', post: opinion.acting_as
+      .pull-right
+        %span
+          %i.fa.fa-comment
+          = opinion.comments_count
+        = render 'likes/like', post: opinion.acting_as
+
+      %span= byline opinion.user
