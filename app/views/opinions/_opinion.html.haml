@@ -21,7 +21,9 @@
               .col-xs-6
                 %h5 반대
                 %strong{ style: (opinion.disagreed_by?(current_user) ? 'font-size:150%;' : 'font-size:100%;'), class: ('text-danger' if opinion.disagreed_by?(current_user)) }= opinion.votes.with_choice(:disagree).count
-
+      .tags(style='margin-top: 1em;')
+        - opinion.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag), style: 'color: #999;'
     .panel-footer
       .pull-right
         %span

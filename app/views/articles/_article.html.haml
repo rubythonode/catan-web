@@ -12,6 +12,9 @@
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(article.body, length: 100)
 
+        .tags(style='margin-top: 1em')
+          - article.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag), style: 'color: #999;'
     .panel-footer
       .pull-right
         %span

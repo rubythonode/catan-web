@@ -30,7 +30,7 @@
         .base{ style: 'margin-top: 2em' }
           %sapn.tags
           - @article.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag)
+            = link_to "##{tag.name}", tag_home_path(tag), style: 'color: initial;'
           %sapn.likes
             = render 'likes/like', post: @article.acting_as
             = render 'likes/like_detail', post: @article.acting_as

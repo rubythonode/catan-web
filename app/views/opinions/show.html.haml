@@ -24,8 +24,8 @@
 
         .base{ style: 'margin-top: 2em' }
           %sapn.tags
-          - @opinion.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag)
+            - @opinion.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag), style: 'color: initial;'
           %sapn.likes
             = render 'likes/like', post: @opinion.acting_as
             = render 'likes/like_detail', post: @opinion.acting_as
