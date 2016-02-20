@@ -1,5 +1,6 @@
 class Issue < ActiveRecord::Base
-  TITLE_OF_ASK_PARTI = 'ask-parti'
+  TITLE_OF_ASK_PARTI = 'Ask Parti'
+  SLUG_OF_ASK_PARTI = 'ask-parti'
   OF_ALL = RecursiveOpenStruct.new({
     is_all?: true, title: '모든 이슈',
     slug: 'all',

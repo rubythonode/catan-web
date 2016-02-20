@@ -18,15 +18,14 @@
             = link_to '대시보드', dashboard_path
         %li
           = link_to likes_by_me_path do
-            %i.fa.fa-heart.text-danger
+            %i.fa.fa-heart.text-danger(style='font-size: 125%')
 
-      %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          %li.dropdown
-            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = current_user.nickname
-              %span.caret
-            %ul.dropdown-menu
+          %hr(style='border-color: #555')
+          %li
+            = link_to edit_user_path do
+              = byline current_user
+            %ul.list-unstyled.nav.navbar-nav(style='margin-left: 2em;')
               %li
                 = link_to edit_user_path do
                   %i.fa.fa-pencil-square-o
@@ -39,4 +38,15 @@
           %li= link_to '회원가입', sign_up_path
           %li= link_to '로그인', new_user_session_path
 
+        %hr(style='border-color: #555')
+        %li
+          = link_to slug_issue_path(slug: Issue::SLUG_OF_ASK_PARTI) do
+            %i.fa.fa-question
+            %strong Ask Parti
+            %p.text-muted 제안이나 의견이 있으세요?
+
+        %li
+          %a(href='mailto:help@parti.xyz')
+            %i.fa.fa-bug
+            오류와 버그 신고
 

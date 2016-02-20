@@ -16,7 +16,7 @@ Rails.application.config.to_prepare do
     private
 
     def watch_default_issues
-      issue = Issue.find_by title: Issue::TITLE_OF_ASK_PARTI
+      issue = Issue.find_by slug: Issue::SLUG_OF_ASK_PARTI
       Watch.create(user: self, issue: issue) if issue.present?
     end
   end
