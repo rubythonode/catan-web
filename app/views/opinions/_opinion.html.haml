@@ -4,7 +4,9 @@
       .post-bg-content
         - if local_assigns[:show_issue]
           = link_to issue_home_path(opinion.issue) do
-            %span.label.label-default= opinion.issue.title
+            %span.label.label-danger
+              %i.fa.fa-exclamation
+              = opinion.issue.title
         .clearfix
           %blockquote
             %h3= link_to opinion.title, opinion
@@ -23,7 +25,7 @@
     .panel-footer
       .pull-right
         %span
-          %i.fa.fa-comment
+          %i.fa.fa-comment-o
           = opinion.comments_count
         = render 'likes/like', post: opinion.acting_as
 
