@@ -3,10 +3,7 @@
     .jumbotron
       .container
         %h3 대시보드
-        - if user_signed_in? and Post.watched_by(current_user).any?
-          구독하는 이슈의 글입니다.
-        - else
-          모든 이슈의 최근 글입니다.
+        구독하는 이슈의 글입니다.
         %div.text-center(style='margin-top: 3em;')
           - if can? :create, Issue
             = link_to new_issue_path, class: 'btn btn-default' do
@@ -15,24 +12,12 @@
             뉴스컬럼 쓰기
           = link_to new_opinion_path, class: 'btn btn-default' do
             주장 하기
-  - if user_signed_in? and Post.watched_by(current_user).any?
-    %section#issue-posts
-      .container
-        = render 'post_type_filter', posts: @watched_posts_for_filter
-        - if @watched_postables.any?
-          .row.masonry-container
-            = render @watched_postables, show_issue: true
-        - else
-          %p.text-center
-            글이 없습니다.
-
-  - else
-    %section#issue-posts
-      .container
-        = render 'post_type_filter', posts: @all_posts_for_filter
-        - if @all_postables.any?
-          .row.masonry-container
-            = render @all_postables, show_issue: true
-        - else
-          %p.text-center
-            글이 없습니다.
+  %section#issue-posts
+    .container
+      = render 'post_type_filter', posts: @watched_posts_for_filter
+      - if @watched_postables.any?
+        .row.masonry-container
+          = render @watched_postables, show_issue: true
+      - else
+        %p.text-center
+          글이 없습니다.
