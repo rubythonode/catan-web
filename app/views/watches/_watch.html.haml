@@ -1,13 +1,11 @@
 - if issue.watched_by?(current_user)
-  = link_to cancel_issue_watches_path(@issue), class: 'btn btn-danger', method: :delete do
-    %i.fa.fa-eye-slash
-    %br
-    %small
-      구독 취소
+  = link_to cancel_issue_watches_path(@issue), method: :delete do
+    %small{style:'color: white;'}
+      %i.fa.fa-arrow-right
+      그만 지켜보기
 - else
-  = link_to issue_watches_path(issue), class: 'btn btn-danger', method: :post do
-    %i.fa.fa-eye
-    %br
-    %small
-      구독하기
+  = link_to issue_watches_path(issue), method: :post do
+    %small{style:'color: white;'}
+      %i.fa.fa-arrow-right
+      나도 지켜보기
 

@@ -25,12 +25,12 @@
               - if @issue.watched_by?(current_user)
                 나를 포함한
               #{@issue.watches.count}명이 지켜 봅니다
-        .text-center
-          %ul.list-inline.issue-header-actions
-            %li
+
               - if !@issue.is_all? and can?(:create, Watch)
                 %span(id="#{dom_id(@issue)}-watch")
                   = render 'watches/watch', issue: @issue
+        .text-center
+          %ul.list-inline.issue-header-actions
             %li
               = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-danger' do
                 %i.fa.fa-file-text-o
