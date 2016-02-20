@@ -1,7 +1,7 @@
 class Issue < ActiveRecord::Base
   TITLE_OF_ASK_PARTI = 'ask-parti'
   OF_ALL = RecursiveOpenStruct.new({
-    is_all?: true, title: 'all', slug: 'all', logo: {file: nil}, cover: {file: nil}})
+    is_all?: true, title: '모두 보기', slug: 'all', logo: {file: nil}, cover: {file: nil}})
 
   has_many :posts
   has_many :articles, through: :posts, source: :postable, source_type: Article

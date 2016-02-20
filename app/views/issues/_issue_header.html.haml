@@ -1,13 +1,17 @@
-.bs-component(style="background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;")
+.bs-component(style="background-size: cover; background-image: url('#{@issue.cover.file.present? ? @issue.cover_url : asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;")
   %section#issue
     .container
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         %div.clearfix.text-center
           - if @issue.logo.file.present?
-            = image_tag @issue.logo_url, class: 'img-thumbnail', style: 'width: 125px; height: 125px; margin-right: 20px;'
+            - issue_logo_url = @issue.logo_url
+          - elsif @issue.is_all?
+            - issue_logo_url = 'all_issue_logo.png'
+          - else
+            - issue_logo_url = 'default_issue_logo.png'
+          = image_tag issue_logo_url, class: 'img-thumbnail', style: 'width: 125px; height: 125px'
           %h2
-            %span{ style: 'font-weight: bold; color:white; text-shadow: 1px 2px 0px black;' }
-              = @issue.title
+            %span{ style: 'font-weight: bold; color:white; text-shadow: 1px 2px 0px black;' }>= @issue.title
             %small{ style: 'font-weight: bold; color:white; text-decoration: none;'}
               - if can? :update, @issue
                 = link_to [:edit, @issue], style: 'color: inherit;' do
