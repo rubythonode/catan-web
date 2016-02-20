@@ -19,17 +19,14 @@
             - if can? :destroy, @issue
               = link_to '삭제', @issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
 
-          = simple_format @issue.body, style: 'font-size: 18px; color: white; margin-top: 2em;'
+          = simple_format @issue.body, style: 'color: white; margin-top: 2em;'
 
           - if !@issue.is_all?
-            %p.lead{ style: 'color: #fff;'}
+            %p.lead{ style: 'color: #fff; font-size: 16px; font-weight: bold;'}
               %i.fa.fa-eye
               - if @issue.watched_by?(current_user)
-                %strong 나
-                이외 #{@issue.watches.count -1}명이
-              - else
-                #{@issue.watches.count}명이
-              지켜 봅니다
+                나를 포함한
+              #{@issue.watches.count}명이 지켜 봅니다
         .text-center
           %ul.list-inline
             %li
