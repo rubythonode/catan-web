@@ -3,7 +3,7 @@
     .container
       %h2.page-header
         \##{params[:name]}
-      = render 'post_type_filter'
+      = render 'post_type_filter', posts: @posts_for_filter
   %section#issue-posts
     .container
       %ul.list-group

@@ -24,6 +24,8 @@ class Post < ActiveRecord::Base
   scope :recent, -> { order(touched_at: :desc) }
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
+  scope :only_articles, -> { by_postable_type(Article.to_s) }
+  scope :only_opinions, -> { by_postable_type(Opinion.to_s) }
 
   before_save :set_touched_at
 

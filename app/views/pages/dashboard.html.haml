@@ -18,7 +18,7 @@
   - if user_signed_in? and Post.watched_by(current_user).any?
     %section#issue-posts
       .container
-        = render 'post_type_filter'
+        = render 'post_type_filter', posts: @watched_posts_for_filter
         - if @watched_postables.any?
           .row.masonry-container
             = render @watched_postables, show_issue: true
@@ -29,7 +29,7 @@
   - else
     %section#issue-posts
       .container
-        = render 'post_type_filter'
+        = render 'post_type_filter', posts: @all_posts_for_filter
         - if @all_postables.any?
           .row.masonry-container
             = render @all_postables, show_issue: true

@@ -3,12 +3,15 @@
   %li{role: 'presentation', class: "#{'active' unless params.has_key?(:t)}"}
     = link_to url_for(current_params) do
       모두
-      %small (#{@issue.posts.count})
+      - if local_assigns[:posts]
+        %small (#{posts.count})
   %li{role: 'presentation', class: "#{'active' if params[:t] == 'article'}"}
     = link_to url_for(current_params.merge(t: :article)) do
       뉴스/컬럼
-      %small (#{@issue.articles.count})
+      - if local_assigns[:posts]
+        %small (#{posts.only_articles.count})
   %li{role: 'presentation', class: "#{'active' if params[:t] == 'opinion'}"}
     = link_to url_for(current_params.merge(t: :opinion)) do
       주장
-      %small (#{@issue.opinions.count})
+      - if local_assigns[:posts]
+        %small (#{posts.only_opinions.count})

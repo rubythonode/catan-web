@@ -13,8 +13,9 @@
       %ul.nav.navbar-nav
         %li
           = link_to '이슈', issues_path
-        %li
-          = link_to '대시보드', home_path
+        - if user_signed_in?
+          %li
+            = link_to '대시보드', dashboard_path
         %li
           = link_to likes_by_me_path do
             %i.fa.fa-heart.text-danger

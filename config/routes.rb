@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   if Rails.env.staging? or Rails.env.production?
     root 'pages#basic_income'
   else
-    root 'pages#home'
+    root 'issues#slug', slug: 'all'
   end
 
   resources :issues do
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :opinions
 
-  get 'home', to: "pages#home", as: 'home'
+  get '/dashboard', to: "pages#dashboard", as: 'dashboard'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
 end

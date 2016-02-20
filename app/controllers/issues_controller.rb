@@ -30,6 +30,7 @@ class IssuesController < ApplicationController
       @issue = Issue.find_by! slug: params[:slug]
       @posts = @issue.posts.recent
     end
+    @posts_for_filter = @posts
     if params[:t].present?
       @posts = @posts.by_postable_type(params[:t])
     end

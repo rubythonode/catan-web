@@ -22,11 +22,11 @@ class LikesController < ApplicationController
   end
 
   def by_me
-    @likes = Like.joins(:post).recent.where(user: current_user)
+    @posts = Post.joins(:likes).where('likes.user': current_user)
+    @posts_for_filter = @posts
     if params[:t].present?
-      @likes = @likes.merge(Post.by_postable_type(params[:t]))
+      @posts = @posts.by_postable_type(params[:t])
     end
-    @posts = @likes.map(&:post)
     @postable = @posts.map(&:postable)
   end
 end

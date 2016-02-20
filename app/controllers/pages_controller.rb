@@ -1,14 +1,12 @@
 class PagesController < ApplicationController
-  def home
-    all_post = Post.recent
-    if params[:t].present?
-      all_post = all_post.by_postable_type(params[:t])
-    end
+  def dashboard
+    watched_posts = Post.recent.watched_by(current_user)
+    @watched_posts_for_filter = watched_posts
 
-    @all_postables = all_post.all.map &:postable
-    if user_signed_in?
-      @watched_postables = all_post.watched_by(current_user).all.map &:postable
+    if params[:t].present?
+      watched_posts = watched_posts.by_postable_type(params[:t])
     end
+    @watched_postables = watched_posts.all.map &:postable
   end
 
   def basic_income
