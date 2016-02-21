@@ -17,6 +17,10 @@
     margin-top: 30px;
     padding: 20px;
     background-color: $gray-lighter;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
     b {
       display: block;
       margin-top: 20px;
