@@ -11,7 +11,6 @@
 $(function(){
   $('[data-provider="typeahead"]').each(function(i, elm) {
     var $elm = $(elm);
-    var $target = $($elm.data('typeahead-target'));
     var url = $elm.data('typeahead-url');
     var displayField = $elm.data('typeahead-display-field');
 
@@ -19,7 +18,10 @@ $(function(){
 
     $elm.typeahead({
       onSelect: function(item) {
-        if ($target.length) $target.val( item.value );
+        $elm.data('title', item.text );
+        $elm.closest('.form-group').removeClass('has-error')
+          .find('.help-block .text-danger').remove()
+        $elm.closest('.form-group').find('.help-block').hide();
       },
       ajax: {
         url: url,
@@ -28,9 +30,19 @@ $(function(){
         triggerLength: 1,
         method: "get",
         preProcess: function (data) {
-          if( $target.length && data.issues.length <= 0 ) $target.val('');
-          return data.issues;
+          return data;
         }
+      }
+    }).on('blur', function(){
+      if ( $(this).val() === $elm.data('title') ) {
+        $(this).closest('.form-group').removeClass('has-error')
+          .find('label .text-danger').remove();
+      } else {
+        if (! $(this).closest('.form-group').hasClass('has-error')) {
+          $(this).closest('.form-group').addClass('has-error')
+            .find('.help-block').show().append('&nbsp;&nbsp;<span class="text-danger">자동 완성된 이슈를 선택해야 합니다.</span>');
+        }
+        $(this).focus();
       }
     });
   });

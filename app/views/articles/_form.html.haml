@@ -2,7 +2,8 @@
   = form_for @article do |f|
     .form-group
       = label_tag :issue_title, Issue.model_name.human
-      = text_field_tag :issue_title, @article.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title' }
+      = text_field_tag :issue_title, @article.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title', 'title' => @article.issue.try(:title) }
+      %p.help-block
     .form-group
       = f.label :title
       = f.text_field :title, class: 'form-control input-lg'
