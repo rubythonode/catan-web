@@ -1,28 +1,27 @@
 %section.article-section
   .container
-    .pull-left
-      = link_to issue_home_path(@article.issue) do
-        %span.label.label-info
-          %i.fa.fa-exclamation
-          = @article.issue.title
+    .article__meta.clearfix
+      .pull-left
+        = link_to issue_home_path(@article.issue) do
+          %span.label.label-info
+            %i.fa.fa-exclamation
+            = @article.issue.title
 
-    .text-muted.actions.pull-right
-      = byline @article.user
-      %i.fa.fa-clock-o
-      = date_f @article.created_at
-      - if can? :update, @article
-        = link_to [:edit, @article] do
-          수정
-      - if can? :destroy, @article
-        = link_to @article, method: :delete do
-          삭제
+      .text-muted.actions.pull-right
+        = byline @article.user
+        %i.fa.fa-clock-o
+        = date_f @article.created_at
+        - if can? :update, @article
+          = link_to [:edit, @article] do
+            수정
+        - if can? :destroy, @article
+          = link_to @article, method: :delete do
+            삭제
 
     %h2.article__title= @article.title
 
     - if @article.link.present?
-      %div
-        %i.fa.fa-chain
-        = link_to @article.link, @article.link, target: '_blank'
+      = link_to @article.link, @article.link, target: '_blank', class: 'embed'
 
     .article__body.post-bg-article-item
       .post-bg-content

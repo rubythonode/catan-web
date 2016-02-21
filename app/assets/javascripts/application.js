@@ -6,6 +6,7 @@
 //= require bootstrap.offcanvas
 //= require selectize
 //= require redactor-rails
+//= require jquery.oembed
 
 $(function(){
   $('[data-provider="typeahead"]').each(function(i, elm) {
@@ -65,4 +66,6 @@ $(function(){
       });
     }
   });
+
+  $("a.embed").oembed();
 });

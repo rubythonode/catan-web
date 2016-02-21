@@ -2,13 +2,22 @@
   padding-top: 40px;
   margin-bottom: 40px;
 
+  .article__meta {
+    margin-bottom: 10px;
+  }
+
   .article__title {
     font-weight: bold;
     padding: 0;
-    margin-top: 40px;
+    margin: 10px 0;
   }
 
   .article__body {
-    margin: 40px 0;
+    margin: 30px 0;
+    font-size: 16px;
+  }
+
+  .oembedall-container {
+    margin-top: 30px;
   }
 }
