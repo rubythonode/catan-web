@@ -2476,7 +2476,6 @@
      * @param {boolean} silent
      */
     addItem: function(value, silent) {
-      debugger
       var events = silent ? [] : ['change'];
 
       debounce_events(this, events, function() {
