@@ -1,0 +1,20 @@
+%ul.list-inline.list-pipeline(style='margin-top: 1.5em; font-size: 80%')
+  - if controller_name != 'sessions'
+    %li(style='margin-right: 0')
+      = link_to "로그인", new_session_path(resource_name)
+  - if devise_mapping.registerable? && controller_name != 'registrations'
+    %li(style='margin-right: 0')
+      = link_to "회원가입", new_registration_path(resource_name)
+  - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+    %li(style='margin-right: 0')
+      = link_to "비밀번호 분실", new_password_path(resource_name)
+  - if devise_mapping.confirmable? && controller_name != 'confirmations'
+    %li(style='margin-right: 0')
+      = link_to "가입확인 메일 재발송", new_confirmation_path(resource_name)
+  - if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
+    %li(style='margin-right: 0')
+      = link_to "잠금 해제 절차를 안내하는 메일을 받지 못하셨나요??", new_unlock_path(resource_name)
+  - if devise_mapping.omniauthable?
+    - resource_class.omniauth_providers.each do |provider|
+      %li(style='margin-right: 0')
+        = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)

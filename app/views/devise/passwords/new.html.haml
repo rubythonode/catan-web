@@ -1,0 +1,11 @@
+.bs-component
+  %section#sign-up
+    .container(style='width: 20em;')
+      %h3.page-header 비밀번호 재설정
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, class: 'form-control'
+        = f.submit '비밀번호 재설정하는 메일을 보냅니다', class: 'btn btn-danger'
+      = render "devise/shared/links"

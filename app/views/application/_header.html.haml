@@ -23,11 +23,11 @@
         - if user_signed_in?
           %hr(style='border-color: #555')
           %li
-            = link_to edit_user_path do
+            = link_to edit_user_registration_path do
               = byline current_user
             %ul.list-unstyled.nav.navbar-nav(style='margin-left: 2em;')
               %li
-                = link_to edit_user_path do
+                = link_to edit_user_registration_path do
                   %i.fa.fa-pencil-square-o
                   프로필
               %li
@@ -35,7 +35,7 @@
                   %i.fa.fa-sign-out
                   로그아웃
         - else
-          %li= link_to '회원가입', sign_up_path
+          %li= link_to '회원가입', new_user_registration_path
           %li= link_to '로그인', new_user_session_path
 
         %hr(style='border-color: #555')

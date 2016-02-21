@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  sso_devise
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  #sso_devise
 
   if Rails.env.staging? or Rails.env.production?
     root 'pages#basic_income'

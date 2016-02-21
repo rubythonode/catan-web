@@ -1,0 +1,11 @@
+.bs-component
+  %section#sign-up
+    .container(style='width: 20em;')
+      %h3.page-header 가입확인 메일 재발송
+      = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.label :email
+          = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control'
+        = f.submit "가입확인 메일을 재발송합니다", class: 'btn btn-danger'
+      = render "devise/shared/links"

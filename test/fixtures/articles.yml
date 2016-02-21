@@ -2,9 +2,9 @@ article1:
   title: 'article1'
   body: 'article1 body'
   link: 'article1 link'
-article1:
+article2:
   title: 'article2'
-  body: 'article1 body'
-  link: 'article1 link'
+  body: 'article2 body'
+  link: 'article2 link'
 
 

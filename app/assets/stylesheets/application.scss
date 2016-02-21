@@ -34,6 +34,12 @@ a.anchor {
   }
 }
 
+ul.list-pipeline li:not(:last-child) {
+    border-right:0.2em solid #eee;
+    margin-right:1em;
+    padding-right:1em;
+}
+
 blockquote {
   padding: .5em;
   border-left: 0;

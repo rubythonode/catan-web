@@ -1,0 +1,6 @@
+.alert.alert-success
+  %strong= t("errors.messages.not_saved")
+  - resource.errors.full_messages.each do |message|
+    %p
+      %i.fa.fa-check
+      = message
