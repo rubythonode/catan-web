@@ -10,7 +10,7 @@
                 = article.issue.title
         %h5{ style: 'font-weight: bold;' }= link_to article.title, article
 
-        %p.text-muted{ style: 'font-size: 12px;'}= truncate(article.body, length: 100)
+        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(article.body), length: 100)
 
         .tags(style='margin-top: 1em')
           - article.tags.each do |tag|
@@ -20,6 +20,6 @@
         %span
           %i.fa.fa-comment-o
           = article.comments_count
-        = render 'likes/like', post: article.acting_as
+        = render 'likes/like_line', post: article.acting_as
 
       %span= byline article.user

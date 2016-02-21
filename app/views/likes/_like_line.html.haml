@@ -1,0 +1,13 @@
+%span(id="#{dom_id(post)}-like")
+  - if !user_signed_in?
+    = link_to '#' do
+      %i.fa.fa-heart-o
+      = post.likes.count
+  - elsif post.liked_by? current_user
+    = link_to cancel_post_likes_path(post), method: :delete, remote: true do
+      %i.fa.fa-heart
+      = post.likes.count
+  - else
+    = link_to post_likes_path(post), method: :post, remote: true do
+      %i.fa.fa-heart-o
+      = post.likes.count
