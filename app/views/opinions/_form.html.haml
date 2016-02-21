@@ -13,18 +13,22 @@
       = f.text_field :title, class: 'form-control input-lg'
       %p.help-block
         라는 주장에 나는
-        %strong 찬성
+        - if @opinion.new_record?
+          %strong 찬성
+        - else
+          %strong= @opinion.voted_by(@opinion.user).choice_text
         합니다
 
     %hr
 
-    .form-group
-      %p.help-block 왜냐하면
-      = f.text_area :body, class: 'form-control', placeholder: '이유를 적어주세요'
+    - if @opinion.new_record?
+      .form-group
+        %p.help-block 왜냐하면
+        = text_area_tag :body, '', { class: 'form-control', placeholder: '이유를 적어주세요' }
 
     .form-group
       = f.label :tag_list
-      = f.text_field :tag_list, class: 'form-control', placeholder: '공백으로 나누어 태그를 입력하세요'
+      = f.text_field :tag_list, class: 'form-control', data: { toggle: 'tag-input-helper' }
       - if ActsAsTaggableOn::Tag.most_used.any?
         %p.help-block
           많이 쓰이는 태그

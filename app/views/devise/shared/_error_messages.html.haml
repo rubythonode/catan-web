@@ -1,6 +1,10 @@
 .alert.alert-success
-  %strong= t("errors.messages.not_saved")
+  %strong 오류가 있습니다.
   - resource.errors.full_messages.each do |message|
     %p
       %i.fa.fa-check
       = message
+  - flash.each do |name, msg|
+    %p
+      %i.fa.fa-check
+      = msg.to_s

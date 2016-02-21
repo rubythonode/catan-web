@@ -56,7 +56,7 @@ $(function(){
   });
 
   // tags
-  $('input#article_tag_list').selectize({
+  $('input[data-toggle="tag-input-helper"]').selectize({
     delimiter: ',',
     persist: false,
     create: function(tag_name) {

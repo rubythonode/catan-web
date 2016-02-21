@@ -13,6 +13,8 @@ class OpinionsController < ApplicationController
     set_issue
     @opinion.user = current_user
     if @opinion.save
+      set_comment
+      set_vote
       redirect_to @opinion
     else
       render 'new'
@@ -21,7 +23,7 @@ class OpinionsController < ApplicationController
 
   def update
     set_issue
-    if @opinion.update_attributes(opinion_params)
+    if @opinion.update_attributes(update_params)
       redirect_to @opinion
     else
       render 'edit'
@@ -35,8 +37,23 @@ class OpinionsController < ApplicationController
 
   private
 
-  def opinion_params
+  def set_comment
+    body = params[:body]
+    if body.present?
+      @comment = @opinion.post.comments.create(user: current_user, body: body, choice: :agree)
+    end
+  end
+
+  def set_vote
+    @vote = @opinion.post.votes.create(user: current_user, choice: :agree)
+  end
+
+  def create_params
     params.require(:opinion).permit(:title, :body, :tag_list)
+  end
+
+  def update_params
+    params.require(:opinion).permit(:title, :tag_list)
   end
 
   def set_issue
