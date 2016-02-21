@@ -1,5 +1,5 @@
 .container
   %h3 환영합니다. #{@resource.nickname}님!
-  %p 아래 링크를 클릭하시면 등록하신 계정의 확인절차를 밟게 됩니다.
+  %p 아래 링크를 클릭하시면 등록하신 계정이 확인됩니다.
   %p.text-center
     = link_to '확인하기', confirmation_url(@resource, confirmation_token: @token), class: 'btn btn-danger btn-email'
