@@ -9,6 +9,7 @@ gem 'sqlite3'
 # model
 gem 'active_record-acts_as', '~> 1.0', '>= 1.0.7'
 gem 'carrierwave', '~> 0.10.0'
+gem "mini_magick"
 gem 'enumerize', '~> 1.1'
 gem 'acts-as-taggable-on', '~> 3.5'
 gem 'recursive-open-struct', '~> 1.0', '>= 1.0.1'
