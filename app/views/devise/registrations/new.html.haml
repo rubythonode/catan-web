@@ -1,26 +1,36 @@
 .bs-component
   %section#sign-up
-    .container(style='width: 20em;')
-      %h2.page-header 회원가입
-      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-        = devise_error_messages!
-        .form-group
-          = f.label :nickname
-          = f.text_field :nickname, autofocus: true, class: 'form-control'
-        .form-group
-          = f.label :email
-          = f.email_field :email, autofocus: true, class: 'form-control'
-        .form-group
-          = f.label :image
-          = f.file_field :image, autofocus: true, class: 'form-control'
-        .form-group
-          = f.label :password
-          - if @minimum_password_length
-            %em
-              (#{@minimum_password_length} 글자 이상 넣어주세요)
-          = f.password_field :password, autocomplete: "off", class: 'form-control'
-        .form-group
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
-        = f.submit '가입', class: 'btn btn-danger'
-      = render "devise/shared/links"
+    .container
+      .row
+        .col-md-offset-3.col-md-6
+          %h2.page-header 회원가입
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = devise_error_messages!
+            = f.hidden_field :provider
+            .form-group
+              = f.label :nickname
+              = f.text_field :nickname, autofocus: true, class: 'form-control'
+            .form-group
+              = f.label :email
+              - if resource.provider == 'email'
+                = f.email_field :email, autofocus: true, class: 'form-control'
+              - else
+                %div= f.object.email
+            .form-group
+              = f.label :image
+              - if resource.provider != 'email' && f.object.remote_image_url.present?
+                %div
+                  = image_tag f.object.remote_image_url, class: 'thumbnail', style: 'max-width: 10em; height: auto'
+              = f.file_field :image, autofocus: true, class: 'form-control'
+            - if resource.provider == 'email'
+              .form-group
+                = f.label :password
+                - if @minimum_password_length
+                  %em
+                    (#{@minimum_password_length} 글자 이상 넣어주세요)
+                = f.password_field :password, autocomplete: "off", class: 'form-control'
+              .form-group
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control'
+            = f.submit '가입', class: 'btn btn-danger'
+          = render "devise/shared/links"

@@ -1,10 +1,6 @@
 .alert.alert-success
-  %strong 오류가 있습니다.
+  %strong 오류
   - resource.errors.full_messages.each do |message|
     %p
       %i.fa.fa-check
       = message
-  - flash.each do |name, msg|
-    %p
-      %i.fa.fa-check
-      = msg.to_s

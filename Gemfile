@@ -18,6 +18,12 @@ gem 'time_difference', '~> 0.4.2'
 # auth
 gem 'cancancan', '~> 1.10'
 gem 'devise', '~> 3.5', '>= 3.5.2'
+gem 'omniauth', '~> 1.3', '>= 1.3.1'
+gem 'omniauth-facebook', '~> 3.0'
+gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
+gem 'omniauth-google-oauth2', '~> 0.3.1'
+gem 'twitter', '~> 5.16'
+gem 'google-api-client', '~> 0.9.2'
 
 # ui
 gem 'sass-rails', '~> 5.0'

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RedactorRails::Engine => '/redactor_rails'
-  devise_for :users, :controllers => { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   #sso_devise
 
   if Rails.env.staging? or Rails.env.production?

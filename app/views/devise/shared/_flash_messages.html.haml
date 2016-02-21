@@ -1,0 +1,6 @@
+- if flash.any?
+  .alert.alert-success
+    - flash.each do |name, msg|
+      %p
+        %i.fa.fa-check
+        = msg.to_s
