@@ -12,7 +12,7 @@ ko:
       user: 회원
     attributes:
       issue:
-        title: 제목
+        title: 이슈
         body: 내용
         logo: 대표 이미지
         cover: 커버 이미지

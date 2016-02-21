@@ -1,16 +1,25 @@
-= form_for @issue do |f|
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :body
-    = f.text_area :body, class: 'form-control'
-  .form-group
-    = f.label :logo
-    = f.file_field :logo, class: 'form-control'
-  .form-group
-    = f.label :cover
-    = f.file_field :cover, class: 'form-control'
-  = f.submit '저장', class: 'btn btn-primary'
-  = link_to (@issue.new_record? ? root_path : @issue), class: 'btn btn-default btn-xs' do
-    취소
+.well
+  = form_for @issue do |f|
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control input-lg'
+      %p.help-block
+        (예) "기본소득", "더 나은 민주주의", "IT기술을 이용한 사회 혁신" 등으로 이슈를 만드세요
+
+
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+
+    .form-group
+      = f.label :logo
+      = f.file_field :logo, class: 'form-control'
+
+    .form-group
+      = f.label :cover
+      = f.file_field :cover, class: 'form-control'
+
+    .form-group
+      = f.submit '저장', class: 'btn btn-primary btn-lg'
+      = link_to (@issue.new_record? ? root_path : @issue), class: 'btn btn-default' do
+        취소
