@@ -1,33 +1,22 @@
-.bs-component(style='margin-bottom: 3em;')
-  %section#article
-    .container
-      .jumbotron.jumbotron-transparent
-        .pull-left
-          = link_to issue_home_path(@opinion.issue) do
-            %span.label.label-default= @opinion.issue.title
-        .actions.pull-right
-          = byline @opinion.user
-          %i.fa.fa-clock-o
-          = date_f @opinion.created_at
-          - if can? :update, @opinion
-            = link_to [:edit, @opinion] do
-              %i.fa.fa-edit>
-          - if can? :destroy, @opinion
-            = link_to @opinion, method: :delete do
-              %i.fa.fa-trash-o>
-        %h2.text-center{ style: 'font-weight: bold; padding: 0; margin-top: 40px; margin-bottom: 50px;' }= @opinion.title
+%section.opinion-section
+  .container
+    = render 'post_meta', post: @opinion.acting_as
 
-        .post-bg-opinion-item
-          .post-bg-content
-            %div{ style: 'margin-top: 2em' }
-              = simple_format @opinion.body, style: 'font-size: 120%'
+    %h2.opinion__title “#{@opinion.title}”
 
-        .base{ style: 'margin-top: 2em' }
-          %sapn.tags
-            - @opinion.tags.each do |tag|
-              = link_to "##{tag.name}", tag_home_path(tag), style: 'color: initial;'
-          %sapn.likes
-            = render 'likes/like', post: @opinion.acting_as
-            = render 'likes/like_detail', post: @opinion.acting_as
-      = render 'vote'
+    .opinion__body.post-bg-opinion-item
+      .post-bg-content
+        = simple_format @opinion.body, style: 'font-size: 120%'
+
+    .base{ style: 'margin-top: 2em' }
+      %sapn.tags
+        - @opinion.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag), style: 'color: initial;'
+
+    = render 'vote'
+
+    .post__likes
+      = render 'likes/like', post: @opinion.acting_as
+      = render 'likes/like_detail', post: @opinion.acting_as
+
 = render 'comments/comments', postable: @opinion

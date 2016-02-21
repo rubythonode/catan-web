@@ -29,6 +29,6 @@
         %span
           %i.fa.fa-comment-o
           = opinion.comments_count
-        = render 'likes/like', post: opinion.acting_as
+        = render 'likes/like_line', post: opinion.acting_as
 
       %span= byline opinion.user

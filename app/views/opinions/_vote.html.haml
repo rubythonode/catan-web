@@ -1,58 +1,61 @@
-- if !user_signed_in?
-  %p.text-center
-    %i.fa.fa-info-circle
-    로그인하면 위 주장에 대해 찬반 투표할 수 있습니다.
-    - if @opinion.votes.any?
-      현재
-      %strong
-        #{@opinion.votes.count}
-      명이 투표에 참여했습니다.
-- elsif @opinion.voted_by? current_user
-  .result-box.text-center
-    .row
-      .col-xs-6
-        %h5
-          찬성
-          .lead
-            %strong= @opinion.votes.with_choice(:agree).count
-        - @opinion.votes.with_choice(:agree).partial_included_with(current_user).each do |vote|
-          - if vote.user == current_user
-            %strong= byline vote.user
-          - else
-            = byline vote.user
-      .col-xs-6
-        %h5
+.opinion__vote-section
+  - if !user_signed_in?
+    %p.text-center
+      %i.fa.fa-info-circle
+      로그인하면 위 주장에 대해 찬반 투표할 수 있습니다.
+      - if @opinion.votes.any?
+        현재
+        %strong
+          #{@opinion.votes.count}
+        명이 투표에 참여했습니다.
+  - elsif @opinion.voted_by? current_user
+    .vote__results
+      .row
+        .col-xs-6
+          %h2
+            찬성
+            %span.count= @opinion.votes.with_choice(:agree).count
+          - @opinion.votes.with_choice(:agree).partial_included_with(current_user).each do |vote|
+            - if vote.user == current_user
+              %strong= byline vote.user
+            - else
+              = byline vote.user
+        .col-xs-6
+          %h2
+            반대
+            %span.count= @opinion.votes.with_choice(:disagree).count
+          - @opinion.votes.with_choice(:disagree).partial_included_with(current_user).each do |vote|
+            - if vote.user == current_user
+              %strong= byline vote.user
+            - else
+              = byline vote.user
+
+
+    %p.text-center(style="margin-top: 50px")
+      %i.fa.fa-info-circle
+      투표를 다음으로 변경합니다.
+      - if @opinion.agreed_by? current_user
+        = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-default btn-sm' do
+          %i.fa.fa-thumbs-down
           반대
-          .lead
-            %strong= @opinion.votes.with_choice(:disagree).count
-        - @opinion.votes.with_choice(:disagree).partial_included_with(current_user).each do |vote|
-          - if vote.user == current_user
-            %strong= byline vote.user
-          - else
-            = byline vote.user
+      - if @opinion.disagreed_by? current_user
+        = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-default btn-sm' do
+          %i.fa.fa-thumbs-up
+          찬성
 
-
-  %p.text-center(style="margin-top: 50px")
-    %i.fa.fa-info-circle
-    투표를 변경합니다.
-    - if @opinion.agreed_by? current_user
-      = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
-        반대
-    - if @opinion.disagreed_by? current_user
-      = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
+  - else
+    %p.text-center
+      = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-primary btn-lg' do
+        %i.fa.fa-thumbs-up
         찬성
-
-- else
-  %p.text-center
-    = link_to post_votes_path(@opinion.acting_as, vote: {choice: :agree}), method: :post, class: 'btn btn-default' do
-      찬성
-    = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-default' do
-      반대
-  %p.text-center
-    %i.fa.fa-info-circle
-    주장에 대해 찬반 투표를 하면 자세한 결과를 볼 수 있습니다.
-    - if @opinion.votes.any?
-      현재
-      %strong
-        #{@opinion.votes.count}
-      명이 투표에 참여했습니다.
+      = link_to post_votes_path(@opinion.acting_as, vote: {choice: :disagree}), method: :post, class: 'btn btn-primary btn-lg' do
+        %i.fa.fa-thumbs-down
+        반대
+    %p.text-center
+      %i.fa.fa-info-circle
+      투표 후에 다른 회원의 투표 현황을 볼 수 있습니다.
+      - if @opinion.votes.any?
+        현재
+        %strong
+          #{@opinion.votes.count}
+        명이 투표에 참여했습니다.

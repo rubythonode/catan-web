@@ -1,0 +1,16 @@
+.post__meta.opinion__meta.clearfix
+  .pull-left
+    = link_to issue_home_path(post.issue) do
+      %span.label.label-default
+        %i.fa.fa-exclamation
+        = post.issue.title
+
+  .text-muted.actions.pull-right
+    = byline post.user
+    %i.fa.fa-clock-o
+    = date_f post.created_at
+    - if can? :update, post
+      = link_to '수정', [:edit, post]
+    - if can? :destroy, post
+      = link_to '삭제', post, method: :delete
+
