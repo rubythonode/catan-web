@@ -1,7 +1,7 @@
 .bs-component
   %section#sign-up
     .container(style='width: 20em;')
-      %h3.page-header 비밀번호 재설정
+      %h3.page-header 비밀번호 분실
       = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
         = devise_error_messages!
         .form-group

@@ -31,4 +31,8 @@ Rails.application.routes.draw do
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/devel/emails"
+  end
 end
