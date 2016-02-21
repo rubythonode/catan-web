@@ -55,8 +55,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
         nickname = row[0]
         email = row[1]
         id = row[2]
-        created_at = row[3]
-        updated_at = row[4]
+        created_at = row[3].to_s(:db)
+        updated_at = row[4].to_s(:db)
       else
         nickname = row['nickname']
         email = row['email']
