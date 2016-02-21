@@ -145,6 +145,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.99)
+    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     minitest-focus (1.1.2)
@@ -200,6 +201,10 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     recursive-open-struct (1.0.1)
+    redactor-rails (0.5.0)
+      devise
+      mime-types
+      orm_adapter
     redis (3.2.2)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -273,12 +278,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener_web
+  mini_magick
   minitest-focus (~> 1.1, >= 1.1.2)
   mysql2 (>= 0.3.13, < 0.5)
   nokogiri (~> 1.6, >= 1.6.7.2)
   premailer-rails (~> 1.9)
   rails (= 4.2.5.1)
   recursive-open-struct (~> 1.0, >= 1.0.1)
+  redactor-rails
   redis (~> 3.2, >= 3.2.2)
   redis-namespace (~> 1.5, >= 1.5.2)
   sass-rails (~> 5.0)
