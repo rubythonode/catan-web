@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221051827) do
+ActiveRecord::Schema.define(version: 20160221141351) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -107,6 +107,22 @@ ActiveRecord::Schema.define(version: 20160221051827) do
   add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"
   add_index "posts", ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "redactor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable"
+  add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
