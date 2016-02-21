@@ -1,32 +1,34 @@
-= form_for @article do |f|
-  .form-group
-    = label_tag :issue_title, Issue.model_name.human
-    = text_field_tag :issue_title, @article.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title' }
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :body
-    = f.text_area :body, class: 'form-control'
-  .form-group
-    = f.label :link
-    = f.text_field :link, class: 'form-control'
-  .form-group
-    = f.label :tag_list
-    = f.text_field :tag_list, class: 'form-control'
-    - if ActsAsTaggableOn::Tag.most_used.any?
-      %p.help-block
-        많이 쓰이는 태그
-        - ActsAsTaggableOn::Tag.most_used.each do |tag|
-          %a(href='#' data-action="add-tag" data-form-control="#article_tag_list" data-tag-name="#{tag.name}")
-            = tag.name
-  = f.submit '저장', class: 'btn btn-primary'
-  - if @article.new_record?
-    - if @article.issue.present?
-      - back_to = issue_home_path(@article.issue)
-    - else
-      - back_to = root_path
-  - else
-    - back_to = @article
-  = link_to back_to, class: 'btn btn-default btn-xs' do
-    취소
+.well
+  = form_for @article do |f|
+    .form-group
+      = label_tag :issue_title, Issue.model_name.human
+      = text_field_tag :issue_title, @article.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title' }
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control input-lg'
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control redactor'
+    .form-group
+      = f.label :link
+      = f.text_field :link, class: 'form-control'
+    .form-group
+      = f.label :tag_list
+      = f.text_field :tag_list, class: 'form-control'
+      - if ActsAsTaggableOn::Tag.most_used.any?
+        %p.help-block
+          많이 쓰이는 태그
+          - ActsAsTaggableOn::Tag.most_used.each do |tag|
+            %a(href='#' data-action="add-tag" data-form-control="#article_tag_list" data-tag-name="#{tag.name}")
+              = tag.name
+    .form-group
+      = f.submit '저장', class: 'btn btn-primary btn-lg'
+      - if @article.new_record?
+        - if @article.issue.present?
+          - back_to = issue_home_path(@article.issue)
+        - else
+          - back_to = root_path
+      - else
+        - back_to = @article
+      = link_to back_to, class: 'btn btn-default' do
+        취소

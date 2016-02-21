@@ -5,7 +5,7 @@
 //= require masonry.pkgd
 //= require bootstrap.offcanvas
 //= require selectize
-//= require_tree .
+//= require redactor-rails
 
 $(function(){
   $('[data-provider="typeahead"]').each(function(i, elm) {
