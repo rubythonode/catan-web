@@ -8,9 +8,9 @@
       .post-bg-content
         = simple_format @opinion.body, style: 'font-size: 120%'
 
-    .opinion__tags
+    .opinion__tags.post__tags
       - @opinion.tags.each do |tag|
-        = link_to "##{tag.name}", tag_home_path(tag), class: 'label label-primary'
+        = link_to "##{tag.name}", tag_home_path(tag)
 
     = render 'vote'
 
