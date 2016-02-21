@@ -10,17 +10,17 @@
   }
 
   .opinion__body {
+    display: none;
     margin: 30px 0;
     color: $gray-light;
-    font-size: 16px;
-    text-align: center;
+    font-size: 14px;
   }
 }
 
 .opinion__vote-section {
   background: $gray-lighter;
   padding: 40px;
-  margin: 20px;
+  margin: 20px 0;
 
   .vote__results {
     text-align: center;
