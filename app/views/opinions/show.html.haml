@@ -4,9 +4,8 @@
 
     %h2.opinion__title “#{@opinion.title}”
 
-    .opinion__body.post-bg-opinion-item
-      .post-bg-content
-        = simple_format @opinion.body, style: 'font-size: 120%'
+    .opinion__body
+      = simple_format @opinion.body, style: 'font-size: 120%'
 
     .opinion__tags.post__tags
       - @opinion.tags.each do |tag|

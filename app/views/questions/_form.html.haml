@@ -12,7 +12,7 @@
       = f.text_area :body, class: 'form-control redactor'
     .form-group
       = f.label :tag_list
-      = f.text_field :tag_list, class: 'form-control', data: { toggle: 'tag-input-helper' }
+      = f.text_field :tag_list, class: 'form-control', value: f.object.tag_list.to_s, data: { toggle: 'tag-input-helper' }
       - if ActsAsTaggableOn::Tag.most_used.any?
         %p.help-block
           많이 쓰이는 태그

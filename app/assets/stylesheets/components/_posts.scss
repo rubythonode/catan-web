@@ -28,20 +28,6 @@
     }
   }
 
-  &-article-item {
-    position: relative;
-
-    &:after {
-      position: absolute;
-      font-family: 'FontAwesome';
-      top: -0.5em;
-      right: -0.3em;
-      content: "\f1ea";
-      color: rgba(220, 220, 220, 0.2);
-      font-size: 15em;
-    }
-  }
-
   &-opinion-collection {
     position: relative;
     overflow: hidden;
@@ -54,20 +40,6 @@
       content: "\f0a1";
       color: rgba(220, 220, 220, 0.2);
       font-size: 8em;
-    }
-  }
-
-  &-opinion-item {
-    position: relative;
-
-    &:after {
-      position: absolute;
-      font-family: 'FontAwesome';
-      top: -0.5em;
-      right: -0.3em;
-      content: "\f0a1";
-      color: rgba(220, 220, 220, 0.2);
-      font-size: 15em;
     }
   }
 }
