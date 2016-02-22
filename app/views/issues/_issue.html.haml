@@ -1,2 +1,52 @@
-%li.list-group-item
-  = link_to issue.title, issue_home_path(issue)
+.issue-block( style="background-size: cover; background-image: url('#{issue.cover.file.present? ? issue.cover_url : asset_path('default_issue_cover.png')}'); margin-top: -8px;" )
+  %section.issue
+    .container{ style: 'position: reltiave;' }
+      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
+        %div.clearfix.text-center
+          - if issue.logo.file.present?
+            - issue_logo_url = issue.logo_url
+          - else
+            - issue_logo_url = 'default_issue_logo.png'
+          = image_tag issue_logo_url, style: 'width: 100px; height: 100px'
+          %h2
+            = link_to issue.title, issue_home_path(issue), { :style => 'font-weight: bold; color:white;' }
+
+          %div.text-center
+            - if can? :update, issue
+              = link_to '수정', [:edit, issue], class: 'text-muted'
+            - if can? :destroy, issue
+              = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+
+          = simple_format truncate(issue.body, length: 70), style: 'color: white; margin-top: 2em;'
+
+          - if !issue.is_all?
+            %p.lead{ style: 'color: #fff; font-size: 16px; font-weight: bold;'}
+              %i.fa.fa-eye
+              - if issue.watched_by?(current_user)
+                나를 포함한
+              #{issue.watches.count}명이 지켜 봅니다
+
+              - if !issue.is_all? and can?(:create, Watch)
+                %span(id="#{dom_id(issue)}-watch")
+                  = render 'watches/watch', issue: issue
+        .text-center
+          %ul.list-inline.issue-header-actions
+            %li
+              = link_to new_article_path(issue_id: issue.id), class: 'btn btn-danger' do
+                %i.fa.fa-file-text-o
+                %br
+                %small
+                  뉴스/컬럼 쓰기
+            %li
+              = link_to new_opinion_path(issue_id: issue.id), class: 'btn btn-danger' do
+                %i.fa.fa-pie-chart
+                %br
+                %small
+                  주장하기
+            %li
+              = link_to new_question_path(issue_id: issue.id), class: 'btn btn-danger' do
+                %i.fa.fa-list-ul
+                %br
+                %small
+                  질문하기
+

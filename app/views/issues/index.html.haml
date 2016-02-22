@@ -1,17 +1,4 @@
 .bs-component
   %section#issues
-    .container
-      %h2.page-header
-        Issues
-        %small
-          - if can? :create, Issue
-            = link_to new_issue_path, class: 'btn btn-default' do
-              이슈 열기
-          = link_to new_article_path, class: 'btn btn-default' do
-            뉴스컬럼 쓰기
-          = link_to new_opinion_path, class: 'btn btn-default' do
-            주장 하기
-
-      %ul.list-group
-        = render 'issues/issue', issue: @issue_of_all
-        = render @issues
+    = render 'issues/issue', issue: @issue_of_all
+    = render @issues
