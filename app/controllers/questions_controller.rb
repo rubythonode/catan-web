@@ -33,6 +33,11 @@ class QuestionsController < ApplicationController
     redirect_to issue_home_path(@question.issue)
   end
 
+  def show
+    prepare_meta_tags title: @question.title,
+                      description: @question.body
+  end
+
   private
 
   def question_params
