@@ -1,0 +1,24 @@
+.post.question.col-md-4.col-sm-6[question.acting_as]
+  .panel.panel-default
+    .panel-body.post-bg-question-collection
+      .post-bg-content
+        - if local_assigns[:show_issue]
+          = link_to issue_home_path(question.issue) do
+            %span.label.label-info
+              %i.fa.fa-exclamation
+              = question.issue.title
+        %h5{ style: 'font-weight: bold;' }= link_to question.title, question
+
+        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(question.body), length: 100)
+
+        .tags(style='margin-top: 1em')
+          - question.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
+    .panel-footer
+      .pull-right
+        %span
+          %i.fa.fa-comment-o
+          = question.comments_count
+        = render 'likes/like_line', post: question.acting_as
+
+      %span= byline question.user

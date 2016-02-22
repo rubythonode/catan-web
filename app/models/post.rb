@@ -14,6 +14,10 @@ class Post < ActiveRecord::Base
         partial.all
       end
     end
+
+    def point
+      agreed.count - disagreed.count
+    end
   end
   has_many :likes, counter_cache: true
 
@@ -31,6 +35,22 @@ class Post < ActiveRecord::Base
 
   def liked_by? someone
     likes.exists? user: someone
+  end
+
+  def voted_by voter
+    votes.where(user: voter).first
+  end
+
+  def voted_by? voter
+    votes.exists? user: voter
+  end
+
+  def agreed_by? voter
+    votes.exists? user: voter, choice: 'agree'
+  end
+
+  def disagreed_by? voter
+    votes.exists? user: voter, choice: 'disagree'
   end
 
   private

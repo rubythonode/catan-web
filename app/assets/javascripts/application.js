@@ -9,6 +9,8 @@
 //= require jquery.oembed
 
 $(function(){
+
+  // typeahead
   $('[data-provider="typeahead"]').each(function(i, elm) {
     var $elm = $(elm);
     var url = $elm.data('typeahead-url');
@@ -47,7 +49,7 @@ $(function(){
     });
   });
 
-  // masonry
+  //masonry
   var $container = $('.masonry-container');
   $container.masonry({
     itemSelector: '.post'
@@ -78,4 +80,21 @@ $(function(){
   });
 
   $("a.embed").oembed();
+
+  // toggle
+
+  $('[data-toggle="parti-toggle"]').on('click', function(e) {
+    e.preventDefault();
+    $target = $(e.currentTarget);
+    var hide = $target.data('parti-toggle-hide');
+    var show = $target.data('parti-toggle-show');
+
+    $(hide).addClass('hidden');
+    $(show).removeClass('hidden');
+
+    var focus = $(e.target).data('parti-toggle-focus');
+    var $focus = $(focus);
+    $focus.focus();
+  });
+
 });

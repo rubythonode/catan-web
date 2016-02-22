@@ -1,4 +1,7 @@
 %span
-  = image_tag user.image_url, class: 'user-image img-circle'
-  - unless local_assigns[:hide_nickname]
-    = user.nickname
+  - if local_assigns[:hide_image]
+    @#{user.nickname}
+  - else
+    = image_tag user.image_url, class: 'user-image img-circle'
+    - unless local_assigns[:hide_nickname]
+      = user.nickname

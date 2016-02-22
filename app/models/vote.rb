@@ -12,14 +12,16 @@ class Vote < ActiveRecord::Base
   validates :choice, presence: true
 
   scope :recent, -> { order(updated_at: :desc) }
+  scope :agreed, -> { where(choice: 'agree') }
+  scope :disagreed, -> { where(choice: 'disagree') }
 
   before_save :touch_post_by_vote
 
   private
 
   def validate_post_type
-    if post.postable_type != Opinion.to_s
-      errors.add(:post, "should be opinion")
+    unless [Opinion.to_s, Answer.to_s].include?(post.postable_type)
+      errors.add(:post, "should be opinion or answer")
     end
   end
 end

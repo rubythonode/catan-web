@@ -4,8 +4,8 @@ class VotesController < ApplicationController
   load_and_authorize_resource :vote, through: :post, shallow: true
 
   def create
-    @poinion = @post.specific
-    previous_vote = @poinion.voted_by current_user
+    @specific = @post.specific
+    previous_vote = @specific.voted_by current_user
     if previous_vote.present?
       @vote = previous_vote
       @vote.choice = params[:vote][:choice]
@@ -14,12 +14,20 @@ class VotesController < ApplicationController
     end
 
     @vote.save
-    redirect_to @poinion
+    redirect_to_origin_post
   end
 
   private
 
   def vote_params
     params.require(:vote).permit(:choice)
+  end
+
+  def redirect_to_origin_post
+    if @vote.post.specific.respond_to? :origin_post
+      redirect_to @vote.post.specific.origin_post
+    else
+      redirect_to @vote.post.specific
+    end
   end
 end

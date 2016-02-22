@@ -44,7 +44,7 @@
                 %small
                   주장하기
             %li
-              = link_to '#', class: 'btn btn-danger',  disabled: "disabled" do
+              = link_to new_question_path(issue_id: @issue.id), class: 'btn btn-danger' do
                 %i.fa.fa-list-ul
                 %br
                 %small

@@ -1,0 +1,60 @@
+%section.question-section
+  .container
+    = render 'post_meta', post: @question.acting_as
+
+    %h2.question__title= @question.title
+
+    .question__body.post-bg-question-item
+      .post-bg-content
+        = simple_format @question.body
+
+    .question__tags.post__tags
+      - @question.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
+
+    .post__likes
+      = render 'likes/like', post: @question.acting_as
+      = render 'likes/like_detail', post: @question.acting_as
+%section.question-comments-section
+  .container
+    = render 'comments/comments', postable: @question, style: :inline
+
+%section.answers-section
+  .container
+    %hr(style='margin: 3em 0; border-width: 0.2em;')
+    %h3
+      %i.fa.fa-lightbulb-o
+      답변(#{@question.answers.count})
+    - @question.answers.sort_by_vote_point.each_with_index do |answer, index|
+      - if index != 0
+        %hr
+      .row
+        .col-xs-1.text-center
+          %div(style='font-size: 210%')
+            = link_to post_votes_path(answer.acting_as, vote: {choice: :agree}), method: :post do
+              %i.fa.fa-caret-up
+            %div
+              = answer.votes.point
+            = link_to post_votes_path(answer.acting_as, vote: {choice: :disagree}), method: :post do
+              %i.fa.fa-caret-down
+        .col-xs-11
+          %a.anchor{id: dom_id(answer)}
+          %section.answer-section.clearfix
+            %p= simple_format answer.body
+            %p.pull-right
+              = byline answer.user
+              %i.fa.fa-clock-o
+              = date_f answer.created_at
+              - if can? :update, answer
+                = link_to '수정', [:edit, answer]
+              - if can? :destroy, answer
+                = link_to '삭제', answer, method: :delete
+          = render 'comments/comments', postable: answer, style: :inline
+    %hr
+    %p
+      %strong 내가 생각하는 답은...
+    %section.new-answer-section
+      = form_for [@question, Answer.new] do |f|
+        .form-group
+          = f.text_area :body, class: 'form-control'
+        = f.submit '저장', class: 'btn btn-danger'

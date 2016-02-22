@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221142749) do
+ActiveRecord::Schema.define(version: 20160222010953) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id", null: false
+    t.text     "body"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      null: false
@@ -107,6 +116,13 @@ ActiveRecord::Schema.define(version: 20160221142749) do
   add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"
   add_index "posts", ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false

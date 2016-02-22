@@ -28,6 +28,9 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :opinions
+  resources :questions do
+    resources :answers, shallow: true
+  end
 
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'

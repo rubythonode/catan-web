@@ -1,13 +1,26 @@
-.bs-component
-  %section#comments
+- if local_assigns[:style] == :inline
+  %div{id: "#{dom_id(postable)}_comments" }
+    = render postable.comments.recent, style: :inline
+    - if user_signed_in?
+
+      %div(style='padding-top: 1em; border-top: 1px solid #ddd;')
+        .text-muted.add-button(data-toggle="parti-toggle" data-parti-toggle-hide="##{dom_id(postable)}_comments .add-button" data-parti-toggle-show="##{dom_id(postable)}_comments .comment-form") 댓글 쓰기
+        .comment-form.hidden
+          = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|
+            .form-group
+              = f.text_area :body, class: 'form-control'
+            = f.submit '저장', class: 'btn btn-primary'
+            %span.btn.btn-default(data-toggle="parti-toggle" data-parti-toggle-show="##{dom_id(postable)}_comments .add-button" data-parti-toggle-hide="##{dom_id(postable)}_comments .comment-form") 취소
+- else
+  %section{id: "#{dom_id(postable)}_comments" }
     .container
       %h4 의견
       %ul.media-list
         - if user_signed_in?
           %li.media
-            = form_for [postable.acting_as, postable.comments.build] do |f|
+            = form_for [postable.acting_as, Comment.new] do |f|
               .form-group
                 = f.text_area :body, class: 'form-control'
               = f.submit '저장', class: 'btn btn-primary'
-        = render postable.comments.persisted.recent
+        = render postable.comments.recent
 

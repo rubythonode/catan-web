@@ -1,21 +1,29 @@
-%li.media
-  .media-left
-    %a(href="#")
-      = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:64px;height:64px;'
-    - if comment.choice.present?
-      %p.text-center.text-muted
-        %small
-          = choice_icon(comment)
-          = comment.choice_text
-  .media-body
-    %strong= comment.user.nickname
+- if local_assigns[:style] == :inline
+  %div(style='border-top: 1px solid #ddd; padding: 1em 0; maring-bottom: 1em;')
+    = simple_format comment.body, nil, wrapper_tag: 'span'
+    %span.text-primary
+      = byline comment.user, hide_image: true
     %i.fa.fa-clock-o
     = date_f comment.created_at
-    - if can? :update, comment
-      = link_to [:edit, comment] do
-        %i.fa.fa-edit>
-    - if can? :destroy, comment
-      = link_to comment, method: :delete do
-        %i.fa.fa-trash-o>
-    %p
-      = simple_format comment.body
+- else
+  %li.media
+    .media-left
+      %a(href="#")
+        = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:64px;height:64px;'
+      - if comment.choice.present?
+        %p.text-center.text-muted
+          %small
+            = choice_icon(comment)
+            = comment.choice_text
+    .media-body
+      %strong= comment.user.nickname
+      %i.fa.fa-clock-o
+      = date_f comment.created_at
+      - if can? :update, comment
+        = link_to [:edit, comment] do
+          %i.fa.fa-edit>
+      - if can? :destroy, comment
+        = link_to comment, method: :delete do
+          %i.fa.fa-trash-o>
+      %p
+        = simple_format comment.body

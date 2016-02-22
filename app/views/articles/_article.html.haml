@@ -2,12 +2,11 @@
   .panel.panel-default
     .panel-body.post-bg-article-collection
       .post-bg-content
-        .clearfix
-          - if local_assigns[:show_issue]
-            = link_to issue_home_path(article.issue) do
-              %span.label.label-info
-                %i.fa.fa-exclamation
-                = article.issue.title
+        - if local_assigns[:show_issue]
+          = link_to issue_home_path(article.issue) do
+            %span.label.label-info
+              %i.fa.fa-exclamation
+              = article.issue.title
         %h5{ style: 'font-weight: bold;' }= link_to article.title, article
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(article.body), length: 100)
