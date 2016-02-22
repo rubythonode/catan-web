@@ -1,10 +1,13 @@
 - if local_assigns[:style] == :inline
-  %div(style='border-top: 1px solid #ddd; padding: 1em 0; maring-bottom: 1em;')
-    = simple_format comment.body, nil, wrapper_tag: 'span'
-    %span.text-primary
-      = byline comment.user, hide_image: true
-    %i.fa.fa-clock-o
-    = date_f comment.created_at
+  .comment--inline[comment]
+    .row
+      .col-xs-8
+        = simple_format comment.body, nil, wrapper_tag: 'span'
+      .col-xs-4.text-right
+        %span
+          = byline comment.user
+        %i.fa.fa-clock-o
+        = date_f comment.created_at
 - else
   %li.media
     .media-left

@@ -1,24 +1,25 @@
-.post.answer.col-md-4.col-sm-6[answer.acting_as]
-  .panel.panel-default
-    .panel-body.post-bg-answer-collection
-      .post-bg-content
-        - if local_assigns[:show_issue]
-          = link_to issue_home_path(answer.issue) do
-            %span.label.label-info
-              %i.fa.fa-exclamation
-              = answer.issue.title
-        %h5{ style: 'font-weight: bold;' }= link_to answer.body, question_path(answer.question, anchor: dom_id(answer))
+.answer-section[answer]
+  .container
+    .row
+      .col-xs-1.text-center
+        %div(style='font-size: 210%')
+          = link_to post_votes_path(answer.acting_as, vote: {choice: :agree}), method: :post do
+            %i.fa.fa-caret-up
+          %div
+            = answer.votes.point
+          = link_to post_votes_path(answer.acting_as, vote: {choice: :disagree}), method: :post do
+            %i.fa.fa-caret-down
+      .col-xs-11
+        %div
+          %a.anchor{id: dom_id(answer)}
+          %p.pull-right
+            = byline answer.user
+            %i.fa.fa-clock-o
+            = date_f answer.created_at
+            - if can? :update, answer
+              = link_to '수정', [:edit, answer]
+            - if can? :destroy, answer
+              = link_to '삭제', answer, method: :delete
+          %p= simple_format answer.body
 
-        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(answer.body), length: 100)
-
-        .tags(style='margin-top: 1em')
-          - answer.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    .panel-footer
-      .pull-right
-        %span
-          %i.fa.fa-comment-o
-          = answer.comments_count
-        = render 'likes/like_line', post: answer.acting_as
-
-      %span= byline answer.user
+        = render 'comments/comments', postable: answer, style: :inline

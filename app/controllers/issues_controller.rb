@@ -25,12 +25,12 @@ class IssuesController < ApplicationController
   def slug
     if params[:slug] == 'all'
       @issue = Issue::OF_ALL
-      @posts = Post.all.recent
+      @posts = Post.for_list.recent
       @issue.title = '모든 이슈의 최신글'
       @issue.body = '유쾌한 민주주의 플랫폼, 빠띠의 이슈 최신글입니다.'
     else
       @issue = Issue.find_by! slug: params[:slug]
-      @posts = @issue.posts.recent
+      @posts = @issue.posts.for_list.recent
     end
     @posts_for_filter = @posts
     if params[:t].present?

@@ -27,3 +27,23 @@
     }
   }
 }
+
+.question-list-item {
+  .question__answer {
+    background-color: $gray-lighter;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+}
+
+.answer-section, .new-answer-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  & > div {
+    border-top: 1px solid $gray-lighter;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

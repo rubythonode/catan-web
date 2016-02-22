@@ -1,4 +1,4 @@
-.post.question.col-md-4.col-sm-6[question.acting_as]
+.post.question-list-item.col-md-4.col-sm-6[question.acting_as]
   .panel.panel-default
     .panel-body.post-bg-question-collection
       .post-bg-content
@@ -10,6 +10,14 @@
         %h5{ style: 'font-weight: bold;' }= link_to question.title, question
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(question.body), length: 100)
+
+        %div.question__answer
+          - first_answer = question.answers.sort_by_vote_point.first
+          - if first_answer
+            = truncate(strip_tags(first_answer.body), length: 100)
+          - else
+            아직 답변이 없습니다
+
 
         .tags(style='margin-top: 1em')
           - question.tags.each do |tag|

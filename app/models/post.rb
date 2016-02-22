@@ -30,6 +30,7 @@ class Post < ActiveRecord::Base
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
   scope :only_articles, -> { by_postable_type(Article.to_s) }
   scope :only_opinions, -> { by_postable_type(Opinion.to_s) }
+  scope :for_list, -> { where.not(postable_type: Answer.to_s) }
 
   before_save :set_touched_at
 

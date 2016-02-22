@@ -1,14 +1,22 @@
+// base
 @import "bootstrap-sprockets";
 @import "variables";
 @import "bootstrap";
 @import "base";
+
+// vendors
 @import "bootstrap.offcanvas";
 @import "selectize";
 @import "selectize.bootstrap3";
 @import "redactor";
 @import "jquery.oembed";
+
+// components
 @import 'components/issues';
 @import 'components/posts';
 @import 'components/articles';
 @import 'components/opinions';
 @import 'components/questions';
+@import 'components/comments';
+
+// pages
