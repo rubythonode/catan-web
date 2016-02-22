@@ -1,6 +1,6 @@
 - if local_assigns[:style] == :inline
   = render 'comments/inline_comments', local_assigns
-- if local_assigns[:style] == :opinion
+- elsif local_assigns[:style] == :opinion
   = render 'comments/opinion_comments', local_assigns
 - else
   %section{id: "#{dom_id(postable)}_comments" }
