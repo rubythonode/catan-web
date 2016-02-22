@@ -23,6 +23,14 @@
 %section.answers-section
   = render @question.answers.sort_by_vote_point
 
+  - if @question.answers.empty?
+    %section.answer-section
+      .container
+        .text-center
+          %p.lead(style='margin-top: 30px')
+            %i.fa.fa-info-circle
+            등록된 답변이 없습니다.
+          %p 가장 먼저 질문자의 궁금증을 해결해 주세요.
   %section.new-answer-section
     .container
       = form_for [@question, Answer.new] do |f|
