@@ -9,7 +9,7 @@
             - issue_logo_url = 'default_issue_logo.png'
           = image_tag issue_logo_url, style: 'width: 100px; height: 100px'
           %h2
-            %span{ style: 'font-weight: bold; color:white;' }>= (@issue.is_all? ?  '모든 이슈의 최신글' : @issue.title)
+            %span{ style: 'font-weight: bold; color:white;' }>= @issue.title
 
           %div.text-center
             - if can? :update, @issue

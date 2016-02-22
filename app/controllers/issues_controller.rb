@@ -26,6 +26,8 @@ class IssuesController < ApplicationController
     if params[:slug] == 'all'
       @issue = Issue::OF_ALL
       @posts = Post.all.recent
+      @issue.title = '모든 이슈의 최신글'
+      @issue.body = '유쾌한 민주주의 플랫폼, 빠띠의 이슈 최신글입니다.'
     else
       @issue = Issue.find_by! slug: params[:slug]
       @posts = @issue.posts.recent
