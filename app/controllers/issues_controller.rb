@@ -4,6 +4,7 @@ class IssuesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    prepare_meta_tags title: "이슈", description: "모든 이슈들입니다."
     @issues = Issue.all
     if request.format.json?
       @issues = @issues.limit(10)
@@ -32,6 +33,9 @@ class IssuesController < ApplicationController
       @issue = Issue.find_by! slug: params[:slug]
       @posts = @issue.posts.for_list.recent
     end
+    prepare_meta_tags title: @issue.title,
+                      description: @issue.body,
+                      image: @issue.cover_url
     @posts_for_filter = @posts
     if params[:t].present?
       @posts = @posts.by_postable_type(params[:t])

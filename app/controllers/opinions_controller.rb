@@ -35,6 +35,11 @@ class OpinionsController < ApplicationController
     redirect_to issue_home_path(@opinion.issue)
   end
 
+  def show
+    prepare_meta_tags title: @opinion.title,
+                      description: @opinion.body
+  end
+
   private
 
   def set_comment

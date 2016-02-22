@@ -189,6 +189,8 @@ GEM
     memoist (0.14.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (2.99)
     mini_magick (4.3.6)
@@ -379,6 +381,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener_web
+  meta-tags (~> 2.1.0)
   mini_magick
   minitest-focus (~> 1.1, >= 1.1.2)
   mysql2 (>= 0.3.13, < 0.5)
