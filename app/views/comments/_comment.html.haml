@@ -13,11 +13,6 @@
     .media-left
       %a(href="#")
         = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:64px;height:64px;'
-      - if comment.choice.present?
-        %p.text-center.text-muted
-          %small
-            = choice_icon(comment)
-            = comment.choice_text
     .media-body
       %strong= comment.user.nickname
       %i.fa.fa-clock-o

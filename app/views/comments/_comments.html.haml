@@ -1,16 +1,7 @@
 - if local_assigns[:style] == :inline
-  %div{id: "#{dom_id(postable)}_comments" }
-    %h5 댓글 (#{postable.comments.count})
-    = render postable.comments.recent, style: :inline
-    - if user_signed_in?
-      .comment-form
-        = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|
-          .form-group
-            .row
-              .col-xs-10
-                = f.text_field :body, class: 'form-control'
-              .col-xs-2
-                = f.submit '저장', class: 'btn btn-default btn-block'
+  = render 'comments/inline_comments', local_assigns
+- if local_assigns[:style] == :opinion
+  = render 'comments/opinion_comments', local_assigns
 - else
   %section{id: "#{dom_id(postable)}_comments" }
     .container
