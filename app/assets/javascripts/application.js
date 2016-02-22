@@ -50,9 +50,7 @@ $(function(){
   // masonry
   var $container = $('.masonry-container');
   $container.masonry({
-    percentPosition: true,
-    columnWidth: '.post',
-    itemSelector: '.post',
+    itemSelector: '.post'
   });
 
   // tags

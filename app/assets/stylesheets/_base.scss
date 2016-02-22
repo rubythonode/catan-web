@@ -1,5 +1,5 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+// @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+// @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
 
 $fallback: Sans-serif;
 
@@ -89,5 +89,11 @@ blockquote {
   h3 & {
     max-width: 30px;
     max-height: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .masonry-container .post {
+    width: 100%;
   }
 }

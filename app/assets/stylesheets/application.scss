@@ -7,20 +7,7 @@
 @import "selectize.bootstrap3";
 @import "redactor";
 @import "jquery.oembed";
-
-.post {
-  .thumbnail {
-    padding: 19px;
-  }
-}
-
-.issue-header-actions {
-  i {
-    font-size: 18px;
-  }
-}
-
-
+@import 'components/issues';
 @import 'components/posts';
 @import 'components/articles';
 @import 'components/opinions';
