@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :prepare_meta_tags, if: "request.get?"
+  before_action :prepare_meta_tags, if: "request.get?", only: :show
 
   include ActionView::Helpers::TextHelper
   include ActionView::Helpers::AssetUrlHelper
