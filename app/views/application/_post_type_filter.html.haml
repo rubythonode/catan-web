@@ -16,12 +16,18 @@
       - if local_assigns[:posts]
         %small (#{posts.only_opinions.count})
 
+  %li{role: 'presentation', class: "#{'active' if params[:t] == 'question'}"}
+    = link_to url_for(current_params.merge(t: :question)) do
+      질문
+      - if local_assigns[:posts]
+        %small (#{posts.only_questions.count})
+
   - if @issue
     %li
       = link_to '#' do
-        지켜보는 사람
+        지켜보는 이
         %small (#{@issue.watches.count})
     %li
       = link_to '#' do
-        활동하는 사람
+        활동하는 이
         %small (10)

@@ -1,3 +1,12 @@
+.post {
+  .panel-footer {
+    font-size: 12px;
+    img.user-image {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
 .post-bg {
   &-content {
     position: relative;
@@ -96,4 +105,8 @@
       text-decoration: none;
     }
   }
+}
+
+.like--line {
+  margin-left: 5px;
 }

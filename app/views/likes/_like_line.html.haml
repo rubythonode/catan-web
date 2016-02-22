@@ -1,4 +1,4 @@
-%span(id="#{dom_id(post)}-like")
+%span.like--line(id="#{dom_id(post)}-like")
   - if !user_signed_in?
     = link_to '#' do
       %i.fa.fa-heart-o

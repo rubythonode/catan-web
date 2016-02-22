@@ -1,3 +1,33 @@
+.opinion-list-item {
+  blockquote {
+    padding: .5em;
+    border-left: 0;
+    quotes: "\201C""\201D""\2018""\2019";
+
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      display: inline;
+    }
+    &:before {
+      color: #ccc;
+      content: open-quote;
+      font-size: 3em;
+      line-height: 0.1em;
+      margin-right: 0.25em;
+      vertical-align: -0.4em;
+    }
+    &:after {
+      color: #ccc;
+      content: close-quote;
+      font-size: 3em;
+      float: right;
+    }
+  }
+}
+
 .opinion-section {
   padding-top: 40px;
   margin-bottom: 40px;
