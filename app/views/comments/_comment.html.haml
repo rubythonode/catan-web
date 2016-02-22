@@ -1,13 +1,10 @@
 - if local_assigns[:style] == :inline
   .comment--inline[comment]
-    .row
-      .col-xs-8
-        = simple_format comment.body, nil, wrapper_tag: 'span'
-      .col-xs-4.text-right
-        %span
-          = byline comment.user
-        %i.fa.fa-clock-o
-        = date_f comment.created_at
+    = simple_format comment.body, nil, wrapper_tag: 'span'
+    %span(style='margin-left: 10px;')
+      = byline comment.user
+      %i.fa.fa-clock-o
+      = date_f comment.created_at
 - else
   %li.media
     .media-left

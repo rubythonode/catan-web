@@ -1,12 +1,13 @@
 %div{id: "#{dom_id(postable)}_comments" }
-  %h5 댓글 (#{postable.comments.count})
-  = render postable.comments.recent, style: :inline
+  %h5.text-muted
+    %i.fa.fa-comments
+    댓글 (#{postable.comments.count})
   - if user_signed_in?
     .comment-form
       = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|
         .form-group
-          .row
-            .col-xs-10
-              = f.text_field :body, class: 'form-control'
-            .col-xs-2
-              = f.submit '저장', class: 'btn btn-default btn-block'
+          .input-group
+            = f.text_field :body, class: 'form-control'
+            .input-group-btn
+              = f.submit '등록', class: 'btn btn-default btn-block'
+  = render postable.comments.recent, style: :inline

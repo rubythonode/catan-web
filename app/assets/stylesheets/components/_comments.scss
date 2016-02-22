@@ -1,3 +1,8 @@
 .comment--inline {
-  margin: 10px 0;
+  margin-top: 15px;
+  color: $gray-light;
+  img.user-image {
+    width: 15px;
+    height: 15px;
+  }
 }

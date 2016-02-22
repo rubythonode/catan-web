@@ -37,13 +37,33 @@
   }
 }
 
-.answer-section, .new-answer-section {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.answers-section {
+  background-color: $gray-lighter;
+  .answer-section, .new-answer-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
 
-  & > div {
-    border-top: 1px solid $gray-lighter;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    .answer-item {
+      background-color: white;
+      padding: 30px;
+
+      .answer-body {
+        margin: 30px 0;
+        font-size: 16px;
+      }
+    }
+
+    & > div {
+      border-top: 1px solid $gray-lighter;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .new-answer-section {
+    margin-bottom: 0;
+    .container {
+      border-top: 1px solid #ccc;
+    }
   }
 }
