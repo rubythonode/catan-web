@@ -1,7 +1,7 @@
 .post__meta.opinion__meta.clearfix
-  .pull-left
+  .pull-left.issue__title--label{class: "issue__title--#{post.postable_type.parameterize}"}
     = link_to issue_home_path(post.issue) do
-      %span.label.label-default
+      %span
         %i.fa.fa-exclamation
         = post.issue.title
 

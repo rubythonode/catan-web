@@ -3,3 +3,25 @@
     font-size: 18px;
   }
 }
+
+.issue__title {
+  &--label a {
+    color: #fff;
+    font-size: 13px;
+    font-weight: normal;
+    padding: 5px 8px;
+    border-radius: 5px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &--question a {
+    background-color: $brand-success;
+  }
+  &--article a {
+    background-color: $brand-info;
+  }
+  &--opinion a {
+    background-color: $brand-danger;
+  }
+}
