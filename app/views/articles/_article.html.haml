@@ -22,3 +22,4 @@
         = render 'likes/like_line', post: article.acting_as
 
       %span= byline article.user
+  = render 'comments/newest_comment', postable: article

@@ -1,17 +1,18 @@
-- if local_assigns[:style] == :inline
-  = render 'comments/inline_comments', local_assigns
-- elsif local_assigns[:style] == :opinion
-  = render 'comments/opinion_comments', local_assigns
-- else
-  %section{id: "#{dom_id(postable)}_comments" }
-    .container
-      %h4 의견
-      %ul.media-list
-        - if user_signed_in?
-          %li.media
-            = form_for [postable.acting_as, Comment.new] do |f|
-              .form-group
-                = f.text_area :body, class: 'form-control'
-              = f.submit '저장', class: 'btn btn-primary'
-        = render postable.comments.recent
+- if user_signed_in? or postable.comments.any?
+  - if local_assigns[:style] == :inline
+    = render 'comments/inline_comments', local_assigns
+  - elsif local_assigns[:style] == :opinion
+    = render 'comments/opinion_comments', local_assigns
+  - else
+    %section{id: "#{dom_id(postable)}_comments" }
+      .container
+        %h4 의견
+        %ul.media-list
+          - if user_signed_in?
+            %li.media
+              = form_for [postable.acting_as, Comment.new] do |f|
+                .form-group
+                  = f.text_area :body, class: 'form-control'
+                = f.submit '저장', class: 'btn btn-primary'
+          = render postable.comments.recent
 

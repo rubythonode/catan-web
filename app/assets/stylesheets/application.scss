@@ -20,3 +20,10 @@
 @import 'components/comments';
 
 // pages
+
+.popover-static .popover {
+  position: relative;
+  display: block;
+  margin: 20px 0;
+  z-index: 0;
+}
