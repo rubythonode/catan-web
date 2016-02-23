@@ -9,9 +9,12 @@
               = opinion.issue.title
         .clearfix
           %blockquote
-            %h3= link_to opinion.title, opinion
+            %h3.opinion__title= link_to opinion.title, opinion
 
-        %i.fa.fa-bar-chart #{opinion.votes.count}명이 투표했습니다.
+        .text-center
+          %i.fa.fa-bar-chart
+            %strong #{opinion.votes.count}
+            명이 투표했습니다.
         - if user_signed_in? and opinion.voted_by?(current_user) and opinion.votes.any?
           .result-box.text-center
             .row

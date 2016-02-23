@@ -11,6 +11,7 @@
     p {
       display: inline;
     }
+
     &:before {
       color: #ccc;
       content: open-quote;
@@ -24,6 +25,11 @@
       content: close-quote;
       font-size: 3em;
       float: right;
+    }
+
+    .opinion__title {
+      text-align: center;
+      word-break: keep-all;
     }
   }
 }
