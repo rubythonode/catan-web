@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def dashboard
-    watched_posts = Post.recent.watched_by(current_user)
+    watched_posts = Post.for_list.recent.watched_by(current_user)
     @watched_posts_for_filter = watched_posts
 
     if params[:t].present?
