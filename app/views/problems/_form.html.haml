@@ -1,0 +1,43 @@
+.well
+  = form_for @problem do |f|
+    .form-group
+      .row
+        .col-xs-4
+          = text_field_tag :issue_title, @problem.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title', 'title' => @problem.issue.try(:title) }
+          %p.help-block
+        .col-xs-8
+          %p.form-control-static
+            이슈와 관련하여
+
+    .form-group.form-group-lg
+      = f.text_field :title, class: 'form-control input-lg'
+      %p.help-block
+        에 대해 제안을 받습니다.
+
+    .form-group
+      = f.label :body
+      = f.text_area :body, class: 'form-control redactor'
+
+    .form-group
+      = f.label :tag_list
+      = f.text_field :tag_list, class: 'form-control', data: { toggle: 'tag-input-helper' }
+      - if ActsAsTaggableOn::Tag.most_used.any?
+        %p.help-block
+          많이 쓰이는 태그
+          - ActsAsTaggableOn::Tag.most_used.each do |tag|
+            %a(href='#' data-action="add-tag" data-form-control="#problem_tag_list" data-tag-name="#{tag.name}")
+              = tag.name
+
+    .row
+      .col-md-12
+        = f.submit '저장', class: 'btn btn-primary'
+
+        - if @problem.new_record?
+          - if @problem.issue.present?
+            - back_to = issue_home_path(@problem.issue)
+          - else
+            - back_to = root_path
+        - else
+          - back_to = @problem
+        = link_to back_to, class: 'btn btn-default btn-xs' do
+          취소

@@ -1,0 +1,41 @@
+%section.problem-section
+  .container
+    = render 'post_meta', post: @problem.acting_as
+
+    %h2.problem__title= @problem.title
+
+    .problem__body.post-bg-problem-item
+      .post-bg-content
+        = simple_format @problem.body
+
+    .problem__tags.post__tags
+      - @problem.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
+
+    .post__likes
+      = render 'likes/like', post: @problem.acting_as
+      = render 'likes/like_detail', post: @problem.acting_as
+
+= render 'suggestions'
+
+%section.problem-comments-section
+  .container
+    = render 'comments/comments', postable: @problem
+
+/ %section.suggestions-section
+/   = render @problem.suggestions.sort_by_vote_point
+
+/   - if @problem.suggestions.empty?
+/     %section.suggestion-section
+/       .container
+/         .text-center
+/           %p.lead(style='margin-top: 30px')
+/             %i.fa.fa-info-circle
+/             등록된 답변이 없습니다.
+/           %p 가장 먼저 질문자의 궁금증을 해결해 주세요.
+/   %section.new-suggestion-section
+/     .container
+/       = form_for [@problem, Answer.new] do |f|
+/         .form-group
+/           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
+/         = f.submit '저장', class: 'btn btn-danger'

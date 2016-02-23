@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   resources :questions do
     resources :answers, shallow: true
   end
+  resources :problems do
+    resources :suggestions, shallow: true
+  end
 
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'

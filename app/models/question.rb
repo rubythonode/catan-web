@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
 
   has_many :answers do
     def sort_by_vote_point
-      sort { |a, b| b.votes.point <=> a.votes.point }
+      sort_by { |e| [e.votes.point, e.created_at]  }.reverse
     end
   end
 end

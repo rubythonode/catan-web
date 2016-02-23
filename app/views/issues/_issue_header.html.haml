@@ -39,13 +39,19 @@
                   뉴스/컬럼 쓰기
             %li
               = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-danger' do
-                %i.fa.fa-pie-chart
+                %i.fa.fa-bar-chart
                 %br
                 %small
                   주장하기
             %li
               = link_to new_question_path(issue_id: @issue.id), class: 'btn btn-danger' do
-                %i.fa.fa-list-ul
+                %i.fa.fa-question
                 %br
                 %small
                   질문하기
+            %li
+              = link_to new_problem_path(issue_id: @issue.id), class: 'btn btn-danger' do
+                %i.fa.fa-list-ul
+                %br
+                %small
+                  제안받기

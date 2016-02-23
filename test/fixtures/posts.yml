@@ -24,6 +24,11 @@ post_answer1:
   issue: issue1
   postable: answer1 (Answer)
   touched_at: <%= 5.day.ago.to_s(:db) %>
+post_problem1:
+  user: one
+  issue: issue1
+  postable: problem1 (Problem)
+  touched_at: <%= 5.day.ago.to_s(:db) %>
 
 # issue2
 post_article2:
@@ -45,4 +50,9 @@ post_question2:
   user: one
   issue: issue2
   postable: question2 (Question)
+  touched_at: <%= 5.day.ago.to_s(:db) %>
+post_problem2:
+  user: one
+  issue: issue2
+  postable: problem2 (Problem)
   touched_at: <%= 5.day.ago.to_s(:db) %>

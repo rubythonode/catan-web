@@ -18,8 +18,8 @@ class Vote < ActiveRecord::Base
   private
 
   def validate_post_type
-    unless [Opinion.to_s, Answer.to_s].include?(post.postable_type)
-      errors.add(:post, "should be opinion or answer")
+    unless [Opinion.to_s, Answer.to_s, Suggestion.to_s].include?(post.postable_type)
+      errors.add(:post, "should be opinion or answer or suggestion")
     end
   end
 end

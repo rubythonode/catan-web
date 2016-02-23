@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222010953) do
+ActiveRecord::Schema.define(version: 20160223025151) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -117,6 +117,13 @@ ActiveRecord::Schema.define(version: 20160222010953) do
   add_index "posts", ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "problems", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string   "title",      null: false
     t.text     "body"
@@ -139,6 +146,26 @@ ActiveRecord::Schema.define(version: 20160222010953) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable"
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type"
+
+  create_table "statements", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "statable_id",   null: false
+    t.string   "statable_type", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "statements", ["statable_type", "statable_id"], name: "index_statements_on_statable_type_and_statable_id"
+  add_index "statements", ["user_id"], name: "index_statements_on_user_id"
+
+  create_table "suggestions", force: :cascade do |t|
+    t.integer  "problem_id", null: false
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "suggestions", ["problem_id"], name: "index_suggestions_on_problem_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

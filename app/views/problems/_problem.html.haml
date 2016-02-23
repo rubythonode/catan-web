@@ -1,0 +1,33 @@
+.post.problem-list-item.col-md-4.col-sm-6[problem.acting_as]
+  .panel.panel-default
+    .panel-body.post-bg-problem-collection
+      .post-bg-content
+        - if local_assigns[:show_issue]
+          = link_to issue_home_path(problem.issue) do
+            %span.label.label-success
+              %i.fa.fa-exclamation
+              = problem.issue.title
+        %h5{ style: 'font-weight: bold;' }= link_to problem.title, problem
+
+        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(problem.body), length: 100)
+
+        / %div.problem__suggestion
+        /   - first_suggestion = problem.suggestion.sort_by_vote_point.first
+        /   - if first_suggestion
+        /     = truncate(strip_tags(first_suggestion.body), length: 100)
+        /   - else
+        /     아직 제안이 없습니다
+
+
+        .tags(style='margin-top: 1em')
+          - problem.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
+    .panel-footer
+      .pull-right
+        %span
+          %i.fa.fa-comment-o
+          = problem.comments_count
+        = render 'likes/like_line', post: problem.acting_as
+
+      %span= byline problem.user
+  = render 'comments/newest_comment', postable: problem

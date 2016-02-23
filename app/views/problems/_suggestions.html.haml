@@ -1,0 +1,50 @@
+%section.suggestions-section
+  .container
+    - if @problem.suggestions.any?
+      %h4 제안(#{@problem.suggestions.count})
+      %ul.list-group
+        - @problem.suggestions.sort_by_agree_count.each do |suggestion|
+          %li.list-group-item.clearfix
+            .pull-right
+              - if user_signed_in?
+                %div
+                  - if suggestion.agreed_by? current_user
+                    %i.fa.fa-thumbs-up.fa-4x
+                    = suggestion.votes.agreed.count
+                  - else
+                    = link_to post_votes_path(suggestion.acting_as, vote: {choice: :agree}), method: :post do
+                      %i.fa.fa-thumbs-up.fa-2x
+                      = suggestion.votes.agreed.count
+                %div
+                  - if suggestion.disagreed_by? current_user
+                    %i.fa.fa-ban.fa-4x
+                    = suggestion.votes.disagreed.count
+                  - else
+                    = link_to post_votes_path(suggestion.acting_as, vote: {choice: :disagree}), method: :post do
+                      %i.fa.fa-ban
+                      = suggestion.votes.disagreed.count
+              - else
+                %i.fa.fa-thumbs-up.fa-3x
+                %div
+                  = suggestion.votes.point
+                %i.fa.fa-ban
+            = simple_format suggestion.body
+            = byline suggestion.user
+            %i.fa.fa-clock-o
+            = suggestion.created_at
+            - if can? :update, suggestion
+              = link_to '수정', [:edit, suggestion]
+            - if can? :destroy, suggestion
+              = link_to '삭제', suggestion, method: :delete
+    - else
+      .text-center(style='margin-top: 30px; margin-bottom: 30px;')
+        %p.lead
+          %i.fa.fa-info-circle
+          등록된 제안이 없습니다.
+        %p첫번 째 제안자가 되어 보세요.
+%section.new-suggestion-section
+  .container
+    = form_for [@problem, Suggestion.new] do |f|
+      .form-group
+        = f.text_area :body, placeholder: '내 제안은..', class: 'form-control redactor'
+      = f.submit '저장', class: 'btn btn-danger'

@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
       agreed.count - disagreed.count
     end
   end
-  has_many :likes, counter_cache: true
+  has_many :likes
 
   validates :user, presence: true
   validates :issue, presence: true
@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
   scope :only_articles, -> { by_postable_type(Article.to_s) }
   scope :only_opinions, -> { by_postable_type(Opinion.to_s) }
   scope :only_questions, -> { by_postable_type(Question.to_s) }
-  scope :for_list, -> { where.not(postable_type: Answer.to_s) }
+  scope :for_list, -> { where.not(postable_type: Answer.to_s).where.not(postable_type: Suggestion.to_s) }
 
   before_save :set_touched_at
 
