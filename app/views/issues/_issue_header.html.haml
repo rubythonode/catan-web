@@ -35,8 +35,7 @@
               = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-danger' do
                 %i.fa.fa-file-text-o
                 %br
-                %small
-                  뉴스/컬럼 쓰기
+                %small= t('labels.article_button')
             %li
               = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-danger' do
                 %i.fa.fa-bar-chart

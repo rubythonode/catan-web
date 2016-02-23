@@ -7,7 +7,7 @@
         %small (#{posts.count})
   %li{role: 'presentation', class: "#{'active' if params[:t] == 'article'}"}
     = link_to url_for(current_params.merge(t: :article)) do
-      뉴스/컬럼
+      = t('labels.article_button')
       - if local_assigns[:posts]
         %small (#{posts.only_articles.count})
   %li{role: 'presentation', class: "#{'active' if params[:t] == 'opinion'}"}

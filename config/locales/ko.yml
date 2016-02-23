@@ -32,7 +32,8 @@ ko:
         password_confirmation: 비밀번호 확인
         remember_me: 로그인 상태를 유지
         current_password: 현재 비밀번호
-
+  labels:
+    article_button: 뉴스/컬럼/링크
   enumerize:
     defaults:
       choice:
