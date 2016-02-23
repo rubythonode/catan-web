@@ -10,9 +10,11 @@
     .article__body
       = simple_format @article.body
 
-    .article__tags.post__tags
-      - @article.tags.each do |tag|
-        = link_to "##{tag.name}", tag_home_path(tag)
+    .clearfix
+      #share.pull-right
+      .article__tags.post__tags
+        - @article.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag)
 
     .post__likes
       = render 'likes/like', post: @article.acting_as

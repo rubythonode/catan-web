@@ -7,6 +7,7 @@
 //= require selectize
 //= require redactor-rails
 //= require jquery.oembed
+//= require jssocials
 
 $(function(){
 
@@ -89,6 +90,12 @@ $(function(){
     var $target = $($self.data('toggle-target'));
 
     $target.toggle();
+  });
+
+  $("#share").jsSocials({
+    showCount: true,
+    showLabel: false,
+    shares: ["facebook", "googleplus", "twitter"]
   });
 
 });

@@ -2,6 +2,8 @@
   %section#issue
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
+        .clearfix
+          #share.pull-right
         %div.clearfix.text-center
           - if @issue.logo.file.present?
             - issue_logo_url = @issue.logo_url

@@ -8,9 +8,11 @@
       .post-bg-content
         = simple_format @question.body
 
-    .question__tags.post__tags
-      - @question.tags.each do |tag|
-        = link_to "##{tag.name}", tag_home_path(tag)
+    .clearfix
+      #share.pull-right
+      .question__tags.post__tags
+        - @question.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag)
 
     .post__likes
       = render 'likes/like', post: @question.acting_as
