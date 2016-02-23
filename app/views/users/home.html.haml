@@ -1,0 +1,9 @@
+= render 'user_header'
+
+.bs-component
+  %section#issue-posts
+    .container
+      = render 'post_type_filter', posts: @posts
+
+      .row.masonry-container
+        = render @postables, show_issue: true

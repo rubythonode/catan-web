@@ -31,6 +31,7 @@ class Post < ActiveRecord::Base
   scope :only_articles, -> { by_postable_type(Article.to_s) }
   scope :only_opinions, -> { by_postable_type(Opinion.to_s) }
   scope :only_questions, -> { by_postable_type(Question.to_s) }
+  scope :only_discussions, -> { by_postable_type(Discussion.to_s) }
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
 
   before_save :set_touched_at

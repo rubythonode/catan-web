@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
+  get '/u/:nickname', to: "users#home", as: 'nickname_user'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
 
   if Rails.env.development?

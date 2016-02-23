@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   before_save :downcase_nickname
   before_save :set_uid
 
+  has_many :posts
   has_many :watches
   has_many :watched_issues, through: :watches, source: :issue
 

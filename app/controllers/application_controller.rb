@@ -8,13 +8,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :issue_home_path, :tag_home_path
+  helper_method :issue_home_path, :tag_home_path, :user_home_path
   def issue_home_path(issue)
     view_context.slug_issue_path(slug: issue.slug)
   end
 
   def tag_home_path(tag)
     view_context.show_tag_path(name: tag.name)
+  end
+
+  def user_home_path(user)
+    view_context.nickname_user_path(nickname: user.nickname)
   end
 
   def prepare_meta_tags(options={})
