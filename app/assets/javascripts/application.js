@@ -85,16 +85,10 @@ $(function(){
 
   $('[data-toggle="parti-toggle"]').on('click', function(e) {
     e.preventDefault();
-    $target = $(e.currentTarget);
-    var hide = $target.data('parti-toggle-hide');
-    var show = $target.data('parti-toggle-show');
+    $self = $(e.currentTarget);
+    var $target = $($self.data('toggle-target'));
 
-    $(hide).addClass('hidden');
-    $(show).removeClass('hidden');
-
-    var focus = $(e.target).data('parti-toggle-focus');
-    var $focus = $(focus);
-    $focus.focus();
+    $target.toggle();
   });
 
 });

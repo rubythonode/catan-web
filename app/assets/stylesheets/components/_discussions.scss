@@ -1,0 +1,74 @@
+.discussion-section {
+  padding-top: 40px;
+  margin-bottom: 40px;
+
+  .discussion__title {
+    font-weight: bold;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .discussion__body {
+    margin: 30px 0;
+    font-size: 16px;
+  }
+
+  .oembedall-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: $gray-lighter;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    b {
+      display: block;
+      margin-top: 20px;
+    }
+  }
+}
+
+.discussion-list-item {
+  .discussion__proposal {
+    background-color: $gray-lighter;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+}
+
+.proposals-section {
+  background-color: $gray-lighter;
+
+  .proposal-section, .new-proposal-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &__voters {
+      display: none;
+    }
+
+    .proposal-item {
+      background-color: white;
+      padding: 30px;
+
+      .proposal-body {
+        margin: 30px 0;
+        font-size: 16px;
+      }
+    }
+
+    & > div {
+      border-top: 1px solid $gray-lighter;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .new-proposal-section {
+    margin-bottom: 0;
+    .container {
+      border-top: 1px solid #ccc;
+    }
+  }
+}

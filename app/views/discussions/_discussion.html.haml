@@ -1,0 +1,32 @@
+.post.discussion-list-item.col-md-4.col-sm-6[discussion.acting_as]
+  .panel.panel-default
+    .panel-body.post-bg-discussion-collection
+      .post-bg-content
+        - if local_assigns[:show_issue]
+          = link_to issue_home_path(discussion.issue) do
+            %span.label.label-success
+              %i.fa.fa-exclamation
+              = discussion.issue.title
+        %h5{ style: 'font-weight: bold;' }= link_to discussion.title, discussion
+
+        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(discussion.body), length: 100)
+
+        %div.discussion__proposal
+          - first_proposal = discussion.proposals.sort_by_agree_count.first
+          - if first_proposal
+            = truncate(strip_tags(first_proposal.body), length: 100)
+          - else
+            아직 답변이 없습니다
+
+
+        .tags(style='margin-top: 1em')
+          - discussion.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
+    .panel-footer
+      .pull-right
+        %span
+          %i.fa.fa-comment-o
+          = discussion.comments_count
+        = render 'likes/like_line', post: discussion.acting_as
+
+      %span= byline discussion.user

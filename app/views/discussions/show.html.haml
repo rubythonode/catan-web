@@ -1,0 +1,39 @@
+%section.discussion-section
+  .container
+    = render 'post_meta', post: @discussion.acting_as
+
+    %h2.discussion__title= @discussion.title
+
+    .discussion__body.post-bg-discussion-item
+      .post-bg-content
+        = simple_format @discussion.body
+
+    .discussion__tags.post__tags
+      - @discussion.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
+
+    .post__likes
+      = render 'likes/like', post: @discussion.acting_as
+      = render 'likes/like_detail', post: @discussion.acting_as
+
+%section.discussion-comments-section
+  .container
+    = render 'comments/comments', postable: @discussion, style: :inline
+
+%section.proposals-section
+  = render @discussion.proposals.sort_by_agree_count
+
+  - if @discussion.proposals.empty?
+    %section.proposal-section
+      .container
+        .text-center
+          %p.lead(style='margin-top: 30px')
+            %i.fa.fa-info-circle
+            등록된 답변이 없습니다.
+          %p 가장 먼저 질문자의 궁금증을 해결해 주세요.
+  %section.new-proposal-section
+    .container
+      = form_for [@discussion, Proposal.new] do |f|
+        .form-group
+          = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
+        = f.submit '저장', class: 'btn btn-danger'
