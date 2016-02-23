@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def build_meta_options(options)
     unless options.nil?
       options.compact!
@@ -37,7 +38,7 @@ class ApplicationController < ActionController::Base
       site:        options[:site_name],
       title:       options[:title],
       reverse:     true,
-      image:       options[:image],
+      image:       view_context.asset_url(options[:image]),
       description: options[:description],
       keywords:    options[:keywords],
       canonical:   current_url,
@@ -46,13 +47,13 @@ class ApplicationController < ActionController::Base
         site: '@parti_xyz',
         card: 'summary',
         description: twitter_description(options),
-        image: options[:image]
+        image: view_context.asset_url(options[:image])
       },
       og: {
         url: current_url,
         site_name: options[:site_name],
         title: options[:title],
-        image: options[:image],
+        image: view_context.asset_url(options[:image]),
         description: og_description,
         type: 'website'
       }
@@ -76,7 +77,7 @@ class ApplicationController < ActionController::Base
     if title.length > limit
       title.truncate(limit)
     else
-      "\"#{title}\" - #{description}".truncate(limit)
+      description.truncate(limit)
     end
   end
 end
