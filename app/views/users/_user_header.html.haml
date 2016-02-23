@@ -3,11 +3,7 @@
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         %div.clearfix.text-center
-          - if @user.image.file.present?
-            - user_logo_url = @user.image_url
-          - else
-            - user_logo_url = 'default_issue_logo.png'
-          = image_tag user_logo_url, style: 'width: 100px; height: 100px'
+          = image_tag @user.image_url, style: 'width: 100px; height: 100px'
           %h2
             %span{ style: 'font-weight: bold; color:white;' }> @#{@user.nickname}
 

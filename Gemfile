@@ -46,6 +46,7 @@ gem 'redis-namespace', '~> 1.5', '>= 1.5.2'
 gem 'premailer-rails', '~> 1.9'
 gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 gem 'meta-tags', '~> 2.1.0'
+gem 'identicon', '~> 0.0.5'
 
 group :development, :test do
   gem 'letter_opener_web'
