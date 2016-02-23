@@ -11,6 +11,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     run_omniauth
   end
 
+  def twitter
+    run_omniauth
+  end
+
   def run_omniauth
     parsed_data = User.parse_omniauth(request.env["omniauth.auth"])
     @user = User.find_for_omniauth(parsed_data)
