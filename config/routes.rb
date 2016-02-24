@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   #sso_devise
 
   if Rails.env.staging? or Rails.env.production?
-    root 'pages#basic_income'
+    root 'pages#filibuster'
   else
-    root 'issues#slug', slug: 'all'
+    root 'pages#filibuster'
+    # root 'issues#slug', slug: 'all'
   end
 
   resources :issues do

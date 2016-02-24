@@ -12,4 +12,8 @@ class PagesController < ApplicationController
   def basic_income
     redirect_to slug_issue_path('기본소득')
   end
+
+  def filibuster
+    redirect_to slug_issue_path('필리버스터')
+  end
 end
