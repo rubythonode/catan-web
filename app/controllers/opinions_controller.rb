@@ -36,8 +36,7 @@ class OpinionsController < ApplicationController
   end
 
   def show
-    prepare_meta_tags title: @opinion.title,
-                      description: @opinion.body
+    prepare_meta_tags title: @opinion.title
   end
 
   private
