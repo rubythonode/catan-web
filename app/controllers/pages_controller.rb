@@ -14,6 +14,6 @@ class PagesController < ApplicationController
   end
 
   def filibuster
-    redirect_to slug_issue_path('테러방지법-필리버스터')
+    redirect_to slug_issue_path('anti-terrorism-act')
   end
 end
