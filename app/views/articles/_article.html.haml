@@ -7,7 +7,7 @@
             %span.label.label-info
               %i.fa.fa-exclamation
               = article.issue.title
-        %h5{ style: 'font-weight: bold;' }= link_to article.title, article
+        %h5{ style: 'font-weight: bold;' }= link_to article.title, article, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(article.body), length: 100)
 

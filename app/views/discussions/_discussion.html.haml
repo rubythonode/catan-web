@@ -7,7 +7,7 @@
             %span.label.label-primary
               %i.fa.fa-exclamation
               = discussion.issue.title
-        %h5{ style: 'font-weight: bold;' }= link_to discussion.title, discussion
+        %h5{ style: 'font-weight: bold;' }= link_to discussion.title, discussion, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(discussion.body), length: 100)
 

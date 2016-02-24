@@ -7,7 +7,7 @@
             %span.label.label-success
               %i.fa.fa-exclamation
               = question.issue.title
-        %h5{ style: 'font-weight: bold;' }= link_to question.title, question
+        %h5{ style: 'font-weight: bold;' }= link_to question.title, question, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= auto_link(truncate(strip_tags(question.body), length: 100))
 
