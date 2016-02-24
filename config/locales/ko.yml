@@ -4,6 +4,14 @@ ko:
       not_saved: 저장되지 않았습니다
       blank: 값을 입력해 주세요
       taken: 이미 사용 중 입니다
+    models:
+      user:
+        attributes:
+          email: 이메일
+          password: 비밀번호
+          nickname: ID
+          remember_me: 로그인 상태를 유지
+          current_password: 현재 비밀번호
   activerecord:
     models:
       issue: 이슈
@@ -27,11 +35,23 @@ ko:
         tag_list: 태그
       user:
         email: 이메일
+        image: 프로필 사진
         password: 비밀번호
         nickname: ID
         password_confirmation: 비밀번호 확인
         remember_me: 로그인 상태를 유지
         current_password: 현재 비밀번호
+    errors:
+      models:
+        user:
+          attributes:
+            nickname:
+              exclusion: 를 사용할 수 없습니다. 예시) users, admin, all 등
+            password:
+              too_short: 비밀번호는 8자 이상 입력해주세요.
+            password_confirmation:
+              confirmation: 새로 입력한 비밀번호가 서로 일치하지 않습니다.
+
   labels:
     article_button: 뉴스/컬럼/링크
   enumerize:
