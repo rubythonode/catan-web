@@ -6,7 +6,7 @@
 
     .post__body.question__body.post-bg-question-item
       .post-bg-content
-        = simple_format @question.body
+        = simple_format auto_link(@question.body)
 
     .clearfix
       #share.pull-right

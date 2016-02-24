@@ -8,7 +8,7 @@
       = link_to @article.link, @article.link, target: '_blank', class: 'embed'
 
     .post__body.article__body
-      = simple_format @article.body
+      = simple_format auto_link(@article.body)
 
     .clearfix
       #share.pull-right

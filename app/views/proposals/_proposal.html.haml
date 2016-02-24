@@ -16,7 +16,7 @@
             %span.label.label-default
               답변1
           .proposal-body
-            = simple_format proposal.body
+            = simple_format auto_link(proposal.body)
 
           = render 'comments/comments', postable: proposal, style: :inline
 

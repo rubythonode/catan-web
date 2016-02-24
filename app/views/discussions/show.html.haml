@@ -6,7 +6,7 @@
 
     .post__body.discussion__body.post-bg-discussion-item
       .post-bg-content
-        = simple_format @discussion.body
+        = simple_format auto_link(@discussion.body)
 
     .clearfix
       #share.pull-right

@@ -9,12 +9,12 @@
               = question.issue.title
         %h5{ style: 'font-weight: bold;' }= link_to question.title, question
 
-        %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(question.body), length: 100)
+        %p.text-muted{ style: 'font-size: 12px;'}= auto_link(truncate(strip_tags(question.body), length: 100))
 
         %div.question__answer
           - first_answer = question.answers.sort_by_vote_point.first
           - if first_answer
-            = truncate(strip_tags(first_answer.body), length: 100)
+            = auto_link(truncate(strip_tags(first_answer.body), length: 100))
           - else
             아직 답변이 없습니다
 
