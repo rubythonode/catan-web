@@ -15,6 +15,13 @@
     }
   }
 }
+
+.post__body {
+  img {
+    max-width: 100%;
+  }
+}
+
 .post-bg {
   &-content {
     position: relative;
