@@ -4,8 +4,12 @@ class ApplicationController < ActionController::Base
 
   if Rails.env.staging?
     rescue_from ActiveRecord::RecordNotFound do |exception|
-      render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+      render_404
     end
+  end
+
+  def render_404
+    render file: "#{Rails.root}/public/404.html", layout: false, status: 404
   end
 
   helper_method :issue_home_path, :tag_home_path, :user_home_path

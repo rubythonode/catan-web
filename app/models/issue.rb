@@ -21,10 +21,19 @@ class Issue < ActiveRecord::Base
   has_many :watches
 
   validates :title, presence: true
-  validates :slug, presence: true, uniqueness: true
+  VALID_SLUG = /\A[a-z0-9_-]+\z/i
+  validates :slug,
+    presence: true,
+    format: { with: VALID_SLUG },
+    exclusion: { in: %w(app new edit index session login logout users admin
+    stylesheets assets javascripts images) },
+    uniqueness: { case_sensitive: false },
+    length: { maximum: 100 }
 
   mount_uploader :logo, ImageUploader
   mount_uploader :cover, ImageUploader
+
+  before_save :downcase_slug
 
   def watched_by? someone
     watches.exists? user: someone
@@ -34,8 +43,15 @@ class Issue < ActiveRecord::Base
     false
   end
 
-  def set_slug
+  def slug_formated_title
     return if self.title.blank?
     self.slug = self.title.strip.downcase.gsub(/\s+/, "-")
+  end
+
+  private
+
+  def downcase_slug
+    return if slug.blank?
+    self.slug = slug.downcase
   end
 end

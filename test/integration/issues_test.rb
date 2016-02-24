@@ -4,7 +4,7 @@ class IssuesTest < ActionDispatch::IntegrationTest
   test '만들어요' do
     sign_in(users(:admin))
 
-    post issues_path(issue: { title: 'title', body: 'body' })
+    post issues_path(issue: { title: 'title', slug: 'title', body: 'body' })
 
     assert assigns(:issue).persisted?
     assert_equal 'title', assigns(:issue).title
@@ -13,18 +13,18 @@ class IssuesTest < ActionDispatch::IntegrationTest
   test '같은 이름으로는 못 만들어요' do
     sign_in(users(:admin))
 
-    post issues_path(issue: { title: 'title', body: 'body' })
+    post issues_path(issue: { title: 'title', slug: 'title', body: 'body' })
     assert assigns(:issue).persisted?
-    post issues_path(issue: { title: 'title', body: 'body' })
+    post issues_path(issue: { title: 'title', slug: 'title', body: 'body' })
     refute assigns(:issue).persisted?
   end
 
   test '대소문자를 안가려요' do
     sign_in(users(:admin))
 
-    post issues_path(issue: { title: 'Title', body: 'body' })
+    post issues_path(issue: { title: 'Title', slug: 'Title', body: 'body' })
     assert assigns(:issue).persisted?
-    post issues_path(issue: { title: 'title', body: 'body' })
+    post issues_path(issue: { title: 'title', slug: 'title', body: 'body' })
     refute assigns(:issue).persisted?
   end
 
@@ -40,7 +40,7 @@ class IssuesTest < ActionDispatch::IntegrationTest
   test 'all이라는 이슈는 못만들어요' do
     sign_in(users(:admin))
 
-    post issues_path(issue: { title: 'all', body: 'body' })
+    post issues_path(issue: { title: 'all', slug: 'all', body: 'body' })
 
     refute assigns(:issue).persisted?
   end

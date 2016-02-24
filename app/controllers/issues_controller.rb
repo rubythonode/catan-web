@@ -30,7 +30,15 @@ class IssuesController < ApplicationController
       @issue.title = '모든 이슈의 최신글'
       @issue.body = '유쾌한 민주주의 플랫폼, 빠띠의 이슈 최신글입니다.'
     else
-      @issue = Issue.find_by! slug: params[:slug]
+      @issue = Issue.find_by slug: params[:slug]
+      if @issue.blank?
+        @issue_by_title = Issue.find_by(title: params[:slug].titleize)
+        if @issue_by_title.present?
+          redirect_to @issue_by_title and return
+        else
+          render_404 and return
+        end
+      end
       @posts = @issue.posts.for_list.recent
     end
     prepare_meta_tags title: @issue.title,
@@ -45,7 +53,6 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue.set_slug
     if !%w(all).include?(@issue.slug) and @issue.save
       redirect_to @issue
     else
@@ -55,7 +62,6 @@ class IssuesController < ApplicationController
 
   def update
     @issue.assign_attributes(issue_params)
-    @issue.set_slug
     if @issue.save
       redirect_to @issue
     else
@@ -71,6 +77,6 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :body, :logo, :cover)
+    params.require(:issue).permit(:title, :body, :logo, :cover, :slug)
   end
 end

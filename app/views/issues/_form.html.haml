@@ -6,6 +6,14 @@
       %p.help-block
         (예) "기본소득", "더 나은 민주주의", "IT기술을 이용한 사회 혁신" 등으로 이슈를 만드세요
 
+    .form-group
+      = f.label :slug
+      .input-group
+        .input-group-addon
+          #{request.base_url}/
+        = f.text_field :slug, class: 'form-control input-lg'
+      %p.help-block 영문자와 숫자만 넣어주세요
+      %p.help-block 이미 등록된 slug는 거부됩니다.
 
     .form-group
       = f.label :body
