@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223041929) do
+ActiveRecord::Schema.define(version: 20160224014838) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -155,6 +155,17 @@ ActiveRecord::Schema.define(version: 20160223041929) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable"
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type"
+
+  create_table "relateds", force: :cascade do |t|
+    t.integer  "issue_id",   null: false
+    t.integer  "target_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "relateds", ["issue_id", "target_id"], name: "index_relateds_on_issue_id_and_target_id", unique: true
+  add_index "relateds", ["issue_id"], name: "index_relateds_on_issue_id"
+  add_index "relateds", ["target_id"], name: "index_relateds_on_target_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

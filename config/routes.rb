@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :discussions do
     resources :proposals, shallow: true
   end
+  resources :relateds
 
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'

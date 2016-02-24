@@ -1,5 +1,6 @@
 = render 'issue_header'
-
+- unless @issue.is_all?
+  = render 'issue_relateds'
 .bs-component
   %section#issue-posts
     .container

@@ -1,0 +1,27 @@
+.panel.panel-default
+  .panel-body
+    .clearfix
+      .pull-left(style='width: 60px; margin-right: 10px')
+        .issue--related
+          - if issue.logo.file.present?
+            - issue_logo_url = issue.logo_url
+          - else
+            - issue_logo_url = 'default_issue_logo.png'
+          = link_to issue_home_path(issue), class: 'issue__logo', style: "background-image: url(#{image_path issue_logo_url});" do
+            = issue.title
+      .pull-right
+        - if can? :destroy, related
+          = link_to related, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted' do
+            %i.fa.fa-trash
+      %div
+        %strong= link_to issue.title, issue_home_path(issue)
+        %ul.issue__count.list-inline.text-muted
+          %li
+            %i.fa.fa-file-text-o
+            글
+            %strong= issue.posts.count
+          %li
+            %i.fa.fa-eye
+            지켜보는 이
+            %strong= issue.watches.count
+

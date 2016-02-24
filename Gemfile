@@ -48,6 +48,7 @@ gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 gem 'meta-tags', '~> 2.1.0'
 gem 'identicon', '~> 0.0.5'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
+gem 'partial_path_customizer', '~> 0.1.0'
 
 group :development, :test do
   gem 'letter_opener_web'

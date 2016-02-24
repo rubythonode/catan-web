@@ -1,0 +1,20 @@
+- if @issue.relateds.any? or current_user.try(:admin?)
+  %section#issue--relateds
+    .container
+      %h4
+        %i.fa.fa-code-fork
+        관련 이슈
+        %small
+          = link_to new_related_path(issue_id: @issue) do
+            %i.fa.fa-plus
+      .row(style='margin-bottom: 10px;')
+        - @issue.relateds.each do |related|
+          .col-xs-12.col-md-6
+            = render related
+        - if @issue.relateds.empty?
+          .col-xs-12
+            %p
+              %i.fa.fa-info-circle
+              관련 이슈가 없습니다. 이 영역은 관리자만 보고 있습니다.
+
+

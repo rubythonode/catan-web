@@ -4,27 +4,40 @@
   }
 }
 
-.issue__title {
-  &--label a {
-    color: #fff;
-    font-size: 13px;
-    font-weight: normal;
-    padding: 5px 8px;
-    border-radius: 5px;
-    &:hover {
-      text-decoration: none;
+.issue {
+  &__title {
+    &--label a {
+      color: #fff;
+      font-size: 13px;
+      font-weight: normal;
+      padding: 5px 8px;
+      border-radius: 5px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    &--question a {
+      background-color: $brand-success;
+    }
+    &--article a {
+      background-color: $brand-info;
+    }
+    &--opinion a {
+      background-color: $brand-danger;
+    }
+    &--discussion a {
+      background-color: $brand-primary;
     }
   }
-  &--question a {
-    background-color: $brand-success;
-  }
-  &--article a {
-    background-color: $brand-info;
-  }
-  &--opinion a {
-    background-color: $brand-danger;
-  }
-  &--discussion a {
-    background-color: $brand-primary;
+
+  &__logo {
+    width: 100%;
+    height: 4em;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    text-indent: -999px;
+    overflow: hidden;
   }
 }
