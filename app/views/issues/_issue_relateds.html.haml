@@ -1,12 +1,13 @@
-- if @issue.relateds.any? or current_user.try(:admin?)
+- if @issue.relateds.any? or can?(:create, Related)
   %section#issue--relateds
     .container
       %h4
         %i.fa.fa-code-fork
         관련 이슈
         %small
-          = link_to new_related_path(issue_id: @issue) do
-            %i.fa.fa-plus
+          - if can?(:create, Related)
+            = link_to new_related_path(issue_id: @issue) do
+              %i.fa.fa-plus
       .row(style='margin-bottom: 10px;')
         - @issue.relateds.each do |related|
           .col-xs-12.col-md-6
