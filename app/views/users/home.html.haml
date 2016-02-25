@@ -1,9 +1,15 @@
 = render 'user_header'
 
 .bs-component
-  %section#issue-posts
+  %section#user-posts
     .container
-      = render 'post_type_filter', posts: @posts
+      .row
+        .col-sm-8
+          = render 'post_type_filter', posts: @posts
+          = render @postables, show_issue: true
+        .col-sm-4
+          %h4 활동하는 이슈 (#{@user.watched_issues.count})
+          = render customize_partial_path(@user.watched_issues, 'card')
 
-      .row.masonry-container
-        = render @postables, show_issue: true
+
+
