@@ -24,13 +24,6 @@
 
   %li{role: 'presentation', class: "#{'active' if params[:t] == 'discussion'}"}
     = link_to url_for(current_params.merge(t: :discussion)) do
-      제안받기
+      제안
       - if local_assigns[:posts]
         %small (#{posts.only_discussions.count})
-
-
-  - if @issue and !@issue.is_all?
-    %li
-      = link_to users_issue_path(@issue) do
-        활동하는 이
-        %small (#{@issue.contributors.count})

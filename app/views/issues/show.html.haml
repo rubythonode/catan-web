@@ -13,4 +13,12 @@
           - if @issue.is_all?
             %h4 핫이슈
           - else
+            %h4
+              = link_to users_issue_path(@issue) do
+                %i.fa.fa-users
+                활동하는 이
+                %small (#{@issue.contributors.count})
+
+            %hr
+
             = render 'issue_relateds'
