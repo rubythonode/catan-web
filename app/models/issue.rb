@@ -11,15 +11,25 @@ class Issue < ActiveRecord::Base
     logo: {file: true}, logo_url: 'all_issue_logo.png',
     cover: {file: nil}})
 
+  # relations
   has_many :relateds
   has_many :related_issues, through: :relateds, source: :target
-  has_many :posts
+  has_many :posts do
+    def latest
+      after(1.day.ago)
+    end
+  end
   has_many :articles, through: :posts, source: :postable, source_type: Article
   has_many :opinions, through: :posts, source: :postable, source_type: Opinion
   has_many :questions, through: :posts, source: :postable, source_type: Question
   has_many :discussions, through: :posts, source: :postable, source_type: Discussion
-  has_many :watches
+  has_many :watches do
+    def latest
+      after(1.day.ago)
+    end
+  end
 
+  # validations
   validates :title, presence: true
   VALID_SLUG = /\A[a-z0-9_-]+\z/i
   validates :slug,
@@ -30,11 +40,14 @@ class Issue < ActiveRecord::Base
     uniqueness: { case_sensitive: false },
     length: { maximum: 100 }
 
+  # fields
   mount_uploader :logo, ImageUploader
   mount_uploader :cover, ImageUploader
 
+  # callbacks
   before_save :downcase_slug
 
+  # methods
   def watched_by? someone
     watches.exists? user: someone
   end

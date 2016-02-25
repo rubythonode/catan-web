@@ -24,11 +24,13 @@
                     %span
                       %i.fa.fa-users
                       = issue.watches.count
-                      %small +3
+                      - if issue.watches.latest.any?
+                        %small= "+#{issue.watches.latest.count}"
                     %span
                       %i.fa.fa-comment-o
                       = issue.posts.count
-                      %small +10
+                      - if issue.posts.latest.any?
+                        %small= "+#{issue.posts.latest.count}"
                 = issue.title
 
         %li.divider{:role => "separator"}
