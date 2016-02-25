@@ -1,4 +1,4 @@
-%section{id: "#{dom_id(postable)}_comments" }
+%section{id: "#{dom_id(postable)}-comments" }
   .container
     %ul.nav.nav-tabs(style='margin-bottom: 20px;')
       %li.text-center{class: ('active' if !user_signed_in? or (postable.agreed_by? current_user and postable.voted_by current_user) or (user_signed_in? and !postable.voted_by current_user)), style: 'width: 50%' }

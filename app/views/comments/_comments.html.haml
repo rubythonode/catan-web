@@ -4,7 +4,7 @@
   - elsif local_assigns[:style] == :opinion
     = render 'comments/opinion_comments', local_assigns
   - else
-    %section{id: "#{dom_id(postable)}_comments" }
+    %section{id: "#{dom_id(postable)}-comments" }
       .container
         %h4 의견
         %ul.media-list

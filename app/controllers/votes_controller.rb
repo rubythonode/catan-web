@@ -14,7 +14,11 @@ class VotesController < ApplicationController
     end
 
     @vote.save
-    redirect_to_origin_post
+
+    respond_to do |format|
+      format.js
+      format.html { redirect_to_origin_post }
+    end
   end
 
   private
