@@ -65,7 +65,7 @@ class Issue < ActiveRecord::Base
   end
 
   def contributors
-    (posts.map(&:user) + watches.map(&:user)).uniq
+    (posts.map(&:user) + watches.map(&:user)).compact.uniq
   end
 
   private
