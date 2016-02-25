@@ -2,7 +2,7 @@
   .post-card__buttons
     = render 'likes/like_line', post: post
     %span.post-card__buttons__comments
-      = link_to '#' do
+      = link_to post.specific do
         %i.fa.fa-comment-o
         = post.comments_count
 

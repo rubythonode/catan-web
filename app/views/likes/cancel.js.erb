@@ -1,1 +1,1 @@
-$('#<%= dom_id(@post) %>-like').html("<%= escape_javascript(render 'likes/like', post: @post) %>");
+$('#<%= dom_id(@post) %>-like').html("<%= escape_javascript(render params[:partial], post: @post) %>");

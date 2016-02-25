@@ -4,10 +4,10 @@
       %i.fa.fa-heart-o
       = post.likes.count
   - elsif post.liked_by? current_user
-    = link_to cancel_post_likes_path(post), method: :delete, remote: true do
+    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true do
       %i.fa.fa-heart
       = post.likes.count
   - else
-    = link_to post_likes_path(post), method: :post, remote: true do
+    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true do
       %i.fa.fa-heart-o
       = post.likes.count
