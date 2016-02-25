@@ -6,3 +6,13 @@
     height: 15px;
   }
 }
+
+.newest_comment {
+  border-top: 1px solid $gray-lighter;
+  margin-top: 10px;
+  padding-top: 10px;
+  .byline {
+    float: left;
+  }
+  p { display: inline; }
+}

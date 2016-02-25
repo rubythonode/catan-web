@@ -28,11 +28,12 @@
           - opinion.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
     .panel-footer
-      .pull-right
-        %span
-          %i.fa.fa-comment-o
-          = opinion.comments_count
-        = render 'likes/like_line', post: opinion.acting_as
+      .clearfix
+        .pull-right
+          %span
+            %i.fa.fa-comment-o
+            = opinion.comments_count
+          = render 'likes/like_line', post: opinion.acting_as
 
-      %span= byline opinion.user
-  = render 'comments/newest_comment', postable: opinion
+        %span= byline opinion.user
+      = render 'comments/newest_comment', postable: opinion

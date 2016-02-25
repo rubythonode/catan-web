@@ -15,11 +15,12 @@
           - article.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
     .panel-footer
-      .pull-right
-        %span
-          %i.fa.fa-comment-o
-          = article.comments_count
-        = render 'likes/like_line', post: article.acting_as
+      .clearfix
+        .pull-right
+          %span
+            %i.fa.fa-comment-o
+            = article.comments_count
+          = render 'likes/like_line', post: article.acting_as
 
-      %span= byline article.user
-  = render 'comments/newest_comment', postable: article
+        %span= byline article.user
+      = render 'comments/newest_comment', postable: article

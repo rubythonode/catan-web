@@ -1,10 +1,8 @@
 - if postable.comments.newest.try(:created_at).try(:today?)
-  - newest_comment = postable.comments.newest
-  .popover-static
-    .popover.bottom
-      .arrow
-      .popover-content
-        = simple_format truncate(newest_comment.body)
-        = byline newest_comment.user
-        %i.fa.fa-clock-o
-        = date_f newest_comment.created_at
+  .newest_comment
+    - newest_comment = postable.comments.newest
+    .byline
+      = byline newest_comment.user
+    %i.fa.fa-clock-o
+    = date_f newest_comment.created_at
+    = simple_format truncate(newest_comment.body)
