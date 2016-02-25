@@ -22,6 +22,7 @@
                 %div
                   = image_tag f.object.remote_image_url, class: 'thumbnail', style: 'max-width: 10em; height: auto'
               = f.file_field :image, autofocus: true, class: 'form-control'
+              = f.hidden_field :image_cache
             - if resource.provider == 'email'
               .form-group
                 = f.label :password

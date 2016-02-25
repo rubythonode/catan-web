@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
 
+  # validation
   VALID_NICKNAME_REGEX = /\A[a-z0-9_]+\z/i
   validates :nickname,
     presence: true,
@@ -27,16 +28,23 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
 
+  # filters
   before_save :downcase_nickname
   before_save :set_uid
   before_validation :strip_whitespace, only: :nickname
+  after_create :watch_default_issues
 
+  # associations
   has_many :posts
   has_many :watches
   has_many :watched_issues, through: :watches, source: :issue
 
-  after_create :watch_default_issues
+  ## uploaders
+  # mount
   mount_uploader :image, UserImageUploader
+  # validates for uploaders
+  validates_integrity_of  :image
+  validates_processing_of :image
 
   def admin?
     if Rails.env.staging? or Rails.env.production?
