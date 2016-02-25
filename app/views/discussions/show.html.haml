@@ -39,5 +39,8 @@
         .form-group
           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
         = f.submit '저장', class: 'btn btn-danger'
-
-= render 'posts/recents', issue: @discussion.issue
+.container
+  %hr
+  .row
+    .col-sm-8
+      = render 'posts/recents', issue: @discussion.issue

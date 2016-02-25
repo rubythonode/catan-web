@@ -21,4 +21,8 @@
 
 = render 'comments/comments', postable: @opinion, style: :opinion
 
-= render 'posts/recents', issue: @opinion.issue
+.container
+  %hr
+  .row
+    .col-sm-8
+      = render 'posts/recents', issue: @opinion.issue
