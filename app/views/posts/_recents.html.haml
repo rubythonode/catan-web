@@ -1,4 +1,9 @@
-%section{id: "#{dom_id(issue)}_recents" }
+%section{id: "#{dom_id(issue)}_recents", style: "margin-top: 20px;" }
   .container
-    - issue.posts.recent.for_list.limit(10).each do |post|
-      = render post.specific
+    %h3
+      = link_to issue_path(issue) do
+        #{issue.title}
+      이슈의 글
+    .row.masonry-container
+      - issue.posts.recent.for_list.limit(10).each do |post|
+        = render post.specific
