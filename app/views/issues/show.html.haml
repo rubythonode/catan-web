@@ -1,15 +1,16 @@
 = render 'issue_header'
-- unless @issue.is_all?
-  = render 'issue_relateds'
 .bs-component
   %section#issue-posts
     .container
       .row
-        .col-sm-2
         .col-sm-8
           = render 'post_type_filter', posts: @posts_for_filter
           - if @issue.is_all?
             = render @postables, show_issue: true
           - else
             = render @postables
-        .col-sm-2
+        .col-sm-4
+          - if @issue.is_all?
+            %h4 핫이슈
+          - else
+            = render 'issue_relateds'

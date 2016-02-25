@@ -1,9 +1,8 @@
 %section{id: "#{dom_id(issue)}_recents", style: "margin-top: 20px;" }
-  .container
-    %h3
-      %i.fa.fa-exclamation
-      = link_to issue.title, issue_path(issue)
-      이슈의 글
-    .row.masonry-container
-      - issue.posts.recent.for_list.limit(10).each do |post|
-        = render post.specific
+  %h3
+    %i.fa.fa-exclamation
+    = link_to issue.title, issue_path(issue)
+    이슈의 글
+  %div
+    - issue.posts.recent.for_list.limit(10).each do |post|
+      = render post.specific

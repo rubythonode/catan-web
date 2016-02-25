@@ -22,4 +22,8 @@
 
 = render 'comments/comments', postable: @article
 
-= render 'posts/recents', issue: @article.issue
+.container
+  %hr
+  .row
+    .col-sm-8
+      = render 'posts/recents', issue: @article.issue
