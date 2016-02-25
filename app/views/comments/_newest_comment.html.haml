@@ -1,6 +1,6 @@
-- if postable.comments.newest.try(:created_at).try(:today?)
+- newest_comment = postable.comments.past_day.newest
+- if newest_comment
   .newest_comment
-    - newest_comment = postable.comments.newest
     .byline
       = byline newest_comment.user
     %i.fa.fa-clock-o
