@@ -4,4 +4,5 @@ class Related < ActiveRecord::Base
 
   validates :issue, presence: true
   validates :target, presence: true
+  validates :issue, uniqueness: {scope: [:target]}
 end
