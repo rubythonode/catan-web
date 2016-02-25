@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
     format: { with: Devise.email_regexp }
 
   validates :uid, uniqueness: {scope: [:provider]}
-
   validates :password,
     presence: true,
     confirmation: true,
@@ -30,6 +29,7 @@ class User < ActiveRecord::Base
 
   before_save :downcase_nickname
   before_save :set_uid
+  before_validation :strip_whitespace, only: :nickname
 
   has_many :posts
   has_many :watches
@@ -101,5 +101,9 @@ class User < ActiveRecord::Base
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def strip_whitespace
+    self.nickname = self.nickname.strip unless self.nickname.nil?
   end
 end
