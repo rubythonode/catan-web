@@ -17,7 +17,8 @@ class ActiveSupport::TestCase
     if integration_test?
       post_via_redirect user_session_path, user: { email:       user.email,
                                                    password:    password,
-                                                   remember_me: remember_me }
+                                                   remember_me: remember_me,
+                                                   provider:    'email' }
     else
       session[:user_id] = user.id
     end
@@ -34,4 +35,3 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
-

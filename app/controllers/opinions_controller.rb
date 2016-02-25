@@ -42,7 +42,7 @@ class OpinionsController < ApplicationController
   private
 
   def set_comment
-    body = params[:body]
+    body = params[:comment_body]
     if body.present?
       @comment = @opinion.post.comments.create(user: current_user, body: body, choice: :agree)
     end

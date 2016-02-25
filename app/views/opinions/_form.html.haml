@@ -24,7 +24,7 @@
     - if @opinion.new_record?
       .form-group
         %p.help-block 왜냐하면
-        = text_area_tag :body, '', { class: 'form-control', placeholder: '이유를 적어주세요' }
+        = text_area_tag :comment_body, '', { class: 'form-control', placeholder: '이유를 적어주세요' }
 
     .form-group
       = f.label :tag_list

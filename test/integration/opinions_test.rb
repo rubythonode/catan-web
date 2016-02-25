@@ -4,9 +4,10 @@ class OpinionsTest < ActionDispatch::IntegrationTest
   test '만들어요' do
     sign_in(users(:one))
 
-    post opinions_path(opinion: { title: 'title', }, issue_title: issues(:issue1).title, body: 'body')
+    post opinions_path(opinion: { title: 'title' }, issue_title: issues(:issue1).title, comment_body: 'body')
 
     assert assigns(:opinion).persisted?
+
     assert_equal 'title', assigns(:opinion).title
     assert_equal users(:one), assigns(:opinion).user
     assert_equal issues(:issue1).title, assigns(:opinion).issue.title

@@ -1,5 +1,6 @@
 class Discussion < ActiveRecord::Base
   acts_as :post, as: :postable
+  validates :title, presence: true
 
   has_many :proposals do
     def sort_by_agree_count

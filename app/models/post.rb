@@ -21,8 +21,9 @@ class Post < ActiveRecord::Base
   end
   has_many :likes, counter_cache: true
 
-  validates :user, presence: true
+  # validations
   validates :issue, presence: true
+  validates :user, presence: true
 
   default_scope -> { joins(:issue) }
   scope :recent, -> { order(touched_at: :desc) }

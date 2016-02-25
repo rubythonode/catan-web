@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
 
-  # validation
+  # validations
   VALID_NICKNAME_REGEX = /\A[a-z0-9_]+\z/i
   validates :nickname,
     presence: true,

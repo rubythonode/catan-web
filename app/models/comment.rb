@@ -7,6 +7,7 @@ class Comment < ActiveRecord::Base
 
   validates :user, presence: true
   validates :post, presence: true
+  validates :body, presence: true
 
   scope :recent, -> { order(created_at: :desc) }
   scope :persisted, -> { where "id IS NOT NULL" }
