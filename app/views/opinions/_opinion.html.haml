@@ -15,15 +15,9 @@
           %i.fa.fa-bar-chart
             %strong #{opinion.votes.count}
             명이 투표했습니다.
-        - if user_signed_in? and opinion.voted_by?(current_user) and opinion.votes.any?
-          .result-box.text-center
-            .row
-              .col-xs-6
-                %h5 찬성
-                %strong{ style: (opinion.agreed_by?(current_user) ? 'font-size:150%;' : 'font-size:100%;'), class: ('text-success' if opinion.agreed_by?(current_user)) }= opinion.votes.with_choice(:agree).count
-              .col-xs-6
-                %h5 반대
-                %strong{ style: (opinion.disagreed_by?(current_user) ? 'font-size:150%;' : 'font-size:100%;'), class: ('text-danger' if opinion.disagreed_by?(current_user)) }= opinion.votes.with_choice(:disagree).count
+
+        = render 'opinions/vote_small', opinion: opinion
+
         .tags(style='margin-top: 1em;')
           - opinion.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'

@@ -13,24 +13,13 @@
     .vote__results
       .row
         .col-xs-6
-          %h2
+          %h3
             찬성
             %span.count= opinion.votes.with_choice(:agree).count
-          - opinion.votes.with_choice(:agree).partial_included_with(current_user).each do |vote|
-            - if vote.user == current_user
-              %strong= byline vote.user
-            - else
-              = byline vote.user
         .col-xs-6
-          %h2
+          %h3
             반대
             %span.count= opinion.votes.with_choice(:disagree).count
-          - opinion.votes.with_choice(:disagree).partial_included_with(current_user).each do |vote|
-            - if vote.user == current_user
-              %strong= byline vote.user
-            - else
-              = byline vote.user
-
 
     %p.text-center(style="margin-top: 50px")
       %i.fa.fa-info-circle

@@ -58,9 +58,12 @@
   background: $gray-lighter;
   padding: 40px;
   margin: 20px 0;
+}
 
-  .vote__results {
+.vote__results {
+  h2, h3 {
     text-align: center;
+    font-weight: 200;
     .count {
       font-weight: bold;
     }
