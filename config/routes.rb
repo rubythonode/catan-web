@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   root 'issues#slug', slug: 'all'
 
+  resources :users
+
   resources :issues do
     get :users, on: :member
     resources :watches do

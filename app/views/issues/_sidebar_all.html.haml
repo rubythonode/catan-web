@@ -1,0 +1,15 @@
+%aside
+  %section
+    %h4
+      %i.fa.fa-user
+      이슈커미터 (#{User.count})
+    %p
+      = link_to users_path do
+        누구나 이슈 하나쯤은 정통한 시대
+        %br
+        이슈커미터가 되세요 ( 준비중 )
+  %section
+    %h4
+      %i.fa.fa-exclamation
+      핫이슈 (#{Issue.count})
+    = render customize_partial_path(Issue.hottest, 'card')
