@@ -2,12 +2,17 @@
   %section
     %h4
       %i.fa.fa-user
-      이슈커미터 (#{User.count})
+      이슈 커미터 (#{User.count})
     %p
       = link_to users_path do
-        누구나 이슈 하나쯤은 정통한 시대
+        바쁜 세상에도 놓치고 싶지 않은 이슈 하나씩은 있잖아요?
         %br
-        이슈커미터가 되세요 ( 준비중 )
+        지금 바로 이슈커미터가 되세요
+
+    %p
+      %h5 대표 이슈 커미터
+      = render User.offset(User.count).first(2)
+
   %section
     %h4
       %i.fa.fa-exclamation
