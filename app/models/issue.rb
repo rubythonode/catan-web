@@ -48,6 +48,10 @@ class Issue < ActiveRecord::Base
     self.slug = self.title.strip.downcase.gsub(/\s+/, "-")
   end
 
+  def contributors
+    (posts.map(&:user) + watches.map(&:user)).uniq
+  end
+
   private
 
   def downcase_slug

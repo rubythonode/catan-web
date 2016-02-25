@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :issues do
+    get :users, on: :member
     resources :watches do
       delete :cancel, on: :collection
     end

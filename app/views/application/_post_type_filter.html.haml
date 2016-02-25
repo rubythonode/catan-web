@@ -31,10 +31,6 @@
 
   - if @issue
     %li
-      = link_to '#' do
-        지켜보는 이
-        %small (#{@issue.watches.count})
-    %li
-      = link_to '#' do
+      = link_to users_issue_path(@issue) do
         활동하는 이
-        %small (10)
+        %small (#{@issue.contributors.count})

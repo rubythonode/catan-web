@@ -74,6 +74,10 @@ class IssuesController < ApplicationController
     redirect_to root_path
   end
 
+  def users
+
+  end
+
   private
 
   def issue_params

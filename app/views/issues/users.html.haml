@@ -1,0 +1,9 @@
+= render 'issue_header'
+- unless @issue.is_all?
+  = render 'issue_relateds'
+.bs-component
+  %section#issue-posts
+    .container
+      = render 'post_type_filter', posts: @posts_for_filter
+      .row
+        = render @issue.contributors
