@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224014838) do
+ActiveRecord::Schema.define(version: 20160225083517) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160224014838) do
     t.string   "cover"
     t.integer  "watches_count", default: 0
     t.string   "slug",                      null: false
+    t.integer  "posts_count",   default: 0
   end
 
   add_index "issues", ["slug"], name: "index_issues_on_slug", unique: true

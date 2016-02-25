@@ -1,0 +1,20 @@
+- issue ||= local_assigns[:card]
+.panel.panel-default
+  .panel-body
+    .clearfix
+      .pull-left(style='width: 60px; margin-right: 10px')
+        .issue--related
+          - if issue.logo.file.present?
+            - issue_logo_url = issue.logo_url
+          - else
+            - issue_logo_url = 'default_issue_logo.png'
+          = link_to issue_home_path(issue), class: 'issue__logo', style: "background-image: url(#{image_path issue_logo_url});" do
+            = issue.title
+      %div
+        %strong= link_to issue.title, issue_home_path(issue)
+        .issue__count.text-muted
+          %i.fa.fa-user
+          %strong= issue.contributors.count
+          %i.fa.fa-file-text-o
+          %strong= issue.posts.count
+

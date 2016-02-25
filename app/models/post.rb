@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   actable as: :postable
   acts_as_taggable
 
-  belongs_to :issue
+  belongs_to :issue, counter_cache: true
   belongs_to :user
   has_many :comments
   has_many :votes do

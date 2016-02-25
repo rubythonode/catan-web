@@ -47,6 +47,9 @@ class Issue < ActiveRecord::Base
   # callbacks
   before_save :downcase_slug
 
+  # scopes
+  scope :hottest, -> { order('issues.watches_count + issues.posts_count desc') }
+
   # methods
   def watched_by? someone
     watches.exists? user: someone

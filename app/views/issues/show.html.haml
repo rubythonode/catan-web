@@ -11,7 +11,8 @@
             = render @postables
         .col-sm-4
           - if @issue.is_all?
-            %h4 핫이슈
+            %h4 핫이슈 (#{Issue.count})
+            = render customize_partial_path(Issue.hottest, 'card')
           - else
             %h4
               = link_to users_issue_path(@issue) do
