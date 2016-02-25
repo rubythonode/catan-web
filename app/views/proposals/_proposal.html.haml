@@ -45,7 +45,7 @@
             = proposal.votes.disagreed.count
           %div
             = link_to '', class: 'btn btn-default', data: { toggle: 'parti-toggle', 'toggle-target': ".proposal-section__voters-#{proposal.id}" } do
-              %i.fa.fa-users
+              %i.fa.fa-user
               = proposal.votes.count
     .proposal-section__voters{ class: "proposal-section__voters-#{proposal.id}" }
       .row

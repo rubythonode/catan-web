@@ -22,7 +22,7 @@
                 .text-muted.pull-right
                   %small
                     %span
-                      %i.fa.fa-users
+                      %i.fa.fa-user
                       = issue.watches.count
                       - if issue.watches.latest.any?
                         %small= "+#{issue.watches.latest.count}"

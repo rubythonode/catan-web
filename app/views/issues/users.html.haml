@@ -1,9 +1,14 @@
 = render 'issue_header'
-- unless @issue.is_all?
-  = render 'issue_relateds'
 .bs-component
-  %section#issue-posts
+  %section#issue-users
     .container
-      = render 'post_type_filter', posts: @posts_for_filter
+      %h4(style='position: relative')
+        %i.fa.fa-user
+        활동하는 이
+        %small (#{@issue.contributors.count})
+        = link_to issue_home_path(@issue), class: 'btn btn-primary', style: 'position: absolute; bottom: -5px; right: 0;' do
+          글 목록으로 돌아가기
+          %i.fa.fa-arrow-right
+      %hr
       .row
         = render @issue.contributors

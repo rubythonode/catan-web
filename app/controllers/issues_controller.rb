@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   respond_to :json, :html
-  before_filter :authenticate_user!, except: [:show, :index, :slug]
+  before_filter :authenticate_user!, except: [:show, :index, :slug, :users]
   load_and_authorize_resource
 
   def index
