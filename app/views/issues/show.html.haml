@@ -4,10 +4,12 @@
 .bs-component
   %section#issue-posts
     .container
-      = render 'post_type_filter', posts: @posts_for_filter
-
-      .row.masonry-container
-        - if @issue.is_all?
-          = render @postables, show_issue: true
-        - else
-          = render @postables
+      .row
+        .col-sm-2
+        .col-sm-8
+          = render 'post_type_filter', posts: @posts_for_filter
+          - if @issue.is_all?
+            = render @postables, show_issue: true
+          - else
+            = render @postables
+        .col-sm-2
