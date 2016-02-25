@@ -1,0 +1,4 @@
+%section{id: "#{dom_id(issue)}_recents" }
+  .container
+    - issue.posts.recent.for_list.limit(10).each do |post|
+      = render post.specific
