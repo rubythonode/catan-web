@@ -21,9 +21,14 @@
     font-size: 13px;
   }
   .post-card__buttons {
-    font-weight: bold;
     span {
-      margin-right: 10px;
+      margin-right: 4px;
+      a {
+        &:hover {
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
     }
   }
 }
@@ -108,8 +113,4 @@
       text-decoration: none;
     }
   }
-}
-
-.like--line {
-  margin-left: 5px;
 }
