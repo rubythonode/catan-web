@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.order("id DESC")
+  end
+
   def home
     @user = User.find_by! nickname: params[:nickname].try(:downcase)
     @posts = @user.posts.for_list
