@@ -1,19 +1,15 @@
-.opinion-list-item {
+.opinion-card {
   blockquote {
-    padding: .5em;
+    padding: 5px;
     border-left: 0;
     quotes: "\201C""\201D""\2018""\2019";
-
-    h3 {
-      margin: 0;
-    }
 
     p {
       display: inline;
     }
 
     &:before {
-      color: #ccc;
+      color: $gray-light;
       content: open-quote;
       font-size: 3em;
       line-height: 0.1em;
@@ -21,16 +17,20 @@
       vertical-align: -0.4em;
     }
     &:after {
-      color: #ccc;
+      color: $gray-light;
       content: close-quote;
       font-size: 3em;
       float: right;
     }
-
-    .opinion__title {
-      text-align: center;
-      word-break: keep-all;
-    }
+  }
+  .opinion__title {
+    margin: 0;
+    font-size: 30px;
+    text-align: center;
+    word-break: keep-all;
+  }
+  .opinion__vote-section {
+    padding: 15px;
   }
 }
 

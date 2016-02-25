@@ -16,6 +16,18 @@
   }
 }
 
+.post-card {
+  &__issue-label {
+    font-size: 13px;
+  }
+  .post-card__buttons {
+    font-weight: bold;
+    span {
+      margin-right: 10px;
+    }
+  }
+}
+
 .post__body {
   img {
     max-width: 100%;

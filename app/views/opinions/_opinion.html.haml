@@ -1,12 +1,8 @@
-.post.opinion-list-item[opinion.acting_as]
+.post-card.post.opinion-card[opinion.acting_as]
   .panel.panel-default
+    = render 'posts/card_header', post: opinion.acting_as
     .panel-body.post-bg-opinion-collection
       .post-bg-content
-        - if local_assigns[:show_issue]
-          = link_to issue_home_path(opinion.issue) do
-            %span.label.label-danger
-              %i.fa.fa-exclamation
-              = opinion.issue.title
         .clearfix
           %blockquote
             %h3.opinion__title= link_to opinion.title, opinion, target: 'parti_detail_view'
@@ -21,13 +17,4 @@
         .tags(style='margin-top: 1em;')
           - opinion.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    .panel-footer
-      .clearfix
-        .pull-right
-          %span
-            %i.fa.fa-comment-o
-            = opinion.comments_count
-          = render 'likes/like_line', post: opinion.acting_as
-
-        %span= byline opinion.user
-      = render 'comments/newest_comment', postable: opinion
+    = render 'posts/card_footer', post: opinion.acting_as

@@ -1,12 +1,8 @@
-.post.article[article.acting_as]
+.post-card.post.article[article.acting_as]
   .panel.panel-default
+    = render 'posts/card_header', post: article.acting_as
     .panel-body.post-bg-article-collection
       .post-bg-content
-        - if local_assigns[:show_issue]
-          = link_to issue_home_path(article.issue) do
-            %span.label.label-info
-              %i.fa.fa-exclamation
-              = article.issue.title
         %h5{ style: 'font-weight: bold;' }= link_to article.title, article, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(article.body), length: 100)
@@ -14,13 +10,4 @@
         .tags(style='margin-top: 1em')
           - article.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    .panel-footer
-      .clearfix
-        .pull-right
-          %span
-            %i.fa.fa-comment-o
-            = article.comments_count
-          = render 'likes/like_line', post: article.acting_as
-
-        %span= byline article.user
-      = render 'comments/newest_comment', postable: article
+    = render 'posts/card_footer', post: article.acting_as

@@ -22,7 +22,7 @@
             반대
             %span.count= opinion.votes.with_choice(:disagree).count
 
-    %p.text-center(style="margin-top: 50px")
+    %p.text-center
       %i.fa.fa-info-circle
       투표를 다음으로 변경합니다.
       - if opinion.agreed_by? current_user
