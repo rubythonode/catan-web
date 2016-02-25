@@ -3,12 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   #sso_devise
 
-  if Rails.env.staging? or Rails.env.production?
-    root 'pages#filibuster'
-  else
-    root 'pages#filibuster'
-    # root 'issues#slug', slug: 'all'
-  end
+  root 'issues#slug', slug: 'all'
 
   resources :issues do
     get :users, on: :member
