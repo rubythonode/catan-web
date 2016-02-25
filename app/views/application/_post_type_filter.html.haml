@@ -29,7 +29,7 @@
         %small (#{posts.only_discussions.count})
 
 
-  - if @issue
+  - if @issue and !@issue.is_all?
     %li
       = link_to users_issue_path(@issue) do
         활동하는 이
