@@ -1,4 +1,7 @@
 ko:
+  date:
+    formats:
+      default: '%Y-%m-%d'
   errors:
     messages:
       not_saved: 저장되지 않았습니다
@@ -17,6 +20,8 @@ ko:
       issue: 이슈
       article: 뉴스컬럼
       opinion: 주장
+      question: 질문
+      discussion: 제안
       user: 회원
     attributes:
       issue:
@@ -30,6 +35,14 @@ ko:
         link: 링크
         tag_list: 태그
       opinion:
+        title: 제목
+        body: 내용
+        tag_list: 태그
+      question:
+        title: 제목
+        body: 내용
+        tag_list: 태그
+      discussion:
         title: 제목
         body: 내용
         tag_list: 태그

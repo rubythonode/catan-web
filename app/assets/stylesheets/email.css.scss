@@ -16,9 +16,9 @@ body {
 
 .email-header {
   padding: 1.7em;
-  background: #002436 !important;
+  background: #002436;
   img {
-    height: 35px;
+    max-height: 35px;
   }
 }
 
@@ -45,8 +45,17 @@ body {
 
 a {
   text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+  }
 }
 
 .small {
-    font-size: 9pt;
+  font-size: 9pt;
+}
+
+#summary {
+  li {
+    list-style: none;
   }
+}
