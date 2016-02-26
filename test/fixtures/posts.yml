@@ -8,7 +8,7 @@ post_opinion1:
   user: one
   issue: issue1
   postable: opinion1 (Opinion)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
+  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_opinion2:
   user: one
   issue: issue1
@@ -18,7 +18,7 @@ post_question1:
   user: one
   issue: issue1
   postable: question1 (Question)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
+  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_answer1:
   user: two
   issue: issue1
@@ -35,7 +35,7 @@ post_opinion3:
   user: one
   issue: issue2
   postable: opinion3 (Opinion)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
+  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_opinion4:
   user: one
   issue: issue2
@@ -45,4 +45,4 @@ post_question2:
   user: one
   issue: issue2
   postable: question2 (Question)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
+  touched_at: <%= 1.day.ago.to_s(:db) %>

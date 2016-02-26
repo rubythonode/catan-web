@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :watches
   has_many :watched_issues, through: :watches, source: :issue
+  has_many :watched_posts, through: :watched_issues, source: :posts
 
   ## uploaders
   # mount
