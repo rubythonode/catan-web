@@ -1,7 +1,52 @@
-@import "variables";
-@import "bootstrap";
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+.email-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(221,221,221, .8);
+  padding-bottom: 2em;
+}
+
+.email-header {
+  padding: 1.7em;
+  background: #002436 !important;
+  img {
+    height: 35px;
+  }
+}
+
+.email-content {
+  margin: 2.3em;
+  padding: 4.7em 2em;
+  background-color: #fff;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, .6);
+}
+
+.text-center {
+  text-align: center;
+}
 
 .btn-email {
-  color: #fff !important;
-  background-color: $brand-danger !important;
+  margin: 2.5em 0;
+  padding: .9em 3.3em;
+  color: #fff;
+  background-color: #7f3786;
+  display: inline-block;
 }
+
+a {
+  text-decoration: none;
+}
+
+.small {
+    font-size: 9pt;
+  }
