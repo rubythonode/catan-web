@@ -11,15 +11,7 @@
             = render @postables
         .col-sm-4
           - if @issue.is_all?
-            = render 'sidebar_all'
+            = render 'aside_all'
 
           - else
-            %h4
-              = link_to users_issue_path(@issue) do
-                %i.fa.fa-user
-                활동하는 이
-                %small (#{@issue.contributors.count})
-
-            %hr
-
-            = render 'issue_relateds'
+            = render 'aside', issue: @issue

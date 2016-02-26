@@ -1,26 +1,28 @@
 %section.question-section
   .container
-    = render 'post_meta', post: @question.acting_as
+    .panel.panel-default
+      = render 'posts/post_header', post: @question.acting_as
 
-    %h2.question__title= @question.title
+      .panel-body
 
-    .post__body.question__body.post-bg-question-item
-      .post-bg-content
-        = simple_format auto_link(@question.body)
+        %h2.question__title= @question.title
 
-    .clearfix
-      #share.pull-right
-      .question__tags.post__tags
-        - @question.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+        .post__body.question__body.post-bg-question-item
+          .post-bg-content
+            = simple_format auto_link(@question.body)
 
-    .post__likes
-      = render 'likes/like', post: @question.acting_as
-      = render 'likes/like_detail', post: @question.acting_as
+        .clearfix
+          #share.pull-right
+          .question__tags.post__tags
+            - @question.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag)
 
-%section.question-comments-section
-  .container
-    = render 'comments/comments', postable: @question, style: :inline
+        .post__likes
+          = render 'likes/like', post: @question.acting_as
+          = render 'likes/like_detail', post: @question.acting_as
+
+        %section.question-comments-section
+          = render 'comments/comments', postable: @question, style: :inline
 
 %section.answers-section
   = render @question.answers.sort_by_vote_point
@@ -39,8 +41,10 @@
         .form-group
           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
         = f.submit '저장', class: 'btn btn-danger'
+
 .container
-  %hr
   .row
     .col-sm-8
       = render 'posts/recents', issue: @question.issue
+    .col-sm-4
+      = render 'issues/aside', issue: @question.issue

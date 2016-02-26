@@ -1,28 +1,33 @@
 %section.opinion-section
   .container
-    = render 'post_meta', post: @opinion.acting_as
+    .panel.panel-default
+      = render 'posts/post_header', post: @opinion.acting_as
 
-    %h2.opinion__title “#{@opinion.title}”
+      .panel-body
 
-    .opinion__body
-      = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
+        %h2.opinion__title “#{@opinion.title}”
 
-    = render 'vote', opinion: @opinion
+        .opinion__body
+          = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
 
-    .clearfix
-      #share.pull-right
-      .opinion__tags.post__tags
-        - @opinion.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+        = render 'vote', opinion: @opinion
 
-    .post__likes
-      = render 'likes/like', post: @opinion.acting_as
-      = render 'likes/like_detail', post: @opinion.acting_as
+        .clearfix
+          #share.pull-right
+          .opinion__tags.post__tags
+            - @opinion.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag)
 
-= render 'comments/comments', postable: @opinion, style: :opinion
+        .post__likes
+          = render 'likes/like', post: @opinion.acting_as
+          = render 'likes/like_detail', post: @opinion.acting_as
+
+        %section.opinion-comments-section
+          = render 'comments/comments', postable: @opinion, style: :opinion
 
 .container
-  %hr
   .row
     .col-sm-8
       = render 'posts/recents', issue: @opinion.issue
+    .col-sm-4
+      = render 'issues/aside', issue: @opinion.issue

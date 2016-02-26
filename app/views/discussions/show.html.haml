@@ -1,26 +1,28 @@
 %section.discussion-section
   .container
-    = render 'post_meta', post: @discussion.acting_as
+    .panel.panel-default
+      = render 'posts/post_header', post: @discussion.acting_as
 
-    %h2.discussion__title= @discussion.title
+      .panel-body
 
-    .post__body.discussion__body.post-bg-discussion-item
-      .post-bg-content
-        = simple_format auto_link(@discussion.body)
+        %h2.discussion__title= @discussion.title
 
-    .clearfix
-      #share.pull-right
-      .discussion__tags.post__tags
-        - @discussion.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+        .post__body.discussion__body.post-bg-discussion-item
+          .post-bg-content
+            = simple_format auto_link(@discussion.body)
 
-    .post__likes
-      = render 'likes/like', post: @discussion.acting_as
-      = render 'likes/like_detail', post: @discussion.acting_as
+        .clearfix
+          #share.pull-right
+          .discussion__tags.post__tags
+            - @discussion.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag)
 
-%section.discussion-comments-section
-  .container
-    = render 'comments/comments', postable: @discussion, style: :inline
+        .post__likes
+          = render 'likes/like', post: @discussion.acting_as
+          = render 'likes/like_detail', post: @discussion.acting_as
+
+        %section.discussion-comments-section
+          = render 'comments/comments', postable: @discussion, style: :inline
 
 %section.proposals-section
   = render @discussion.proposals.sort_by_agree_count
@@ -40,7 +42,8 @@
           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
         = f.submit '저장', class: 'btn btn-danger'
 .container
-  %hr
   .row
     .col-sm-8
       = render 'posts/recents', issue: @discussion.issue
+    .col-sm-4
+      = render 'issues/aside', issue: @discussion.issue

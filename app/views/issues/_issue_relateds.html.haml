@@ -1,16 +1,16 @@
-- if @issue.relateds.any? or can?(:create, Related)
+- if issue.relateds.any? or can?(:create, Related)
   %section#issue--relateds
     %h4
       %i.fa.fa-code-fork
       관련 이슈
       %small
         - if can?(:create, Related)
-          = link_to new_related_path(issue_id: @issue) do
+          = link_to new_related_path(issue_id: issue) do
             %i.fa.fa-plus
     %div(style='margin-bottom: 10px;')
-      - @issue.relateds.each do |related|
+      - issue.relateds.each do |related|
         = render related
-      - if @issue.relateds.empty?
+      - if issue.relateds.empty?
         %p
           %i.fa.fa-info-circle
           관련 이슈가 없습니다. 이 영역은 관리자만 보고 있습니다.
