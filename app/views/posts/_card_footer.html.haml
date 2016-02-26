@@ -1,9 +1,12 @@
 .panel-footer
   .post-card__buttons
-    = render 'likes/like_line', post: post
-    %span.post-card__buttons__comments
-      = link_to post.specific do
-        %i.fa.fa-comment-o
-        = post.comments_count
+    .row
+      .col-xs-6
+        = render 'likes/like_line', post: post
+      .col-xs-6
+        .post-card__buttons__comments
+          = link_to post.specific, class: 'btn btn-default btn-sm btn-block' do
+            %i.fa.fa-comment-o
+            = post.comments_count
 
   = render 'comments/newest_comment', postable: post
