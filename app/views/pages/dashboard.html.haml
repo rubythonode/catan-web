@@ -1,23 +1,48 @@
+.issue-header-section( style="background-size: cover; background-image: url('#{asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;" )
+  %section#issue
+    .container{ style: 'position: reltiave;' }
+      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
+        %div.clearfix.text-center
+          = image_tag 'default_issue_logo.png', style: 'width: 100px; height: 100px'
+          %h2
+            %span{ style: 'font-weight: bold; color:white;' } 대쉬보드
+
+          .issue-header__body
+            %p{ style: 'color: white; margin-top: 2em;' }
+              지켜보는 이슈의 최근글입니다.
+
+        .text-center
+          %ul.list-inline.issue-header-actions
+            %li
+              = link_to new_article_path, class: 'btn btn-danger btn-sm' do
+                %i.fa.fa-link
+                %br
+                %small= t('labels.article_button')
+            %li
+              = link_to new_opinion_path, class: 'btn btn-danger btn-sm' do
+                %i.fa.fa-bar-chart
+                %br
+                %small
+                  주장하기
+            %li
+              = link_to new_question_path, class: 'btn btn-danger btn-sm' do
+                %i.fa.fa-question
+                %br
+                %small
+                  질문하기
+            %li
+              = link_to new_discussion_path, class: 'btn btn-danger btn-sm' do
+                %i.fa.fa-list-ul
+                %br
+                %small
+                  제안받기
+
 .bs-component
-  %section#home
-    .jumbotron
-      .container
-        %h3 대시보드
-        구독하는 이슈의 글입니다.
-        %div.text-center(style='margin-top: 3em;')
-          - if can? :create, Issue
-            = link_to new_issue_path, class: 'btn btn-default' do
-              이슈 열기
-          = link_to new_article_path, class: 'btn btn-default' do
-            뉴스컬럼 쓰기
-          = link_to new_opinion_path, class: 'btn btn-default' do
-            주장 하기
   %section#issue-posts
     .container
-      = render 'post_type_filter', posts: @watched_posts_for_filter
-      - if @watched_postables.any?
-        .row.masonry-container
+      .row
+        .col-sm-8
+          = render 'post_type_filter', posts: @watched_posts_for_filter
           = render @watched_postables, show_issue: true
-      - else
-        %p.text-center
-          글이 없습니다.
+        .col-sm-4
+          = render 'issues/aside_dashboard'

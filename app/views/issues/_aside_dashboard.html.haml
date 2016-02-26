@@ -1,0 +1,6 @@
+%aside
+  %section
+    %h4
+      %i.fa.fa-exclamation
+      지켜보는 이슈 (#{current_user.watched_issues.count})
+    = render customize_partial_path(current_user.watched_issues.hottest, 'card')
