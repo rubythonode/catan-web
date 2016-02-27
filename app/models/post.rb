@@ -27,13 +27,13 @@ class Post < ActiveRecord::Base
 
   default_scope -> { joins(:issue) }
   scope :recent, -> { order(touched_at: :desc) }
-  scope :hottest, -> {  }
+  scope :hottest, -> { where.not(last_touched_action: 'create').past_week(field: :touched_at).reorder(touched_at: :desc) }
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
   scope :by_filter, ->(f, someone=nil) {
     case f.to_sym
-    when :hot
-      where.not(last_touched_action: 'create').reorder(touched_at: :desc)
+    when :hottest
+      hottest
     when :best
       reorder(likes_count: :desc).recent
     when :like
@@ -71,6 +71,10 @@ class Post < ActiveRecord::Base
 
   def touched_after_creation?
     last_touched_action != 'create'
+  end
+
+  def hot?
+    touched_after_creation? and touched_at > 1.week.ago
   end
   private
 

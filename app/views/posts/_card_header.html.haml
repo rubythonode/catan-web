@@ -2,10 +2,11 @@
   .row
     .col-xs-6
       = render 'likes/like_line', post: post
+      - if post.hot?
+        %i.fa.fa-fire.text-danger
     .col-xs-6.text-right
       - if @issue.present? && @issue.is_all?
         = link_to issue_home_path(post.issue) do
           %span.label.label-danger.post-card__issue-label
             %i.fa.fa-exclamation
             = post.issue.title
-

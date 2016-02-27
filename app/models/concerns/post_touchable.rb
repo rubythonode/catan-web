@@ -2,19 +2,19 @@ module PostTouchable
   extend ActiveSupport::Concern
 
   def touch_post_by_vote
-    if (post.votes_count % 10 == 0) and !too_fast?
+    if (post.votes_count % 3 == 0) and !too_fast?
       touch_post(:vote, post.votes_count)
     end
   end
 
   def touch_post_by_comment
-    if (post.comments_count % 10 == 0) and !too_fast?
+    if (post.comments_count % 3 == 0) and !too_fast?
       touch_post(:comment, post.comments_count)
     end
   end
 
   def touch_post_by_like
-    if (post.likes_count % 10 == 0) and !too_fast?
+    if (post.likes_count % 3 == 0) and !too_fast?
       touch_post(:like, post.likes_count)
     end
   end
