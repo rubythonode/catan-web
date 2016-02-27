@@ -2,16 +2,21 @@
   %section
     %h4
       %i.fa.fa-user
-      이슈 커미터 (#{User.count})
-    %p
       = link_to users_path do
-        바쁜 세상에도 놓치고 싶지 않은 이슈 하나씩은 있잖아요?
+        이슈 커미터 (#{User.count})
+    .well
+      = link_to users_path do
+        바쁜 삶 속에서도 늘 생각나는,
         %br
-        지금 바로 이슈커미터가 되세요
+        놓치지 말아야지 싶은 이슈가
+        %br
+        하나 있으신가요?
+        %br
+        빠띠를 만든 우리도 그렇답니다
+        %br
+        함께 그 이슈를 지켜 볼까요?
 
-    %p
-      %h5 대표 이슈 커미터
-      = render User.offset(User.count).first(2)
+    = render User.offset(rand(User.count)).first(2)
 
   %section
     %h4

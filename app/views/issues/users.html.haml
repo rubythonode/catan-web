@@ -11,4 +11,6 @@
           %i.fa.fa-arrow-right
       %hr
       .row
-        = render @issue.contributors
+        - @issue.contributors.each do |user|
+          .col-sm-4.col-xs-6
+            = render user

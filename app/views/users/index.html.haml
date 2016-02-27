@@ -3,4 +3,6 @@
     %h2 이슈 커미터
     %p 이슈 커미터란?
     .row
-      = render @users
+      - @users.each do |user|
+        .col-sm-4.col-xs-6
+          = render user
