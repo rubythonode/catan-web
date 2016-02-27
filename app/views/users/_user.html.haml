@@ -2,7 +2,7 @@
   .panel-body
     .clearfix
       .pull-left(style='width: 60px; margin-right: 10px')
-        = link_to user_home_path(user), class: 'user__image', style: "background-image: url(#{user.image_url});" do
+        = link_to user_home_path(user), class: 'user__image img-circle', style: "background-image: url(#{user.image_url});" do
           = user.nickname
       %div
         %strong= link_to user.nickname, user_home_path(user)
