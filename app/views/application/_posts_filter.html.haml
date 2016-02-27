@@ -1,0 +1,49 @@
+- current_params = params.except(:f, :t, :action, :controller)
+- current_params_include_t = params.except(:f, :action, :controller)
+- current_params_include_f = params.except(:t, :action, :controller)
+.post-type-filter
+  .row
+    .col-sm-8
+      %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px; font-size: 80%'}
+        %li{role: 'presentation', class: "#{'active' unless params.has_key?(:f)}"}
+          = link_to url_for(current_params) do
+            최신
+            %i.fa.fa-history
+        %li{role: 'presentation', class: "#{'active' if params[:f] == 'hot'}"}
+          = link_to url_for(current_params.merge(f: :hot)) do
+            따끈한
+            %i.fa.fa-fire
+        %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
+          = link_to url_for(current_params.merge(f: :best)) do
+            베스트
+            %i.fa.fa-flag
+        - if user_signed_in? and !local_assigns[:hide_like_tab]
+          %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
+            = link_to url_for(current_params.merge(f: :like)) do
+              내
+              %i.fa.fa-flag
+              - if local_assigns[:posts]
+                %small (#{posts.only_like_by(current_user).count})
+    .col-sm-4
+      %select.form-control{style: 'font-size: 80%', data: {toggle: 'parti-post-type-selection'}}
+        %option{selected: !params.has_key?(:t), data: {url: url_for(current_params_include_f)}}
+          모두
+          - if local_assigns[:posts]
+            %small (#{posts.count})
+        %option{selected: (params[:t] == 'article'), data: {url: url_for(current_params_include_f.merge(t: :article))}}
+          = t('labels.article_button')
+          - if local_assigns[:posts]
+            %small (#{posts.only_articles.count})
+        %option{selected: params[:t] == 'opinion', data: {url: url_for(current_params_include_f.merge(t: :opinion))}}
+          주장
+          - if local_assigns[:posts]
+            %small (#{posts.only_opinions.count})
+
+        %option{selected: params[:t] == 'question', data: {url: url_for(current_params_include_f.merge(t: :question))}}
+          질문
+          - if local_assigns[:posts]
+            %small (#{posts.only_questions.count})
+        %option{selected: params[:t] == 'discussion', data: {url: url_for(current_params_include_f.merge(t: :discussion))}}
+          제안
+          - if local_assigns[:posts]
+            %small (#{posts.only_discussions.count})
