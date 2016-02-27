@@ -19,19 +19,24 @@
           - current_user.watched_issues.each do |issue|
             %li
               = link_to issue_home_path(issue) do
-                .text-muted.pull-right
-                  %small
-                    %span
-                      %i.fa.fa-user
-                      = issue.watches.count
-                      - if issue.watches.latest.any?
-                        %small= "+#{issue.watches.latest.count}"
-                    %span
-                      %i.fa.fa-file-text-o
-                      = issue.posts.count
-                      - if issue.posts.latest.any?
-                        %small= "+#{issue.posts.latest.count}"
-                = issue.title
+                .clearfix
+                  .pull-left(style='width: 60px; margin-right: 10px')
+                    .issue--related
+                      .issue__logo{style: "background-image: url(#{issue.logo_url});"}
+                        = issue.title
+                  %div
+                    %strong= issue.title
+                    .issue__count.text-muted
+                      %span
+                        %i.fa.fa-user
+                        = issue.watches.count
+                        - if issue.watches.latest.any?
+                          %small= "+#{issue.watches.latest.count}"
+                      %span
+                        %i.fa.fa-file-text-o
+                        = issue.posts.count
+                        - if issue.posts.latest.any?
+                          %small= "+#{issue.posts.latest.count}"
 
         %li.divider{:role => "separator"}
         - if user_signed_in?
