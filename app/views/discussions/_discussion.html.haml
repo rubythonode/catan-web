@@ -1,6 +1,6 @@
 .post-card.post.discussion-list-item[discussion.acting_as]
   .panel.panel-default
-    = render 'posts/card_header', post: discussion.acting_as
+    = render 'posts/card_header', local_assigns.merge(post: discussion.acting_as)
     .panel-body.post-bg-discussion-collection
       .post-bg-content
         %h5{ style: 'font-weight: bold;' }= link_to discussion.title, discussion, target: 'parti_detail_view'
@@ -18,4 +18,4 @@
         .tags(style='margin-top: 1em')
           - discussion.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    = render 'posts/card_footer', post: discussion.acting_as
+    = render 'posts/card_footer', local_assigns.merge(post: discussion.acting_as)

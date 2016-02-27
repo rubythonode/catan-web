@@ -1,6 +1,6 @@
 .post-card.post.article[article.acting_as]
   .panel.panel-default
-    = render 'posts/card_header', post: article.acting_as
+    = render 'posts/card_header', local_assigns.merge(post: article.acting_as)
     .panel-body.post-bg-article-collection
       .post-bg-content
         %h5{ style: 'font-weight: bold;' }= link_to article.title, article, target: 'parti_detail_view'
@@ -10,4 +10,4 @@
         .tags(style='margin-top: 1em')
           - article.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    = render 'posts/card_footer', post: article.acting_as
+    = render 'posts/card_footer', local_assigns.merge(post: article.acting_as)

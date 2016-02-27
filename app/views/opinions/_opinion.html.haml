@@ -1,6 +1,6 @@
 .post-card.post.opinion-card[opinion.acting_as]
   .panel.panel-default
-    = render 'posts/card_header', post: opinion.acting_as
+    = render 'posts/card_header', local_assigns.merge(post: opinion.acting_as)
     .panel-body.post-bg-opinion-collection
       .post-bg-content
         .clearfix
@@ -17,4 +17,4 @@
         .tags(style='margin-top: 1em;')
           - opinion.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    = render 'posts/card_footer', post: opinion.acting_as
+    = render 'posts/card_footer', local_assigns.merge(post: opinion.acting_as)
