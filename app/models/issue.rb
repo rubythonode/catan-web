@@ -7,9 +7,13 @@ class Issue < ActiveRecord::Base
     posts: Post.all,
     articles: Article.all,
     opinions: Opinion.all,
-    watches: User.all,
-    logo: {file: true}, logo_url: 'all_issue_logo.png',
-    cover: {file: nil}})
+    watches: User.all})
+  def OF_ALL.logo_url
+    ActionController::Base.helpers.asset_path('all_issue_logo.png')
+  end
+  def OF_ALL.cover_url
+    ActionController::Base.helpers.asset_path('default_issue_cover.png')
+  end
 
   # relations
   has_many :relateds

@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
   def default_url
-    "/images/#{mounted_as}_default.png"
+    ActionController::Base.helpers.asset_path("default_#{model.class.to_s.underscore}_#{mounted_as}.png")
   end
 
   # Process files as they are uploaded:

@@ -27,7 +27,7 @@
                       - if issue.watches.latest.any?
                         %small= "+#{issue.watches.latest.count}"
                     %span
-                      %i.fa.fa-comment-o
+                      %i.fa.fa-file-text-o
                       = issue.posts.count
                       - if issue.posts.latest.any?
                         %small= "+#{issue.posts.latest.count}"
@@ -41,7 +41,8 @@
             = link_to '대시보드', dashboard_path
           %li
             = link_to likes_by_me_path do
-              %i.fa.fa-caret-up.text-danger(style='font-size: 125%')
+              내
+              %i.fa.fa-thumbs-up.text-danger(style='font-size: 125%')
           %li
             = link_to edit_user_registration_path do
               프로필 수정

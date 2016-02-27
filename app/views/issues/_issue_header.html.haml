@@ -1,15 +1,11 @@
-.issue-header-section( style="background-size: cover; background-image: url('#{@issue.cover.file.present? ? @issue.cover_url : asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;" )
+.issue-header-section( style="background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;" )
   %section#issue
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         .clearfix
           #share.pull-right
         %div.clearfix.text-center
-          - if @issue.logo.file.present?
-            - issue_logo_url = @issue.logo_url
-          - else
-            - issue_logo_url = 'default_issue_logo.png'
-          = image_tag issue_logo_url, style: 'width: 100px; height: 100px'
+          = image_tag @issue.logo_url, style: 'width: 100px; height: 100px'
           %h2
             %span{ style: 'font-weight: bold; color:white;' }>= @issue.title
 
