@@ -3,9 +3,9 @@
     .row
       .col-xs-6
         = render 'likes/like_line', post: post
-      .col-xs-6
+      .col-xs-6.text-right
         .post-card__buttons__comments
-          = link_to post.specific, class: 'btn btn-default btn-sm btn-block' do
+          = link_to post.specific do
             %i.fa.fa-comment-o
             = post.comments_count
 
