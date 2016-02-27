@@ -88,4 +88,14 @@ class ApplicationController < ActionController::Base
       description.truncate(limit)
     end
   end
+
+  def filter_posts(posts)
+    if params[:t].present?
+      posts = posts.by_postable_type(params[:t])
+    end
+    if params[:f].present?
+      posts = posts.by_filter(params[:f], current_user)
+    end
+    posts
+  end
 end

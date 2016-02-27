@@ -45,9 +45,7 @@ class IssuesController < ApplicationController
                       description: @issue.body,
                       image: @issue.cover_url
     @posts_for_filter = @posts
-    if params[:t].present?
-      @posts = @posts.by_postable_type(params[:t])
-    end
+    @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
     render template: 'issues/show'
   end

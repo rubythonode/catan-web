@@ -42,7 +42,7 @@
     .container
       .row
         .col-sm-8
-          = render 'post_type_filter', posts: @watched_posts_for_filter
+          = render 'posts_filter', posts: @watched_posts_for_filter, hide_like_tab: true
           = render @watched_postables, show_issue: true
         .col-sm-4
           = render 'issues/aside_dashboard'

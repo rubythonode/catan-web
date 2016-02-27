@@ -3,8 +3,11 @@
     .container
       %h2.page-header
         \##{params[:name]}
-      = render 'post_type_filter', posts: @posts_for_filter
-  %section#issue-posts
+  %section#tag-posts
     .container
-      %ul.list-group
-        = render @postables, show_issue: true
+      .row
+        .col-sm-8
+          = render 'posts_filter', posts: @posts_for_filter
+          = render @postables, show_issue: true
+        .col-sm-4
+          = render 'issues/aside_all'

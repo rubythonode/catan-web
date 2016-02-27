@@ -98,4 +98,13 @@ $(function(){
     shares: ["facebook", "googleplus", "twitter"]
   });
 
+  // post type filter
+
+  $('[data-toggle="parti-post-type-selection"]').on('change', function(e) {
+    e.preventDefault();
+    $self = $(e.currentTarget);
+    var $optionSelected = $("option:selected", e.currentTarget);
+    var url = $optionSelected.data('url');
+    $(location).attr('href', url);
+  });
 });

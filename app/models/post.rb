@@ -27,12 +27,24 @@ class Post < ActiveRecord::Base
 
   default_scope -> { joins(:issue) }
   scope :recent, -> { order(touched_at: :desc) }
+  scope :hottest, -> {  }
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
+  scope :by_filter, ->(f, someone=nil) {
+    case f.to_sym
+    when :hot
+      where.not(last_touched_action: 'create').reorder(touched_at: :desc)
+    when :best
+      reorder(likes_count: :desc).recent
+    when :like
+      only_like_by(someone).recent
+    end
+  }
   scope :only_articles, -> { by_postable_type(Article.to_s) }
   scope :only_opinions, -> { by_postable_type(Opinion.to_s) }
   scope :only_questions, -> { by_postable_type(Question.to_s) }
   scope :only_discussions, -> { by_postable_type(Discussion.to_s) }
+  scope :only_like_by, ->(someone) { joins(:likes).where('likes.user': someone) }
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
 
   before_save :set_touched_at
@@ -57,6 +69,9 @@ class Post < ActiveRecord::Base
     votes.exists? user: voter, choice: 'disagree'
   end
 
+  def touched_after_creation?
+    last_touched_action != 'create'
+  end
   private
 
   def set_touched_at

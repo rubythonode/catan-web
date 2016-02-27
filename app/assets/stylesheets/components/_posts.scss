@@ -17,6 +17,12 @@
 }
 
 .post-card {
+  &.post-card--touched {
+    .panel {
+      border-left-color: #cb1b41;
+      border-left-width: 4px;
+    }
+  }
   &__issue-label {
     font-size: 13px;
   }

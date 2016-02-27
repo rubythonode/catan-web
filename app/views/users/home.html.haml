@@ -5,7 +5,7 @@
     .container
       .row
         .col-sm-8
-          = render 'post_type_filter', posts: @posts
+          = render 'posts_filter', posts: @posts, hide_like_tab: true
           = render @postables, show_issue: true
         .col-sm-4
           %h4 활동하는 이슈 (#{@user.watched_issues.count})

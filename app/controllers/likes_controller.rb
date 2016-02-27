@@ -24,9 +24,7 @@ class LikesController < ApplicationController
   def by_me
     @posts = Post.joins(:likes).where('likes.user': current_user)
     @posts_for_filter = @posts
-    if params[:t].present?
-      @posts = @posts.by_postable_type(params[:t])
-    end
+    @posts = filter_posts(@posts)
     @postable = @posts.map(&:postable)
   end
 end

@@ -4,7 +4,7 @@
     .container
       .row
         .col-sm-8
-          = render 'post_type_filter', posts: @posts_for_filter
+          = render 'posts_filter', posts: @posts_for_filter
           - if @issue.is_all?
             = render @postables, show_issue: true
           - else

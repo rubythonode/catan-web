@@ -4,9 +4,7 @@ class TagsController < ApplicationController
                       description: params[:name]
     @posts = Post.recent.tagged_with(params[:name])
     @posts_for_filter = @posts
-    if params[:t].present?
-      @posts = @posts.by_postable_type(params[:t])
-    end
+    @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
   end
 end
