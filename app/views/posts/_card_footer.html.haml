@@ -2,7 +2,12 @@
   .post-card__buttons
     .row
       .col-xs-6
-        = render 'likes/like_line', post: post
+        %span
+          = byline post.user
+        %span.text-muted
+          %i.fa.fa-clock-o
+          = date_f post.created_at
+
       .col-xs-6.text-right
         .post-card__buttons__comments
           = link_to post.specific do
