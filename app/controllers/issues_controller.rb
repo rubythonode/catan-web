@@ -27,8 +27,6 @@ class IssuesController < ApplicationController
     if params[:slug] == 'all'
       @issue = Issue::OF_ALL
       @posts = Post.for_list.recent
-      @issue.title = '모든 이슈의 최신글'
-      @issue.body = '유쾌한 민주주의 플랫폼, 빠띠의 이슈 최신글입니다.'
     else
       @issue = Issue.find_by slug: params[:slug]
       if @issue.blank?
@@ -41,9 +39,13 @@ class IssuesController < ApplicationController
       end
       @posts = @issue.posts.for_list.recent
     end
-    prepare_meta_tags title: @issue.title,
-                      description: @issue.body,
-                      image: @issue.cover_url
+
+    unless view_context.current_page?(root_url)
+      prepare_meta_tags title: @issue.title,
+                        description: @issue.body,
+                        image: @issue.cover_url
+    end
+
     @posts_for_filter = @posts
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable

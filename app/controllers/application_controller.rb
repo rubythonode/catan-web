@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :prepare_meta_tags, if: "request.get?", only: :show
+  before_action :prepare_meta_tags, if: "request.get?"
 
   if Rails.env.staging?
     rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
       og: {
         url: current_url,
         site_name: options[:site_name],
-        title: options[:title],
+        title: "#{options[:title]} | #{options[:site_name]}",
         image: view_context.asset_url(options[:image]),
         description: og_description,
         type: 'website'
