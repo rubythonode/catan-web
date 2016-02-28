@@ -1,15 +1,15 @@
-.panel-footer
+.panel-footer(style='padding-top: 0; padding-bottom: 0;')
   .post-card__buttons
     .row
-      .col-xs-6
+      .col-xs-4.text-center(style='border-right: 1px solid #ddd; padding-top: 10px; padding-bottom: 10px;')
         = render 'likes/like_line', post: post
-        - if post.hot?
-          %i.fa.fa-fire.text-danger
 
-      .col-xs-6.text-right
+      .col-xs-4.text-center(style='border-right: 1px solid #ddd; padding-top: 10px; padding-bottom: 10px;')
         .post-card__buttons__comments
-          = link_to post.specific, class: 'btn btn-sm' do
+          = link_to post.specific do
             %i.fa.fa-comment-o
             = post.comments_count
+      .col-xs-4.text-center.text-nowrap(style='padding: 5px 0;')
+        .post-card__buttons__shares{ style: 'font-size: 70%', data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
   = render 'comments/newest_comment', postable: post

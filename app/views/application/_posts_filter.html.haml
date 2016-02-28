@@ -12,7 +12,7 @@
         %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
           = link_to url_for(current_params.merge(f: :hottest)) do
             따끈한
-            %i.fa.fa-fire
+            %i.wi.wi-fire
             - if local_assigns[:posts]
               %small (#{posts.hottest.count})
         %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}

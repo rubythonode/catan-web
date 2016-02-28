@@ -92,10 +92,25 @@ $(function(){
     $target.toggle();
   });
 
+  // share
+
   $("#share").jsSocials({
     showCount: true,
     showLabel: false,
     shares: ["facebook", "googleplus", "twitter"]
+  });
+
+  $('[data-provider="parti-issue-share"]').each(function(i, elm) {
+    var $elm = $(elm);
+    var url = $elm.data('share-url');
+    var text = $elm.data('share-text');
+    $elm.jsSocials({
+      showCount: true,
+      showLabel: false,
+      shares: ["facebook", "googleplus", "twitter"],
+      text: text,
+      url: url
+    });
   });
 
   // post type filter

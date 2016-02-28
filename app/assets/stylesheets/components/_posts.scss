@@ -17,14 +17,11 @@
 }
 
 .post-card {
-  &.post-card--touched {
-    .panel {
-      border-left-color: #cb1b41;
-      border-left-width: 4px;
-    }
-  }
   &__issue-label {
     font-size: 13px;
+    background-color: #fff;
+    color: #777;
+    border: 1px solid #ddd;
   }
   .post-card__buttons {
     span {
@@ -34,6 +31,12 @@
           font-weight: bold;
           text-decoration: none;
         }
+      }
+    }
+    &__shares.jssocials {
+      .jssocials-share-link {
+        background-color: #fff;
+        color: #777;
       }
     }
   }
