@@ -1,7 +1,116 @@
 !!!
-%html
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xmlns:o" => "urn:schemas-microsoft-com:office:office", "xmlns:v" => "urn:schemas-microsoft-com:vml"}
   %head
-    %meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    /[if gte mso 15]
+      <xml>
+      <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+      </xml>
+    %meta{:charset => "UTF-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
     =stylesheet_link_tag 'email.css'
+    %link{:href => "http://parti.dev/assets/email.self-4f2fd2c9dab5276d6be502da4f980bfa0814ca2310af7a25685e54262c4b4f68.css?body=1", :media => "screen", :rel => "stylesheet"}/
   %body
-    = yield
+    %center
+      %table#bodyTable{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :height => "100%", :width => "100%"}
+        %tr
+          %td#bodyCell{:align => "center", :valign => "top"}
+            /[if gte mso 9]
+              <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+              <tr>
+              <td align="center" valign="top" width="600" style="width:600px;">
+            %table.templateContainer{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+              %tr
+                %td#templatePreheader{:valign => "top"}
+              %tr
+                %td#templateHeader{:valign => "top"}
+                  %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                    %tbody.mcnTextBlockOuter
+                      %tr
+                        %td.mcnTextBlockInner{:valign => "top"}
+                          %table.mcnTextContentContainer{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                            %tbody
+                              %tr
+                                %td.mcnTextContent{:style => "padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;", :valign => "top"}
+                                  %a{:href => "http://parti.xyz", :target => "_blank"}
+                                    %img{:align => "none", :alt => "parti-xyz", :height => "33", :src => "https://gallery.mailchimp.com/071485ee2fa331d9e36050d57/images/30236a40-fd98-4b51-bfc8-365f5eada7ae.png", :style => "max-height: 30px; margin: 10px;"}/
+              %tr
+                %td#templateBody{:valign => "top"}
+                  %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                    %tbody.mcnTextBlockOuter
+                      %tr
+                        %td.mcnTextBlockInner{:valign => "top"}
+                          %table.mcnTextContentContainer{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                            %tbody
+                              %tr
+                                %td.mcnTextContent{:style => "padding-top: 60px; padding-right: 18px; padding-bottom: 40px; padding-left: 18px; text-align: center;", :valign => "top"}
+                                  = yield
+              %tr
+                %td#templateColumns{:valign => "top"}
+                  /[if gte mso 9]
+                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="600" style="width:600px;">
+                    <tr>
+                    <td align="center" valign="top" width="200" style="width:200px;">
+                  %table.columnWrapper{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "200"}
+                    %tr
+                      %td.columnContainer{:valign => "top"}
+                        %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                          %tbody.mcnTextBlockOuter
+                            %tr
+                              %td.mcnTextBlockInner{:valign => "top"}
+                                %table.mcnTextContentContainer{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                                  %tbody
+                                    %tr
+                                      %td.mcnTextContent{:style => "padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;", :valign => "top"}
+                                        %a{:href => "http://parti.xyz", :target => "_blank"}
+                                          %img{:align => "none", :height => "36", :src => "https://gallery.mailchimp.com/071485ee2fa331d9e36050d57/images/48ad7501-3e37-46b4-9f98-3f788fc931f7.png", :style => "width: 100px; height: 36px; margin: 15px;", :width => "100"}/
+                  /[if gte mso 9]
+                    </td>
+                    <td align="center" valign="top" width="200" style="width:200px;">
+                  %table.columnWrapper{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "200"}
+                    %tr
+                      %td.columnContainer{:valign => "top"}
+                        %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                          %tbody.mcnTextBlockOuter
+                            %tr
+                              %td.mcnTextBlockInner{:valign => "top"}
+                                %table.mcnTextContentContainer{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                                  %tbody
+                                    %tr
+                                      %td.mcnTextContent{:style => "padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;", :valign => "top"}
+                                        %a{:href => "http://parti.xyz/", :style => "font-size: 10pt; line-height: 1.2;"} parti.xyz
+                                        %br/
+                                        %a{:href => "mailto:help@parti.xyz", :style => "font-size: 10pt; line-height: 1.2;"} help@parti.xyz
+                  /[if gte mso 9]
+                    </td>
+                    <td align="center" valign="top" width="200" style="width:200px;">
+                  %table.columnWrapper{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "200"}
+                    %tr
+                      %td.columnContainer{:valign => "top"}
+                        %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                          %tbody.mcnTextBlockOuter
+                            %tr
+                              %td.mcnTextBlockInner{:valign => "top"}
+                                %table.mcnTextContentContainer{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}
+                                  %tbody
+                                    %tr
+                                      %td.mcnTextContent{:style => "padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;", :valign => "top"}
+                                        %a{:href => "http://fb.com/parti.xyz", :style => "font-size: 10pt; line-height: 1.2;"}> fb.com/parti.xyz
+                                         
+                                        %br/
+                                        = succeed "\u{a0}" do
+                                          %a{:href => "http://twitter.com/parti-xyz", :style => "font-size: 10pt; line-height: 1.2;"} twitter.com/parti-xyz
+                                        %br/
+                                        %a{:href => "http://medium.com/parti-xyz-developers", :style => "font-size: 10pt; line-height: 1.2;"} medium.com/parti-xyz-developers
+                  /[if gte mso 9]
+                    </td>
+                    </tr>
+                    </table>
+      /[if mso]
+        </td>
+      /[if mso]
+        </tr>
+        </table>
