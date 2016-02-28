@@ -93,9 +93,9 @@ class ApplicationController < ActionController::Base
     if params[:t].present?
       posts = posts.by_postable_type(params[:t])
     end
-    if params[:f].present?
-      posts = posts.by_filter(params[:f], current_user)
+    unless params[:f].present?
+      params[:f] = ( posts.hottest_count > 0 ? 'hottest' : 'recent' )
     end
-    posts
+    posts.by_filter(params[:f], current_user)
   end
 end

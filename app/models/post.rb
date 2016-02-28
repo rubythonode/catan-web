@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  HOT_LIKES_COUNT = 3
+
   actable as: :postable
   acts_as_taggable
 
@@ -26,8 +28,20 @@ class Post < ActiveRecord::Base
   validates :user, presence: true
 
   default_scope -> { joins(:issue) }
-  scope :recent, -> { order(touched_at: :desc) }
-  scope :hottest, -> { where.not(last_touched_action: 'create').past_week(field: :touched_at).reorder(touched_at: :desc) }
+  scope :recent, -> { order(created_at: :desc) }
+  scope :hottest, -> {
+    select('posts.*, COUNT(likes.id) likes_count')
+      .joins(:likes)
+      .group('posts.id')
+      .past_week(field: 'likes.created_at')
+      .order('likes_count DESC') }
+  scope :yesterday_hottest, -> {
+    select('posts.*, COUNT(likes.id) likes_count')
+      .joins(:likes)
+      .group('posts.id')
+      .yesterday(field: 'likes.created_at')
+      .having("likes_count > #{HOT_LIKES_COUNT}")
+      .order('likes_count DESC') }
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
   scope :by_filter, ->(f, someone=nil) {
@@ -38,6 +52,8 @@ class Post < ActiveRecord::Base
       reorder(likes_count: :desc).recent
     when :like
       only_like_by(someone).recent
+    when :recent
+      recent
     end
   }
   scope :only_articles, -> { by_postable_type(Article.to_s) }
@@ -46,8 +62,6 @@ class Post < ActiveRecord::Base
   scope :only_discussions, -> { by_postable_type(Discussion.to_s) }
   scope :only_like_by, ->(someone) { joins(:likes).where('likes.user': someone) }
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
-
-  before_save :set_touched_at
 
   def liked_by? someone
     likes.exists? user: someone
@@ -69,16 +83,11 @@ class Post < ActiveRecord::Base
     votes.exists? user: voter, choice: 'disagree'
   end
 
-  def touched_after_creation?
-    last_touched_action != 'create'
-  end
-
   def hot?
-    touched_after_creation? and touched_at > 1.week.ago
+    likes.past_week.count > HOT_LIKES_COUNT
   end
-  private
 
-  def set_touched_at
-    self.touched_at = DateTime.now
+  def self.hottest_count
+    hottest.length
   end
 end

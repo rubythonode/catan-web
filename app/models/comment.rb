@@ -1,5 +1,4 @@
 class Comment < ActiveRecord::Base
-  include PostTouchable
   include Choosable
 
   belongs_to :user
@@ -11,6 +10,4 @@ class Comment < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc) }
   scope :persisted, -> { where "id IS NOT NULL" }
-
-  before_save :touch_post_by_comment
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225083517) do
+ActiveRecord::Schema.define(version: 20160228075820) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -107,18 +107,15 @@ ActiveRecord::Schema.define(version: 20160225083517) do
   add_index "parti_sso_client_api_keys", ["user_id", "client"], name: "index_parti_sso_client_api_keys_on_user_id_and_client", unique: true
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "issue_id",                               null: false
-    t.integer  "postable_id",                            null: false
-    t.string   "postable_type",                          null: false
-    t.integer  "user_id",                                null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.datetime "touched_at",                             null: false
-    t.integer  "likes_count",         default: 0
-    t.string   "last_touched_action", default: "create"
-    t.string   "last_touched_params"
-    t.integer  "comments_count",      default: 0
-    t.integer  "votes_count",         default: 0
+    t.integer  "issue_id",                   null: false
+    t.integer  "postable_id",                null: false
+    t.string   "postable_type",              null: false
+    t.integer  "user_id",                    null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "likes_count",    default: 0
+    t.integer  "comments_count", default: 0
+    t.integer  "votes_count",    default: 0
   end
 
   add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"

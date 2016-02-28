@@ -26,7 +26,7 @@ class IssuesController < ApplicationController
   def slug
     if params[:slug] == 'all'
       @issue = Issue::OF_ALL
-      @posts = Post.for_list.recent
+      @posts = Post.for_list
     else
       @issue = Issue.find_by slug: params[:slug]
       if @issue.blank?
@@ -37,7 +37,7 @@ class IssuesController < ApplicationController
           render_404 and return
         end
       end
-      @posts = @issue.posts.for_list.recent
+      @posts = @issue.posts.for_list
     end
 
     unless view_context.current_page?(root_url)
