@@ -1,0 +1,18 @@
+- post = post_in_email
+- default_postable_type_image = 'fa-link.png'
+- postable_type_image_map = {'Article' => 'fa-link.png', 'Opinion' => 'fa-bar-chart.png', 'Question' => 'fa-question.png', 'Discussion' => 'fa-list-ul.png'}
+%div{ style: 'padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;'}
+  %span{ style: 'font-size: 70%; margin-right: 10px;' }
+    = link_to user_home_url(post.user), style: 'color: #999; text-decoration: none' do
+      = image_tag post.user.image_url, width: '13px', height: '13px'
+      = post.user.nickname
+  %span{ style: 'font-size: 70%;' }
+    %a{href: url_for(post.issue), style: 'color: #999; text-decoration: none'}
+      = image_tag post.issue.logo_url, width: '13px', height: '13px'
+      #{post.issue.title}
+  %h4
+    %img{ src: image_url("email/#{postable_type_image_map.fetch(post.postable_type, default_postable_type_image)}"), width: '13px', height: '13px'}
+    %a{href: url_for(post.specific), style: 'color: #333; text-decoration: none'}
+      #{post.specific.title}
+  - if post.specific.respond_to?(:body) and post.specific.body.present?
+    %p{ style: 'font-size: 90%; color: #aaa; margin-bottom: 0' }= truncate(strip_tags(post.specific.body), length: 100)

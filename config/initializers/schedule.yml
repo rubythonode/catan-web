@@ -1,0 +1,4 @@
+summary_job:
+  cron: "1 7 * * * Asia/Seoul"
+  class: "SummaryJob"
+  queue: default

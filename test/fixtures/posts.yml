@@ -3,46 +3,37 @@ post_article1:
   user: one
   issue: issue1
   postable: article1 (Article)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_opinion1:
   user: one
   issue: issue1
   postable: opinion1 (Opinion)
-  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_opinion2:
   user: one
   issue: issue1
   postable: opinion2 (Opinion)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_question1:
   user: one
   issue: issue1
   postable: question1 (Question)
-  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_answer1:
   user: two
   issue: issue1
   postable: answer1 (Answer)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
 
 # issue2
 post_article2:
   user: one
   issue: issue2
   postable: article2 (Article)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_opinion3:
   user: one
   issue: issue2
   postable: opinion3 (Opinion)
-  touched_at: <%= 1.day.ago.to_s(:db) %>
 post_opinion4:
   user: one
   issue: issue2
   postable: opinion4 (Opinion)
-  touched_at: <%= 5.day.ago.to_s(:db) %>
 post_question2:
   user: one
   issue: issue2
   postable: question2 (Question)
-  touched_at: <%= 1.day.ago.to_s(:db) %>

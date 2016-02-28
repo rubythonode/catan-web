@@ -41,6 +41,7 @@ gem 'envyable', '~> 0.2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'seed-fu', '~> 2.3', '>= 2.3.5'
 gem 'sidekiq', '~> 4.1'
+gem 'sidekiq-cron', '~> 0.4.2'
 gem 'redis', '~> 3.2', '>= 3.2.2'
 gem 'redis-namespace', '~> 1.5', '>= 1.5.2'
 gem 'premailer-rails', '~> 1.9'
@@ -51,6 +52,7 @@ gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'partial_path_customizer', '~> 0.1.0'
 gem 'slack-notifier', '~> 1.4'
 gem 'exception_notification', '~> 4.1', '>= 4.1.4'
+gem 'sinatra', require: nil
 
 group :development, :test do
   gem 'letter_opener_web'

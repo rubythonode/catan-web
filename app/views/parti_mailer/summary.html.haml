@@ -1,10 +1,27 @@
-%p 안녕하세요. #{@user.nickname}님!
-%p #{Date.yesterday} Parti 유쾌한 민주주의 소식입니다!
-%p &nbsp;
-%ul#summary
-- @posts.each do |post|
-  %li{style: 'text-align: left; list-style:none'}
-    %a{href: url_for(post.specific), style: 'color: '}
-      [#{post.specific.class.model_name.human}] #{post.specific.title}
-    - if post.specific.respond_to?(:body)
-      %p= truncate(strip_tags(post.specific.body), length: 100)
+- content_for(:head) do
+  %strong
+    안녕하세요. #{@user.nickname}님!
+    %br
+    #{Date.yesterday.strftime("%Y년 %m월 %d일")} Parti에서 보내드리는
+    %br
+    유쾌한 민주주의 소식입니다.
+
+- if @created_posts.any?
+  %table(width="100%" style="text-align: left;")
+    %tbody
+      %tr
+        %td
+          %h3 새로 올라온 글
+      %tr
+        %td
+          = render customize_partial_path(@created_posts, 'post_in_email')
+
+- if @hottest_posts.any?
+  %table(width="100%" style="text-align: left; margin-top: 50px;")
+    %tbody
+      %tr
+        %td
+          %h3 주목할 글
+      %tr
+        %td
+          = render customize_partial_path(@hottest_posts, 'post_in_email')

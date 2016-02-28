@@ -37,6 +37,10 @@
                                 %td.mcnTextContent{:style => "padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;", :valign => "top"}
                                   %a{:href => "http://parti.xyz", :target => "_blank"}
                                     %img{:align => "none", :alt => "parti-xyz", :height => "33", :src => asset_url('logo_parti_slogan_white_2.png'), :style => "max-height: 30px; margin: 10px;"}/
+                              - if content_for?(:head)
+                                %tr
+                                  %td.mcnTextContent{:style => "text-align: center; color: #fff; padding-top:30px; padding-right: 18px; padding-bottom: 30px; padding-left: 18px; background-color: #13455F;", :valign => "top"}
+                                    = yield :head
               %tr
                 %td#templateBody{:valign => "top"}
                   %table.mcnTextBlock{:border => "0", :cellpadding => "0", :cellspacing => "0", :style => "min-width:100%;", :width => "100%"}

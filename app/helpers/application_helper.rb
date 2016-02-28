@@ -4,10 +4,6 @@ module ApplicationHelper
     raw render(partial: 'users/byline', locals: options.merge(user: user))
   end
 
-  def issue_home_path(issue)
-    slug_issue_path(slug: issue.slug)
-  end
-
   def choice_icon(subject)
     choice_value = subject
     choice_value = subject.choice if subject.respond_to?(:choice)

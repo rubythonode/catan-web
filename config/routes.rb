@@ -44,4 +44,10 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/devel/emails"
   end
+
+  authenticate :user, lambda { |u| u.admin? } do
+    require 'sidekiq/web'
+    require 'sidekiq/cron/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
