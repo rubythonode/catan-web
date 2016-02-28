@@ -14,7 +14,7 @@
           = link_to url_for(current_params.merge(f: :recent)) do
             최신
             - if local_assigns[:posts] && posts.today.count > 0
-              %small (+#{posts.today.count})
+              %small (+#{posts.past_day.count})
         %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
           = link_to url_for(current_params.merge(f: :best)) do
             베스트
