@@ -1,14 +1,15 @@
-.panel-heading
+.panel-body
   .row
     .col-xs-6
-      %span
-        = byline post.user
-      %span.text-muted.text-nowrap
-        %i.fa.fa-clock-o
-        = date_f post.created_at
-      - if post.hot?
-        %span
-          %i.wi.wi-fire.text-danger
+      = link_to user_home_path(post.user), class: 'pull-left', style: 'margin-right: 10px;' do
+        = image_tag post.user.image_url, class: 'user-image img-circle', style: 'width: 40px; height: 40px;'
+      %div
+        = post.user.nickname
+        .text-muted.text-nowrap
+          %i.fa.fa-clock-o
+          = date_f post.created_at
+          - if post.hot?
+            %i.wi.wi-fire.text-danger
 
     .col-xs-6.text-right
       - if local_assigns[:show_issue]
