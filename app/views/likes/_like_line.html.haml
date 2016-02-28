@@ -1,13 +1,13 @@
 %span.like--line(id="#{dom_id(post)}-like")
   - if !user_signed_in?
-    = link_to '#', class: 'btn btn-xs btn-default' do
+    = link_to '#', class: 'btn btn-sm btn-default' do
       %i.fa.fa-thumbs-o-up
       = post.likes.count
   - elsif post.liked_by? current_user
-    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true, class: 'btn btn-xs btn-primary' do
+    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true, class: 'btn btn-sm btn-primary' do
       %i.fa.fa-thumbs-up
       = post.likes.count
   - else
-    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true, class: 'btn btn-xs btn-default' do
+    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true, class: 'btn btn-sm btn-default' do
       %i.fa.fa-thumbs-o-up
       = post.likes.count

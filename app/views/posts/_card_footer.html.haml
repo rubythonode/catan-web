@@ -2,15 +2,13 @@
   .post-card__buttons
     .row
       .col-xs-6
-        %span
-          = byline post.user
-        %span.text-muted
-          %i.fa.fa-clock-o
-          = date_f post.created_at
+        = render 'likes/like_line', post: post
+        - if post.hot?
+          %i.fa.fa-fire.text-danger
 
       .col-xs-6.text-right
         .post-card__buttons__comments
-          = link_to post.specific do
+          = link_to post.specific, class: 'btn btn-sm' do
             %i.fa.fa-comment-o
             = post.comments_count
 
