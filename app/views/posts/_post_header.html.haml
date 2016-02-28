@@ -3,7 +3,7 @@
     .pull-right
       = link_to issue_home_path(post.issue) do
         %span.label.label-danger.post-card__issue-label
-          %i.fa.fa-exclamation
+          = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px'
           = post.issue.title
 
     .pull-left
