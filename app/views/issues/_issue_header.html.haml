@@ -3,7 +3,13 @@
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         .clearfix
-          #share.pull-right
+          - if @issue.is_all?
+            .pull-right
+              %ul.list-inline
+                %li#share-facebook-page(style='padding: 0')
+                %li#share-twitter
+          - else
+            #share.pull-right
         %div.clearfix.text-center
           = image_tag @issue.logo_url, style: 'width: 100px; height: 100px'
           %h2

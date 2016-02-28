@@ -94,10 +94,24 @@ $(function(){
 
   // share
 
+  $("#share-twitter").jsSocials({
+    showCount: true,
+    showLabel: false,
+    shares: ["twitter"]
+  });
+
+  $("#share-facebook-page").jsSocials({
+    showCount: true,
+    showLabel: false,
+    shares: ["facebook"],
+    text: '유쾌한 정치 플랫폼! 빠띠에서 파티하자!',
+    url: 'https://www.facebook.com/parti.xyz/'
+  });
+
   $("#share").jsSocials({
     showCount: true,
     showLabel: false,
-    shares: ["facebook", "googleplus", "twitter"]
+    shares: ["facebook", "twitter"]
   });
 
   $('[data-provider="parti-issue-share"]').each(function(i, elm) {
@@ -107,7 +121,7 @@ $(function(){
     $elm.jsSocials({
       showCount: true,
       showLabel: false,
-      shares: ["facebook", "googleplus", "twitter"],
+      shares: ["facebook", "twitter"],
       text: text,
       url: url
     });
