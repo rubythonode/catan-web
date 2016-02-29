@@ -3,7 +3,7 @@
     = render 'posts/card_header', local_assigns.merge(post: article.acting_as)
     .panel-body.post-bg-article-collection
       .post-bg-content
-        %h5.article-card__title{ style: 'font-weight: bold;' }= link_to article.title, article, target: 'parti_detail_view'
+        %h5.article-card__title= link_to article.title, article, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(article.body), length: 100)
 

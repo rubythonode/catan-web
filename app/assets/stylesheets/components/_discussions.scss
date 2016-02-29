@@ -28,7 +28,11 @@
   }
 }
 
-.discussion-list-item {
+.discussion-card {
+  .discussion-card__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
   .discussion__proposal {
     background-color: $gray-lighter;
     padding: 10px;

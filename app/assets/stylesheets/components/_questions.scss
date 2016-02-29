@@ -28,7 +28,11 @@
   }
 }
 
-.question-list-item {
+.question-card {
+  question-card__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
   .question__answer {
     background-color: $gray-lighter;
     padding: 10px;

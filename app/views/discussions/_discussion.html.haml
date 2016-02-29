@@ -1,9 +1,9 @@
-.post-card.post.discussion-list-item[discussion.acting_as]
+.post-card.post.discussion-card[discussion.acting_as]
   .panel.panel-default
     = render 'posts/card_header', local_assigns.merge(post: discussion.acting_as)
     .panel-body.post-bg-discussion-collection
       .post-bg-content
-        %h5{ style: 'font-weight: bold;' }= link_to discussion.title, discussion, target: 'parti_detail_view'
+        %h5.discussion-card__title= link_to discussion.title, discussion, target: 'parti_detail_view'
 
         %p.text-muted{ style: 'font-size: 12px;'}= truncate(strip_tags(discussion.body), length: 100)
 
