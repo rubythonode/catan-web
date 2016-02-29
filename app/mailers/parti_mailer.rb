@@ -7,8 +7,8 @@ class PartiMailer < ApplicationMailer
                          port: '2525',
                          authentication: :cram_md5 } unless Rails.env.test?
     @user = user
-    @created_posts = @user.watched_posts.for_list.yesterday.limit(10)
-    @hottest_posts = @user.watched_posts.for_list.yesterday_hottest.limit(10) - @created_posts
+    @hottest_posts = @user.watched_posts.for_list.yesterday_hottest.limit(10)
+    @created_posts = @user.watched_posts.for_list.yesterday.limit(10) - @hottest_posts
 
     if @created_posts.any? or @hottest_posts.any?
       mail(to: @user.email,

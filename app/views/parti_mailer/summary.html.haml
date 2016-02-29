@@ -6,6 +6,18 @@
     %br
     유쾌한 민주주의 소식입니다.
 
+
+- if @hottest_posts.any?
+  %table(width="100%" style="text-align: left; margin-top: 50px;")
+    %tbody
+      %tr
+        %td
+          %h3 따끈한 글
+      %tr
+        %td
+          = render customize_partial_path(@hottest_posts, 'post_in_email')
+
+
 - if @created_posts.any?
   %table(width="100%" style="text-align: left;")
     %tbody
@@ -15,13 +27,3 @@
       %tr
         %td
           = render customize_partial_path(@created_posts, 'post_in_email')
-
-- if @hottest_posts.any?
-  %table(width="100%" style="text-align: left; margin-top: 50px;")
-    %tbody
-      %tr
-        %td
-          %h3 주목할 글
-      %tr
-        %td
-          = render customize_partial_path(@hottest_posts, 'post_in_email')
