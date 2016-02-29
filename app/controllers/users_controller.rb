@@ -10,4 +10,9 @@ class UsersController < ApplicationController
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
   end
+
+  def summary_test
+    SummaryJob.perform_async
+    render text: 'ok'
+  end
 end
