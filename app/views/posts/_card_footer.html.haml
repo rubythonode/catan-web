@@ -12,4 +12,4 @@
       .col-xs-4.text-center.text-nowrap
         .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-  = render 'comments/newest_comment', postable: post
+= render 'comments/newest_comment', postable: post
