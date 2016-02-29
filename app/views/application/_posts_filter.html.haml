@@ -13,7 +13,7 @@
         %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
           = link_to url_for(current_params.merge(f: :recent)) do
             최신
-            - if local_assigns[:posts] && posts.today.count > 0
+            - if local_assigns[:posts] && posts.past_day.count > 0
               %small (+#{posts.past_day.count})
         %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
           = link_to url_for(current_params.merge(f: :best)) do
