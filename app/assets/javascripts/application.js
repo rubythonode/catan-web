@@ -19,6 +19,11 @@ $(function(){
 
     if (!url) return;
 
+    $elm.bind('keydown', function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+        }
+    });
     $elm.typeahead({
       onSelect: function(item) {
         $elm.data('title', item.text );
