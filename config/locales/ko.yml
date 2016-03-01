@@ -64,7 +64,6 @@ ko:
               too_short: 비밀번호는 8자 이상 입력해주세요.
             password_confirmation:
               confirmation: 새로 입력한 비밀번호가 서로 일치하지 않습니다.
-
   labels:
     article_button: 뉴스/컬럼/링크
   enumerize:
@@ -72,3 +71,10 @@ ko:
       choice:
         agree: 찬성
         disagree: 반대
+  views:
+    pagination:
+      first: "&laquo; 처음"
+      last: "마지막 &raquo;"
+      next: "다음"
+      previous: "이전"
+      truncate: "&hellip;"

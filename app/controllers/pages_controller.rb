@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     watched_posts = Post.for_list.recent.watched_by(current_user)
     @watched_posts_for_filter = watched_posts
 
-    watched_posts = filter_posts(watched_posts)
-    @watched_postables = watched_posts.all.map &:postable
+    @watched_posts = filter_posts(watched_posts)
+    @watched_postables = @watched_posts.all.map &:postable
   end
 end

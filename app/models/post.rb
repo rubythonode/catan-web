@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
 
   actable as: :postable
   acts_as_taggable
+  paginates_per 20
 
   belongs_to :issue, counter_cache: true
   belongs_to :user

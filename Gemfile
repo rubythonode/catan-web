@@ -26,7 +26,7 @@ gem 'omniauth-google-oauth2', '~> 0.3.1'
 gem 'twitter', '~> 5.16'
 gem 'google-api-client', '~> 0.9.2'
 
-# ui
+# views
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -45,6 +45,10 @@ gem 'meta-tags', '~> 2.1.0'
 gem 'identicon', '~> 0.0.5'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'partial_path_customizer', '~> 0.1.0'
+
+# paging
+gem 'kaminari', '~> 0.16.3'
+gem 'bootstrap-kaminari-views', '~> 0.0.5'
 
 # scheduler
 gem 'sidekiq', '~> 4.1'

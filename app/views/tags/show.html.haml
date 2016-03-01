@@ -9,5 +9,7 @@
         .col-sm-8
           = render 'posts_filter', posts: @posts_for_filter
           = render @postables, show_issue: true
+          .text-center
+            = paginate @posts, theme: 'twitter-bootstrap-3'
         .col-sm-4
           = render 'issues/aside_all'

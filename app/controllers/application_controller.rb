@@ -85,6 +85,6 @@ class ApplicationController < ActionController::Base
     unless params[:f].present?
       params[:f] = ( posts.hottest_count > 0 ? 'hottest' : 'recent' )
     end
-    posts.by_filter(params[:f], current_user)
+    posts.by_filter(params[:f], current_user).page params[:page]
   end
 end
