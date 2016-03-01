@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def summary_test
-    User.limit(100) do |user|
+    User.limit(100).each do |user|
       PartiMailer.summary_by_mailtrap(user).deliver_later
     end
     render text: 'ok'
