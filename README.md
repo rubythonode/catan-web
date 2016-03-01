@@ -21,3 +21,11 @@ $ bundle exec rake db:seed_fu
 ### 메일 확인
 
 http://parti.dev/devel/emails 에서 메일 발송을 확인 할 수 있습니다.
+
+### 포스트마커 연동
+
+.powenv에 API키를 등록 합니다.
+
+```
+export POSTMARKER_API_KEY="키값"
+```

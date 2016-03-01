@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   end
 
   def summary_test
-    SummaryJob.perform_async
+    User.limit(100) do |user|
+      PartiMailer.summary_by_mailtrap(user).deliver_later
+    end
     render text: 'ok'
   end
 end

@@ -40,18 +40,23 @@ gem 'redactor-rails'
 gem 'envyable', '~> 0.2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'seed-fu', '~> 2.3', '>= 2.3.5'
-gem 'sidekiq', '~> 4.1'
-gem 'sidekiq-cron', '~> 0.4.2'
-gem 'redis', '~> 3.2', '>= 3.2.2'
-gem 'redis-namespace', '~> 1.5', '>= 1.5.2'
-gem 'premailer-rails', '~> 1.9'
 gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
 gem 'meta-tags', '~> 2.1.0'
 gem 'identicon', '~> 0.0.5'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'partial_path_customizer', '~> 0.1.0'
+
+# scheduler
+gem 'sidekiq', '~> 4.1'
+gem 'sidekiq-cron', '~> 0.4.2'
+gem 'redis', '~> 3.2', '>= 3.2.2'
+gem 'redis-namespace', '~> 1.5', '>= 1.5.2'
+
+# notification
+gem 'postmark-rails', '~> 0.12.0'
 gem 'slack-notifier', '~> 1.4'
 gem 'exception_notification', '~> 4.1', '>= 4.1.4'
+gem 'premailer-rails', '~> 1.9'
 
 group :development, :test do
   gem 'letter_opener_web'
