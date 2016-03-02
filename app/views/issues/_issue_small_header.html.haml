@@ -3,30 +3,39 @@
   %section#issue
     .container{ style: 'position: relative;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding-left: 0; padding-right: 0;' }
-        .clearfix
-          = link_to issue_home_path(issue), style: 'text-decoration: none' do
-            .pull-left(style='margin-right: 30px;')
-              = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
-            %h3{ style: 'margin-top: 5px' }
-              %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-              %spam.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
-                - if !issue.is_all?
+        - if issue.is_all?
+          .row
+            .col-sm-6
+              = link_to issue_home_path(issue), style: 'text-decoration: none' do
+                .pull-left(style='margin-right: 30px;')
+                  = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
+                %h3{ style: 'margin-top: 5px' }
+                  %span{ style: 'font-weight: bold; color:white;' }>= issue.title
+            .col-sm-6.text-right
+              .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "true", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
+        - else
+          .clearfix
+            = link_to issue_home_path(issue), style: 'text-decoration: none' do
+              .pull-left(style='margin-right: 30px;')
+                = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
+              %h3{ style: 'margin-top: 5px' }
+                %span{ style: 'font-weight: bold; color:white;' }>= issue.title
+                %span.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
                   %span
                     %i.fa.fa-user
                     %strong= issue.watches.count
                     - if issue.watches.latest.any?
                       %small= "+#{issue.watches.latest.count}"
-                %span{ style: 'margin-left: 0.3em;' }
-                  %i.fa.fa-file-text-o
-                  %strong= issue.posts.count
-                  - if !issue.is_all? && issue.posts.latest.any?
-                    %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
-            .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
-              = truncate(strip_tags(issue.body), length: 100)
+                  %span{ style: 'margin-left: 0.3em;' }
+                    %i.fa.fa-file-text-o
+                    %strong= issue.posts.count
+                    - if issue.posts.latest.any?
+                      %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
+              .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
+                = truncate(strip_tags(issue.body), length: 100)
 
-            .issue-header__buttons
-              %div{ style: 'color: #fff; margin-top: 10px;'}
-                - if !issue.is_all?
+              .issue-header__buttons
+                %div{ style: 'color: #fff; margin-top: 10px;'}
                   %span(id="#{dom_id(issue)}-watch")
                     = render 'watches/watch', issue: issue
                   - if user_signed_in?
