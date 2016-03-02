@@ -1,3 +1,4 @@
+= render 'issues/issue_small_header', issue: @article.issue
 %section.article-section
   .container
     .panel.panel-default
@@ -28,6 +29,6 @@
 .container
   .row
     .col-sm-8
-      = render 'posts/recents', issue: @article.issue
+      = render 'posts/recommends', issue: @article.issue, exclude: @article.acting_as
     .col-sm-4
       = render 'issues/aside', issue: @article.issue

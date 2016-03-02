@@ -88,6 +88,15 @@ class Post < ActiveRecord::Base
     likes.past_week.count > HOT_LIKES_COUNT
   end
 
+  def self.recommends_for_list(exclude)
+    result = hottest.for_list.limit(10)
+    if result.length < 10
+      result += recent.for_list.limit(10)
+      result = result.uniq
+    end
+    result - [exclude]
+  end
+
   def self.hottest_count
     hottest.length
   end

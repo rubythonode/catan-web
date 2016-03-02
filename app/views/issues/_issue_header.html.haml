@@ -1,9 +1,10 @@
-.issue-header-section( style="background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;" )
+- issue ||= @issue
+.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px; margin-bottom: 30px;" )
   %section#issue
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         .clearfix
-          - if @issue.is_all?
+          - if issue.is_all?
             .pull-right
               %ul.list-inline
                 %li#share-facebook-page(style='padding: 0')
@@ -11,51 +12,51 @@
           - else
             #share.pull-right
         %div.clearfix.text-center
-          = image_tag @issue.logo_url, style: 'width: 100px; height: 100px'
+          = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
           %h2
-            %span{ style: 'font-weight: bold; color:white;' }>= @issue.title
+            %span{ style: 'font-weight: bold; color:white;' }>= issue.title
 
-          - unless @issue.is_all?
+          - unless issue.is_all?
             %div.text-center
-              - if can? :update, @issue
-                = link_to '수정', [:edit, @issue], class: 'text-muted'
-              - if can? :destroy, @issue
-                = link_to '삭제', @issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+              - if can? :update, issue
+                = link_to '수정', [:edit, issue], class: 'text-muted'
+              - if can? :destroy, issue
+                = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
 
           .issue-header__body
-            = simple_format auto_link(@issue.body), style: 'color: white; margin-top: 2em;'
+            = simple_format auto_link(issue.body), style: 'color: white; margin-top: 2em;'
 
-          - if !@issue.is_all?
+          - if !issue.is_all?
             %p.lead{ style: 'color: #fff; font-size: 16px; font-weight: bold;'}
               %i.fa.fa-eye
-              - if @issue.watched_by?(current_user)
+              - if issue.watched_by?(current_user)
                 나를 포함한
-              #{@issue.watches.count}명이 지켜 봅니다
+              #{issue.watches.count}명이 지켜 봅니다
 
-              - if !@issue.is_all? and can?(:create, Watch)
-                %span(id="#{dom_id(@issue)}-watch")
-                  = render 'watches/watch', issue: @issue
+              - if !issue.is_all? and can?(:create, Watch)
+                %span(id="#{dom_id(issue)}-watch")
+                  = render 'watches/watch', issue: issue
         .text-center
           %ul.list-inline.issue-header-actions
             %li
-              = link_to new_article_path(issue_id: @issue.id), class: 'btn btn-danger btn-sm' do
+              = link_to new_article_path(issue_id: issue.id), class: 'btn btn-danger btn-sm' do
                 %i.fa.fa-link
                 %br
                 %small= t('labels.article_button')
             %li
-              = link_to new_opinion_path(issue_id: @issue.id), class: 'btn btn-danger btn-sm' do
+              = link_to new_opinion_path(issue_id: issue.id), class: 'btn btn-danger btn-sm' do
                 %i.fa.fa-bar-chart
                 %br
                 %small
                   주장하기
             %li
-              = link_to new_question_path(issue_id: @issue.id), class: 'btn btn-danger btn-sm' do
+              = link_to new_question_path(issue_id: issue.id), class: 'btn btn-danger btn-sm' do
                 %i.fa.fa-question
                 %br
                 %small
                   질문하기
             %li
-              = link_to new_discussion_path(issue_id: @issue.id), class: 'btn btn-danger btn-sm' do
+              = link_to new_discussion_path(issue_id: issue.id), class: 'btn btn-danger btn-sm' do
                 %i.fa.fa-list-ul
                 %br
                 %small

@@ -1,0 +1,26 @@
+- issue ||= @issue
+.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px;" )
+  %section#issue
+    .container{ style: 'position: reltiave;' }
+      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
+        .clearfix
+          =link_to issue_home_path(issue), style: 'text-decoration: none' do
+            .pull-left(style='margin-right: 30px;')
+              = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
+            %h3{ style: 'margin-top: 5px' }
+              %span{ style: 'font-weight: bold; color:white;' }>= issue.title
+              %spam.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
+                %span
+                  %i.fa.fa-user
+                  %strong= issue.watches.count
+                  - if issue.watches.latest.any?
+                    %small= "+#{issue.watches.latest.count}"
+                %span{ style: 'margin-left: 0.3em;' }
+                  %i.fa.fa-file-text-o
+                  %strong= issue.posts.count
+                  - if issue.posts.latest.any?
+                    %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
+            .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
+              = truncate(strip_tags(issue.body), length: 100)
+
+

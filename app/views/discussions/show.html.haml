@@ -1,3 +1,4 @@
+= render 'issues/issue_small_header', issue: @discussion.issue
 %section.discussion-section
   .container
     .panel.panel-default
@@ -44,6 +45,6 @@
 .container
   .row
     .col-sm-8
-      = render 'posts/recents', issue: @discussion.issue
+      = render 'posts/recommends', issue: @discussion.issue, exclude: @discussion.acting_as
     .col-sm-4
       = render 'issues/aside', issue: @discussion.issue
