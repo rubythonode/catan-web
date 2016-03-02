@@ -30,4 +30,6 @@
                   %span(id="#{dom_id(issue)}-watch")
                     = render 'watches/watch', issue: issue
                   - if user_signed_in?
-                    = link_to '쓰기', '#', class: 'btn btn-danger btn-sm'
+                    = link_to '쓰기', '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'}
+
+= render 'modals/new_post_buttons', issue: issue

@@ -1,0 +1,37 @@
+#new-post-buttons-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4.modal-title "#{issue.title}"의 새 글 쓰기
+      .modal-body
+        - if user_signed_in?
+          .text-center
+            %ul.list-inline.issue-header-actions
+              %li
+                = link_to new_article_path(issue_id: issue.id), class: 'btn btn-primary' do
+                  %i.fa.fa-link
+                  %br
+                  %small= t('labels.article_button')
+              %li
+                = link_to new_opinion_path(issue_id: issue.id), class: 'btn btn-primary' do
+                  %i.fa.fa-bar-chart
+                  %br
+                  %small
+                    주장하기
+              %li
+                = link_to new_question_path(issue_id: issue.id), class: 'btn btn-primary' do
+                  %i.fa.fa-question
+                  %br
+                  %small
+                    질문하기
+              %li
+                = link_to new_discussion_path(issue_id: issue.id), class: 'btn btn-primary' do
+                  %i.fa.fa-list-ul
+                  %br
+                  %small
+                    제안받기
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 닫기
