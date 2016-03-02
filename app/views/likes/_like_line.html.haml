@@ -1,24 +1,24 @@
 .like-button{id: "#{dom_id(post)}-like"}
   - if !user_signed_in?
-    = link_to '#', data: {target: "#shallWeLogin", toggle: "modal", :type => "button"} do
+    = link_to '#', data: {target: "#shallWeLogin", toggle: "modal", :type => "button"}, class: 'like-button--unsigned' do
       %div
-        %i.fa.fa-thumbs-o-up
+        %i.fa.fa-arrow-up
       %div
         = post.likes.count
         - if post.likes.past_day.any?
           %small +#{post.likes.past_day.count}
   - elsif post.liked_by? current_user
-    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true do
+    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true, class: 'like-button--liked' do
       %div
-        %i.fa.fa-thumbs-up
+        %i.fa.fa-arrow-up
       %div
         = post.likes.count
         - if post.likes.past_day.any?
           %small +#{post.likes.past_day.count}
   - else
-    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true do
+    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true, class: 'like-button--not-yet' do
       %div
-        %i.fa.fa-thumbs-o-up
+        %i.fa.fa-arrow-up
       %div
         = post.likes.count
         - if post.likes.past_day.any?

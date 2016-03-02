@@ -15,13 +15,13 @@
           %small (+#{posts.past_day.count})
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
       = link_to url_for(current_params.merge(f: :best)) do
-        베스트
-        %i.fa.fa-thumbs-o-up
+        최다
+        %i.fa.fa-arrow-up
     - if user_signed_in? and !local_assigns[:hide_like_tab]
       %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
         = link_to url_for(current_params.merge(f: :like)) do
-          내
-          %i.fa.fa-thumbs-o-up
+          나의
+          %i.fa.fa-arrow-up
           - if local_assigns[:posts]
             %small (#{posts.only_like_by(current_user).count})
 
