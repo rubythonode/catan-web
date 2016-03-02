@@ -24,7 +24,7 @@ class Issue < ActiveRecord::Base
       Post.all
     end
     def recommends
-      Issue.past_week + Issue.hottest.limit(10)
+      (Issue.past_week + Issue.hottest.limit(10)).uniq.shuffle
     end
   end.instance
 
