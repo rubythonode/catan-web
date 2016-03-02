@@ -5,13 +5,13 @@
       .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding-left: 0; padding-right: 0;' }
         - if issue.is_all?
           .row
-            .col-sm-6
+            .col-sm-8
               = link_to issues_path, style: 'text-decoration: none' do
                 .pull-left(style='margin-right: 30px;')
                   = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
                 %h3{ style: 'margin-top: 5px' }
                   %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-            .col-sm-6.text-right
+            .col-sm-4
               .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "true", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
         - else
           .clearfix

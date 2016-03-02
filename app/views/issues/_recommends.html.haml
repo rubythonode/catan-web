@@ -1,20 +1,16 @@
 .post-card.post.issue-recommends
-  .panel.panel-default
-    .panel-body
-      %h5 추천 이슈
-      .owl-wrapper
-        .owl-carousel{data: {ride: 'parti-carousel'}}
-          - issue.recommends.each do |recommend|
-            .owl-item-wrapper
-              .text-muted
-                - if recommend.past_week?
-                  %i.fa.fa-flash
-                  새로운
-                - elsif recommend.related_with? issue
-                  %i.fa.fa-code-fork
-                  관련된
-                - else
-                  %i.wi.wi-fire
-                  따끈한
-              = render 'card', issue: recommend
-
+  .owl-wrapper
+    .owl-carousel{data: {ride: 'parti-carousel'}}
+      - issue.recommends.each do |recommend|
+        .owl-item-wrapper
+          .text-muted{ style: 'margin-bottom: 5px; color: #aaa;'}
+            - if recommend.past_week?
+              %i.fa.fa-flash
+              새로운
+            - elsif recommend.related_with? issue
+              %i.fa.fa-code-fork
+              관련된
+            - else
+              %i.wi.wi-fire
+              따끈한
+          = render 'card', issue: recommend
