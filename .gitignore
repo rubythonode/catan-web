@@ -15,4 +15,5 @@
 .byebug_history
 db/*.sqlite3
 public/uploads/*
+public/sitemap.xml.gz
 dump.rdb

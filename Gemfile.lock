@@ -345,6 +345,8 @@ GEM
       jwt (~> 1.5)
       multi_json (~> 1.10)
     simple_oauth (0.3.1)
+    sitemap_generator (5.1.0)
+      builder
     slack-notifier (1.5.1)
     slop (3.6.0)
     spring (1.6.3)
@@ -442,6 +444,7 @@ DEPENDENCIES
   seed-fu (~> 2.3, >= 2.3.5)
   sidekiq (~> 4.1)
   sidekiq-cron (~> 0.4.2)
+  sitemap_generator (~> 5.1)
   slack-notifier (~> 1.4)
   spring
   sqlite3

@@ -42,11 +42,14 @@ gem 'envyable', '~> 0.2.0'
 gem 'jbuilder', '~> 2.0'
 gem 'seed-fu', '~> 2.3', '>= 2.3.5'
 gem 'nokogiri', '~> 1.6', '>= 1.6.7.2'
-gem 'meta-tags', '~> 2.1.0'
 gem 'identicon', '~> 0.0.5'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'partial_path_customizer', '~> 0.1.0'
 gem 'unobtrusive_flash', '~> 3.1'
+
+# SEO
+gem 'meta-tags', '~> 2.1.0'
+gem 'sitemap_generator', '~> 5.1'
 
 # paging
 gem 'kaminari', '~> 0.16.3'
