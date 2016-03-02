@@ -27,8 +27,4 @@
           = render 'comments/comments', postable: @opinion, style: :opinion
 
 .container
-  .row
-    .col-sm-8
-      = render 'posts/recommends', issue: @opinion.issue, exclude: @opinion.acting_as
-    .col-sm-4
-      = render 'issues/aside', issue: @opinion.issue
+  = render 'posts/recommends', issue: @opinion.issue, exclude: @opinion.acting_as

@@ -43,8 +43,4 @@
           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
         = f.submit '저장', class: 'btn btn-danger'
 .container
-  .row
-    .col-sm-8
-      = render 'posts/recommends', issue: @discussion.issue, exclude: @discussion.acting_as
-    .col-sm-4
-      = render 'issues/aside', issue: @discussion.issue
+  = render 'posts/recommends', issue: @discussion.issue, exclude: @discussion.acting_as

@@ -44,8 +44,4 @@
         = f.submit '저장', class: 'btn btn-danger'
 
 .container
-  .row
-    .col-sm-8
-      = render 'posts/recommends', issue: @question.issue, exclude: @question.acting_as
-    .col-sm-4
-      = render 'issues/aside', issue: @question.issue
+  = render 'posts/recommends', issue: @question.issue, exclude: @question.acting_as
