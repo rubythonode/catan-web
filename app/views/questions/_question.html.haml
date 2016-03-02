@@ -1,21 +1,38 @@
-.post-card.post.question-card.question-list-item[question.acting_as]
-  .panel.panel-default
-    = render 'posts/card_header', local_assigns.merge(post: question.acting_as)
-    .panel-body.post-bg-question-collection
-      .post-bg-content
-        %h5.question-card__title= link_to question.title, question, target: 'parti_detail_view'
+- post = question.acting_as
+.post-card.question-card[post]
+  .media
+    .media-left
+      = render 'likes/like_line', post: post
+    .media-body
+      .pull-right
+        .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-        %p.text-muted{ style: 'font-size: 12px;'}= auto_link(truncate(strip_tags(question.body), length: 100))
+      %h4.post-card__title
+        = link_to question.title, question, target: 'parti_detail_view'
+        %small
+          %i.fa.fa-clock-o
+          = date_f post.created_at
+          - if post.hot?
+            %i.wi.wi-fire.text-danger
+          %i.fa.fa-comment-o
+            = post.comments_count
 
-        %div.question__answer
-          - first_answer = question.answers.sort_by_vote_point.first
-          - if first_answer
-            = auto_link(truncate(strip_tags(first_answer.body), length: 100))
-          - else
-            아직 답변이 없습니다
+      %p.post-card__body
+        - first_answer = question.answers.sort_by_vote_point.first
+        - if first_answer
+          = auto_link(truncate(strip_tags(first_answer.body), length: 100))
+        - else
+          %i.text-muted
+            아직 제안이 없습니다
 
-
-        .tags(style='margin-top: 1em')
-          - question.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    = render 'posts/card_footer', local_assigns.merge(post: question.acting_as)
+      .row
+        .col-xs-6
+          .post-card__tags
+            - question.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
+        .col-xs-6.text-right
+          - if local_assigns[:show_issue]
+            = link_to issue_home_path(post.issue) do
+              %span.label.label-default.post-card__issue-label
+                = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px'
+                = post.issue.title

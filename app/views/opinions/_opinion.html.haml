@@ -1,20 +1,35 @@
-.post-card.post.opinion-card[opinion.acting_as]
-  .panel.panel-default
-    = render 'posts/card_header', local_assigns.merge(post: opinion.acting_as)
-    .panel-body.post-bg-opinion-collection
-      .post-bg-content
-        .clearfix
-          %blockquote
-            %h3.opinion__title= link_to opinion.title, opinion, target: 'parti_detail_view'
+- post = opinion.acting_as
+.post-card.opinion-card[post]
+  .media
+    .media-left
+      = render 'likes/like_line', post: post
+    .media-body
+      .pull-right
+        .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-        .text-center
-          %i.fa.fa-bar-chart
-            %strong #{opinion.votes.count}
-            명이 투표했습니다.
+      %h4.post-card__title
+        = link_to opinion.title, opinion, target: 'parti_detail_view'
+        %small
+          %i.fa.fa-clock-o
+          = date_f post.created_at
+          - if post.hot?
+            %i.wi.wi-fire.text-danger
+          %i.fa.fa-comment-o
+            = post.comments_count
 
-        = render 'opinions/vote_small', opinion: opinion
+      %p.post-card__body
+        %i.fa.fa-bar-chart
+          %strong #{opinion.votes.count}
+          명이 투표했습니다.
 
-        .tags(style='margin-top: 1em;')
-          - opinion.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap', style: 'color: #999;'
-    = render 'posts/card_footer', local_assigns.merge(post: opinion.acting_as)
+      .row
+        .col-xs-6
+          .post-card__tags
+            - opinion.tags.each do |tag|
+              = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
+        .col-xs-6.text-right
+          - if local_assigns[:show_issue]
+            = link_to issue_home_path(post.issue) do
+              %span.label.label-default.post-card__issue-label
+                = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px'
+                = post.issue.title

@@ -1,27 +1,30 @@
-.post {
-  .panel-footer {
-    img.user-image {
-      width: 15px;
-      height: 15px;
-    }
-
-  }
-  .popover-static {
-    font-size: 12px;
-    color: #aaa;
-    img.user-image {
-      width: 15px;
-      height: 15px;
-    }
-  }
-}
-
 .post-card {
+  padding: 10px;
+  border-bottom: 1px solid $gray-lighter;
+
+  &:hover {
+    background-color: #fafafa;
+  }
+
   &__issue-label {
     font-size: 13px;
     background-color: #fff;
     color: #777;
-    border: 1px solid #ddd;
+  }
+  .post-card__title {
+    font-weight: bold;
+    small {
+      font-size: 13px;
+      color: $gray-light;
+    }
+  }
+  .post-card__body {
+    font-size: 13px;
+    margin: 0 0 10px 0;
+  }
+  .post-card__tags a {
+    font-size: 12px;
+    color: #999;
   }
   .post-card__buttons {
     span {
@@ -48,43 +51,6 @@
 .post__body {
   img {
     max-width: 100%;
-  }
-}
-
-.post-bg {
-  &-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  &-article-collection {
-    position: relative;
-    overflow: hidden;
-
-    &:after {
-      position: absolute;
-      font-family: 'FontAwesome';
-      bottom: -0.8em;
-      right: -0.3em;
-      content: "\f1ea";
-      color: rgba(220, 220, 220, 0.2);
-      font-size: 8em;
-    }
-  }
-
-  &-opinion-collection {
-    position: relative;
-    overflow: hidden;
-
-    &:after {
-      position: absolute;
-      font-family: 'FontAwesome';
-      bottom: -0.4em;
-      right: -0.3em;
-      content: "\f0a1";
-      color: rgba(220, 220, 220, 0.2);
-      font-size: 8em;
-    }
   }
 }
 
