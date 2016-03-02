@@ -4,7 +4,7 @@
     .media-left
       = render 'likes/like_line', post: post
     .media-body
-      .pull-right
+      .hidden-xs.pull-right
         .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
       %h4.post-card__title
