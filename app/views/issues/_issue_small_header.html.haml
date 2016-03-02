@@ -1,18 +1,14 @@
 - issue ||= @issue
-.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px; margin-bottom: 20px;" )
+%section.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px; padding-bottom: 20px;" )
   %section#issue
     .container{ style: 'position: relative;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding-left: 0; padding-right: 0;' }
         - if issue.is_all?
-          .row
-            .col-sm-8
-              = link_to issues_path, style: 'text-decoration: none' do
-                .pull-left(style='margin-right: 30px;')
-                  = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
-                %h3{ style: 'margin-top: 5px' }
-                  %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-            .col-sm-4
-              .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "true", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
+          = link_to issues_path, style: 'text-decoration: none' do
+            .pull-left(style='margin-right: 30px;')
+              = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
+            %h3{ style: 'margin-top: 5px' }
+              %span{ style: 'font-weight: bold; color:white;' }>= issue.title
         - else
           .clearfix
             = link_to issue_home_path(issue), style: 'text-decoration: none' do
@@ -40,5 +36,19 @@
                     = render 'watches/watch', issue: issue
                   - if user_signed_in?
                     = link_to '쓰기', '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'}
+
+%section.fb-page-section{ style: 'background-color: #ddd; margin-bottom: 20px; padding: 10px 0;' }
+  .container
+    .row
+      .col-sm-6.hidden-xs
+        .text-muted{ style: 'margin: 0' }
+          %strong
+            %i.fa.fa-flag
+            중요한 이슈, 이제 놓치지 마세요
+        = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-info', style: 'margin-top: 0.5em; width: 100%' do
+          %i.fa.fa-facebook
+          페이스북으로 빠띠에 가입하기
+      .col-sm-6
+        .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
 
 = render 'modals/new_post_buttons', issue: issue
