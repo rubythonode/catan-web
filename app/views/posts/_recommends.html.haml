@@ -6,3 +6,5 @@
   %div
     - issue.posts.recommends_for_list(local_assigns[:exclude]).each do |post|
       = render post.specific
+  = link_to issue_home_path(issue, f: :recent), class: 'btn btn-primary btn-block' do
+    #{issue.title} 이슈에 모든 글 보기 (#{issue.posts.for_list.count})

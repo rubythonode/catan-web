@@ -1,6 +1,7 @@
 module PartiUrlHelper
-  def issue_home_path(issue)
-    slug_issue_path(slug: issue.slug)
+  def issue_home_path(issue, options = {})
+    options.update(slug: issue.slug)
+    slug_issue_path(options)
   end
 
   def issue_home_url(issue)

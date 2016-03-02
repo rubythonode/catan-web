@@ -7,12 +7,14 @@
       = link_to url_for(current_params.merge(f: :hottest)) do
         따끈한
         - if local_assigns[:posts]
-          %small (#{posts.hottest_count})
+          %small= posts.hottest_count
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
       = link_to url_for(current_params.merge(f: :recent)) do
         최신
-        - if local_assigns[:posts] && posts.past_day.count > 0
-          %small (+#{posts.past_day.count})
+        - if local_assigns[:posts]
+          %small= posts.for_list.count
+          - if posts.past_day.count > 0
+            (+#{posts.past_day.count})
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
       = link_to url_for(current_params.merge(f: :best)) do
         최다
@@ -23,7 +25,7 @@
           나의
           %i.fa.fa-arrow-up
           - if local_assigns[:posts]
-            %small (#{posts.only_like_by(current_user).count})
+            %small= posts.only_like_by(current_user).count
 
     %li{role: 'presentation'}
       = link_to issues_path do

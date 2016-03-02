@@ -89,9 +89,9 @@ class Post < ActiveRecord::Base
   end
 
   def self.recommends_for_list(exclude)
-    result = hottest.for_list.limit(10)
-    if result.length < 10
-      result += recent.for_list.limit(10)
+    result = hottest.for_list.limit(5)
+    if result.length < 5
+      result += recent.for_list.limit(5)
       result = result.uniq
     end
     result - [exclude]
