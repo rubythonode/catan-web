@@ -3,11 +3,17 @@
     = link_to '#', class: 'btn btn-block', data: {target: "#shallWeLogin", toggle: "modal", :type => "button"} do
       %i.fa.fa-thumbs-o-up
       = post.likes.count
+      - if post.likes.past_day.any?
+        %small (+#{post.likes.past_day.count})
   - elsif post.liked_by? current_user
     = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true, class: 'btn btn-block' do
       %i.fa.fa-thumbs-up
       = post.likes.count
+      - if post.likes.past_day.any?
+        %small (+#{post.likes.past_day.count})
   - else
     = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true, class: 'btn btn-block' do
       %i.fa.fa-thumbs-o-up
       = post.likes.count
+      - if post.likes.past_day.any?
+        %small (+#{post.likes.past_day.count})
