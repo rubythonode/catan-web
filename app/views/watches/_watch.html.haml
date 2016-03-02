@@ -1,11 +1,13 @@
-- if issue.watched_by?(current_user)
-  = link_to cancel_issue_watches_path(issue), method: :delete do
-    %small{style:'color: white;'}
-      %i.fa.fa-arrow-right
-      그만 지켜보기
+- if user_signed_in?
+  - if issue.watched_by?(current_user)
+    = link_to cancel_issue_watches_path(issue), method: :delete, class: 'btn btn-danger btn-sm' do
+      %i.fa.fa-eye
+      구독중단
+  - else
+    = link_to issue_watches_path(issue), method: :post, class: 'btn btn-danger btn-sm' do
+      %i.fa.fa-eye
+      구독하기
 - else
-  = link_to issue_watches_path(issue), method: :post do
-    %small{style:'color: white;'}
-      %i.fa.fa-arrow-right
-      나도 지켜보기
-
+  = link_to new_user_session_path, class: 'btn btn-danger btn-sm', data: { confirm: '이슈를 구독하면 새로운 소식을 메일로 매일 보내드립니다. 로그인 페이지로 이동하시겠습니까?'} do
+    %i.fa.fa-eye
+    구독하기

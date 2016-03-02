@@ -1,25 +1,20 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
 
-$fallback: Sans-serif;
-
 * {
-  font-family: $fallback;
-  .wf-active & {
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
-  }
+  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
 }
 
 body {
   padding-top: 4em;
-  background: $gray-lighter;
+  background-color: #fff;
 }
 
 a.anchor {
-    display: block;
-    position: relative;
-    top: -80px;
-    visibility: hidden;
+  display: block;
+  position: relative;
+  top: -80px;
+  visibility: hidden;
 }
 
 .brand {

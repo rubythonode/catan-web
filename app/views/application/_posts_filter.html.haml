@@ -2,7 +2,7 @@
 - current_params_include_t = params.except(:page, :f, :action, :controller)
 - current_params_include_f = params.except(:page, :t, :action, :controller)
 .post-type-filter
-  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px; font-size: 80%'}
+  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
       = link_to url_for(current_params.merge(f: :hottest)) do
         따끈한

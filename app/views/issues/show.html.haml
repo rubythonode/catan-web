@@ -1,19 +1,12 @@
-= render 'issue_header'
+= render 'issue_small_header'
+
 %section#issue-posts
   .container
-    .row
-      .col-sm-8
-        = render 'posts_filter', posts: @posts_for_filter
-        - recommend_position = @postables.count < 4 ? @postables.count - 1: 3
-        - @postables.each_with_index do |postable, index|
-          = render postable, show_issue: @issue.is_all?
-          - if index == recommend_position
-            = render 'recommends', issue: @issue
-        .text-center
-          = paginate @posts, theme: 'twitter-bootstrap-3'
-      .col-sm-4
-        - if @issue.is_all?
-          = render 'aside_all'
-
-        - else
-          = render 'aside', issue: @issue
+    = render 'posts_filter', posts: @posts_for_filter
+    - recommend_position = @postables.count < 4 ? @postables.count - 1: 3
+    - @postables.each_with_index do |postable, index|
+      = render postable, show_issue: @issue.is_all?
+      - if index == recommend_position
+        = render 'recommends', issue: @issue
+    .text-center
+      = paginate @posts, theme: 'twitter-bootstrap-3'
