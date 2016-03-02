@@ -2,25 +2,43 @@
   .container
     .row
       .col-md-offset-3.col-md-6
-        = render "devise/shared/links"
-
         .login-with-email
-          %h3.page-header 이메일로 로그인
+          %h2.page-header 로그인
+
+          = link_to omniauth_authorize_path(resource_name, :facebook), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
+            %i.fa.fa-facebook
+            페이스북으로
+          = link_to omniauth_authorize_path(resource_name, :google_oauth2), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
+            %i.fa.fa-google-plus
+            구글플러스로
+
+
+          %div{style: "margin: 30px 0; position: relative;"}
+            %div{style: "position: absolute; top: -10px; left: 48%; color: #bbb; background-color: #fff;"} 또는
+            %div{style: "border-bottom: 1px solid #eee;"}
+
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-            = f.hidden_field :provider, value: 'email'
-            .form-group
-              = f.label :email
-              = f.email_field :email, autofocus: true, class: 'form-control'
-            .form-group
-              = f.label :password
-              = f.password_field :password, autocomplete: "off", class: 'form-control'
-            - if devise_mapping.rememberable?
-              .form-group
-                = f.check_box :remember_me
-                = f.label :remember_me
-            .form-group
-              .row
-                .col-xs-8
-                  = f.submit '로그인', class: 'btn btn-danger btn-block'
-                .col-xs-4
-                  = link_to "회원가입", new_registration_path(resource_name), class: 'btn btn-primary btn-block'
+            .row
+              %div(style="display: table; height: 100%; width: 100%;")
+                .col-xs-8(style="display: table-cell; float: none; height: 100%;")
+                  = f.hidden_field :provider, value: 'email'
+                  .form-group
+                    = f.email_field :email, placeholder: '이메일을 입력하세요', autofocus: true, class: 'form-control'
+                  .form-group
+                    = f.password_field :password, placeholder: '비밀번호를 입력하세요', autocomplete: "off", class: 'form-control'
+                .col-xs-4(style="display: table-cell; float: none; height: 100%;")
+                  = f.submit '로그인', class: 'btn btn-danger btn-block', style: 'height: 100%; display: block; margin: 0'
+            .row
+              .col-xs-12
+                - if devise_mapping.rememberable?
+                  .form-group
+                    = f.check_box :remember_me
+                    = f.label :remember_me, style: 'font-weight: normal'
+
+          .clearfix(style='margin-top: 20px;')
+            %p.text-muted
+              %i.fa.fa-info-circle
+              아직 회원이 아니세요? 지금 가입하세요!
+              %span(style='margin-left: 10px;')
+                = link_to "회원가입", new_registration_path(resource_name), class: 'btn btn-primary btn-sm'
+        = render "devise/shared/links"
