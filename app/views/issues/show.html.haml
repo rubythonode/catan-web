@@ -6,9 +6,15 @@
         .col-sm-8
           = render 'posts_filter', posts: @posts_for_filter
           - if @issue.is_all?
-            = render @postables, show_issue: true
+            - @postables.each_with_index do |postable, index|
+              = render postable, show_issue: true
+              - if index == 4 or (@postables.count < 4 or index == @postables.count - 1)
+                = render 'recommends', issue: @issue
           - else
-            = render @postables
+            - @postables.each_with_index do |postable, index|
+              = render postable
+              - if index == 4 or (@postables.count < 4 or index == @postables.count - 1)
+                = render 'recommends', issue: @issue
           .text-center
             = paginate @posts, theme: 'twitter-bootstrap-3'
         .col-sm-4

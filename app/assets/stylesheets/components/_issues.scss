@@ -56,4 +56,36 @@
       margin-right: 4px;
     }
   }
+  &.panel.panel-default {
+    height: 90px;
+    overflow: hidden;
+  }
+}
+
+.issue-recommends {
+  &.post-card {
+    .owl-wrapper {
+      margin: 0 25px;
+    }
+    .owl-carousel {
+      .owl-item-wrapper {
+        margin: 0 10px;
+      }
+      .owl-controls {
+        height: 0;
+        .owl-nav {
+          .owl-prev {
+            position: absolute;
+            top: 25px;
+            left: -35px;
+          }
+          .owl-next {
+            position: relative;
+            bottom: 95px;
+            left: 217px;
+          }
+        }
+      }
+    }
+  }
 }

@@ -8,6 +8,7 @@
 //= require redactor-rails
 //= require jquery.oembed
 //= require jssocials
+//= require owl.carousel
 
 $(function(){
 
@@ -140,5 +141,35 @@ $(function(){
     var $optionSelected = $("option:selected", e.currentTarget);
     var url = $optionSelected.data('url');
     $(location).attr('href', url);
+  });
+
+  // carousel
+  $('[data-ride="parti-carousel"]').each(function(i, elm) {
+    var $elm = $(elm);
+    $elm.owlCarousel({
+      loop:true,
+      nav:true,
+      navText: [
+        '<i class="fa fa-arrow-left">',
+        '<i class="fa fa-arrow-right">',
+      ],
+      dots: false,
+      responsive:{
+          0:{
+              items:1
+          },
+          1000:{
+              items:2
+          }
+      }
+    });
+    var next = $elm.data('carousel-next');
+    var prev = $elm.data('carousel-prev');
+    $(next).click(function(){
+      $elm.trigger('owl.next');
+    });
+    $(prev).click(function(){
+      $elm.trigger('owl.prev');
+    });
   });
 });

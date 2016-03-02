@@ -1,13 +1,33 @@
 class Issue < ActiveRecord::Base
   TITLE_OF_ASK_PARTI = 'Ask Parti'
   SLUG_OF_ASK_PARTI = 'ask-parti'
-  OF_ALL = RecursiveOpenStruct.new({
-    is_all?: true, title: '모든 이슈',
-    slug: 'all',
-    posts: Post.all,
-    articles: Article.all,
-    opinions: Opinion.all,
-    watches: User.all})
+  # OF_ALL = RecursiveOpenStruct.new({
+  #   is_all?: true, title: '모든 이슈',
+  #   slug: 'all',
+  #   posts: Post.all,
+  #   articles: Article.all,
+  #   opinions: Opinion.all,
+  #   watches: User.all})
+  OF_ALL = Naught.build do |config|
+    config.singleton
+    config.impersonate Issue
+    def is_all?
+      true
+    end
+    def title
+      '모든 이슈'
+    end
+    def slug
+      'all'
+    end
+    def posts
+      Post.all
+    end
+    def recommends
+      Issue.past_week + Issue.hottest.limit(10)
+    end
+  end.instance
+
   def OF_ALL.logo_url
     ActionController::Base.helpers.asset_path('all_issue_logo.png')
   end
@@ -70,6 +90,18 @@ class Issue < ActiveRecord::Base
 
   def contributors
     (posts.map(&:user) + watches.map(&:user)).compact.uniq
+  end
+
+  def related_with? something
+    relateds.exists?(target: something)
+  end
+
+  def past_week?
+    created_at > 1.week.ago
+  end
+
+  def recommends
+    (related_issues + OF_ALL.recommends - [self]).uniq.shuffle
   end
 
   private
