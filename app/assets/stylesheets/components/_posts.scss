@@ -6,6 +6,17 @@
     background-color: #fafafa;
   }
 
+  .media-left {
+    min-width: 60px;
+    .like-button {
+      margin-top: 10px;
+      a:hover {
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+  }
+
   &__issue-label {
     font-size: 13px;
     background-color: #fff;

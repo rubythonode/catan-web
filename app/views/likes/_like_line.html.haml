@@ -1,22 +1,22 @@
-.like--line{id: "#{dom_id(post)}-like", style: 'text-align: center; margin: 10px;'}
+.like-button{id: "#{dom_id(post)}-like", style: 'text-align: center;'}
   - if !user_signed_in?
     = link_to '#', data: {target: "#shallWeLogin", toggle: "modal", :type => "button"} do
       %i.fa.fa-thumbs-o-up
       %br
       = post.likes.count
       - if post.likes.past_day.any?
-        %small (+#{post.likes.past_day.count})
+        %small +#{post.likes.past_day.count}
   - elsif post.liked_by? current_user
     = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true do
       %i.fa.fa-thumbs-o-up
       %br
       = post.likes.count
       - if post.likes.past_day.any?
-        %small (+#{post.likes.past_day.count})
+        %small +#{post.likes.past_day.count}
   - else
     = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true do
       %i.fa.fa-thumbs-o-up
       %br
       = post.likes.count
       - if post.likes.past_day.any?
-        %small (+#{post.likes.past_day.count})
+        %small +#{post.likes.past_day.count}
