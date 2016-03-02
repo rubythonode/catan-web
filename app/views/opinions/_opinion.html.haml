@@ -8,15 +8,16 @@
         .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
       %h4.post-card__title
-        = link_to opinion.title, opinion, target: 'parti_detail_view'
+        = link_to opinion, target: 'parti_detail_view' do
+          주장 : “#{opinion.title}”
 
       %p.post-card__body
         %i.fa.fa-bar-chart
           %strong #{opinion.votes.count}
-          명이 투표했습니다.
+          명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
 
       .row
-        .col-xs-6
+        .col-xs-9
           .post-card__tags
             - if post.hot?
               %i.wi.wi-fire.text-danger
@@ -28,7 +29,7 @@
                 = post.comments_count
             - opinion.tags.each do |tag|
               = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
-        .col-xs-6.text-right
+        .col-xs-3.text-right
           - if local_assigns[:show_issue]
             = link_to issue_home_path(post.issue) do
               %span.label.label-default.post-card__issue-label

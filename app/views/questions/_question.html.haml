@@ -8,7 +8,9 @@
         .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
       %h4.post-card__title
-        = link_to question.title, question, target: 'parti_detail_view'
+        = link_to question, target: 'parti_detail_view' do
+          질문 :
+          = question.title
 
       %p.post-card__body
         - first_answer = question.answers.sort_by_vote_point.first
@@ -16,10 +18,10 @@
           = auto_link(truncate(strip_tags(first_answer.body), length: 100))
         - else
           %i.text-muted
-            아직 제안이 없습니다
+            아직 답변이 없습니다
 
       .row
-        .col-xs-6
+        .col-xs-9
           .post-card__tags
             - if post.hot?
               %i.wi.wi-fire.text-danger
@@ -31,7 +33,7 @@
                 = post.comments_count
             - question.tags.each do |tag|
               = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
-        .col-xs-6.text-right
+        .col-xs-3.text-right
           - if local_assigns[:show_issue]
             = link_to issue_home_path(post.issue) do
               %span.label.label-default.post-card__issue-label
