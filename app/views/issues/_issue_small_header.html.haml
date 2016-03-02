@@ -6,7 +6,7 @@
         - if issue.is_all?
           .row
             .col-sm-6
-              = link_to issue_home_path(issue), style: 'text-decoration: none' do
+              = link_to issues_path, style: 'text-decoration: none' do
                 .pull-left(style='margin-right: 30px;')
                   = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
                 %h3{ style: 'margin-top: 5px' }

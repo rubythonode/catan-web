@@ -1,4 +1,8 @@
-.bs-component
-  %section#issues
-    = render 'issues/issue', issue: @issue_of_all
-    = render @issues
+%section#issues
+  .container
+    .page-header
+      %h2 모든 이슈
+    .row
+      - @issues.each do |issue|
+        .col-xs-6.col-sm-4
+          = render 'issues/card', issue: issue
