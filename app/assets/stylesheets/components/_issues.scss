@@ -70,6 +70,9 @@
     .owl-carousel {
       .owl-item-wrapper {
         margin: 0 10px;
+        .issue-card.panel {
+          margin-bottom: 0;
+        }
       }
       .owl-controls {
         height: 0;
