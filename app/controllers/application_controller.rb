@@ -79,9 +79,6 @@ class ApplicationController < ActionController::Base
   end
 
   def filter_posts(posts)
-    if params[:t].present?
-      posts = posts.by_postable_type(params[:t])
-    end
     unless params[:f].present?
       params[:f] = ( posts.hottest_count > 0 ? 'hottest' : 'recent' )
     end

@@ -2,50 +2,25 @@
 - current_params_include_t = params.except(:page, :f, :action, :controller)
 - current_params_include_f = params.except(:page, :t, :action, :controller)
 .post-type-filter
-  .row
-    .col-sm-8
-      %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px; font-size: 80%'}
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
-          = link_to url_for(current_params.merge(f: :hottest)) do
-            따끈한
-            - if local_assigns[:posts]
-              %small (#{posts.hottest_count})
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
-          = link_to url_for(current_params.merge(f: :recent)) do
-            최신
-            - if local_assigns[:posts] && posts.past_day.count > 0
-              %small (+#{posts.past_day.count})
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
-          = link_to url_for(current_params.merge(f: :best)) do
-            베스트
-            %i.fa.fa-thumbs-o-up
-        - if user_signed_in? and !local_assigns[:hide_like_tab]
-          %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
-            = link_to url_for(current_params.merge(f: :like)) do
-              내
-              %i.fa.fa-thumbs-o-up
-              - if local_assigns[:posts]
-                %small (#{posts.only_like_by(current_user).count})
-    .col-sm-4
-      %select.form-control{style: 'font-size: 80%', data: {toggle: 'parti-post-type-selection'}}
-        %option{selected: !params.has_key?(:t), data: {url: url_for(current_params_include_f)}}
-          모두
+  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px; font-size: 80%'}
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
+      = link_to url_for(current_params.merge(f: :hottest)) do
+        따끈한
+        - if local_assigns[:posts]
+          %small (#{posts.hottest_count})
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
+      = link_to url_for(current_params.merge(f: :recent)) do
+        최신
+        - if local_assigns[:posts] && posts.past_day.count > 0
+          %small (+#{posts.past_day.count})
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
+      = link_to url_for(current_params.merge(f: :best)) do
+        베스트
+        %i.fa.fa-thumbs-o-up
+    - if user_signed_in? and !local_assigns[:hide_like_tab]
+      %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
+        = link_to url_for(current_params.merge(f: :like)) do
+          내
+          %i.fa.fa-thumbs-o-up
           - if local_assigns[:posts]
-            %small (#{posts.count})
-        %option{selected: (params[:t] == 'article'), data: {url: url_for(current_params_include_f.merge(t: :article))}}
-          = t('labels.article_button')
-          - if local_assigns[:posts]
-            %small (#{posts.only_articles.count})
-        %option{selected: params[:t] == 'opinion', data: {url: url_for(current_params_include_f.merge(t: :opinion))}}
-          주장
-          - if local_assigns[:posts]
-            %small (#{posts.only_opinions.count})
-
-        %option{selected: params[:t] == 'question', data: {url: url_for(current_params_include_f.merge(t: :question))}}
-          질문
-          - if local_assigns[:posts]
-            %small (#{posts.only_questions.count})
-        %option{selected: params[:t] == 'discussion', data: {url: url_for(current_params_include_f.merge(t: :discussion))}}
-          제안
-          - if local_assigns[:posts]
-            %small (#{posts.only_discussions.count})
+            %small (#{posts.only_like_by(current_user).count})
