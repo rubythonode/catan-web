@@ -6,12 +6,12 @@
           = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
           %h2
             = link_to issue.title, issue_home_path(issue), { :style => 'font-weight: bold; color:white;' }
-
-          %div.text-center
-            - if can? :update, issue
-              = link_to '수정', [:edit, issue], class: 'text-muted'
-            - if can? :destroy, issue
-              = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+          - unless issue.is_all?
+            %div.text-center
+              - if can? :update, issue
+                = link_to '수정', [:edit, issue], class: 'text-muted'
+              - if can? :destroy, issue
+                = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
 
           = simple_format truncate(issue.body, length: 70), style: 'color: white; margin-top: 2em;'
 
