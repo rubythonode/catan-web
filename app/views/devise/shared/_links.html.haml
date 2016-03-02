@@ -1,18 +1,17 @@
-%hr
-
 - if controller_name != 'sessions'
-  = link_to new_session_path(resource_name), class: 'btn btn-primary', style: 'width: 100%' do
+  %hr
+  = link_to new_session_path(resource_name), class: 'btn btn-primary btn-lg', style: 'width: 100%' do
     %i.fa.fa-sign-in
     이메일로 로그인
-= link_to omniauth_authorize_path(resource_name, :facebook), class: 'btn btn-primary', style: 'margin-top: 0.5em; width: 100%' do
+= link_to omniauth_authorize_path(resource_name, :facebook), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
   %i.fa.fa-facebook
   페이스북으로 로그인
-= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: 'btn btn-primary', style: 'margin-top: 0.5em; width: 100%' do
+= link_to omniauth_authorize_path(resource_name, :google_oauth2), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
   %i.fa.fa-google-plus
   구글플러스로 로그인
 
 .text-center
-  %ul.list-inline.list-pipeline(style='margin-top: 1.5em; font-size: 80%')
+  %ul.list-inline.list-pipeline(style='margin-top: 1.5em;')
     - if devise_mapping.registerable? && controller_name != 'registrations'
       %li(style='margin-right: 0')
         = link_to "회원가입", new_registration_path(resource_name)
