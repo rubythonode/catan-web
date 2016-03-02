@@ -9,8 +9,13 @@
 //= require jquery.oembed
 //= require jssocials
 //= require owl.carousel
+//= require unobtrusive_flash
+//= require unobtrusive_flash_bootstrap
 
 $(function(){
+
+  // unobtrusive_flash
+  UnobtrusiveFlash.flashOptions['timeout'] = 2000;
 
   // typeahead
   $('[data-provider="typeahead"]').each(function(i, elm) {

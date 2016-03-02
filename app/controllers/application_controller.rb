@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_action :prepare_meta_tags, if: "request.get?"
+  after_filter :prepare_unobtrusive_flash
 
   if Rails.env.staging?
     rescue_from ActiveRecord::RecordNotFound do |exception|
