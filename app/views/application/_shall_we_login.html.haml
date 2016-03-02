@@ -1,0 +1,12 @@
+#shallWeLogin.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content(style="width: 400px;")
+      .modal-body.text-center
+        %p(style="font-size: 130%; padding: 40px 0; line-height: 30px;")
+          %strong(style="color: #7F3786")> 로그인
+          이 필요한데요.
+          %br
+          우리, 로그인 페이지로 갈까요?
+      .modal-footer(style="text-align: center;")
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 다음에요.
+        = link_to '네! 좋아요.', new_user_session_path, class: 'btn btn-primary'
