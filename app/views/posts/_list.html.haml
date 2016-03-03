@@ -1,0 +1,16 @@
+- current_params = params.except(:page, :f, :action, :controller)
+- if local_assigns[:issue]
+  - recommend_position = postables.count < 4 ? postables.count - 1: 3
+- else
+  - recommend_position = -1
+- postables.each_with_index do |postable, index|
+  - past_week_count = local_assigns[:issue].posts.for_list.past_week.count
+  - if params[:f] == 'hottest' and past_week_count > 0
+    .bg-default(style='padding: 10px; color: #777')
+      일주일 동안 새로운 글이 #{past_week_count}개 올라왔습니다.
+      = link_to url_for(current_params.merge(f: :recent)), style: 'color: #333' do
+        확인하기
+        %i.fa.fa-arrow-right
+  = render postable, show_issue: local_assigns[:show_issue]
+  - if index == recommend_position
+    = render 'recommends', issue: local_assigns[:issue]

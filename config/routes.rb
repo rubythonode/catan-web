@@ -23,7 +23,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'likes', to: "likes#by_me", as: 'likes_by_me'
 
   resources :articles
   resources :opinions

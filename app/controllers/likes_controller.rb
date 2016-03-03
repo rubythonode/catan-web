@@ -20,11 +20,4 @@ class LikesController < ApplicationController
       format.js
     end
   end
-
-  def by_me
-    @posts = Post.joins(:likes).where('likes.user': current_user)
-    @posts_for_filter = @posts
-    @posts = filter_posts(@posts)
-    @postable = @posts.map(&:postable)
-  end
 end

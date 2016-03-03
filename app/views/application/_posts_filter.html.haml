@@ -1,6 +1,4 @@
-- current_params = params.except(:page, :f, :t, :action, :controller)
-- current_params_include_t = params.except(:page, :f, :action, :controller)
-- current_params_include_f = params.except(:page, :t, :action, :controller)
+- current_params = params.except(:page, :f, :action, :controller)
 .post-type-filter
   %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
