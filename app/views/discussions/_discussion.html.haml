@@ -20,22 +20,21 @@
           %i.text-muted
             아직 제이 없습니다
 
-      .row
-        .col-xs-9
-          .post-card__tags
-            - if post.hot?
-              %i.wi.wi-fire.text-danger
-            = link_to post.specific do
-              %i.fa.fa-clock-o
-              = date_f post.created_at
-            = link_to post.specific do
-              %i.fa.fa-comment-o
-                = post.comments_count
-            - discussion.tags.each do |tag|
-              = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
-        .col-xs-3.text-right
-          - if local_assigns[:show_issue]
+      %div
+        - if local_assigns[:show_issue]
+          .pull-right
             = link_to issue_home_path(post.issue) do
               %span.label.label-default.post-card__issue-label
                 = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px'
                 = post.issue.title
+        .post-card__tags
+          - if post.hot?
+            %i.wi.wi-fire.text-danger
+          = link_to post.specific do
+            %i.fa.fa-clock-o
+            = date_f post.created_at
+          = link_to post.specific do
+            %i.fa.fa-comment-o
+              = post.comments_count
+          - discussion.tags.each do |tag|
+            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
