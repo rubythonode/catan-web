@@ -4,13 +4,12 @@
 - else
   - recommend_position = -1
 
-- past_week_count = local_assigns[:issue].posts.for_list.past_week.count
-- if params[:f] == 'hottest' and past_week_count > 0
-  .bg-default(style='padding: 10px; color: #777')
-    일주일 동안 새로운 글이 #{past_week_count}개 올라왔습니다.
+- yesterday_count = local_assigns[:issue].posts.for_list.yesterday.count
+- if params[:f] == 'hottest' and yesterday_count > 0
+  .bg-warning(style='padding: 10px; color: #777')
+    하루동안 새로운 글이 #{yesterday_count}개 올라왔습니다.
     = link_to url_for(current_params.merge(f: :recent)), style: 'color: #333' do
       확인하기
-      %i.fa.fa-arrow-right
 - postables.each_with_index do |postable, index|
   = render postable, show_issue: local_assigns[:show_issue]
   - if index == recommend_position
