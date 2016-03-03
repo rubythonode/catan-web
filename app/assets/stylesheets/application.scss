@@ -30,7 +30,6 @@
 @import 'components/users';
 
 // pages
-
 .popover-static .popover {
   position: relative;
   display: block;
@@ -38,6 +37,12 @@
   z-index: 0;
 }
 
+.jssocials-shares {
+  margin: 0;
+}
+.jssocials-share-link {
+  padding: 0.2em 0.3em;
+}
 .jssocials-share-count-box {
   height: 2em;
   .jssocials-share-count {
