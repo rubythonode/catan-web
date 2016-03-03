@@ -15,6 +15,7 @@
 
       .clearfix
         #share.pull-right
+      .clearfix
         .article__tags.post__tags
           - @article.tags.each do |tag|
             = link_to "##{tag.name}", tag_home_path(tag)

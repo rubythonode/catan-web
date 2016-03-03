@@ -38,15 +38,19 @@
 }
 
 .jssocials-shares {
-  margin: 0;
+  margin: 10px 0;
 }
 .jssocials-share-link {
   padding: 0.2em 0.3em;
 }
 .jssocials-share-count-box {
-  height: 2em;
+  height: 1.6em;
+  padding: 0 .4em;
+  &:after {
+    top: 0.45em;
+  }
   .jssocials-share-count {
-    line-height: 2.2em;
+    line-height: 1.6em;
   }
 }
 
