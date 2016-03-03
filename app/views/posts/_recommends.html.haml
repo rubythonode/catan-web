@@ -1,9 +1,9 @@
 %section{id: "#{dom_id(issue)}-recents", style: "margin-top: 20px;" }
   .page-header
-    %h3{ style: 'font-weight: normal' }
+    %h4{ style: 'font-weight: normal' }
       %i.fa.fa-flag
       %strong= link_to issue.title, issue_path(issue)
-      이슈에 이런 글도 있습니다.
+      이슈의 다른 글도 읽어보세요.
   %div
     - issue.posts.recommends_for_list(local_assigns[:exclude]).each do |post|
       = render post.specific
@@ -11,3 +11,31 @@
     = link_to issue_home_path(issue, f: :recent), class: 'btn btn-default btn-block' do
       #{issue.title} 이슈의 모든 글 보기 (#{issue.posts.for_list.count})
       %i.fa.fa-arrow-right
+
+%section{id: "#{dom_id(issue)}-commiters", style: "margin-top: 20px;" }
+  .page-header
+    %h4{ style: 'font-weight: normal' }
+      %i.fa.fa-flag
+      %strong= link_to issue.title, issue_path(issue)
+      이슈는
+      %strong= issue.commiters.count
+      명의 커미터들이 만듭니다.
+
+  %div
+    .row
+      - issue.commiters.each do |user|
+        .col-xs-6
+          = render user
+      .col-xs-6
+        .text-muted{ style: 'margin: 0' }
+          %strong
+            %i.fa.fa-flag
+            %strong= link_to issue.title, issue_path(issue)
+            이슈를 함께 만들어주세요
+        %div{ style: 'margin: 10px 0;' }
+          - if user_signed_in?
+            = render 'watches/watch', issue: issue
+          - else
+            = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-info', style: 'margin-top: 0.5em; width: 100%' do
+              %i.fa.fa-facebook
+              페이스북으로 빠띠에 가입하기

@@ -88,7 +88,12 @@ class Issue < ActiveRecord::Base
     self.slug = self.title.strip.downcase.gsub(/\s+/, "-")
   end
 
+  # deprecated
   def contributors
+    commiters
+  end
+
+  def commiters
     (posts.map(&:user) + watches.map(&:user)).compact.uniq
   end
 
