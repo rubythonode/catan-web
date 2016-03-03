@@ -91,7 +91,7 @@ $(function(){
     }
   });
 
-  $("a.embed").oembed();
+  $("a.embed").oembed(null, { 'maxWidth': '425'});
 
   // toggle
 
