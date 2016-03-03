@@ -25,9 +25,16 @@
   }
 
   &__issue-label {
-    font-size: 13px;
     background-color: #fff;
-    color: #777;
+    font-size: 13px;
+    padding: 5px 5px 8px;
+    a {
+      color: #777;
+      &:hover {
+        color: #000;
+        text-decoration: none;
+      }
+    }
   }
   .post-card__title {
     font-weight: bold;
