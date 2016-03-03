@@ -9,8 +9,7 @@
 
       %h4.post-card__title
         = link_to question, target: 'parti_detail_view' do
-          질문 :
-          = question.title
+          질문 : “#{question.title}”
 
       %p.post-card__body
         - first_answer = question.answers.sort_by_vote_point.first

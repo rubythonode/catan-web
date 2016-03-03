@@ -9,8 +9,7 @@
 
       %h4.post-card__title
         = link_to discussion, target: 'parti_detail_view' do
-          제안 :
-          = discussion.title
+          제안 : “#{discussion.title}”
 
       %p.post-card__body
         - first_proposal = discussion.proposals.sort_by_agree_count.first
