@@ -20,7 +20,7 @@
       = render 'likes/like', post: @opinion.acting_as
       = render 'likes/like_detail', post: @opinion.acting_as
 
-%section.post-comments-section
+%section.post-comments-section{ style: 'background-color: #eee; padding: 60px 0;' }
   .container
     = render 'comments/comments', postable: @opinion, style: :opinion
 

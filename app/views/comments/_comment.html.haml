@@ -7,6 +7,12 @@
       = link_to '#', class: 'text-muted', style: 'font-size: 11px;' do
         %i.fa.fa-clock-o
         = date_f comment.created_at
+      - if can? :update, comment
+        = link_to [:edit, comment] do
+          %i.fa.fa-edit>
+      - if can? :destroy, comment
+        = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
+          %i.fa.fa-trash-o>
 - else
   %li.media
     .media-left
