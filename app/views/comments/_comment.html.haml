@@ -1,14 +1,12 @@
 - if local_assigns[:style] == :inline
   .comment--inline[comment]
-    .media
-      .media-body
-        .comment__info
-          = byline comment.user
-          = link_to '#', class: 'text-muted', style: 'font-size: 11px;' do
-            %i.fa.fa-clock-o
-            = date_f comment.created_at
-        .comment__body{ style: 'margin: 10px 0;' }
-          = simple_format auto_link(comment.body), nil, wrapper_tag: 'span'
+    .comment__body{ style: 'margin: 10px 0;' }
+      = simple_format auto_link(comment.body), nil, wrapper_tag: 'span'
+      ⏤
+      = byline comment.user
+      = link_to '#', class: 'text-muted', style: 'font-size: 11px;' do
+        %i.fa.fa-clock-o
+        = date_f comment.created_at
 - else
   %li.media
     .media-left
