@@ -1,29 +1,27 @@
 = render 'issues/issue_small_header', issue: @question.issue
 %section.question-section
   .container
-    .panel.panel-default
-      = render 'posts/post_header', post: @question.acting_as
+    = render 'posts/post_header', post: @question.acting_as
 
-      .panel-body
+    %h2.question__title= @question.title
 
-        %h2.question__title= @question.title
+    .post__body.question__body.post-bg-question-item
+      .post-bg-content
+        = simple_format auto_link(@question.body)
 
-        .post__body.question__body.post-bg-question-item
-          .post-bg-content
-            = simple_format auto_link(@question.body)
+    .clearfix
+      #share.pull-right
+      .question__tags.post__tags
+        - @question.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag)
 
-        .clearfix
-          #share.pull-right
-          .question__tags.post__tags
-            - @question.tags.each do |tag|
-              = link_to "##{tag.name}", tag_home_path(tag)
+    .post__likes
+      = render 'likes/like', post: @question.acting_as
+      = render 'likes/like_detail', post: @question.acting_as
 
-        .post__likes
-          = render 'likes/like', post: @question.acting_as
-          = render 'likes/like_detail', post: @question.acting_as
-
-        %section.question-comments-section
-          = render 'comments/comments', postable: @question, style: :inline
+%section.post-comments-section
+  .container
+    = render 'comments/comments', postable: @question, style: :inline
 
 %section.answers-section
   = render @question.answers.sort_by_vote_point

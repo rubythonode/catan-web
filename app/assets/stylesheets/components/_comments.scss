@@ -12,5 +12,12 @@
   .byline {
     float: left;
   }
-  p { display: inline; }
+  p {
+    display: inline;
+  }
+}
+
+.post-comments-section {
+  background-color: $gray-lighter;
+  padding: 20px 0;
 }

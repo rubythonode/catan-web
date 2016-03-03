@@ -1,7 +1,8 @@
 %div{id: "#{dom_id(postable)}-comments" }
   %h5.text-muted
     %i.fa.fa-comments
-    댓글 (#{postable.comments.count})
+    댓글
+    %small (#{postable.comments.count})
   - if user_signed_in?
     .comment-form
       = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|

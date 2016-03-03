@@ -1,30 +1,28 @@
 = render 'issues/issue_small_header', issue: @opinion.issue
 %section.opinion-section
   .container
-    .panel.panel-default
-      = render 'posts/post_header', post: @opinion.acting_as
+    = render 'posts/post_header', post: @opinion.acting_as
 
-      .panel-body
+    %h2.opinion__title “#{@opinion.title}”
 
-        %h2.opinion__title “#{@opinion.title}”
+    .opinion__body
+      = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
 
-        .opinion__body
-          = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
+    = render 'vote', opinion: @opinion
 
-        = render 'vote', opinion: @opinion
+    .clearfix
+      #share.pull-right
+      .opinion__tags.post__tags
+        - @opinion.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag)
 
-        .clearfix
-          #share.pull-right
-          .opinion__tags.post__tags
-            - @opinion.tags.each do |tag|
-              = link_to "##{tag.name}", tag_home_path(tag)
+    .post__likes
+      = render 'likes/like', post: @opinion.acting_as
+      = render 'likes/like_detail', post: @opinion.acting_as
 
-        .post__likes
-          = render 'likes/like', post: @opinion.acting_as
-          = render 'likes/like_detail', post: @opinion.acting_as
-
-        %section.opinion-comments-section
-          = render 'comments/comments', postable: @opinion, style: :opinion
+%section.post-comments-section
+  .container
+    = render 'comments/comments', postable: @opinion, style: :opinion
 
 .container
   = render 'posts/recommends', issue: @opinion.issue, exclude: @opinion.acting_as

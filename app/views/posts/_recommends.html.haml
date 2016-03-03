@@ -1,11 +1,13 @@
 %section{id: "#{dom_id(issue)}-recents", style: "margin-top: 20px;" }
-  %h3
-    %i.fa.fa-exclamation
-    = link_to issue.title, issue_path(issue)
-    이슈에 이런 글도 있습니다.
+  .page-header
+    %h3{ style: 'font-weight: normal' }
+      %i.fa.fa-flag
+      %strong= link_to issue.title, issue_path(issue)
+      이슈에 이런 글도 있습니다.
   %div
     - issue.posts.recommends_for_list(local_assigns[:exclude]).each do |post|
       = render post.specific
-  = link_to issue_home_path(issue, f: :recent), class: 'btn btn-primary btn-block' do
-    #{issue.title} 이슈의 모든 글 보기 (#{issue.posts.for_list.count})
-    %i.fa.fa-arrow-right
+  %div{ style: 'margin: 20px 0;' }
+    = link_to issue_home_path(issue, f: :recent), class: 'btn btn-default btn-block' do
+      #{issue.title} 이슈의 모든 글 보기 (#{issue.posts.for_list.count})
+      %i.fa.fa-arrow-right
