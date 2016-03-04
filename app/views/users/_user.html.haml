@@ -10,5 +10,8 @@
           %li
             %i.fa.fa-file-text-o
             글
-            %strong= user.posts.where(issue: @issue).count
+            - if @issue
+              %strong= user.posts.where(issue: @issue).count
+            - else
+              %strong= user.posts.count
 
