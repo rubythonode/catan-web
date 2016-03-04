@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   #sso_devise
 
-  root 'issues#slug', slug: 'all'
+  root 'pages#home'
 
   resources :users
 

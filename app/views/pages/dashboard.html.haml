@@ -3,39 +3,14 @@
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         %div.clearfix.text-center
-          = image_tag 'default_issue_logo.png', style: 'width: 100px; height: 100px'
-          %h2
-            %span{ style: 'font-weight: bold; color:white;' } 대쉬보드
+          = image_tag current_user.image_url, style: 'width: 100px; height: 100px'
+          %h2{ style: 'color:white; font-weight: 200;' }
+            %strong> #{current_user.nickname}
+            의 대시보드
 
           .issue-header__body
             %p{ style: 'color: white; margin-top: 2em;' }
               지켜보는 이슈의 최근글입니다.
-
-        .text-center
-          %ul.list-inline.issue-header-actions
-            %li
-              = link_to new_article_path, class: 'btn btn-danger btn-sm' do
-                %i.fa.fa-link
-                %br
-                %small= t('labels.article_button')
-            %li
-              = link_to new_opinion_path, class: 'btn btn-danger btn-sm' do
-                %i.fa.fa-bar-chart
-                %br
-                %small
-                  주장하기
-            %li
-              = link_to new_question_path, class: 'btn btn-danger btn-sm' do
-                %i.fa.fa-question
-                %br
-                %small
-                  질문하기
-            %li
-              = link_to new_discussion_path, class: 'btn btn-danger btn-sm' do
-                %i.fa.fa-list-ul
-                %br
-                %small
-                  제안받기
 
 %section#issue-posts
   .container
