@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
   validates_integrity_of  :image
   validates_processing_of :image
 
+  # scopes
+  scope :latest, -> { after(1.day.ago) }
+
   def admin?
     if Rails.env.staging? or Rails.env.production?
       %w(jennybe0117@gmail.com rest515@parti.xyz berry@parti.xyz royjung@parti.xyz mozo@parti.xyz dalikim@parti.xyz).include? email

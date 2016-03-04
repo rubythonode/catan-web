@@ -17,6 +17,9 @@ class Issue < ActiveRecord::Base
     def title
       '모든 이슈'
     end
+    def body
+      '유쾌한 민주주의 플랫폼입니다! 중요한 이슈, 이제 놓치지 마세요.'
+    end
     def slug
       'all'
     end
@@ -25,6 +28,9 @@ class Issue < ActiveRecord::Base
     end
     def recommends
       (Issue.past_week + Issue.hottest.limit(10)).uniq.shuffle
+    end
+    def watches
+      User.all
     end
   end.instance
 
@@ -38,11 +44,7 @@ class Issue < ActiveRecord::Base
   # relations
   has_many :relateds
   has_many :related_issues, through: :relateds, source: :target
-  has_many :posts do
-    def latest
-      after(1.day.ago)
-    end
-  end
+  has_many :posts
   has_many :articles, through: :posts, source: :postable, source_type: Article
   has_many :opinions, through: :posts, source: :postable, source_type: Opinion
   has_many :questions, through: :posts, source: :postable, source_type: Question

@@ -1,55 +1,46 @@
 - issue ||= @issue
-%section.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px; padding-bottom: 20px;" )
+%section.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px;" )
   %section#issue
     .container{ style: 'position: relative;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding-left: 0; padding-right: 0;' }
-        - if issue.is_all?
-          = link_to issues_path, style: 'text-decoration: none' do
+        .clearfix
+          .pull-right(style="border: 1px solid #fff;")
+            .fb-page.pull-right{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
+          = link_to issue_home_path(issue), style: 'text-decoration: none' do
             .pull-left(style='margin-right: 30px;')
               = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
             %h3{ style: 'margin-top: 5px' }
               %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-        - else
-          .clearfix
-            = link_to issue_home_path(issue), style: 'text-decoration: none' do
-              .pull-left(style='margin-right: 30px;')
-                = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
-              %h3{ style: 'margin-top: 5px' }
-                %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-                %span.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
+              %span.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
+                %span
+                  %i.fa.fa-user
+                  %strong= issue.watches.count
+                  - if issue.watches.latest.any?
+                    %small= "+#{issue.watches.latest.count}"
+                %span{ style: 'margin-left: 0.3em;' }
+                  %i.fa.fa-file-text-o
+                  %strong= issue.posts.count
+                  - if issue.posts.latest.any?
+                    %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
                   %span
-                    %i.fa.fa-user
-                    %strong= issue.watches.count
-                    - if issue.watches.latest.any?
-                      %small= "+#{issue.watches.latest.count}"
-                  %span{ style: 'margin-left: 0.3em;' }
-                    %i.fa.fa-file-text-o
-                    %strong= issue.posts.count
-                    - if issue.posts.latest.any?
-                      %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
-              .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
-                = truncate(strip_tags(issue.body), length: 100)
+                    - if issue.is_all?
+                      %ul.list-inline
+                        %li#share-facebook-page(style='padding: 0')
+                        %li#share-twitter
+                    - else
+                      #share
+            .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
+              = truncate(strip_tags(issue.body), length: 100)
 
-              .issue-header__buttons
-                %div{ style: 'color: #fff; margin-top: 10px;'}
+            .issue-header__buttons
+              %div{ style: 'color: #fff; margin-top: 10px;'}
+                - unless issue.is_all?
                   %span(id="#{dom_id(issue)}-watch")
                     = render 'watches/watch', issue: issue
-                  - if user_signed_in?
-                    = link_to '쓰기', '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'}
+                - if user_signed_in?
+                  = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
+                    %i.fa.fa-edit
+                    쓰기
 
-- unless user_signed_in?
-  %section.fb-page-section{ style: 'background-color: #ddd; padding: 10px 0;' }
-    .container
-      .row
-        .col-sm-6.hidden-xs
-          .text-muted{ style: 'margin: 0' }
-            %strong
-              %i.fa.fa-flag
-              중요한 이슈, 이제 놓치지 마세요
-          = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-info', style: 'margin-top: 0.5em; width: 100%' do
-            %i.fa.fa-facebook
-            페이스북으로 빠띠에 가입하기
-        .col-sm-6
-          .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
 
 = render 'modals/new_post_buttons', issue: issue

@@ -28,6 +28,7 @@ class Post < ActiveRecord::Base
   validates :issue, presence: true
   validates :user, presence: true
 
+  # scopes
   default_scope -> { joins(:issue) }
   scope :recent, -> { order(created_at: :desc) }
   scope :hottest, -> {
@@ -63,6 +64,7 @@ class Post < ActiveRecord::Base
   scope :only_discussions, -> { by_postable_type(Discussion.to_s) }
   scope :only_like_by, ->(someone) { joins(:likes).where('likes.user': someone) }
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
+  scope :latest, -> { after(1.day.ago) }
 
   def liked_by? someone
     likes.exists? user: someone
