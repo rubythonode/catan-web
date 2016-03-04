@@ -1,4 +1,7 @@
 = link_to user_home_path(user), class: 'text-nowrap' do
-  = image_tag user.image_url, class: 'user-image img-circle'
+  - unless local_assigns[:hide_image]
+    = image_tag user.image_url, class: 'user-image img-circle'
+  - else
+    %i.fa.fa-at>
   - unless local_assigns[:hide_nickname]
     = user.nickname

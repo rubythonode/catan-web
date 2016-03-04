@@ -6,7 +6,7 @@
         = link_to issue_home_path(post.issue) do
           = image_tag post.issue.logo_url, style: 'width: 15px; height: 15px'
           = post.issue.title
-    = byline post.user
+    = byline post.user, {hide_image: true}
     = link_to post.specific do
       %i.fa.fa-comment-o
         = post.comments_count
