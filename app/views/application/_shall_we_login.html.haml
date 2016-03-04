@@ -1,12 +1,48 @@
 #shallWeLogin.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
-    .modal-content(style="width: 400px;")
-      .modal-body.text-center
-        %p(style="font-size: 130%; padding: 40px 0; line-height: 30px;")
+    .modal-content(style="width: 500px;")
+      .modal-header.text-center
+        %p(style="font-size: 130%; line-height: 30px;")
           %strong(style="color: #7F3786")> 로그인
-          이 필요한데요.
-          %br
-          우리, 로그인 페이지로 갈까요?
-      .modal-footer(style="text-align: center;")
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 다음에요.
-        = link_to '네! 좋아요.', new_user_session_path, class: 'btn btn-primary'
+          한 뒤에 계속합니다.
+      .modal-body.text-center
+        .login
+          = link_to omniauth_authorize_path(:user, :facebook), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
+            %i.fa.fa-facebook
+            페이스북으로 계속하기
+          = link_to omniauth_authorize_path(:user, :google_oauth2), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
+            %i.fa.fa-google-plus
+            구글플러스로 계속하기
+
+          %div{style: "margin: 30px 0; position: relative;"}
+            %div{style: "position: absolute; top: -10px; left: 48%; color: #bbb; background-color: #fff;"} 또는
+            %div{style: "border-bottom: 1px solid #eee;"}
+
+          = form_for(User.new, url: session_path(:user)) do |f|
+            .row
+              %div(style="display: table; height: 100%; width: 100%;")
+                .col-xs-8(style="display: table-cell; float: none; height: 100%;")
+                  = f.hidden_field :provider, value: 'email'
+                  .form-group
+                    = f.email_field :email, placeholder: '이메일을 입력하세요', autofocus: true, class: 'form-control'
+                  .form-group
+                    = f.password_field :password, placeholder: '비밀번호를 입력하세요', autocomplete: "off", class: 'form-control'
+                .col-xs-4(style="display: table-cell; float: none; height: 100%;")
+                  = f.submit '로그인', class: 'btn btn-danger btn-block', style: 'height: 100%; display: block; margin: 0'
+            .row
+              .col-xs-12
+                - if Devise.mappings[:user].rememberable?
+                  .form-group
+                    = f.check_box :remember_me
+                    = f.label :remember_me, style: 'font-weight: normal'
+
+          .clearfix(style='margin-top: 20px;')
+            %p.text-muted
+              %i.fa.fa-info-circle
+              아직 회원이 아니세요? 지금 가입하세요!
+              %span(style='margin-left: 10px;')
+                = link_to "회원가입", new_registration_path(:user), class: 'btn btn-primary btn-sm'
+
+      .modal-footer
+        다음에 하겠습니다.
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 닫기.

@@ -1,9 +1,0 @@
-.bs-component
-  %section#likes
-    .container
-      %h2.page-header
-        Likes
-  %section#issue-posts
-    .container
-      = render 'posts_filter', posts: @posts_for_filter, hide_like_tab: true
-      = render 'posts/list', postables: @postables, show_issue: true

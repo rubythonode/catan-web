@@ -37,18 +37,19 @@
                   - if user_signed_in?
                     = link_to '쓰기', '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'}
 
-%section.fb-page-section{ style: 'background-color: #ddd; margin-bottom: 20px; padding: 10px 0;' }
-  .container
-    .row
-      .col-sm-6.hidden-xs
-        .text-muted{ style: 'margin: 0' }
-          %strong
-            %i.fa.fa-flag
-            중요한 이슈, 이제 놓치지 마세요
-        = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-info', style: 'margin-top: 0.5em; width: 100%' do
-          %i.fa.fa-facebook
-          페이스북으로 빠띠에 가입하기
-      .col-sm-6
-        .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
+- unless user_signed_in?
+  %section.fb-page-section{ style: 'background-color: #ddd; padding: 10px 0;' }
+    .container
+      .row
+        .col-sm-6.hidden-xs
+          .text-muted{ style: 'margin: 0' }
+            %strong
+              %i.fa.fa-flag
+              중요한 이슈, 이제 놓치지 마세요
+          = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-info', style: 'margin-top: 0.5em; width: 100%' do
+            %i.fa.fa-facebook
+            페이스북으로 빠띠에 가입하기
+        .col-sm-6
+          .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "false", "data-small-header" => "true"}
 
 = render 'modals/new_post_buttons', issue: issue
