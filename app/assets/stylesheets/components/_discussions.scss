@@ -42,14 +42,10 @@
 
 .proposals-section {
   background-color: $gray-lighter;
+  padding: 50px 0;
 
   .proposal-section, .new-proposal-section {
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    &__voters {
-      display: none;
-    }
+    margin: 20px 0;
 
     .proposal-item {
       background-color: white;
@@ -61,17 +57,21 @@
       }
     }
 
-    & > div {
-      border-top: 1px solid $gray-lighter;
-      padding-top: 20px;
-      padding-bottom: 20px;
+    .proposal__btns {
+      li {
+        padding: 10px 0;
+      }
+      a {
+        text-decoration: none;
+      }
     }
   }
 
+  .proposal-section__voters {
+    display: none;
+  }
+
   .new-proposal-section {
-    margin-bottom: 0;
-    .container {
-      border-top: 1px solid #ccc;
-    }
+    padding-top: 20px;
   }
 }

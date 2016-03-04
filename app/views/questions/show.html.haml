@@ -1,9 +1,9 @@
 = render 'issues/issue_small_header', issue: @question.issue
 %section.question-section
   .container
-    = render 'posts/post_header', post: @question.acting_as
-
     %h2.question__title= @question.title
+
+    = render 'posts/post_header', post: @question.acting_as
 
     .post__body.question__body.post-bg-question-item
       .post-bg-content
@@ -26,20 +26,20 @@
 %section.answers-section
   = render @question.answers.sort_by_vote_point
 
-  - if @question.answers.empty?
-    %section.answer-section
-      .container
-        .text-center
-          %p.lead(style='margin-top: 30px')
-            %i.fa.fa-info-circle
-            등록된 답변이 없습니다.
-          %p 가장 먼저 질문자의 궁금증을 해결해 주세요.
   %section.new-answer-section
     .container
+      .text-center
+        %p.lead
+          - if @question.answers.empty?
+            %i.fa.fa-info-circle
+            등록된 답변이 없습니다.
+            %p 가장 먼저 질문자의 궁금증을 해결해 주세요.
+          - else
+            %i.fa.fa-info-circle
+            다른 답을 알고 계신가요?
       = form_for [@question, Answer.new] do |f|
         .form-group
           = f.text_area :body, placeholder: '내가 생각하는 답은..', class: 'form-control redactor'
         = f.submit '저장', class: 'btn btn-danger'
 
-.container
-  = render 'posts/recommends', issue: @question.issue, exclude: @question.acting_as
+= render 'posts/recommends', issue: @question.issue, exclude: @question.acting_as

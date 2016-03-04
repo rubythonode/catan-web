@@ -42,9 +42,10 @@
 
 .answers-section {
   background-color: $gray-lighter;
+  padding: 50px 0;
+
   .answer-section, .new-answer-section {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 
     .answer-item {
       background-color: white;
@@ -55,18 +56,9 @@
         font-size: 16px;
       }
     }
-
-    & > div {
-      border-top: 1px solid $gray-lighter;
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
   }
 
   .new-answer-section {
-    margin-bottom: 0;
-    .container {
-      border-top: 1px solid #ccc;
-    }
+    padding-top: 20px;
   }
 }

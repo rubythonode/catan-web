@@ -1,32 +1,30 @@
 = render 'issues/issue_small_header', issue: @article.issue
 
-%section.article-section
+%section.post-section.article-section
   .container
+    %h2.article__title= @article.title
+
     = render 'posts/post_header', post: @article.acting_as
 
-    %div
-      %h2.article__title= @article.title
+    .post__body.article__body
+      = simple_format auto_link(@article.body)
 
-      .post__body.article__body
-        = simple_format auto_link(@article.body)
+    - if @article.link.present?
+      = link_to @article.link, @article.link, target: '_blank', class: 'embed'
 
-      - if @article.link.present?
-        = link_to @article.link, @article.link, target: '_blank', class: 'embed'
+    .clearfix
+      #share.pull-right
+    .clearfix
+      .article__tags.post__tags
+        - @article.tags.each do |tag|
+          = link_to "##{tag.name}", tag_home_path(tag)
 
-      .clearfix
-        #share.pull-right
-      .clearfix
-        .article__tags.post__tags
-          - @article.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag)
-
-      .post__likes
-        = render 'likes/like', post: @article.acting_as
-        = render 'likes/like_detail', post: @article.acting_as
+    .post__likes
+      = render 'likes/like', post: @article.acting_as
+      = render 'likes/like_detail', post: @article.acting_as
 
 %section.post-comments-section
   .container
     = render 'comments/comments', postable: @article, style: :inline
 
-.container
-  = render 'posts/recommends', issue: @article.issue, exclude: @article.acting_as
+= render 'posts/recommends', issue: @article.issue, exclude: @article.acting_as

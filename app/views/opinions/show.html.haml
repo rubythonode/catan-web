@@ -1,9 +1,10 @@
 = render 'issues/issue_small_header', issue: @opinion.issue
-%section.opinion-section
-  .container
-    = render 'posts/post_header', post: @opinion.acting_as
 
+%section.post-section.opinion-section
+  .container
     %h2.opinion__title “#{@opinion.title}”
+
+    = render 'posts/post_header', post: @opinion.acting_as
 
     .opinion__body
       = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
@@ -20,9 +21,8 @@
       = render 'likes/like', post: @opinion.acting_as
       = render 'likes/like_detail', post: @opinion.acting_as
 
-%section.post-comments-section{ style: 'background-color: #eee; padding: 60px 0;' }
+%section.post-comments-section
   .container
     = render 'comments/comments', postable: @opinion, style: :opinion
 
-.container
-  = render 'posts/recommends', issue: @opinion.issue, exclude: @opinion.acting_as
+= render 'posts/recommends', issue: @opinion.issue, exclude: @opinion.acting_as
