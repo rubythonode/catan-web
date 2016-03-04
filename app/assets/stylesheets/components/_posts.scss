@@ -40,11 +40,17 @@
     margin: 0 0 10px 0;
   }
   .post-card__info {
-    color: #999;
-  }
-  .post-card__info a {
-    color: #999;
-    margin-right: 3px;
+    font-size: 13px;
+    color: #bbb;
+    line-height: 14px;
+    img {
+      vertical-align: top;
+    }
+    a {
+      color: #bbb;
+      margin-right: 3px;
+      text-decoration: none;
+    }
   }
   .post-card__buttons {
     span {

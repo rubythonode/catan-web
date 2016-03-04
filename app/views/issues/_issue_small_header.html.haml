@@ -14,12 +14,19 @@
                   %i.fa.fa-user
                   %strong= issue.watches.count
                   - if issue.watches.latest.any?
-                    %small= "+#{issue.watches.latest.count}"
+                    %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
                 %span{ style: 'margin-left: 0.3em;' }
                   %i.fa.fa-file-text-o
                   %strong= issue.posts.count
                   - if issue.posts.latest.any?
-                    %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
+                    %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
+                - unless issue.is_all?
+                  %small{ style: 'margin-left: 5px;' }
+                    - if can? :update, issue
+                      = link_to '수정', [:edit, issue], class: 'text-muted'
+                    - if can? :destroy, issue
+                      = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+
             %div
               %span
                 - if issue.is_all?
