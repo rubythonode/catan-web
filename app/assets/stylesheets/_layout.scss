@@ -8,4 +8,15 @@ footer#site-footer {
   background-color: $navbar-inverse-bg;
   padding: 40px 0;
   margin-top: 40px;
+
+  .site-footer__links {
+    line-height: 1.5;
+    text-align: right;
+    ul {
+      padding: 20px 0;
+    }
+    a {
+      color: white;
+    }
+  }
 }

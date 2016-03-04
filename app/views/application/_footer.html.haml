@@ -1,5 +1,13 @@
 %footer#site-footer
   .container
     .row
-      .col-xs-12
+      .col-xs-6
         .fb-page{"data-adapt-container-width" => "true", "data-hide-cover" => "true", "data-href" => "https://www.facebook.com/parti-xyz/", "data-show-facepile" => "true", "data-small-header" => "true"}
+      .col-xs-6
+        .site-footer__links
+          %img{ alt: 'parti', src: asset_path('parti_logo_white.png'), style: ('max-height: 24px;')}
+          %ul.list-inline
+            %li= link_to '소개', '#'
+            %li= link_to '이용약관', '#'
+            %li= link_to '개인정보취급정책', '#'
+            %li= link_to '공지사항', '#'
