@@ -11,7 +11,6 @@
       하루동안 새로운 글이 #{past_day_count}개 올라왔습니다.
       = link_to url_for(current_params.merge(f: :recent)), style: 'color: #333' do
         확인하기
+
 - postables.each_with_index do |postable, index|
   = render postable, show_issue: local_assigns[:show_issue]
-  - if index == recommend_position
-    = render 'recommends', issue: local_assigns[:issue]
