@@ -20,28 +20,31 @@
                   %strong= issue.posts.count
                   - if issue.posts.latest.any?
                     %small{ style: 'color: white' }= "+#{issue.posts.latest.count}"
-                  %span
-                    - if issue.is_all?
-                      %ul.list-inline
-                        %li#share-facebook-page(style='padding: 0')
-                        %li#share-twitter
-                    - else
-                      #share
-            .issue-header__body{ style: 'color: white; margin-top: 1em; font-size: 100%;' }
-              = truncate(strip_tags(issue.body), length: 100)
+            %div
+              %span
+                - if issue.is_all?
+                  %ul.list-inline
+                    %li#share-facebook-page(style='padding: 0')
+                    %li#share-twitter
+                - else
+                  #share
+            %div
+              - if user_signed_in?
+                = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
+                  %i.fa.fa-edit
+                  쓰기
 
-            .issue-header__buttons
-              %div{ style: 'color: #fff; margin-top: 10px;'}
-                - unless issue.is_all?
-                  %span(id="#{dom_id(issue)}-watch")
-                    = render 'watches/watch', issue: issue
-                - if user_signed_in?
-                  = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
-                    %i.fa.fa-edit
-                    쓰기
 %section.fb-page-like-section{ style: 'background-color: #fafafa; padding: 10px 0' }
   .container
-    .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light"}
-
+    .row
+      .col-sm-6.hidden-xs
+        .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light"}
+      - unless issue.is_all?
+        .col-sm-6.text-right.hidden-xs
+          %span(id="#{dom_id(issue)}-watch")
+            = render 'watches/watch', issue: issue
+        .col-sm-6.text-center.visible-xs-block
+          %span(id="#{dom_id(issue)}-watch")
+            = render 'watches/watch', issue: issue
 
 = render 'modals/new_post_buttons', issue: issue
