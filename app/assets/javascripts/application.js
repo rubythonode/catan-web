@@ -178,4 +178,16 @@ $(function(){
       $elm.trigger('owl.prev');
     });
   });
+
+  // dropdown preselect
+  $('[data-ride="preselect"]').each(function(i, elm) {
+    var $elm = $(elm);
+    $elm.find(".dropdown-menu li a").click(function(){
+      var selText = $(this).html() + '<span class="caret pull-right" style="margin-top: 7px;"></span>';
+      $(this).parents('.dropdown').find('.dropdown-toggle').html(selText);
+    });
+    $elm.find('.dropdown-menu li.active a').trigger('click');
+  });
 });
+
+
