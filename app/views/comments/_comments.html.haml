@@ -5,13 +5,20 @@
     = render 'comments/opinion_comments', local_assigns
   - else
     %section{id: "#{dom_id(postable)}-comments" }
-      %h4 의견
+      %h4.text-muted
+        %i.fa.fa-comments-o
+        댓글
+        %small (#{postable.comments.count})
       %ul.media-list
         - if user_signed_in?
           %li.media
-            = form_for [postable.acting_as, Comment.new] do |f|
-              .form-group
-                = f.text_area :body, class: 'form-control'
-              = f.submit '저장', class: 'btn btn-primary'
+            - if user_signed_in?
+              .media-left
+                %a(href="#")
+                  = image_tag current_user.image_url, class: 'media-object img-circle', style: 'width:50px;height:50px;'
+            .media-body
+              = form_for [postable.acting_as, Comment.new] do |f|
+                .form-group
+                  = f.text_area :body, class: 'form-control'
+                = f.submit '저장', class: 'btn btn-primary'
         = render postable.comments.recent
-

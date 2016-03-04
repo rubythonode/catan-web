@@ -7,9 +7,8 @@
     #comment-form
       = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|
         .form-group
-          .row
-            .col-xs-10
-              = f.text_area :body, class: 'form-control'
-            .col-xs-2
-              = f.submit '등록', class: 'btn btn-default btn-block'
+          .input-group
+            = f.text_field :body, class: 'form-control'
+            .input-group-btn
+              = f.submit '등록', class: 'btn btn-default'
   = render postable.comments.recent, style: :inline

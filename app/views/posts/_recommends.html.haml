@@ -11,7 +11,7 @@
         #{issue.title} 이슈의 모든 글 보기 (#{issue.posts.for_list.count})
         %i.fa.fa-arrow-right
 
-%section{id: "#{dom_id(issue)}-commiters", style: "padding: 50px;" }
+%section{id: "#{dom_id(issue)}-commiters", style: "padding: 50px 0;" }
   .container
     %h4{ style: 'font-weight: 200' }
       %strong= link_to issue.title, issue_path(issue)

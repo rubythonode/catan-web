@@ -17,16 +17,17 @@
   %li.media
     .media-left
       %a(href="#")
-        = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:64px;height:64px;'
+        = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:50px;height:50px;'
     .media-body
-      %strong= comment.user.nickname
-      %i.fa.fa-clock-o
-      = date_f comment.created_at
-      - if can? :update, comment
-        = link_to [:edit, comment] do
-          %i.fa.fa-edit>
-      - if can? :destroy, comment
-        = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
-          %i.fa.fa-trash-o>
+      .text-muted
+        %strong= comment.user.nickname
+        %i.fa.fa-clock-o
+        = date_f comment.created_at
+        - if can? :update, comment
+          = link_to [:edit, comment] do
+            %i.fa.fa-edit>
+        - if can? :destroy, comment
+          = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
+            %i.fa.fa-trash-o>
       %p
         = simple_format auto_link(comment.body)

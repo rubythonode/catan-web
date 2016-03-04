@@ -25,6 +25,6 @@
 
 %section.post-comments-section
   .container
-    = render 'comments/comments', postable: @article, style: :inline
+    = render 'comments/comments', postable: @article
 
 = render 'posts/recommends', issue: @article.issue, exclude: @article.acting_as
