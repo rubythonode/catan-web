@@ -25,16 +25,8 @@
   }
 
   &__issue-label {
-    background-color: #fff;
     font-size: 13px;
-    padding: 5px 5px 8px;
-    a {
-      color: #777;
-      &:hover {
-        color: #000;
-        text-decoration: none;
-      }
-    }
+    margin-right: 5px;
   }
   .post-card__title {
     font-weight: bold;
@@ -47,12 +39,10 @@
     font-size: 13px;
     margin: 0 0 10px 0;
   }
-  .post-card__tags {
-    font-size: 12px;
+  .post-card__info {
     color: #999;
   }
-  .post-card__tags a {
-    font-size: 12px;
+  .post-card__info a {
     color: #999;
     margin-right: 3px;
   }

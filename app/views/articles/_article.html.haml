@@ -8,26 +8,12 @@
         .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
       %h4.post-card__title
+        - if post.hot?
+          %i.wi.wi-fire.text-danger
         = link_to article.title, article, target: 'parti_detail_view'
+
         %small
           = link_to article.link, target: '_blank', class: 'text-muted' do
             %i.fa.fa-link
 
-      %div
-        - if local_assigns[:show_issue]
-          .pull-right
-            %span.post-card__issue-label
-              = link_to issue_home_path(post.issue) do
-                = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px'
-                = post.issue.title
-        .post-card__tags
-          - if post.hot?
-            %i.wi.wi-fire.text-danger
-          = link_to post.specific do
-            %i.fa.fa-clock-o
-            = date_f post.created_at
-          = link_to post.specific do
-            %i.fa.fa-comment-o
-              = post.comments_count
-          - article.tags.each do |tag|
-            = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
+      = render 'posts/card_footer', obj: article, show_issue: local_assigns[:show_issue]

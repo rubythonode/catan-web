@@ -1,0 +1,17 @@
+- post = obj.acting_as
+.clearfix
+  .post-card__info
+    - if local_assigns[:show_issue]
+      %span.post-card__issue-label
+        = link_to issue_home_path(post.issue) do
+          = image_tag post.issue.logo_url, style: 'width: 15px; height: 15px'
+          = post.issue.title
+    = byline post.user
+    = link_to post.specific do
+      %i.fa.fa-comment-o
+        = post.comments_count
+    = link_to post.specific do
+      %i.fa.fa-clock-o
+      = date_f post.created_at
+    - obj.tags.each do |tag|
+      = link_to "##{tag.name}", tag_home_path(tag), class: 'text-nowrap'
