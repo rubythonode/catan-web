@@ -76,6 +76,18 @@
 
 .post-section {
   padding-top: 50px;
+
+  .post__title {
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  .post-section__header {
+    text-align: center;
+  }
+
 }
 
 .post__body {

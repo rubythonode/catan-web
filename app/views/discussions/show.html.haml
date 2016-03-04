@@ -1,7 +1,7 @@
 = render 'issues/issue_small_header', issue: @discussion.issue
-%section.discussion-section
+%section.post-section.discussion-section
   .container
-    %h2.discussion__title= @discussion.title
+    %h2.post__title.discussion__title= @discussion.title
 
     = render 'posts/post_header', post: @discussion.acting_as
 
