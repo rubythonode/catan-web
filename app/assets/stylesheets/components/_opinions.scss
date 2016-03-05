@@ -59,3 +59,37 @@
   }
 }
 
+.opinion-socail-card-section {
+  $socail-card-width: 1200px;
+  $socail-card-height: 630px;
+  background-size: cover;
+  background-image: image-url('share_opinion.png');
+  .container {
+    max-width: $socail-card-width !important;
+    width: $socail-card-width;
+    height: $socail-card-height;
+    padding: 0;
+    margin: 0;
+    display: table;
+    text-align:
+    center; position: relative;
+    color: white;
+    font-family:Spoqa Han Sans;
+
+    .title {
+      display: table-cell;
+      vertical-align: middle;
+      padding-top: 20px;
+      font-size: 600%;
+      color: white;
+      font-family:Spoqa Han Sans;
+    }
+    .byline {
+      font-size: 300%;
+      position: absolute;
+      bottom: 150px;
+      left: 100px;
+    }
+  }
+}
+
