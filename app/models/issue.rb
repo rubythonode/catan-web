@@ -1,13 +1,6 @@
 class Issue < ActiveRecord::Base
   TITLE_OF_ASK_PARTI = 'Ask Parti'
   SLUG_OF_ASK_PARTI = 'ask-parti'
-  # OF_ALL = RecursiveOpenStruct.new({
-  #   is_all?: true, title: '모든 이슈',
-  #   slug: 'all',
-  #   posts: Post.all,
-  #   articles: Article.all,
-  #   opinions: Opinion.all,
-  #   watches: User.all})
   OF_ALL = Naught.build do |config|
     config.singleton
     config.impersonate Issue

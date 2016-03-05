@@ -1,4 +1,13 @@
-#{issue.watches.count}명이 구독중입니다 &middot;
+= link_to users_issue_path(issue) do
+  %i.fa.fa-user
+  - if user_signed_in? && issue.watched_by?(current_user)
+    - if issue.watches.count > 1
+      나와 #{issue.watches.count - 1 }명이
+    - else
+      나만
+  - else
+    #{issue.watches.count}명이
+구독 중입니다 &middot;
 %strong
   - if user_signed_in?
     - if issue.watched_by?(current_user)
@@ -8,4 +17,4 @@
       = link_to issue_watches_path(issue), method: :post do
         구독하기
   - else
-    = link_to '구독하기', '#', data: {target: "#shallWeLogin", toggle: "modal", type: "button", message: "이슈를 구독하면 새로운 소식을 메일로 <br> 매일 보내드립니다."}
+    = link_to '구독하기', '#', data: {target: "#shall-we-login", toggle: "modal", type: "button", message: "이슈를 구독하면 새로운 소식을 메일로 <br> 매일 보내드립니다."}

@@ -1,17 +1,25 @@
-.panel.panel-default
+- issue ||= @issue
+.panel.panel-default(style='height: 85px;')
   .panel-body
     .clearfix
       .pull-left(style='width: 60px; margin-right: 10px')
         = link_to user_home_path(user), class: 'user__image img-circle', style: "background-image: url(#{user.image_url});" do
           = user.nickname
       %div
-        %strong= link_to user.nickname, user_home_path(user)
-        %ul.user__count.list-inline.text-muted
+        %strong
+          = link_to user.nickname, user_home_path(user)
+
+        %ul.user__count.list-unstyled.text-muted
           %li
             %i.fa.fa-file-text-o
             글
-            - if @issue
-              %strong= user.posts.where(issue: @issue).count
+            - if local_assigns[:issue]
+              %strong= user.posts.where(issue: issue).count
+              \/
+              = user.posts.count
             - else
               %strong= user.posts.count
-
+          - if local_assigns[:issue] and issue.watched_by?(user)
+            %li
+              %i.fa.fa-eye
+              구독 중

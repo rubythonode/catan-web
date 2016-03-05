@@ -1,6 +1,6 @@
 .like-button{id: "#{dom_id(post)}-like"}
   - if !user_signed_in?
-    = link_to '#', data: {target: "#shallWeLogin", toggle: "modal", :type => "button"}, class: 'like-button--unsigned' do
+    = link_to '#', data: {target: "#shall-we-login", toggle: "modal", :type => "button"}, class: 'like-button--unsigned' do
       %div
         %i.fa.fa-arrow-up
       %div

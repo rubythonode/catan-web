@@ -7,52 +7,49 @@
           = link_to issue_home_path(issue), style: 'text-decoration: none' do
             .pull-left(style='margin-right: 30px;')
               = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
-            %h3{ style: 'margin-top: 5px' }
+          %h3
+            = link_to issue_home_path(issue), style: 'text-decoration: none' do
               %span{ style: 'font-weight: bold; color:white;' }>= issue.title
-              %span.issue__count{ style: 'color: white; margin-left: 1em; font-size: 60%;' }
-                %span
-                  %i.fa.fa-user
-                  %strong= issue.watches.count
-                  - if issue.watches.latest.any?
-                    %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
-                %span{ style: 'margin-left: 0.3em;' }
-                  %i.fa.fa-file-text-o
-                  %strong= issue.posts.count
-                  - if issue.posts.latest.any?
-                    %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
-                - unless issue.is_all?
-                  %small{ style: 'margin-left: 5px;' }
-                    - if can? :update, issue
-                      = link_to '수정', [:edit, issue], class: 'text-muted'
-                    - if can? :destroy, issue
-                      = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+            %span.issue__count{ style: 'color: white; font-size: 60%; margin: 0 5px' }
+              %i.fa.fa-file-text-o
+              %strong= issue.posts.count
+              - if issue.posts.latest.any?
+                %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
+            %span
+              - unless issue.is_all?
+                %small{ style: 'vertical-align: middle' }
+                  - if can? :update, issue
+                    = link_to '수정', [:edit, issue], class: 'btn btn-default btn-sm'
+                  - if can? :destroy, issue
+                    = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default btn-sm'
+          - if local_assigns[:show_social_share]
+            - if issue.is_all?
+              %ul.list-inline
+                %li#share-facebook-page(style='padding: 0')
+                %li#share-twitter
+            - else
+              #share
 
-            - if local_assigns[:show_social_share]
-              %div
-                %span
-                  - if issue.is_all?
-                    %ul.list-inline
-                      %li#share-facebook-page(style='padding: 0')
-                      %li#share-twitter
-                  - else
-                    #share
-            - if local_assigns[:show_write_button]
-              %div
-                - if user_signed_in?
-                  = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
-                    %i.fa.fa-edit
-                    쓰기
 
-%section.fb-page-like-section{ style: 'background-color: #fafafa; padding: 10px 0' }
+%section.post-belt-section{ style: 'background-color: #fafafa; padding: 10px 0' }
   .container
     .row
       .col-sm-6.hidden-xs
         .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light"}
-      - unless issue.is_all?
-        .col-sm-6.text-right.hidden-xs
+      .col-sm-6.text-right.hidden-xs
+        %strong{ style: 'margin-right: 15px;' }
+          = link_to '#', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
+            %i.fa.fa-edit
+            글쓰기
+        - unless issue.is_all?
           %span(id="#{dom_id(issue)}-watch")
             = render 'watches/watch', issue: issue
-        .col-sm-6.text-center.visible-xs-block
+      .col-sm-6.text-center.visible-xs-block
+        %strong{ style: 'margin-right: 15px;' }
+          = link_to '#', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
+            %i.fa.fa-edit
+            글쓰기
+        - unless issue.is_all?
           %span(id="#{dom_id(issue)}-watch")
             = render 'watches/watch', issue: issue
 
