@@ -2,8 +2,9 @@
   .modal-dialog{:role => "document"}
     .modal-content(style="max-width: 500px; width: 100%")
       .modal-body.text-center
-        %p(style="font-size: 130%; line-height: 30px; padding: 30px;")
-          로그인한 뒤에 계속합니다.
+        %div(style="font-size: 130%; line-height: 30px; padding: 30px;")
+          %p.modal-message
+          %P 로그인한 뒤에 계속합니다.
         .login
           = link_to omniauth_authorize_path(:user, :facebook), class: 'btn btn-primary btn-lg btn-block', style: 'margin-top: 0.5em;' do
             %i.fa.fa-facebook

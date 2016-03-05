@@ -140,14 +140,15 @@ $(function(){
     });
   });
 
-  // post type filter
+  // modal
+  $('.modal').on('show.bs.modal', function (e) {
+    var button = $(e.relatedTarget);
+    var message = button.data('message')
 
-  $('[data-toggle="parti-post-type-selection"]').on('change', function(e) {
-    e.preventDefault();
-    $self = $(e.currentTarget);
-    var $optionSelected = $("option:selected", e.currentTarget);
-    var url = $optionSelected.data('url');
-    $(location).attr('href', url);
+    var modal = $(this)
+    if(message) {
+      modal.find('.modal-message').html(message);
+    }
   });
 
   // carousel
