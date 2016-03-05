@@ -28,7 +28,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || super
+    after_sign_in_path = super
+    after_sign_in_path = dashboard_path if after_sign_in_path == slug_issue_path(:all)
+    after_sign_in_path
   end
 
   private

@@ -1,4 +1,6 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  prepend_before_filter :require_no_authentication
+
   def facebook
     if request.env["omniauth.auth"].info.email.blank?
       redirect_to "/users/auth/facebook?auth_type=rerequest&scope=email" and return

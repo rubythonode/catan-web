@@ -16,7 +16,7 @@
 $(function(){
 
   // unobtrusive_flash
-  UnobtrusiveFlash.flashOptions['timeout'] = 2000;
+  UnobtrusiveFlash.flashOptions['timeout'] = 5000;
 
   // typeahead
   $('[data-provider="typeahead"]').each(function(i, elm) {

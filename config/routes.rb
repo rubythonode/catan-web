@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  resources :users
+  resources :users, except: :show
 
   resources :issues do
     member do
