@@ -24,3 +24,10 @@
           %i.fa.fa-arrow-up
           - if local_assigns[:posts]
             %small= posts.only_like_by(current_user).count
+    - if @issue
+      %li{role: 'presentation'}
+        = link_to '#', class: 'text-muted' do
+          이슈 소개
+      %li{role: 'presentation'}
+        = link_to '#', class: 'text-muted' do
+          이슈 토크
