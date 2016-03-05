@@ -11,7 +11,7 @@
             %p{ style: 'color: white;' }
               내가 구독하는 이슈의 글입니다.
 
-%section#issue-posts{ style: 'padding: 40px 0;' }
+%section#issue-posts
   .container
     = render 'posts_filter', posts: @watched_posts_for_filter
     = render 'posts/list', postables: @watched_postables, show_issue: true

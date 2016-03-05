@@ -1,5 +1,5 @@
 - current_params = params.except(:page, :f, :action, :controller)
-.post-type-filter.hidden-xs
+.post-type-filter
   %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
       = link_to url_for(current_params.merge(f: :hottest)) do
@@ -24,37 +24,3 @@
           %i.fa.fa-arrow-up
           - if local_assigns[:posts]
             %small= posts.only_like_by(current_user).count
-
-.visible-xs
-  .row
-    .col-xs-6
-      .dropdown{data: {ride: 'preselect'}}
-        %button#post-filter-btn.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button", :style => 'width: 200px;'}
-
-        %ul.dropdown-menu{"aria-labelledby" => "post-filter-btn"}
-          %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
-            = link_to url_for(current_params.merge(f: :hottest)) do
-              따끈한
-              %i.wi.wi-fire
-              - if local_assigns[:posts]
-                %small= posts.hottest_count
-
-          %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
-            = link_to url_for(current_params.merge(f: :recent)) do
-              최신
-              %i.fa.fa-flash
-              - if local_assigns[:posts]
-                %small= posts.for_list.count
-                - if posts.past_day.count > 0
-                  (+#{posts.past_day.count})
-          %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
-            = link_to url_for(current_params.merge(f: :best)) do
-              최다
-              %i.fa.fa-arrow-up
-          - if user_signed_in? and !local_assigns[:hide_like_tab]
-            %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
-              = link_to url_for(current_params.merge(f: :like)) do
-                나의
-                %i.fa.fa-arrow-up
-                - if local_assigns[:posts]
-                  %small= posts.only_like_by(current_user).count

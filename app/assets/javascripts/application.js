@@ -11,6 +11,7 @@
 //= require owl.carousel
 //= require unobtrusive_flash
 //= require unobtrusive_flash_bootstrap
+//= require bootstrap-tabdrop
 
 $(function(){
 
@@ -188,6 +189,9 @@ $(function(){
     });
     $elm.find('.dropdown-menu li.active a').trigger('click');
   });
+
+  // tabdrop
+  $('.nav-pills, .nav-tabs').tabdrop();
 });
 
 
