@@ -52,6 +52,24 @@ class IssuesController < ApplicationController
     render template: 'issues/show'
   end
 
+  def slug_campaign
+    if params[:slug] == 'all'
+      @issue = Issue::OF_ALL
+      @posts = Post.for_list
+    else
+      @issue = Issue.find_by slug: params[:slug]
+      if @issue.blank?
+        @issue_by_title = Issue.find_by(title: params[:slug].titleize)
+        if @issue_by_title.present?
+          redirect_to @issue_by_title and return
+        else
+          render_404 and return
+        end
+      end
+      @posts = @issue.posts.for_list
+    end
+  end
+
   def create
     if !%w(all).include?(@issue.slug) and @issue.save
       redirect_to @issue

@@ -2,7 +2,12 @@
   font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Source Sans Pro', 'Helvetica Neue', Helvetica, '돋움', dotum, Arial, sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   padding-top: 4em;
   background-color: #fff;
 }
