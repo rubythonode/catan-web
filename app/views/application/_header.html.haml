@@ -21,6 +21,10 @@
           = link_to issues_path do
             모든 이슈
             %small (#{Issue.count})
+        %li
+          = link_to slug_issue_path(:all) do
+            모든 글
+            %small (#{Post.for_list.count})
         - if user_signed_in?
           - current_user.watched_issues.each do |issue|
             %li

@@ -1,7 +1,9 @@
 %section#issues
   .container
     .page-header
-      %h2 모든 이슈
+      %h2
+        모든 이슈
+        %small (#{Issue.count})
     .row
       - @issues.each do |issue|
         .col-xs-6.col-sm-4

@@ -15,7 +15,7 @@ class Issue < ActiveRecord::Base
       true
     end
     def title
-      '모든 이슈'
+      '모든 글'
     end
     def body
       '유쾌한 민주주의 플랫폼입니다! 중요한 이슈, 이제 놓치지 마세요.'
