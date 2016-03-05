@@ -27,6 +27,10 @@ class ApplicationController < ActionController::Base
     set_meta_tags build_meta_options(options)
   end
 
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || super
+  end
+
   private
 
   def build_meta_options(options)
