@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :prepare_meta_tags, if: "request.get?"
   after_filter :prepare_unobtrusive_flash
+  after_filter :store_location
+
+  def store_location
+    return unless request.get?
+    if (!request.fullpath.match("/users") && !request.xhr?)
+      store_location_for(:user, request.fullpath)
+    end
+  end
 
   if Rails.env.staging?
     rescue_from ActiveRecord::RecordNotFound do |exception|
