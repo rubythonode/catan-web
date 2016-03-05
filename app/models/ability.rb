@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, :all
+    can [:read, :social_card], :all
     can [:slug, :users], Issue
     if user
       can :manage, [Issue, Related] if user.admin?

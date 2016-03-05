@@ -51,6 +51,12 @@ gem 'unobtrusive_flash', '~> 3.1'
 gem 'meta-tags', '~> 2.1.0'
 gem 'sitemap_generator', '~> 5.1'
 
+# image
+gem 'imgkit', '~> 1.6', '>= 1.6.1'
+group :development, :test do
+  gem 'wkhtmltoimage-binary', '~> 0.12.2'
+end
+
 # paging
 gem 'kaminari', '~> 0.16.3'
 gem 'bootstrap-kaminari-views', '~> 0.0.5'

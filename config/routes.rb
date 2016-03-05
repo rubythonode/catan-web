@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :articles
-  resources :opinions
+  resources :opinions do
+    get 'social_card', on: :member
+  end
   resources :questions do
     resources :answers, shallow: true
   end
