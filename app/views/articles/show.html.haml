@@ -12,12 +12,9 @@
     - if @article.link.present?
       = link_to @article.link, @article.link, target: '_blank', class: 'embed'
 
-    .clearfix
-      #share.pull-right
-    .clearfix
-      .article__tags.post__tags
-        - @article.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+    .article__tags.post__tags
+      - @article.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
 
     .post__likes
       = render 'likes/like', post: @article.acting_as

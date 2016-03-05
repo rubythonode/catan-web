@@ -11,11 +11,9 @@
 
     = render 'vote', opinion: @opinion
 
-    .clearfix
-      #share.pull-right
-      .opinion__tags.post__tags
-        - @opinion.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+    .opinion__tags.post__tags
+      - @opinion.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
 
     .post__likes
       = render 'likes/like', post: @opinion.acting_as

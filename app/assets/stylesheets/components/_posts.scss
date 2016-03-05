@@ -85,7 +85,9 @@
   }
 
   .post-section__header {
-    text-align: center;
+    .post-section__header__meta {
+      line-height: 38px;
+    }
   }
 
 }

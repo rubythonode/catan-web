@@ -9,11 +9,9 @@
       .post-bg-content
         = simple_format auto_link(@discussion.body)
 
-    .clearfix
-      #share.pull-right
-      .discussion__tags.post__tags
-        - @discussion.tags.each do |tag|
-          = link_to "##{tag.name}", tag_home_path(tag)
+    .discussion__tags.post__tags
+      - @discussion.tags.each do |tag|
+        = link_to "##{tag.name}", tag_home_path(tag)
 
     .post__likes
       = render 'likes/like', post: @discussion.acting_as

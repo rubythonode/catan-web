@@ -27,19 +27,21 @@
                     - if can? :destroy, issue
                       = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
 
-            %div
-              %span
-                - if issue.is_all?
-                  %ul.list-inline
-                    %li#share-facebook-page(style='padding: 0')
-                    %li#share-twitter
-                - else
-                  #share
-            %div
-              - if user_signed_in?
-                = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
-                  %i.fa.fa-edit
-                  쓰기
+            - if local_assigns[:show_social_share]
+              %div
+                %span
+                  - if issue.is_all?
+                    %ul.list-inline
+                      %li#share-facebook-page(style='padding: 0')
+                      %li#share-twitter
+                  - else
+                    #share
+            - if local_assigns[:show_write_button]
+              %div
+                - if user_signed_in?
+                  = link_to '#', class: 'btn btn-danger btn-sm', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
+                    %i.fa.fa-edit
+                    쓰기
 
 %section.fb-page-like-section{ style: 'background-color: #fafafa; padding: 10px 0' }
   .container

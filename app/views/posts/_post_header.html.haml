@@ -1,11 +1,13 @@
-%div.post-section__header
-  %span
+%div.post-section__header.clearfix
+  #share.pull-right
+  .post-section__header__meta
     = byline post.user
-  %span.text-muted
-    %i.fa.fa-clock-o
-    = date_f post.created_at
-  - if can? :update, post.specific
-    = link_to '수정', [:edit, post.specific]
-  - if can? :destroy, post.specific
-    = link_to '삭제', post.specific, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }
+    %span.text-muted
+      %i.fa.fa-clock-o
+      = date_f post.created_at
+    - if can? :update, post.specific
+      = link_to '수정', [:edit, post.specific]
+    - if can? :destroy, post.specific
+      = link_to '삭제', post.specific, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }
+
 
