@@ -67,30 +67,31 @@
 }
 
 .issue-recommends {
-  &.post-card {
-    .owl-wrapper {
-      margin: 0 25px;
-    }
-    .owl-carousel {
-      .owl-item-wrapper {
-        margin: 0 10px;
-        .issue-card.panel {
-          margin-bottom: 0;
-        }
+  h4 {
+    font-weight: 200;
+  }
+  .owl-wrapper {
+    margin: 0 25px;
+  }
+  .owl-carousel {
+    .owl-item-wrapper {
+      margin: 0 10px;
+      .issue-card.panel {
+        margin-bottom: 0;
       }
-      .owl-controls {
-        height: 0;
-        .owl-nav {
-          .owl-prev {
-            position: absolute;
-            top: 45px;
-            left: -35px;
-          }
-          .owl-next {
-            position: absolute;
-            top: 45px;
-            right: -35px;
-          }
+    }
+    .owl-controls {
+      height: 0;
+      .owl-nav {
+        .owl-prev {
+          position: absolute;
+          top: 45px;
+          left: -35px;
+        }
+        .owl-next {
+          position: absolute;
+          top: 45px;
+          right: -35px;
         }
       }
     }

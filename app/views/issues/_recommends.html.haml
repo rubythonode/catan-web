@@ -1,4 +1,5 @@
-.post-card.post.issue-recommends
+.post.issue-recommends
+  %h4 아래 이슈도 구독해보세요
   .owl-wrapper
     .owl-carousel{data: {ride: 'parti-carousel'}}
       - issue.recommends.each do |recommend|
@@ -13,4 +14,4 @@
             - else
               %i.wi.wi-fire
               따끈한
-          = render 'card', issue: recommend
+          = render 'issues/card', issue: recommend

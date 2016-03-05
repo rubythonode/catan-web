@@ -1,24 +1,24 @@
-.issue-header-section( style="background-size: cover; background-image: url('#{asset_path('default_issue_cover.png')}'); margin-top: -8px; margin-bottom: 30px;" )
+.issue-header-section( style="background-size: cover; background-image: url('#{asset_path('default_issue_cover.png')}'); margin-top: -8px; " )
   %section#issue
     .container{ style: 'position: reltiave;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
         %div.clearfix.text-center
           = image_tag current_user.image_url, style: 'width: 100px; height: 100px'
           %h2{ style: 'color:white; font-weight: 200;' }
-            %strong> #{current_user.nickname}
-            의 대시보드
+            나의 대시보드
 
           .issue-header__body
-            %p{ style: 'color: white; margin-top: 2em;' }
-              지켜보는 이슈의 최근글입니다.
+            %p{ style: 'color: white;' }
+              내가 구독하는 이슈의 글입니다.
 
-%section#issue-posts
+%section#issue-posts{ style: 'padding: 40px 0;' }
   .container
-    .row
-      .col-sm-8
-        = render 'posts_filter', posts: @watched_posts_for_filter
-        = render 'posts/list', postables: @watched_postables, show_issue: true
-        .text-center
-          = paginate @watched_posts, theme: 'twitter-bootstrap-3'
-      .col-sm-4
-        = render 'issues/aside_dashboard'
+    = render 'posts_filter', posts: @watched_posts_for_filter
+    = render 'posts/list', postables: @watched_postables, show_issue: true
+    .text-center
+      = paginate @watched_posts, theme: 'twitter-bootstrap-3'
+
+%section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
+  .container
+    = render 'issues/recommends', issue: Issue::OF_ALL
+
