@@ -9,21 +9,23 @@
               = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
           %h3
             = link_to issue_home_path(issue), style: 'text-decoration: none' do
-              %span{ style: 'font-weight: bold; color:white;' }>= issue.title
+              %span{ style: 'font-weight: bold; color:white;' }>
+                %i.fa.fa-hashtag>
+                #{issue.title}
             %span.issue__count{ style: 'color: white; font-size: 60%; margin: 0 5px' }
-              %i.fa.fa-file-text-o
+              %i.fa.fa-archive
               %strong= issue.posts.count
               - if issue.posts.latest.any?
                 %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
               - if issue.is_all?
                 = link_to users_path, style: 'color: white; text-decoration: none; margin-left: 5px;' do
-                  %i.fa.fa-user
+                  %i.fa.fa-at
                   %strong= User.count
                 - if issue.watches.latest.any?
                   %small{ style: 'color: white' }>= "+#{User.latest.count}"
               - else
                 = link_to users_issue_path(issue), style: 'color: white; text-decoration: none; margin-left: 5px;' do
-                  %i.fa.fa-user
+                  %i.fa.fa-at
                   %strong= issue.contributors.count
                 - if issue.watches.latest.any?
                   %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
@@ -31,9 +33,9 @@
               - unless issue.is_all?
                 %small{ style: 'vertical-align: middle' }
                   - if can? :update, issue
-                    = link_to '수정', [:edit, issue], class: 'btn btn-default btn-sm'
+                    = link_to '수정', [:edit, issue], class: 'text-muted'
                   - if can? :destroy, issue
-                    = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'btn btn-default btn-sm'
+                    = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
           - if local_assigns[:show_social_share]
             - if issue.is_all?
               %ul.list-inline
