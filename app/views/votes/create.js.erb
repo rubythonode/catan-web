@@ -1,1 +1,2 @@
-$('#<%= dom_id(@specific) %>-vote').replaceWith("<%= escape_javascript(render params[:partial], specific: @specific) %>");
+$('#<%= dom_id(@specific) %>-vote').replaceWith("<%= escape_javascript(render 'votes/vote', specific: @specific) %>");
+$('#<%= dom_id(@specific) %>-comments').replaceWith("<%= escape_javascript(render 'comments/comments', postable: @specific, style: :opinion) %>");

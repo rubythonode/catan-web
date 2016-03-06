@@ -15,11 +15,18 @@
               %strong= issue.posts.count
               - if issue.posts.latest.any?
                 %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
-              = link_to users_issue_path(issue), style: 'color: white; text-decoration: none' do
-                %i.fa.fa-user
-                %strong= issue.contributors.count
-              - if issue.watches.latest.any?
-                %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
+              - if issue.is_all?
+                = link_to users_path, style: 'color: white; text-decoration: none; margin-left: 5px;' do
+                  %i.fa.fa-user
+                  %strong= User.count
+                - if issue.watches.latest.any?
+                  %small{ style: 'color: white' }>= "+#{User.latest.count}"
+              - else
+                = link_to users_issue_path(issue), style: 'color: white; text-decoration: none; margin-left: 5px;' do
+                  %i.fa.fa-user
+                  %strong= issue.contributors.count
+                - if issue.watches.latest.any?
+                  %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
             %span
               - unless issue.is_all?
                 %small{ style: 'vertical-align: middle' }

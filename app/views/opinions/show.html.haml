@@ -9,7 +9,7 @@
     .opinion__body
       = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
 
-    = render 'vote', opinion: @opinion
+    = render 'votes/vote', opinion: @opinion
 
     .opinion__tags.post__tags
       - @opinion.tags.each do |tag|

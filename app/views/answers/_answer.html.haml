@@ -38,4 +38,4 @@
           .answer-body
             = simple_format auto_link(answer.body)
 
-          = render 'comments/comments', postable: answer, style: :inline
+          = render 'comments/comments', postable: answer, hide_form: true

@@ -19,7 +19,7 @@
 
 %section.post-comments-section
   .container
-    = render 'comments/comments', postable: @discussion, style: :inline
+    = render 'comments/comments', postable: @discussion, hide_form: true
 
 %section.proposals-section
   = render @discussion.proposals.sort_by_agree_count

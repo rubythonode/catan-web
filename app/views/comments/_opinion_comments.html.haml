@@ -1,37 +1,56 @@
+- disagree_active = (user_signed_in? and postable.disagreed_by?(current_user))
 %section{id: "#{dom_id(postable)}-comments" }
-  %ul.nav.nav-tabs(style='margin-bottom: 20px;')
-    %li.text-center{class: ('active' if !user_signed_in? or (postable.agreed_by? current_user and postable.voted_by current_user) or (user_signed_in? and !postable.voted_by current_user)), style: 'width: 50%' }
-      %a(href="#agree" role="tab" data-toggle="tab")
-        %strong 찬성 의견(#{postable.comments.agreed.count})
-    %li.text-center{class: ('active' if user_signed_in? and postable.disagreed_by? current_user), style: 'width: 50%' }
-      %a(href="#disagree" role="tab" data-toggle="tab")
-        %strong 반대 의견(#{postable.comments.disagreed.count})
-
+  .tabs{style: 'margin-bottom: 20px;'}
+    %ul.nav.nav-tabs.nav-justified.hidden-xs
+      %li{class: ('active' unless disagree_active) }
+        %a(href="#agree" role="tab" data-toggle="tab")
+          %strong 찬성 의견(#{postable.comments.agreed.count})
+      %li{class: ('active' if disagree_active) }
+        %a(href="#disagree" role="tab" data-toggle="tab")
+          %strong 반대 의견(#{postable.comments.disagreed.count})
+    %ul.nav.nav-tabs.visible-xs
+      %li{class: ('active' unless disagree_active) }
+        %a(href="#agree" role="tab" data-toggle="tab")
+          %strong 찬성 의견(#{postable.comments.agreed.count})
+      %li{class: ('active' if disagree_active) }
+        %a(href="#disagree" role="tab" data-toggle="tab")
+          %strong 반대 의견(#{postable.comments.disagreed.count})
   .tab-content
     .tab-pane#agree{class: ('active' if !user_signed_in? or (postable.agreed_by? current_user and postable.voted_by current_user) or (user_signed_in? and !postable.voted_by current_user)) }
       - if user_signed_in? and postable.agreed_by? current_user
-        %div(style='padding: 20px 0;')
-          - if user_signed_in? and postable.agreed_by? current_user
-            = form_for [postable.acting_as, Comment.new] do |f|
-              .form-group
-                = f.text_area :body, class: 'form-control'
-              = f.submit '저장', class: 'btn btn-primary'
-      - if user_signed_in? and !postable.voted_by? current_user
-        .well
-          %i.fa.fa-info-circle
-          투표 후에 의견을 남길 수 있습니다.
-      %ul.media-list(style='padding: 20px 0;')
-        = render postable.comments.agreed.recent
-    .tab-pane#disagree{class: ('active' if user_signed_in? and postable.disagreed_by? current_user) }
-      - if user_signed_in? and postable.disagreed_by? current_user
-        %div(style='padding: 20px 0;')
+        %div
           = form_for [postable.acting_as, Comment.new] do |f|
             .form-group
-              = f.text_area :body, class: 'form-control'
-            = f.submit '저장', class: 'btn btn-primary'
+              .input-group
+                = f.text_area :body, class: 'form-control', style: 'height: 60px;'
+                .input-group-btn
+                  = f.submit '저장', class: 'btn btn-default', style: 'height: 60px;'
       - if user_signed_in? and !postable.voted_by? current_user
         .well
           %i.fa.fa-info-circle
           투표 후에 의견을 남길 수 있습니다.
+      - elsif postable.comments.agreed.empty?
+        .well
+          %i.fa.fa-info-circle
+          찬성 의견이 없습니다.
       %ul.media-list(style='padding: 20px 0;')
-        = render postable.comments.disagreed.recent
+        = render postable.comments.agreed.recent, style: :opinion
+    .tab-pane#disagree{class: ('active' if user_signed_in? and postable.disagreed_by? current_user) }
+      - if user_signed_in? and postable.disagreed_by? current_user
+        %div
+          = form_for [postable.acting_as, Comment.new] do |f|
+            .form-group
+              .input-group
+                = f.text_area :body, class: 'form-control', style: 'height: 60px;'
+                .input-group-btn
+                  = f.submit '저장', class: 'btn btn-default', style: 'height: 60px;'
+      - if user_signed_in? and !postable.voted_by? current_user
+        .well
+          %i.fa.fa-info-circle
+          투표 후에 의견을 남길 수 있습니다.
+      - elsif postable.comments.disagreed.empty?
+        .well
+          %i.fa.fa-info-circle
+          반대 의견이 없습니다.
+      %ul.media-list(style='padding: 20px 0;')
+        = render postable.comments.disagreed.recent, style: :opinion

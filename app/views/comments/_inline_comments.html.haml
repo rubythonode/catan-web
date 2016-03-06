@@ -2,13 +2,25 @@
   %h4.text-muted
     %i.fa.fa-comments-o
     댓글
-    %small (#{postable.comments.count})
+    %small
+      (#{postable.comments.count})
+      - if local_assigns[:hide_form]
+        - if user_signed_in?
+          = link_to '#', data: {'switch-target': "##{dom_id(postable)}-comments .comment-form", toggle: "parti-switch", type: "button"} do
+            %i.fa.fa-edit
+            쓰기
+        - else
+          = link_to '#', data: {target: "#shall-we-login", toggle: "modal", type: "button"} do
+            %i.fa.fa-edit
+            쓰기
   - if user_signed_in?
-    #comment-form
+    .comment-form
       = form_for [postable.acting_as, Comment.new], class: 'comment-form' do |f|
         .form-group
           .input-group
-            = f.text_field :body, class: 'form-control'
+            = f.text_area :body, class: 'form-control', style: 'height: 60px;'
             .input-group-btn
-              = f.submit '등록', class: 'btn btn-default'
-  = render postable.comments.recent, style: :inline
+              = f.submit '등록', class: 'btn btn-default', style: 'height: 60px;'
+  - if !user_signed_in? and !local_assigns[:hide_form]
+    = link_to '댓글쓰기', '#', data: {target: "#shall-we-login", toggle: "modal", type: "button"}, class: 'btn btn-default btn-block'
+  = render postable.comments.recent
