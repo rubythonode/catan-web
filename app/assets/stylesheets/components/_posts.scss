@@ -2,6 +2,10 @@
   padding: 10px 0;
   border-bottom: 1px solid $gray-lighter;
 
+  &:last-child {
+    border-bottom: none;
+  }
+
   &:hover {
     background-color: #fafafa;
   }

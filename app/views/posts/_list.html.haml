@@ -1,16 +1,30 @@
 - current_params = params.except(:page, :f, :action, :controller)
-- if local_assigns[:issue]
-  - recommend_position = postables.count < 4 ? postables.count - 1: 3
-- else
-  - recommend_position = -1
-
 - if local_assigns[:issue].present?
   - past_day_count = local_assigns[:issue].posts.for_list.past_day.count
-  - if params[:f] == 'hottest' and past_day_count > 0
-    .bg-warning(style='margin-top: 10px; padding: 10px; color: #777')
-      하루동안 새로운 글이 #{past_day_count}개 올라왔습니다.
-      = link_to url_for(current_params.merge(f: :recent)), style: 'color: #333' do
-        확인하기
+  - rand_post = local_assigns[:issue].posts.for_list.recent.offset(rand(past_day_count)).first
+  - if params[:f] == 'hottest' and past_day_count > 0 and params[:page].blank?
+    .posts--past-day
+      %div(style='margin-top: 10px; padding: 10px; color: #777')
+        %i.fa.fa-flash
+        - if past_day_count == 1
+          하루동안 올라온 새글입니다.
+        - else
+          하루동안 올라온 #{past_day_count}개의 새글 가운데 하나입니다.
+          = link_to url_for(current_params.merge(f: :recent)), class: 'btn btn-default btn-xs' do
+            더보기...
+      = render rand_post.specific, show_issue: local_assigns[:show_issue]
 
-- postables.each_with_index do |postable, index|
-  = render postable, show_issue: local_assigns[:show_issue]
+
+- if postables.empty?
+  %div(style='margin-top: 10px; padding: 10px; color: #777')
+    %i.fa.fa-info-circle
+    해당되는 글이 없습니다.
+- else
+  - if params[:f] == 'hottest' and params[:page].blank?
+    %div(style='margin-top: 10px; padding: 10px; color: #777')
+      %i.wi.wi-fire
+      최근
+      %i.fa.fa-arrow-up
+      많이 받은 따끈한 글입니다.
+  - postables.each_with_index do |postable, index|
+    = render postable, show_issue: local_assigns[:show_issue]
