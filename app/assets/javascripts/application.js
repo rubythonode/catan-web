@@ -92,7 +92,7 @@ $(function(){
   // toggle
   $('[data-toggle="parti-toggle"]').on('click', function(e) {
     e.preventDefault();
-    $elm = $(e.currentTarget);
+    var $elm = $(e.currentTarget);
     var $target = $($elm.data('toggle-target'));
 
     $target.toggle();
@@ -106,7 +106,7 @@ $(function(){
   });
   $('[data-toggle="parti-switch"]').on('click', function(e) {
     e.preventDefault();
-    $elm = $(e.currentTarget);
+    var $elm = $(e.currentTarget);
     var $target = $($elm.data('switch-target'));
 
     $elm.hide();
@@ -200,6 +200,30 @@ $(function(){
 
   // tabdrop
   $('.nav-pills, .nav-tabs').tabdrop();
+
+  // overlay
+  $('[data-toggle="parti-login-overlay"]').on('click', function(e) {
+    e.preventDefault();
+    var $elm = $(e.currentTarget);
+    var after_login = $elm.attr('data-after-login');
+    var $input = $('#login-overlay form input[name=after_login]');
+    $input.val(after_login);
+    $("#login-overlay").fadeToggle();
+  });
+  $('[data-dismiss="parti-login-overlay"]').on('click', function(e) {
+    e.preventDefault();
+    $("#login-overlay").fadeOut();
+  });
+
+  // form submit link
+  $('[data-trigger="parti-form-submit"]').on('click', function(e) {
+    e.preventDefault();
+    var $elm = $(e.currentTarget);
+    var $form = $($elm.data('form-target'));
+    var url = $elm.data('form-url');
+    $form.attr('action', url);
+    $form.submit();
+  });
 });
 
 

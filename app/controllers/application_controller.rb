@@ -28,12 +28,45 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+    after_omniauth_login
     after_sign_in_path = super
     after_sign_in_path = dashboard_path if after_sign_in_path == slug_issue_path(:all)
     after_sign_in_path
   end
 
   private
+
+  def after_omniauth_login
+    params = request.env['omniauth.params'] || session["omniauth.params_data"] || {}
+    return if params['after_login'].blank?
+    after_login = JSON.parse(params['after_login'])
+    case after_login['action']
+    when 'opinion_vote_agree'
+      specific = Opinion.find after_login['id']
+      previous_vote = specific.voted_by current_user
+      if previous_vote.present?
+        vote = previous_vote
+      else
+        vote = specific.votes.build
+        vote.user = current_user
+      end
+      vote.choice = 'agree'
+      vote.save
+    when 'opinion_vote_disagree'
+      specific = Opinion.find after_login['id']
+      previous_vote = specific.voted_by current_user
+      if previous_vote.present?
+        vote = previous_vote
+      else
+        vote = specific.votes.build
+        vote.user = current_user
+      end
+      vote.choice = 'disagree'
+      vote.save
+    end
+
+    session["omniauth.params_data"] = nil
+  end
 
   def build_meta_options(options)
     unless options.nil?

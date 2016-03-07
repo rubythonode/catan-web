@@ -26,6 +26,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => @user.provider) if is_navigational_format?
     else
       session["devise.omniauth_data"] = parsed_data
+      session["omniauth.params_data"] = request.env["omniauth.params"]
       redirect_to new_user_registration_url
     end
   end

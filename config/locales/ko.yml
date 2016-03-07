@@ -12,7 +12,7 @@ ko:
         attributes:
           email: 이메일
           password: 비밀번호
-          nickname: ID
+          nickname: 아이디
           remember_me: 로그인 상태를 유지
           current_password: 현재 비밀번호
   activerecord:

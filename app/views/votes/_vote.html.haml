@@ -2,16 +2,20 @@
 .opinion__vote-section{id: "#{dom_id(opinion)}-vote" }
   - if !user_signed_in?
     %p.text-center
+      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
+        %i.fa.fa-thumbs-up
+        찬성
+      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
+        %i.fa.fa-thumbs-down
+        반대
+    %p.text-center
       %i.fa.fa-info-circle
-      = link_to '로그인', new_user_session_path
-      하면 위 주장에 대해 찬반 투표할 수 있습니다.
+      투표 후에 다른 회원의 투표 현황을 볼 수 있습니다.
       - if opinion.votes.any?
         현재
         %strong.lead
           #{opinion.votes.count}
         명이 투표에 참여했습니다.
-
-      = link_to '로그인 후에 투표에 참여하기', new_user_session_path, class: 'btn btn-danger btn-lg'
   - elsif opinion.voted_by? current_user
     .vote__results
       .row
