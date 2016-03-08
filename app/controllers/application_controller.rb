@@ -47,6 +47,9 @@ class ApplicationController < ActionController::Base
     when 'opinion_vote_disagree'
       specific = Opinion.find after_login['id']
       VotePost.new(specific: specific, current_user: current_user).disagree
+    when 'post_like'
+      post = Post.find after_login['id']
+      LikePost.new(post: post, current_user: current_user).call
     end
 
     session["omniauth.params_data"] = nil

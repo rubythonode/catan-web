@@ -8,14 +8,20 @@
           %p
             = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
               %i.fa.fa-facebook
-              페이스북아이디로 투표하기
+              페이스북아이디로&nbsp;
+              %span.login-overlay__label>
+              하기
             = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
               %i.fa.fa-google-plus
-              구글플러스아이디로 투표하기
+              구글플러스아이디로&nbsp;
+              %span.login-overlay__label>
+              하기
           %p.text-center
             혹은
             = link_to new_user_session_path, style: "color: #fff;" do
-              이메일로 가입&middot;로그인 후 투표합니다
+              이메일로 가입&middot;로그인 후&nbsp;
+              %span.login-overlay__label>
+              합니다
         %hr{ style: 'border-color: #bb81d0;' }
         %p.pull-right
           %a{href: "#", "data-dismiss": "parti-login-overlay", type: "button", style: "color: #fff;"}

@@ -205,13 +205,23 @@ $(function(){
   $('[data-toggle="parti-login-overlay"]').on('click', function(e) {
     e.preventDefault();
     var $elm = $(e.currentTarget);
+
     var after_login = $elm.attr('data-after-login');
     var $input = $('#login-overlay form input[name=after_login]');
     $input.val(after_login);
+
+    var label_content = $elm.attr('data-label');
+    var $label = $('#login-overlay .login-overlay__label');
+    $label.html(label_content);
+
     $("#login-overlay").fadeToggle();
   });
   $('[data-dismiss="parti-login-overlay"]').on('click', function(e) {
     e.preventDefault();
+    var $input = $('#login-overlay form input[name=after_login]');
+    $input.val('');
+    var $label = $('#login-overlay .login-overlay__label');
+    $label.html('');
     $("#login-overlay").fadeOut();
   });
 

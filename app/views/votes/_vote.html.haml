@@ -2,10 +2,10 @@
 .opinion__vote-section{id: "#{dom_id(opinion)}-vote" }
   - if !user_signed_in?
     %p.text-center
-      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
+      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', label: '찬성', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
         %i.fa.fa-thumbs-up
         찬성
-      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
+      = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', label: '반대', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
         %i.fa.fa-thumbs-down
         반대
     %p.text-center
