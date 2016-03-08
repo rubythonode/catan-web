@@ -10,8 +10,7 @@
         = simple_format auto_link(@discussion.body)
 
     .discussion__tags.post__tags
-      - @discussion.tags.each do |tag|
-        = link_to "##{tag.name}", tag_home_path(tag)
+      = render 'tags/collection', tags: @discussion.tags
 
     .post__likes
       = render 'likes/like', post: @discussion.acting_as
