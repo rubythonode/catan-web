@@ -11,10 +11,12 @@
         %span.icon-bar
         %span.icon-bar
       - if user_signed_in?
-        = link_to '#', class: 'btn btn-info navbar-btn pull-left', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
-          %i.fa.fa-edit
-          %span.hidden-xs
-            글쓰기
+        %ul.nav.navbar-nav.pull-left
+          %li.pull-right
+            = link_to '#', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
+              %i.fa.fa-edit
+              %span.hidden-xs
+                글쓰기
       - else
         = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs' do
           %i.fa.fa-facebook
