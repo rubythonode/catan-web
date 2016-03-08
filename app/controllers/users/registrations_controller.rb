@@ -1,4 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  include AfterLogin
+  after_filter :after_omniauth_login, only: :create
+
   private
 
   def sign_up_params

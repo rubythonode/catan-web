@@ -1,4 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include AfterLogin
   prepend_before_filter :require_no_authentication
 
   def facebook
@@ -19,10 +20,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def run_omniauth
     parsed_data = User.parse_omniauth(request.env["omniauth.auth"])
+    remember_me = request.env["omniauth.params"].try(:fetch, "remember_me", false)
+    parsed_data[:remember_me] = remember_me
     @user = User.find_for_omniauth(parsed_data)
 
     if @user.present?
+      @user.remember_me = remember_me
       sign_in_and_redirect @user, :event => :authentication
+      after_omniauth_login
       set_flash_message(:notice, :success, :kind => @user.provider) if is_navigational_format?
     else
       session["devise.omniauth_data"] = parsed_data

@@ -1,10 +1,8 @@
 #login-overlay
   .wrapper{style: 'position: relative; height: 100%; width: 100%;'}
-    = form_tag nil, method: :get do
-      = hidden_field_tag(:after_login)
     .content{style: 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'}
       %div{style: 'color: white;'}
-        %div{ style: 'margin-top:20px'}
+        .clearfix{ style: 'margin-top:20px'}
           %p
             = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
               %i.fa.fa-facebook
@@ -16,12 +14,18 @@
               구글플러스아이디로&nbsp;
               %span.login-overlay__label>
               하기
-          %p.text-center
-            혹은
-            = link_to new_user_session_path, style: "color: #fff;" do
-              이메일로 가입&middot;로그인 후&nbsp;
-              %span.login-overlay__label>
-              합니다
+          = form_tag nil, method: :get do
+            = hidden_field_tag(:after_login)
+            .pull-right
+              %label{ style: 'font-weight: normal'}
+                = check_box_tag(:remember_me, '1', true)
+                로그인 유지
+        %p.text-center{ style: 'margin-top: 20px;' }
+          혹은
+          = link_to new_user_session_path, style: "color: #fff;" do
+            이메일로 가입&middot;로그인 후&nbsp;
+            %span.login-overlay__label>
+            합니다
         %hr{ style: 'border-color: #bb81d0;' }
         %p.pull-right
           %a{href: "#", "data-dismiss": "parti-login-overlay", type: "button", style: "color: #fff;"}
