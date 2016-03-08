@@ -6,16 +6,26 @@
         .issue--related
           = link_to issue_home_path(issue), class: 'issue__logo', style: "background-image: url(#{issue.logo_url});" do
             = issue.title
-      %div
+      %h5
         %strong= link_to issue.title, issue_home_path(issue)
-        .issue__count.text-muted
+    .issue__meta.text-muted
+      %span.no-wrap
+        %i.fa.fa-user
+        = issue.watches.count
+        - if issue.watches.latest.any?
+          %small= "+#{issue.watches.latest.count}"
+      %span.no-wrap
+        %i.fa.fa-file-text-o
+        = issue.posts.count
+        - if issue.posts.latest.any?
+          %small= "+#{issue.posts.latest.count}"
+      %span.text-nowrap
+        - if user_signed_in? and !issue.watched_by?(current_user)
           %span
-            %i.fa.fa-user
-            = issue.watches.count
-            - if issue.watches.latest.any?
-              %small= "+#{issue.watches.latest.count}"
+            %i.fa.fa-eye
+            = link_to '구독하기', issue_watches_path(issue), method: :post
+        - unless user_signed_in?
           %span
-            %i.fa.fa-file-text-o
-            = issue.posts.count
-            - if issue.posts.latest.any?
-              %small= "+#{issue.posts.latest.count}"
+            %i.fa.fa-eye
+            = link_to '구독하기', '#', data: {target: "#shall-we-login", toggle: "modal", type: "button", message: "이슈를 구독하면 새로운 소식을 메일로 <br> 매일 보내드립니다."}
+

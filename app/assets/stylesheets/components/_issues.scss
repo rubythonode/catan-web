@@ -55,13 +55,17 @@
 }
 
 .issue-card {
-  .issue__count {
+  .issue__meta {
+    white-space: nowrap;
+    float: right;
+    margin-top: 10px;
     span {
       margin-right: 4px;
+      font-size: 90%;
     }
   }
   &.panel.panel-default {
-    height: 90px;
+    height: 110px;
     overflow: hidden;
   }
 }
