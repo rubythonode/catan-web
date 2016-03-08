@@ -11,7 +11,7 @@
         %span.icon-bar
         %span.icon-bar
       - if user_signed_in?
-        = link_to '#', class: 'btn btn-info navbar-btn pull-left', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
+        = link_to '#', class: 'btn btn-info navbar-btn pull-left', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
           %i.fa.fa-edit
           %span.hidden-xs
             글쓰기
