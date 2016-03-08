@@ -16,4 +16,7 @@ class PagesController < ApplicationController
     @watched_posts = filter_posts(watched_posts)
     @watched_postables = @watched_posts.all.map &:postable
   end
+
+  def about
+  end
 end

@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'
+  get '/about', to: "pages#about", as: 'about'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/i/:slug/campaign', to: "issues#slug_campaign", as: 'slug_issue_campaign'
   get '/u/:nickname', to: "users#home", as: 'nickname_user'
