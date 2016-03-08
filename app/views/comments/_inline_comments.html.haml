@@ -10,7 +10,7 @@
             %i.fa.fa-edit
             쓰기
         - else
-          = link_to '#', data: {target: "#shall-we-login", toggle: "modal", type: "button"} do
+          = link_to '#', data: { toggle: 'parti-login-overlay', label: '댓글작성' } do
             %i.fa.fa-edit
             쓰기
   - if user_signed_in?
@@ -22,5 +22,5 @@
             .input-group-btn
               = f.submit '등록', class: 'btn btn-default', style: 'height: 60px;'
   - if !user_signed_in? and !local_assigns[:hide_form]
-    = link_to '댓글쓰기', '#', data: {target: "#shall-we-login", toggle: "modal", type: "button"}, class: 'btn btn-default btn-block'
+    = link_to '댓글쓰기', '#', data: { toggle: 'parti-login-overlay', label: '댓글작성' }, class: 'btn btn-default btn-block'
   = render postable.comments.recent

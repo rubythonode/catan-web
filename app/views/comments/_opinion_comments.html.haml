@@ -25,7 +25,7 @@
                 = f.text_area :body, class: 'form-control', style: 'height: 60px;'
                 .input-group-btn
                   = f.submit '저장', class: 'btn btn-default', style: 'height: 60px;'
-      - if user_signed_in? and !postable.voted_by? current_user
+      - if !user_signed_in? or !postable.voted_by? current_user
         .well
           %i.fa.fa-info-circle
           투표 후에 의견을 남길 수 있습니다.
@@ -44,7 +44,7 @@
                 = f.text_area :body, class: 'form-control', style: 'height: 60px;'
                 .input-group-btn
                   = f.submit '저장', class: 'btn btn-default', style: 'height: 60px;'
-      - if user_signed_in? and !postable.voted_by? current_user
+      - if !user_signed_in? or !postable.voted_by? current_user
         .well
           %i.fa.fa-info-circle
           투표 후에 의견을 남길 수 있습니다.
