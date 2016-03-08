@@ -50,6 +50,9 @@ class ApplicationController < ActionController::Base
     when 'post_like'
       post = Post.find after_login['id']
       LikePost.new(post: post, current_user: current_user).call
+    when 'issue_watch'
+      issue = Issue.find after_login['id']
+      WatchIssue.new(issue: issue, current_user: current_user).call
     end
 
     session["omniauth.params_data"] = nil

@@ -27,5 +27,4 @@
         - unless user_signed_in?
           %span
             %i.fa.fa-eye
-            = link_to '구독하기', '#', data: {target: "#shall-we-login", toggle: "modal", type: "button", message: "이슈를 구독하면 새로운 소식을 메일로 <br> 매일 보내드립니다."}
-
+            = link_to '구독하기', '#', data: { toggle: 'parti-login-overlay', label: '구독', 'after-login': h({action: :issue_watch, id: issue.id}.to_json) }
