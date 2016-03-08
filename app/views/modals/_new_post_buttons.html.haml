@@ -1,10 +1,14 @@
+- issue ||= Issue::OF_ALL
 #new-post-buttons-modal.modal.fade{:role => "dialog", :tabindex => "-1"}
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %button.close{"aria-label" => "closese", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} &#215;
-        %h4.modal-title "#{issue.title}"의 새 글 쓰기
+        %h4.modal-title
+          - unless issue.is_all?
+            "#{issue.title}"의
+          새 글 쓰기
       .modal-body
         - if user_signed_in?
           .text-center
