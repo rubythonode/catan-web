@@ -43,26 +43,10 @@ class ApplicationController < ActionController::Base
     case after_login['action']
     when 'opinion_vote_agree'
       specific = Opinion.find after_login['id']
-      previous_vote = specific.voted_by current_user
-      if previous_vote.present?
-        vote = previous_vote
-      else
-        vote = specific.votes.build
-        vote.user = current_user
-      end
-      vote.choice = 'agree'
-      vote.save
+      VotePost.new(specific: specific, current_user: current_user).agree
     when 'opinion_vote_disagree'
       specific = Opinion.find after_login['id']
-      previous_vote = specific.voted_by current_user
-      if previous_vote.present?
-        vote = previous_vote
-      else
-        vote = specific.votes.build
-        vote.user = current_user
-      end
-      vote.choice = 'disagree'
-      vote.save
+      VotePost.new(specific: specific, current_user: current_user).disagree
     end
 
     session["omniauth.params_data"] = nil

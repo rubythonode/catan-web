@@ -1,20 +1,11 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource :post
-  load_and_authorize_resource :vote, through: :post, shallow: true
 
   def create
+    @post = Post.find params[:post_id]
     @specific = @post.specific
-    previous_vote = @specific.voted_by current_user
-    if previous_vote.present?
-      @vote = previous_vote
-      @vote.choice = params[:vote][:choice]
-    else
-      @vote.user = current_user
-    end
-
-    @vote.save
-
+    service = VotePost.new(specific: @specific, current_user: current_user)
+    @vote = service.send(params[:vote][:choice].to_sym)
     respond_to do |format|
       format.js
       format.html { redirect_to_origin_post }
@@ -22,10 +13,6 @@ class VotesController < ApplicationController
   end
 
   private
-
-  def vote_params
-    params.require(:vote).permit(:choice)
-  end
 
   def redirect_to_origin_post
     if @vote.post.specific.respond_to? :origin_post
