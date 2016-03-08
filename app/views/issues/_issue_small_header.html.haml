@@ -52,17 +52,11 @@
         .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light", 'style': 'margin-top: 8px;'}
       .col-sm-6.text-right.hidden-xs
         %strong{ style: 'margin-right: 15px;' }
-          = link_to '#', class: 'btn btn-info', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
-            %i.fa.fa-edit
-            글쓰기
         - unless issue.is_all?
           %span(id="#{dom_id(issue)}-watch")
             = render 'watches/watch', issue: issue
       .col-sm-6.text-center.visible-xs-block
         %strong{ style: 'margin-right: 15px;' }
-          = link_to '#', class: 'btn btn-info', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
-            %i.fa.fa-edit
-            글쓰기
         - unless issue.is_all?
           %span(id="#{dom_id(issue)}-watch")
             = render 'watches/watch', issue: issue

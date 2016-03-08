@@ -5,16 +5,20 @@
         %img{ alt: 'parti', src: asset_path('parti_logo_white.png'), style: ('max-height: 24px;')}
 
     .navbar-header.navbar-right.pull-right
-      %button.navbar-toggle.offcanvas-toggle{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "offcanvas", :type => "button"}
+      %button.navbar-toggle.offcanvas-toggle{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "offcanvas", :type => "button", style: 'margin-left: 15px;'}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      - unless user_signed_in?
-        = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs', style: 'margin-right: 15px;' do
+      - if user_signed_in?
+        = link_to '#', class: 'btn btn-info navbar-btn pull-left', data: { toggle: 'modal', target: (user_signed_in? ? '#new-post-buttons-modal' : '#shall-we-login')} do
+          %i.fa.fa-edit
+          %span.hidden-xs
+            글쓰기
+      - else
+        = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs' do
           %i.fa.fa-facebook
-          페이스북아이디로 빠띠에 로그인
-
+          페이스북아이디로 빠띠 계속하기
     #navbar.navbar-offcanvas.navbar-offcanvas-right
       %ul.nav.navbar-nav
         %li
