@@ -5,7 +5,7 @@
     - if !@issue.is_all? and @issue.opinions.any?
       = render 'opinions/list', opinions: @issue.opinions, issue: @issue
     %div
-      - unless @issue.is_all?
+      - if !@issue.is_all? and @issue.opinions.any?
         %h4
           글
           %small

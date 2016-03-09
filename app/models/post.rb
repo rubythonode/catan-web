@@ -64,7 +64,6 @@ class Post < ActiveRecord::Base
   scope :only_discussions, -> { by_postable_type(Discussion.to_s) }
   scope :only_like_by, ->(someone) { joins(:likes).where('likes.user': someone) }
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
-  scope :for_issue_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s, Opinion.to_s]) }
   scope :latest, -> { after(1.day.ago) }
 
   def liked_by? someone

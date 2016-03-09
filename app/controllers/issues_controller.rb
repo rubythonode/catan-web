@@ -37,7 +37,7 @@ class IssuesController < ApplicationController
           render_404 and return
         end
       end
-      @posts = @issue.posts.for_issue_list
+      @posts = @issue.posts.for_list
     end
 
     unless view_context.current_page?(root_url)
