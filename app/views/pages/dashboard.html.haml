@@ -9,7 +9,7 @@
 %section#issue-posts
   .container
     = render 'posts_filter', posts: @watched_posts_for_filter
-    = render 'posts/list', postables: @watched_postables, show_issue: true
+    = render 'posts/list', postables: @watched_postables, show_issue: true, past_day_postables: @past_day_postables
     .text-center
       = paginate @watched_posts, theme: 'twitter-bootstrap-3'
 

@@ -36,14 +36,14 @@ class Post < ActiveRecord::Base
       .joins(:likes)
       .group('posts.id')
       .past_week(field: 'likes.created_at')
-      .order('likes_count DESC') }
+      .reorder('likes_count DESC').recent }
   scope :yesterday_hottest, -> {
     select('posts.*, COUNT(likes.id) likes_count')
       .joins(:likes)
       .group('posts.id')
       .yesterday(field: 'likes.created_at')
       .having("likes_count > #{HOT_LIKES_COUNT}")
-      .order('likes_count DESC') }
+      .reorder('likes_count DESC').recent }
   scope :watched_by, ->(someone) { where(issue_id: someone.watched_issues) }
   scope :by_postable_type, ->(t) { where(postable_type: t.camelize) }
   scope :by_filter, ->(f, someone=nil) {

@@ -10,7 +10,7 @@
   %li{role: 'presentation'}
     = link_to '#', class: 'text-muted' do
       톡 0
-  - if local_assigns[:issue]
+  - if local_assigns[:issue] and !issue.is_all?
     %li{role: 'presentation'}
       = link_to '#', class: 'text-muted' do
         #{issue.title}(이)란?

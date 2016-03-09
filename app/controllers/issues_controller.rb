@@ -47,6 +47,7 @@ class IssuesController < ApplicationController
     end
 
     @posts_for_filter = @posts
+    @past_day_postables = @posts.recent.past_day.map &:postable
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
     render template: 'issues/show'

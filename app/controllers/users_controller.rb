@@ -5,8 +5,9 @@ class UsersController < ApplicationController
 
   def gallery
     @user = User.find_by! nickname: params[:nickname].try(:downcase)
-    @posts = @user.posts.for_list
+    @posts = @user.posts.for_list.recent
     @posts_for_filter = @posts
+    @past_day_postables = @posts.past_day.map &:postable
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
   end
