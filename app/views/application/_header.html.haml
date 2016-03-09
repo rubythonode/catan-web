@@ -20,9 +20,9 @@
       - else
         = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs' do
           %i.fa.fa-facebook
-          페이스북아이디로 빠띠 계속하기
+          페이스북아이디로 빠띠하기
     #navbar.navbar-offcanvas.navbar-offcanvas-right
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav(style="width: 300px;")
         %li
           = link_to issues_path do
             모든 이슈
@@ -72,7 +72,20 @@
             = link_to destroy_user_session_path, method: :delete do
               로그아웃
         - else
-          %li= link_to '회원가입', new_user_registration_path
+          %li
+            = link_to '#', class: 'btn btn-default', style: 'background: #222222; border-width: 2px; margin: 10px 15px;', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
+              %i.fa.fa-facebook
+              페이스북아이디로 빠띠하기
+            = link_to '#', class: 'btn btn-default', style: 'background: #222222; border-width: 2px; margin: 10px 15px;', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
+              %i.fa.fa-google-plus
+              구글플러스아이디로 빠띠하기
+            = form_tag nil, method: :get, style: 'margin: 10px 15px;' do
+              = hidden_field_tag(:after_login)
+              %label{ style: 'font-weight: normal; color: #949494;'}
+                = check_box_tag(:remember_me, '1', true)
+                로그인 유지
+          %li.divider{:role => "separator"}
+          %li= link_to '가입', new_user_session_path
           %li= link_to '로그인', new_user_session_path
 
         %li.divider{:role => "separator"}
