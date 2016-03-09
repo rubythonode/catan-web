@@ -203,9 +203,6 @@ $(function(){
     $elm.find('.dropdown-menu li.active a').trigger('click');
   });
 
-  // tabdrop
-  $('.nav-pills, .nav-tabs').tabdrop();
-
   // overlay
   $('[data-toggle="parti-login-overlay"]').on('click', function(e) {
     e.preventDefault();

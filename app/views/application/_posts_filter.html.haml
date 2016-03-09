@@ -1,6 +1,23 @@
+- if local_assigns[:issue] and !issue.is_all? and issue.opinions.any?
+  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
+    %li.active{role: 'presentation'}
+      = link_to '#' do
+        글
+        %small
+          = posts.count
+          - if posts.latest.any?
+            %span{ style: 'font-size: 60%;' }
+              + #{@posts_for_filter.latest.count}
+    - if @issue
+      %li{role: 'presentation'}
+        = link_to '#', class: 'text-muted' do
+          톡 0
+      %li{role: 'presentation'}
+        = link_to '#', class: 'text-muted' do
+          #{issue.title}(이)란?
 - current_params = params.except(:page, :f, :action, :controller)
 .post-type-filter
-  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
+  %ul.nav.nav-pills{role: 'tablist', style: 'margin-bottom: 20px;'}
     %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
       = link_to url_for(current_params.merge(f: :hottest)) do
         따끈한
@@ -20,10 +37,4 @@
           %i.fa.fa-arrow-up
           - if local_assigns[:posts]
             %small= posts.only_like_by(current_user).count
-    - if @issue
-      %li{role: 'presentation'}
-        = link_to '#', class: 'text-muted' do
-          이슈 소개
-      %li{role: 'presentation'}
-        = link_to '#', class: 'text-muted' do
-          이슈 토크
+
