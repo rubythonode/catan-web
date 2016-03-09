@@ -1,20 +1,19 @@
-- if local_assigns[:issue] and !issue.is_all? and issue.opinions.any?
-  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
-    %li.active{role: 'presentation'}
-      = link_to '#' do
-        글
-        %small
-          = posts.count
-          - if posts.latest.any?
-            %span{ style: 'font-size: 60%;' }
-              + #{@posts_for_filter.latest.count}
-    - if @issue
-      %li{role: 'presentation'}
-        = link_to '#', class: 'text-muted' do
-          톡 0
-      %li{role: 'presentation'}
-        = link_to '#', class: 'text-muted' do
-          #{issue.title}(이)란?
+%ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
+  %li.active{role: 'presentation'}
+    = link_to '#' do
+      글
+      %small
+        = posts.count
+        - if posts.latest.any?
+          %span{ style: 'font-size: 60%;' }
+            + #{@posts_for_filter.latest.count}
+  %li{role: 'presentation'}
+    = link_to '#', class: 'text-muted' do
+      톡 0
+  - if local_assigns[:issue]
+    %li{role: 'presentation'}
+      = link_to '#', class: 'text-muted' do
+        #{issue.title}(이)란?
 - current_params = params.except(:page, :f, :action, :controller)
 .post-type-filter
   %ul.nav.nav-pills{role: 'tablist', style: 'margin-bottom: 20px;'}

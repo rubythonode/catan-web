@@ -108,6 +108,17 @@ class Issue < ActiveRecord::Base
     Issue.hottest.where.not(id: someone.watched_issues).limit(10)
   end
 
+  def self.featured_issues(someone)
+    result = []
+    result << someone.watched_issues if someone.present?
+    result << parti_issues
+    result.flatten.compact.uniq.sort_by { |i| [i.title] }
+  end
+
+  def self.parti_issues
+    Issue.where slug: %w(basic-income sewolho 20th-general-election)
+  end
+
   private
 
   def downcase_slug
