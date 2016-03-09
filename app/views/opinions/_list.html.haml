@@ -8,6 +8,9 @@
           + #{opinions.latest.count}
   .owl-wrapper.opinion-cards
     .owl-carousel{data: {ride: 'parti-carousel', 'carousel-magin': 10}}
+      - opinions.each do |opinion|
+        .owl-item-wrapper
+          = render customize_partial_path(opinion, 'card')
       .owl-item-wrapper
         .panel.panel-default
           .panel-body{ style: 'height: 250px; display: table; width: 100%;' }
@@ -26,6 +29,4 @@
                     %i.fa.fa-bar-chart
                       주장하기
 
-      - opinions.each do |opinion|
-        .owl-item-wrapper
-          = render customize_partial_path(opinion, 'card')
+
