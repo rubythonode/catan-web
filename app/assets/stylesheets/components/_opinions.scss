@@ -49,6 +49,9 @@
     width: 15px;
     display: inline;
   }
+  &__title {
+    word-break: keep-all;
+  }
   .opinion__vote-section {
     padding: 10px;
     margin: 15px 0;
