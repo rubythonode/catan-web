@@ -40,7 +40,9 @@
                     .issue__logo{style: "background-image: url(#{issue.logo_url});"}
                       = issue.title
                 %div
-                  %strong= issue.title
+                  %strong
+                    %i.fa.fa-hashtag>
+                    = issue.title
                   .issue__count.text-muted
                     %span
                       %i.fa.fa-user

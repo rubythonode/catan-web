@@ -1,20 +1,27 @@
 %section{id: "#{dom_id(issue)}-recents", style: "background-color: #fafafa; padding: 50px 0;" }
   .container
     %h4{ style: 'font-weight: 200' }
-      %strong= link_to issue.title, issue_path(issue)
+      %strong
+        = link_to issue_path(issue) do
+          %i.fa.fa-hashtag>
+          = issue.title
       이슈의 다른 글도 읽어보세요.
     %div
       - issue.posts.recommends_for_list(local_assigns[:exclude]).each do |post|
         = render post.specific
     %div{ style: 'margin: 20px 0;' }
       = link_to issue_home_path(issue, f: :recent), class: 'btn btn-primary btn-block' do
+        %i.fa.fa-hashtag>
         #{issue.title} 이슈의 모든 글 보기 (#{issue.posts.for_list.count})
         %i.fa.fa-arrow-right
 
 %section{id: "#{dom_id(issue)}-commiters", style: "padding: 50px 0;" }
   .container
     %h4{ style: 'font-weight: 200' }
-      %strong= link_to issue.title, issue_path(issue)
+      %strong
+        = link_to issue_path(issue) do
+          %i.fa.fa-hashtag>
+          = issue.title
       이슈는
       %strong= issue.commiters.count
       명의 커미터가 만듭니다.
@@ -22,13 +29,16 @@
     %div{ style: 'padding-top: 10px' }
       .row
         - issue.commiters.each do |user|
-          .col-xs-6.col-sm-4
+          .col-xs-12.col-sm-4
             = render user
-        .col-xs-6.col-sm-4
-          .panel.panel-default
-            .panel-body
+        .col-xs-12.col-sm-12
+          .panel.panel-default(style='height: 85px;')
+            .panel-body.text-center
               .text-muted{ style: 'margin: 0' }
-                %strong= link_to issue.title, issue_path(issue)
+                %strong
+                  = link_to issue_path(issue) do
+                    %i.fa.fa-hashtag>
+                    = issue.title
                 이슈를 함께 만들어주세요
               %div{ style: 'margin: 10px 0;' }
                 - if user_signed_in?

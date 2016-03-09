@@ -5,9 +5,13 @@
       .pull-left(style='width: 60px; margin-right: 10px')
         .issue--related
           = link_to issue_home_path(issue), class: 'issue__logo', style: "background-image: url(#{issue.logo_url});" do
+            %i.fa.fa-hashtag>
             = issue.title
       %h5
-        %strong= link_to issue.title, issue_home_path(issue)
+        %strong
+          = link_to issue_home_path(issue) do
+            %i.fa.fa-hashtag>
+            = issue.title
     .issue__meta.text-muted
       %span.no-wrap
         %i.fa.fa-user

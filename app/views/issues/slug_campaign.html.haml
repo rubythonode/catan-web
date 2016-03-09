@@ -1,7 +1,9 @@
 %section#issue-campaign-section{ style: "background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; height: 100%;" }
   .container
     .jumbotron.jumbotron-transparent
-      %h2= @issue.title
+      %h2
+        %i.fa.fa-hashtag>
+        = issue.title
 
 
   %section

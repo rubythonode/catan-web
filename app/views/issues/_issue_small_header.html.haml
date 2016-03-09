@@ -11,7 +11,7 @@
             = link_to issue_home_path(issue), style: 'text-decoration: none' do
               %span{ style: 'font-weight: bold; color:white;' }>
                 %i.fa.fa-hashtag>
-                #{issue.title}
+                = issue.title
             %span.issue__count{ style: 'color: white; font-size: 60%; margin: 0 5px' }
               %i.fa.fa-archive
               %strong= issue.posts.count

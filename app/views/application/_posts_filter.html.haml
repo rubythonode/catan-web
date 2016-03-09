@@ -13,6 +13,7 @@
   - if local_assigns[:issue] and !issue.is_all?
     %li{role: 'presentation'}
       = link_to '#', class: 'text-muted' do
+        %i.fa.fa-hashtag>
         #{issue.title}(이)란?
 - current_params = params.except(:page, :f, :action, :controller)
 .post-type-filter

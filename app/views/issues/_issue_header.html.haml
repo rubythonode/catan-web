@@ -14,7 +14,9 @@
         %div.clearfix.text-center
           = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
           %h2
-            %span{ style: 'font-weight: bold; color:white;' }>= issue.title
+            %span{ style: 'font-weight: bold; color:white;' }>
+              %i.fa.fa-hashtag>
+              = issue.title
 
           - unless issue.is_all?
             %div.text-center

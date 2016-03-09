@@ -5,7 +5,9 @@
         %div.clearfix.text-center
           = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
           %h2
-            = link_to issue.title, issue_home_path(issue), { :style => 'font-weight: bold; color:white;' }
+            = link_to issue_home_path(issue), { :style => 'font-weight: bold; color:white;' } do
+              %i.fa.fa-hashtag>
+              = issue.title
           - unless issue.is_all?
             %div.text-center
               - if can? :update, issue

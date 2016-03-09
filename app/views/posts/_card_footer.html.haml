@@ -5,6 +5,7 @@
       %span.post-card__issue-label
         = link_to issue_home_path(post.issue) do
           = image_tag post.issue.logo_url, style: 'width: 13px; height: 13px'
+          %i.fa.fa-hashtag(style='margin-left: 5px;')>
           = post.issue.title
     = byline post.user, {hide_image: true}
     = link_to post.specific do
