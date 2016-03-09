@@ -46,7 +46,7 @@
     .vote__buttons.text-center
       .row
         .col-xs-6
-          = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'opinions/vote_inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
+          = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
             %i.fa.fa-thumbs-up
             찬성
         .col-xs-6
