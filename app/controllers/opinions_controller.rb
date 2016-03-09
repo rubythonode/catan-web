@@ -40,7 +40,7 @@ class OpinionsController < ApplicationController
   end
 
   def social_card
-    @kit = IMGKit.new render_to_string(layout: nil), width: 1200, height: 630
+    @kit = IMGKit.new render_to_string(layout: nil), width: 1200, height: 630, quality: 10
     respond_to do |format|
       format.png { send_data(@kit.to_png, :type => "image/png", :disposition => 'inline') }
       format.html { render(layout: nil) }
