@@ -6,7 +6,7 @@
         = posts.count
         - if posts.latest.any?
           %span{ style: 'font-size: 60%;' }
-            + #{@posts_for_filter.latest.count}
+            + #{posts.latest.count}
   %li{role: 'presentation'}
     = link_to '#', class: 'text-muted' do
       톡 0
