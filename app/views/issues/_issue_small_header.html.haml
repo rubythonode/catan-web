@@ -49,7 +49,7 @@
   .container
     .row
       .col-sm-6{ class: ('hidden-xs' unless issue.is_all?) }
-        .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light", 'style': 'margin-top: 8px;'}
+        .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light", "data-width" => "255", 'style': 'margin-top: 8px;'}
       - unless issue.is_all?
         .col-sm-6.text-right.hidden-xs
           %strong{ style: 'margin-right: 15px;' }
