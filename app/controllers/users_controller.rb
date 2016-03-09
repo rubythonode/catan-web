@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @users = User.order("id DESC")
   end
 
-  def home
+  def gallery
     @user = User.find_by! nickname: params[:nickname].try(:downcase)
     @posts = @user.posts.for_list
     @posts_for_filter = @posts

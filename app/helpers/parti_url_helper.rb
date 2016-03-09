@@ -8,19 +8,16 @@ module PartiUrlHelper
     slug_issue_url(slug: issue.slug)
   end
 
-  def user_home_path(user)
+  def user_gallery_path(user)
     nickname_user_path(nickname: user.nickname)
+  end
+
+  def user_gallery_url(user)
+    nickname_user_url(nickname: user.nickname)
   end
 
   def tag_home_path(tag)
     show_tag_path(name: tag.name)
   end
 
-  def user_home_path(user)
-    nickname_user_path(nickname: user.nickname)
-  end
-
-  def user_home_url(user)
-    nickname_user_url(nickname: user.nickname)
-  end
 end

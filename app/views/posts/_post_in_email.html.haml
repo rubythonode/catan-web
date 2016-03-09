@@ -3,7 +3,7 @@
 - postable_type_image_map = {'Article' => 'fa-link.png', 'Opinion' => 'fa-bar-chart.png', 'Question' => 'fa-question.png', 'Discussion' => 'fa-list-ul.png'}
 %div{ style: 'padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid #eee;'}
   %span{ style: 'font-size: 70%; margin-right: 10px;' }
-    = link_to user_home_url(post.user), style: 'color: #999; text-decoration: none' do
+    = link_to user_gallery_url(post.user), style: 'color: #999; text-decoration: none' do
       = image_tag post.user.image_url, width: '13', height: '13'
       = post.user.nickname
   %span{ style: 'font-size: 70%;' }

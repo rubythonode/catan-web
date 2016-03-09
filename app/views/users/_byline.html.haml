@@ -1,4 +1,4 @@
-= link_to user_home_path(user), class: 'text-nowrap' do
+= link_to user_gallery_path(user), class: 'text-nowrap' do
   - unless local_assigns[:hide_image]
     = image_tag user.image_url, class: 'user-image img-circle'
   - else

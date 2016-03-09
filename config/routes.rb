@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   get '/about', to: "pages#about", as: 'about'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/i/:slug/campaign', to: "issues#slug_campaign", as: 'slug_issue_campaign'
-  get '/u/:nickname', to: "users#home", as: 'nickname_user'
+  get '/u/:nickname', to: "users#gallery", as: 'nickname_user'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
   authenticate :user, lambda { |u| u.admin? } do
     get '/test/summary', to: "users#summary_test"
