@@ -16,7 +16,7 @@
     - if user_signed_in? and !local_assigns[:hide_like_tab]
       %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
         = link_to url_for(current_params.merge(f: :like)) do
-          나의
+          내
           %i.fa.fa-arrow-up
           - if local_assigns[:posts]
             %small= posts.only_like_by(current_user).count

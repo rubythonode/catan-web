@@ -2,7 +2,11 @@
   %h4 아래 이슈도 구독해보세요
   .owl-wrapper
     .owl-carousel{data: {ride: 'parti-carousel'}}
-      - issue.recommends.each do |recommend|
+      - if local_assigns[:exclude_watched]
+        - recommends = issue.recommends_for_watch(current_user)
+      - else
+        - recommends = issue.recommends
+      - recommends.each do |recommend|
         .owl-item-wrapper
           .text-muted{ style: 'margin-bottom: 5px; color: #aaa;'}
             - if recommend.past_week?

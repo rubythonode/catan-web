@@ -1,16 +1,15 @@
-.bs-component
-  %section#tag
-    .container
-      %h2.page-header
-        %i.fa.fa-tag
-        = params[:name]
-  %section#tag-posts
-    .container
-      .row
-        .col-sm-8
-          = render 'posts_filter', posts: @posts_for_filter
-          = render 'posts/list', postables: @postables, show_issue: true
-          .text-center
-            = paginate @posts, theme: 'twitter-bootstrap-3'
-        .col-sm-4
-          = render 'issues/aside_all'
+%section#tag
+  .container
+    %h2.page-header
+      %i.fa.fa-tag
+      = params[:name]
+%section#tag-posts
+  .container
+    .row
+      .col-sm-8
+        = render 'posts_filter', posts: @posts_for_filter
+        = render 'posts/list', postables: @postables, show_issue: true
+        .text-center
+          = paginate @posts, theme: 'twitter-bootstrap-3'
+      .col-sm-4
+        = render 'issues/aside_all'

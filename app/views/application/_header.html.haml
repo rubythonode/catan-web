@@ -59,10 +59,12 @@
           %li
             = byline current_user
           %li
-            = link_to '대시보드', dashboard_path
+            = link_to dashboard_path do
+              %i.fa.fa-home
+              내 홈
           %li
             = link_to dashboard_path(f: :like) do
-              나의
+              내
               %i.fa.fa-arrow-up.text-danger(style='font-size: 125%')
           %li
             = link_to edit_user_registration_path do

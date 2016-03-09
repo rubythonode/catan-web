@@ -104,6 +104,10 @@ class Issue < ActiveRecord::Base
     (related_issues + OF_ALL.recommends - [self]).uniq.shuffle
   end
 
+  def recommends_for_watch(someone)
+    Issue.hottest.where.not(id: someone.watched_issues).limit(10)
+  end
+
   private
 
   def downcase_slug

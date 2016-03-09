@@ -1,16 +1,11 @@
-.issue-header-section( style="background-size: cover; background-image: url('#{asset_path('default_issue_cover.png')}'); margin-top: -8px; " )
-  %section#issue
-    .container{ style: 'position: reltiave;' }
-      .jumbotron.jumbotron-transparent{ style: 'margin: 0' }
-        %div.clearfix.text-center
-          = image_tag current_user.image_url, style: 'width: 100px; height: 100px'
-          %h2{ style: 'color:white; font-weight: 200;' }
-            나의 대시보드
-
-          .issue-header__body
-            %p{ style: 'color: white;' }
-              내가 구독하는 이슈의 글입니다.
-
+%section#tag
+  .container
+    %h2
+      %i.fa.fa-home
+      내 홈
+      %small(style='font-size: 50%;')
+        구독하는 이슈의 글과 내
+        %i.fa.fa-arrow-up
 %section#issue-posts
   .container
     = render 'posts_filter', posts: @watched_posts_for_filter
@@ -20,5 +15,5 @@
 
 %section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
   .container
-    = render 'issues/recommends', issue: Issue::OF_ALL
+    = render 'issues/recommends', issue: Issue::OF_ALL, exclude_watched: true
 
