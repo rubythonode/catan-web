@@ -23,39 +23,52 @@
   }
 }
 
-.opinion-card {
-  blockquote {
-    padding: 5px;
-    border-left: 0;
-    quotes: "\201C""\201D""\2018""\2019";
-
-    p {
-      display: inline;
-    }
-
-    &:before {
-      color: $gray-light;
-      content: open-quote;
-      font-size: 3em;
-      line-height: 0.1em;
-      margin-right: 0.25em;
-      vertical-align: -0.4em;
-    }
-    &:after {
-      color: $gray-light;
-      content: close-quote;
-      font-size: 3em;
-      float: right;
+.opinion-cards {
+  .owl-carousel {
+    .owl-controls {
+      height: 0;
+      .owl-nav {
+        .owl-prev {
+          position: absolute;
+          top: -40px;
+          right: 30px;
+        }
+        .owl-next {
+          position: absolute;
+          top: -40px;
+          right: -5px;
+        }
+      }
     }
   }
-  .opinion__title {
-    margin: 0;
-    font-size: 30px;
-    text-align: center;
-    word-break: keep-all;
+}
+
+.opinion-card {
+  img.user-image {
+    height: 15px;
+    width: 15px;
+    display: inline;
   }
   .opinion__vote-section {
-    padding: 15px;
+    padding: 10px;
+    margin: 15px 0;
+  }
+  .jssocials-shares {
+    margin: 0;
+  }
+  &__shares.jssocials {
+    .jssocials-share {
+      margin-top: 0;
+      margin-bottom: 0;
+      .jssocials-share-link {
+        background-color: #f5f5f5;
+        color: #777;
+      }
+    }
+  }
+  .vote__buttons {
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }
 

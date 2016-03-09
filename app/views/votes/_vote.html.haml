@@ -43,20 +43,20 @@
       %i.fa.fa-info-circle
       투표를 다음으로 변경합니다.
       - if opinion.agreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'opinions/vote'), method: :post, remote: true, class: 'btn btn-default btn-sm' do
+        = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}), method: :post, remote: true, class: 'btn btn-default btn-sm' do
           %i.fa.fa-thumbs-down
           반대
       - if opinion.disagreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'opinions/vote'), method: :post, remote: true, class: 'btn btn-default btn-sm' do
+        = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}), method: :post, remote: true, class: 'btn btn-default btn-sm' do
           %i.fa.fa-thumbs-up
           찬성
 
   - else
     %p.text-center
-      = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'opinions/vote'), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
+      = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
         %i.fa.fa-thumbs-up
         찬성
-      = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'opinions/vote'), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
+      = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}), method: :post, remote: true, class: 'btn btn-primary btn-lg' do
         %i.fa.fa-thumbs-down
         반대
     %p.text-center

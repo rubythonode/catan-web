@@ -2,6 +2,8 @@
 
 %section#issue-posts
   .container
+    - unless @issue.is_all?
+      = render 'opinions/list', opinions: @issue.opinions, issue: @issue
     = render 'posts_filter', posts: @posts_for_filter
     = render 'posts/list', postables: @postables, issue: @issue, show_issue: @issue.is_all?
     .text-center

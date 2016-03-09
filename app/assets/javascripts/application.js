@@ -161,9 +161,14 @@ $(function(){
   // carousel
   $('[data-ride="parti-carousel"]').each(function(i, elm) {
     var $elm = $(elm);
+    var margin = $elm.data('carousel-magin');
+    if(!margin) {
+      margin = 0;
+    }
     $elm.owlCarousel({
       loop:true,
       nav:true,
+      margin: margin,
       navText: [
         '<i class="fa fa-arrow-left">',
         '<i class="fa fa-arrow-right">',
@@ -218,11 +223,12 @@ $(function(){
   });
   $('[data-dismiss="parti-login-overlay"]').on('click', function(e) {
     e.preventDefault();
-    var $input = $('#login-overlay form input[name=after_login]');
-    $input.val('');
-    var $label = $('#login-overlay .login-overlay__label');
-    $label.html('');
-    $("#login-overlay").fadeOut();
+    $("#login-overlay").fadeOut(400, function() {
+      var $input = $('#login-overlay form input[name=after_login]');
+      $input.val('');
+      var $label = $('#login-overlay .login-overlay__label');
+      $label.html('');
+    });
   });
 
   // form submit link
