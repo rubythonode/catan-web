@@ -35,10 +35,4 @@
                     = f.check_box :remember_me
                     = f.label :remember_me, style: 'font-weight: normal'
 
-          .clearfix(style='margin-top: 20px;')
-            %p.text-muted
-              %i.fa.fa-info-circle
-              아직 회원이 아니세요? 지금 가입하세요!
-              %span(style='margin-left: 10px;')
-                = link_to "회원가입", new_registration_path(resource_name), class: 'btn btn-primary btn-sm'
         = render "devise/shared/links"

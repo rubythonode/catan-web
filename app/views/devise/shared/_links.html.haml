@@ -6,9 +6,6 @@
     - if controller_name != 'sessions'
       %li(style='margin-right: 0')
         = link_to "로그인", new_session_path(:user)
-    - if Devise.mappings[:user].registerable? && !['registrations', 'sessions'].include?(controller_name)
-      %li(style='margin-right: 0')
-        = link_to "회원가입", new_registration_path(:user)
     - if Devise.mappings[:user].recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
       %li(style='margin-right: 0')
         = link_to "비밀번호 분실", new_password_path(:user)
