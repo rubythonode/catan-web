@@ -8,12 +8,15 @@
   .opinion__title {
     padding: 30px 0 50px;
   }
+  .like-button div {
+    display: inline;
+  }
 }
 
 .opinion__vote-section {
   background: #fafafa;
   padding: 40px;
-  margin: 40px 0;
+  margin: 20px 0;
 }
 
 .vote__results {
@@ -22,6 +25,12 @@
     font-weight: 200;
     .count {
       font-weight: bold;
+    }
+  }
+  .voters {
+    padding: 10px;
+    a {
+      color: $gray-light;
     }
   }
 }

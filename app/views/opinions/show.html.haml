@@ -8,9 +8,12 @@
     .opinion__tags.post__tags
       = render 'tags/collection', tags: @opinion.tags
 
-    .post__likes
-      = render 'likes/like', post: @opinion.acting_as
-      = render 'likes/like_detail', post: @opinion.acting_as
+    .row
+      .col-xs-9
+        = render 'likes/like_line', post: @opinion.acting_as
+
+      .col-xs-3
+        #share.pull-right
 
 %section.post-comments-section
   .container

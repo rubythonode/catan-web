@@ -137,22 +137,13 @@
 }
 
 .post__tags {
-  margin-top: 7px;
+  margin: 20px 0;
   line-height: 150%;
   a {
-    background-color: $gray-lighter;
-    color: $gray;
-    font-size: 15px;
+    margin-right: 5px;
+    color: $gray-light;
     font-weight: normal;
-    padding: 5px 10px;
-    border-radius: 10px;
     display: inline-block;
-    margin-bottom: 5px;
-    &:hover {
-      background-color: $gray-light;
-      color: #fff;
-      text-decoration: none;
-    }
   }
 }
 
