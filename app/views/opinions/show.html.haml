@@ -2,13 +2,7 @@
 
 %section.post-section.opinion-section
   .container
-    %h2.post__title.opinion__title “#{@opinion.title}”
-
     = render 'posts/post_header', post: @opinion.acting_as
-
-    .opinion__body
-      = simple_format auto_link(@opinion.body), style: 'font-size: 120%'
-
     = render 'votes/vote', opinion: @opinion
 
     .opinion__tags.post__tags

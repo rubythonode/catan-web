@@ -93,8 +93,19 @@
   }
 
   .post-section__header {
-    .post-section__header__meta {
-      line-height: 38px;
+    &__meta {
+      .user-image {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin-right: 10px;
+      }
+      a {
+        color: $gray-darker;
+      }
+      &__date {
+        display: block;
+      }
     }
   }
 

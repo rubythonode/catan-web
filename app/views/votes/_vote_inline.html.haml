@@ -5,13 +5,13 @@
     .vote__buttons.text-center
       .row
         .col-xs-6
-          = link_to '#', class: 'btn btn-primary btn-block', data: { toggle: 'parti-login-overlay', label: '찬성', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
-            %i.fa.fa-check-circle-o
+          = link_to '#', class: 'btn btn-default btn-block', data: { toggle: 'parti-login-overlay', label: '찬성', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
             찬성
+            %i.fa.fa-check-circle-o.fa-fw
         .col-xs-6
-          = link_to '#', class: 'btn btn-primary btn-block', data: { toggle: 'parti-login-overlay', label: '반대', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
-            %i.fa.fa-ban
+          = link_to '#', class: 'btn btn-default btn-block', data: { toggle: 'parti-login-overlay', label: '반대', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
             반대
+            %i.fa.fa-ban.fa-fw
 
   - elsif opinion.voted_by? current_user
     .vote__results.text-center
@@ -31,13 +31,13 @@
     .vote__buttons.text-center
       .row
         .col-xs-6
-          = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
-            %i.fa.fa-check-circle-o
+          = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-default btn-block' do
             찬성
+            %i.fa.fa-check-circle-o.fa-fw
         .col-xs-6
-          = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
-            %i.fa.fa-ban
+          = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-default btn-block' do
             반대
+            %i.fa.fa-ban.fa-fw
 
   %p.text-center{ style: 'margin-top: 20px' }
     %i.fa.fa-info-circle
@@ -48,9 +48,7 @@
       명이 투표했습니다.
 
   %p.text-center
-    - if !user_signed_in? || !opinion.voted_by?(current_user)
-      투표를 하면 현재 결과를 볼 수 있습니다.
-    - else
+    - if user_signed_in? && opinion.voted_by?(current_user)
       투표를 다음으로 변경합니다.
       - if opinion.agreed_by? current_user
         = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true do
@@ -60,3 +58,5 @@
         = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true do
           %i.fa.fa-thumbs-up
           찬성
+    - else
+      투표를 하면 현재 결과를 볼 수 있습니다.
