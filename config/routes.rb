@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, except: :show
 
   resources :issues do
+    resources :talks, shallow: true
     member do
       get :users
       get :campaign

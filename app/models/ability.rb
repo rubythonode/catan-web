@@ -6,8 +6,12 @@ class Ability
     can [:slug, :users], Issue
     if user
       can :manage, [Issue, Related] if user.admin?
-      can :create, [Article, Opinion, Question, Answer, Discussion, Proposal, Comment, Vote, Like, Watch]
-      can :manage, [Article, Opinion, Question, Answer, Discussion, Proposal, Comment, Like, Watch], user_id: user.id
+      can :create, [Article, Opinion, Question,
+        Answer, Discussion, Proposal, Comment,
+        Vote, Like, Watch, Talk]
+      can :manage, [Article, Opinion, Question,
+        Answer, Discussion, Proposal, Comment,
+        Like, Watch, Talk], user_id: user.id
     end
   end
 end

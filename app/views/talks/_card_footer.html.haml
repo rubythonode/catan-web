@@ -1,0 +1,19 @@
+.clearfix
+  .talk-card__info
+    - if local_assigns[:show_issue]
+      %span.talk-card__issue-label
+        = link_to issue_home_path(talk.issue) do
+          = image_tag talk.issue.logo_url, style: 'width: 13px; height: 13px'
+          %i.fa.fa-hashtag(style='margin-left: 5px;')>
+          = talk.issue.title
+    = byline talk.user, {hide_image: true}
+    = link_to talk do
+      %i.fa.fa-comment-o
+        1
+    = link_to talk do
+      %i.fa.fa-clock-o
+      = date_f talk.created_at
+    / - if obj.tags.any?
+    /   %i.fa.fa-tag{ style: 'color: #aaa' }
+    / - obj.tags.each do |tag|
+    /   = link_to "#{tag.name}", tag_home_path(tag), class: 'text-nowrap'

@@ -1,0 +1,15 @@
+.talk-card[talk]
+  .media
+    .media-left
+      %div.like-button
+        %a(href='#')
+          %div
+            %i.fa.fa-arrow-circle-o-up
+          %div
+    .media-body
+      .hidden-xs.pull-right
+        .talk-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: talk_url(talk), text: talk.title} }}
+
+      %h4.talk-card__title
+        = link_to talk.title, talk, target: 'parti_detail_view'
+      = render 'talks/card_footer', talk: talk

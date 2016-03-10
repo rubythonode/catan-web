@@ -1,0 +1,18 @@
+%ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
+  %li{role: 'presentation'}
+    = link_to issue do
+      글
+      %small
+        30
+        - if true
+          %span{ style: 'font-size: 60%;' }
+            + 1
+  %li.active{role: 'presentation'}
+    = link_to issue_talks_path(issue), class: 'text-muted' do
+      톡 0
+  - if local_assigns[:issue] and !issue.is_all?
+    %li{role: 'presentation'}
+      = link_to '#', class: 'text-muted' do
+        %i.fa.fa-hashtag>
+        #{issue.title}(이)란?
+

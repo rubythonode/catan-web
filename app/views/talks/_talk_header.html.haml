@@ -1,0 +1,10 @@
+%div.talk-section__header.clearfix
+  .talk-section__header__meta
+    = byline talk.user
+    %span.talk-section__header__meta__date.text-muted
+      = date_f talk.created_at
+      - if can? :update, talk
+        = link_to '수정', [:edit, talk]
+      - if can? :destroy, talk
+        = link_to '삭제', talk, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }
+
