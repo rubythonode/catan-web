@@ -1,18 +1,26 @@
 - opinion = card
 - post = card.acting_as
-.opinion-card.opinion-card.panel.panel-default[post]
+.opinion-card.panel.panel-default[post]
   .panel-heading
-    .opinion-card__byline
-      = byline post.user
+    .row
+      .col-xs-6
+        .opinion-card__byline
+          = byline post.user
+      .col-xs-6.text-right
+        %i.fa.fa-comment-o
+        = post.comments.count
+
   .panel-body
     %h3.opinion-card__title.text-center
       = link_to opinion, target: 'parti_detail_view' do
-        #{opinion.title}
+        “#{opinion.title}”
 
     = render 'votes/vote_inline', specific: opinion
 
   .panel-footer
-    .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
-    %i.fa.fa-comment-o
-      = post.comments.count
+    .row
+      .col-xs-6
+        = render 'likes/like_line', post: post
+      .col-xs-6
+        .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 

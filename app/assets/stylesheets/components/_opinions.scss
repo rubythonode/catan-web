@@ -44,13 +44,31 @@
 }
 
 .opinion-card {
+  .panel-heading, .panel-footer {
+    background-color: #fff;
+  }
+  .panel-body {
+    background-color: #fafafa;
+  }
   img.user-image {
     height: 15px;
     width: 15px;
     display: inline;
   }
+  &__byline a {
+    color: $gray-darker;
+  }
   &__title {
+    font-weight: bold;
     word-break: keep-all;
+    a {
+      color: $gray-darker;
+      line-height: 1.7;
+      &:hover {
+        text-decoration: none;
+        color: $brand-primary;
+      }
+    }
   }
   .opinion__vote-section {
     padding: 10px;
@@ -72,6 +90,9 @@
   .vote__buttons {
     padding: 10px;
     margin-bottom: 10px;
+  }
+  .like-button div {
+    display: inline;
   }
 }
 

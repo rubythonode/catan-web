@@ -1,62 +1,62 @@
 - opinion ||= local_assigns[:specific]
-.opinion__vote-section{class: "#{dom_id(opinion)}-vote" }
+.opinion__vote-section[opinion]{class: "#{dom_id(opinion)}-vote" }
+
   - if !user_signed_in?
     .vote__buttons.text-center
       .row
         .col-xs-6
           = link_to '#', class: 'btn btn-primary btn-block', data: { toggle: 'parti-login-overlay', label: '찬성', 'after-login': h({action: :opinion_vote_agree, id: opinion.id}.to_json) } do
-            %i.fa.fa-thumbs-up
+            %i.fa.fa-check-circle-o
             찬성
         .col-xs-6
           = link_to '#', class: 'btn btn-primary btn-block', data: { toggle: 'parti-login-overlay', label: '반대', 'after-login': h({action: :opinion_vote_disagree, id: opinion.id}.to_json) } do
-            %i.fa.fa-thumbs-down
+            %i.fa.fa-ban
             반대
-    %p.text-center
-      %i.fa.fa-info-circle
-      - if opinion.votes.any?
-        현재
-        %strong.lead
-          #{opinion.votes.count}
-        명이 투표에 참여했습니다.
+
   - elsif opinion.voted_by? current_user
     .vote__results.text-center
       .row
-        .col-xs-6
-          %h4
+        .col-xs-6.text-right
+          = link_to '#', class: 'btn ' + ( opinion.agreed_by?(current_user) ? 'btn-primary' : 'btn-default' ) do
             찬성
             %span.count= opinion.votes.with_choice(:agree).count
-        .col-xs-6
-          %h4
+            %i.fa.fa-check-circle-o{ style: 'margin-left: 10px' }
+        .col-xs-6.text-left
+          = link_to '#', class: 'btn ' + ( opinion.disagreed_by?(current_user) ? 'btn-primary' : 'btn-default' ) do
             반대
             %span.count= opinion.votes.with_choice(:disagree).count
-
-    %p.text-center(style="margin-top: 20px")
-      %i.fa.fa-info-circle
-      투표를 다음으로 변경합니다.
-      - if opinion.agreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-default btn-sm' do
-          %i.fa.fa-thumbs-down
-          반대
-      - if opinion.disagreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-default btn-sm' do
-          %i.fa.fa-thumbs-up
-          찬성
+            %i.fa.fa-ban{ style: 'margin-left: 10px' }
 
   - else
     .vote__buttons.text-center
       .row
         .col-xs-6
           = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
-            %i.fa.fa-thumbs-up
+            %i.fa.fa-check-circle-o
             찬성
         .col-xs-6
           = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true, class: 'btn btn-primary btn-block' do
-            %i.fa.fa-thumbs-down
+            %i.fa.fa-ban
             반대
-    %p.text-center
-      %i.fa.fa-info-circle
-      - if opinion.votes.any?
-        현재
-        %strong.lead
-          #{opinion.votes.count}
-        명이 투표에 참여했습니다.
+
+  %p.text-center{ style: 'margin-top: 20px' }
+    %i.fa.fa-info-circle
+    - if opinion.votes.any?
+      현재
+      %strong
+        #{opinion.votes.count}
+      명이 투표했습니다.
+
+  %p.text-center
+    - if !user_signed_in? || !opinion.voted_by?(current_user)
+      투표를 하면 현재 결과를 볼 수 있습니다.
+    - else
+      투표를 다음으로 변경합니다.
+      - if opinion.agreed_by? current_user
+        = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}, partial: 'inline'), method: :post, remote: true do
+          %i.fa.fa-thumbs-down
+          반대
+      - if opinion.disagreed_by? current_user
+        = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}, partial: 'inline'), method: :post, remote: true do
+          %i.fa.fa-thumbs-up
+          찬성
