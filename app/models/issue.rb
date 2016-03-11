@@ -47,7 +47,6 @@ class Issue < ActiveRecord::Base
       after(1.day.ago)
     end
   end
-  has_many :talks
 
   # validations
   validates :title, presence: true

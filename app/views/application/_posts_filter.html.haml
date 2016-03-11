@@ -9,10 +9,6 @@
             + #{posts.latest.count}
   - if local_assigns[:issue] and !issue.is_all?
     %li{role: 'presentation'}
-      = link_to issue_talks_path(issue), class: 'text-muted' do
-        톡 0
-  - if local_assigns[:issue] and !issue.is_all?
-    %li{role: 'presentation'}
       = link_to '#', class: 'text-muted' do
         %i.fa.fa-hashtag>
         #{issue.title}(이)란?

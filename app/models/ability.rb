@@ -8,10 +8,10 @@ class Ability
       can :manage, [Issue, Related] if user.admin?
       can :create, [Article, Opinion, Question,
         Answer, Discussion, Proposal, Comment,
-        Vote, Like, Watch, Talk]
+        Vote, Like, Watch]
       can :manage, [Article, Opinion, Question,
         Answer, Discussion, Proposal, Comment,
-        Like, Watch, Talk], user_id: user.id
+        Like, Watch], user_id: user.id
     end
   end
 end
