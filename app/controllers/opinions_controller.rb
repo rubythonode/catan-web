@@ -47,6 +47,10 @@ class OpinionsController < ApplicationController
     end
   end
 
+  helper_method :fetch_issue
+  def fetch_issue
+    @issue ||= @opinion.try(:issue)
+  end
   private
 
   def set_comment

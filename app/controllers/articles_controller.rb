@@ -38,6 +38,10 @@ class ArticlesController < ApplicationController
                       description: @article.body
   end
 
+  helper_method :fetch_issue
+  def fetch_issue
+    @issue ||= @article.try(:issue)
+  end
   private
 
   def article_params
