@@ -14,8 +14,9 @@
         - if can? :destroy, comment
           = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
             %i.fa.fa-trash-o>
-      %p
-        = simple_format auto_link(comment.body)
+      .comment__body
+        %p
+          = simple_format auto_link(comment.body)
 - else
   .comment--inline[comment]
     .comment__body{ style: 'margin: 10px 0;' }

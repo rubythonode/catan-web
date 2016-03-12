@@ -121,6 +121,7 @@
 }
 
 .post__body {
+  @include word-wrap;
   img {
     max-width: 100%;
   }

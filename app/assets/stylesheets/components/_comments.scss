@@ -15,6 +15,10 @@
   }
 }
 
+.comment__body {
+  @include word_wrap
+}
+
 .newest_comment {
   font-size: 12px;
   .byline {
