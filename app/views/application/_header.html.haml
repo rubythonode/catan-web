@@ -13,7 +13,7 @@
       - if user_signed_in?
         %ul.nav.navbar-nav.pull-left
           %li.pull-right
-            = link_to '#', data: { toggle: 'modal', target: '#new-post-buttons-modal'} do
+            = link_to new_article_path(issue_id: try(:fetch_issue)) do
               %i.fa.fa-edit
               %span.hidden-xs
                 글쓰기
@@ -101,4 +101,3 @@
             %i.fa.fa-bug
             오류와 버그 신고
 
-= render 'modals/new_post_buttons', issue: @issue

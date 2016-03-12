@@ -72,8 +72,6 @@ ul.list-pipeline li:not(:last-child) {
   }
 }
 
-@media (max-width: 767px) {
-  .masonry-container .post {
-    width: 100%;
-  }
+label.required:after {
+  content: " *";
 }

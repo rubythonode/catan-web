@@ -1,0 +1,34 @@
+%section{ id: "#{postable_type}-form" }
+  .container
+    .page-header{ style: 'border: none' }
+      %h4
+        - if try(:fetch_issue)
+          %i.fa.fa-hashtag
+          = fetch_issue.title
+        - else
+          %i.fa.fa-edit
+        글쓰기
+      %ul.nav.nav-tabs{ role: 'tablist' }
+        %li{class: ('active' if postable_type == :article), role: 'presentation'}
+          = link_to new_article_path(issue_id: try(:fetch_issue)) do
+            이야기
+            %span.hidden-xs<>
+              나누기
+        %li{class: ('active' if postable_type == :opinion), role: 'presentation'}
+          = link_to new_opinion_path(issue_id: try(:fetch_issue)) do
+            주장
+            %span.hidden-xs<>
+              하기
+        %li{class: ('active' if postable_type == :question), role: 'presentation'}
+          = link_to new_question_path(issue_id: try(:fetch_issue)) do
+            질문
+            %span.hidden-xs<>
+              하기
+        %li{class: ('active' if postable_type == :discussion), role: 'presentation'}
+          = link_to new_discussion_path(issue_id: try(:fetch_issue)) do
+            제안
+            %span.hidden-xs<>
+              받기
+
+    * 표시된 항목은  반드시 입력해 주세요.
+    = render 'form'

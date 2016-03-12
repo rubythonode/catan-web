@@ -1,14 +1,14 @@
 .well
   = form_for @question do |f|
     .form-group
-      = label_tag :issue_title, Issue.model_name.human
+      = label_tag :issue_title, Issue.model_name.human, class: 'required'
       = text_field_tag :issue_title, @question.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title', 'title' => @question.issue.try(:title) }
       %p.help-block
     .form-group
-      = f.label :title
+      = f.label :title, class: 'required'
       = f.text_field :title, class: 'form-control input-lg'
     .form-group
-      = f.label :body
+      = f.label :body, class: 'required'
       = f.text_area :body, class: 'form-control redactor'
     .form-group
       = f.label :tag_list
