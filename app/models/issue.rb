@@ -38,7 +38,7 @@ class Issue < ActiveRecord::Base
   # relations
   has_many :relateds
   has_many :related_issues, through: :relateds, source: :target
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :articles, through: :posts, source: :postable, source_type: Article
   has_many :opinions, through: :posts, source: :postable, source_type: Opinion
   has_many :questions, through: :posts, source: :postable, source_type: Question
