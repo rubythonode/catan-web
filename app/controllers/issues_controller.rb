@@ -97,6 +97,10 @@ class IssuesController < ApplicationController
 
   end
 
+  helper_method :fetch_issue
+  def fetch_issue
+    @issue
+  end
   private
 
   def issue_params
