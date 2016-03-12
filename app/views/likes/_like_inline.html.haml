@@ -1,4 +1,4 @@
-.like-button{id: "#{dom_id(post)}-like"}
+.like-button{class: "#{dom_id(post)}-like"}
   - if !user_signed_in?
     = link_to '#', data: { toggle: 'parti-login-overlay', label: '<i class="fa fa-arrow-circle-o-up">', 'after-login': h({action: :post_like, id: post.id}.to_json) }, class: 'like-button--unsigned' do
       %div
@@ -6,13 +6,13 @@
       %div
         = post.likes.count
   - elsif post.liked_by? current_user
-    = link_to cancel_post_likes_path(post, partial: 'likes/like_line'), method: :delete, remote: true, class: 'like-button--liked' do
+    = link_to cancel_post_likes_path(post, partial: 'likes/like_inline'), method: :delete, remote: true, class: 'like-button--liked' do
       %div
         %i.fa.fa-arrow-circle-o-up
       %div
         = post.likes.count
   - else
-    = link_to post_likes_path(post, partial: 'likes/like_line'), method: :post, remote: true, class: 'like-button--not-yet' do
+    = link_to post_likes_path(post, partial: 'likes/like_inline'), method: :post, remote: true, class: 'like-button--not-yet' do
       %div
         %i.fa.fa-arrow-circle-o-up
       %div

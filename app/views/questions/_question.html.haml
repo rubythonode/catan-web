@@ -1,19 +1,19 @@
 - post = question.acting_as
-.post-card.question-card[post]
+.post-inline.question-inline[post]
   .media
     .media-left
-      = render 'likes/like_line', post: post
+      = render 'likes/like_inline', post: post
     .media-body
       .hidden-xs.pull-right
-        .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
+        .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-      %h4.post-card__title
+      %h4.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to question, target: 'parti_detail_view' do
           질문 : “#{question.title}”
 
-      %p.post-card__body
+      %p.post-inline__body
         - first_answer = question.answers.sort_by_vote_point.first
         - if first_answer
           = auto_link(truncate(strip_tags(first_answer.body), length: 100))
@@ -21,4 +21,4 @@
           %i.text-muted
             아직 답변이 없습니다
 
-      = render 'posts/card_footer', obj: question, show_issue: local_assigns[:show_issue]
+      = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]

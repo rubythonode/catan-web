@@ -1,4 +1,4 @@
-%span(id="#{dom_id(post)}-like")
+%span{class: "#{dom_id(post)}-like"}
   - if !user_signed_in?
     = link_to '#', class: 'btn btn-primary btn-lg', data: { toggle: 'parti-login-overlay', label: '<i class="fa fa-arrow-circle-o-up">', 'after-login': h({action: :post_like, id: post.id}.to_json) } do
       %i.fa.fa-arrow-circle-o-up

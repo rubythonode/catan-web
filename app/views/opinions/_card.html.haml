@@ -1,6 +1,6 @@
 - opinion = card
 - post = card.acting_as
-.opinion-card.panel.panel-default[post]
+.post-card.opinion-card.panel.panel-default[post]
   .panel-heading
     .row
       .col-xs-6
@@ -20,7 +20,7 @@
   .panel-footer
     .row
       .col-xs-6
-        = render 'likes/like_line', post: post
+        = render 'likes/like_inline', post: post
       .col-xs-6
         .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 

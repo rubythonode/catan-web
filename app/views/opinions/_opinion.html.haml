@@ -1,21 +1,21 @@
 - post = opinion.acting_as
-.post-card.opinion-card[post]
+.post-inline.opinion-inline[post]
   .media
     .media-left
-      = render 'likes/like_line', post: post
+      = render 'likes/like_inline', post: post
     .media-body
       .hidden-xs.pull-right
-        .post-card__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
+        .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-      %h4.post-card__title
+      %h4.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to opinion, target: 'parti_detail_view' do
           주장 : “#{opinion.title}”
 
-      %p.post-card__body
+      %p.post-inline__body
         %i.fa.fa-bar-chart
           %strong #{opinion.votes.count}
           명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
 
-      = render 'posts/card_footer', obj: opinion, show_issue: local_assigns[:show_issue]
+      = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]

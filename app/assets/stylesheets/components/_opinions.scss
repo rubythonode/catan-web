@@ -8,9 +8,6 @@
   .opinion__title {
     padding: 30px 0 50px;
   }
-  .like-button div {
-    display: inline;
-  }
 }
 
 .opinion__vote-section {
@@ -55,13 +52,8 @@
   }
 }
 
+.opinion-inline,
 .opinion-card {
-  .panel-heading, .panel-footer {
-    background-color: #fff;
-  }
-  .panel-body {
-    background-color: #fafafa;
-  }
   img.user-image {
     height: 15px;
     width: 15px;
@@ -102,6 +94,15 @@
   .vote__buttons {
     padding: 10px;
     margin-bottom: 10px;
+  }
+}
+
+.opinion-card {
+  .panel-heading, .panel-footer {
+    background-color: #fff;
+  }
+  .panel-body {
+    background-color: #fafafa;
   }
   .like-button div {
     display: inline;
