@@ -1,19 +1,19 @@
 - post = discussion.acting_as
-.post-post_inline.discussion-post_inline[post]
+.post-inline.discussion-inline[post]
   .media
     .media-left
       = render 'likes/like_inline', post: post
     .media-body
       .hidden-xs.pull-right
-        .post-post_inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
+        .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-      %h4.post-post_inline__title
+      %h4.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to discussion, target: 'parti_detail_view' do
           제안 : “#{discussion.title}”
 
-      %p.post-post_inline__body
+      %p.post-inline__body
         - first_proposal = discussion.proposals.sort_by_agree_count.first
         - if first_proposal
           = auto_link(truncate(strip_tags(first_proposal.body), length: 100))
