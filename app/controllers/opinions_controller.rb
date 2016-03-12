@@ -40,9 +40,24 @@ class OpinionsController < ApplicationController
   end
 
   def social_card
-    @kit = IMGKit.new render_to_string(layout: nil), width: 1200, height: 630, quality: 10
     respond_to do |format|
-      format.png { send_data(@kit.to_png, :type => "image/png", :disposition => 'inline') }
+      format.png do
+        if params[:no_cached]
+          png = IMGKit.new(render_to_string(layout: nil), width: 1200, height: 630, quality: 10).to_png
+          send_data(png, :type => "image/png", :disposition => 'inline')
+        else
+          @post = @opinion.acting_as
+          unless @post.social_card.file.try(:exists?)
+            file = Tempfile.new(["social_card_#{@post.id.to_s}", '.png'], 'tmp', :encoding => 'ascii-8bit')
+            file.write IMGKit.new(render_to_string(layout: nil), width: 1200, height: 630, quality: 10).to_png
+            file.flush
+            @post.social_card = file
+            @post.save
+            file.unlink
+          end
+          send_file(@post.social_card.path, :type => "image/png", :disposition => 'inline')
+        end
+      end
       format.html { render(layout: nil) }
     end
   end

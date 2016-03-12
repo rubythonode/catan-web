@@ -67,6 +67,10 @@ class Post < ActiveRecord::Base
   scope :for_list, -> { where.not(postable_type: [Answer.to_s, Proposal.to_s]) }
   scope :latest, -> { after(1.day.ago) }
 
+  ## uploaders
+  # mount
+  mount_uploader :social_card, ImageUploader
+
   def liked_by? someone
     likes.exists? user: someone
   end
