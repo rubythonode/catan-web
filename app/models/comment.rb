@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  acts_as_paranoid
   include Choosable
 
   belongs_to :user

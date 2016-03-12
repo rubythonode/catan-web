@@ -1,4 +1,5 @@
 class Issue < ActiveRecord::Base
+  acts_as_paranoid
   TITLE_OF_ASK_PARTI = 'Ask Parti'
   SLUG_OF_ASK_PARTI = 'ask-parti'
   OF_ALL = Naught.build do |config|

@@ -1,4 +1,5 @@
 class Proposal < ActiveRecord::Base
+  acts_as_paranoid
   acts_as :post, as: :postable
   belongs_to :discussion
 

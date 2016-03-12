@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311082427) do
+ActiveRecord::Schema.define(version: 20160312102740) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
     t.text     "body"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "answers", ["deleted_at"], name: "index_answers_on_deleted_at"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "articles", force: :cascade do |t|
@@ -28,7 +30,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "articles", ["deleted_at"], name: "index_articles_on_deleted_at"
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -37,8 +42,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "choice"
+    t.datetime "deleted_at"
   end
 
+  add_index "comments", ["deleted_at"], name: "index_comments_on_deleted_at"
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
@@ -47,7 +54,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "discussions", ["deleted_at"], name: "index_discussions_on_deleted_at"
 
   create_table "issues", force: :cascade do |t|
     t.string   "title",                     null: false
@@ -59,8 +69,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.integer  "watches_count", default: 0
     t.string   "slug",                      null: false
     t.integer  "posts_count",   default: 0
+    t.datetime "deleted_at"
   end
 
+  add_index "issues", ["deleted_at"], name: "index_issues_on_deleted_at"
   add_index "issues", ["slug"], name: "index_issues_on_slug", unique: true
 
   create_table "likes", force: :cascade do |t|
@@ -89,7 +101,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
+
+  add_index "opinions", ["deleted_at"], name: "index_opinions_on_deleted_at"
 
   create_table "parti_sso_client_api_keys", force: :cascade do |t|
     t.integer  "user_id",                           null: false
@@ -116,8 +131,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.integer  "likes_count",    default: 0
     t.integer  "comments_count", default: 0
     t.integer  "votes_count",    default: 0
+    t.datetime "deleted_at"
   end
 
+  add_index "posts", ["deleted_at"], name: "index_posts_on_deleted_at"
   add_index "posts", ["issue_id"], name: "index_posts_on_issue_id"
   add_index "posts", ["postable_type", "postable_id"], name: "index_posts_on_postable_type_and_postable_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
@@ -127,8 +144,10 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.text     "body"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "proposals", ["deleted_at"], name: "index_proposals_on_deleted_at"
   add_index "proposals", ["discussion_id"], name: "index_proposals_on_discussion_id"
 
   create_table "questions", force: :cascade do |t|
@@ -206,9 +225,11 @@ ActiveRecord::Schema.define(version: 20160311082427) do
     t.datetime "updated_at",                               null: false
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                                      null: false
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

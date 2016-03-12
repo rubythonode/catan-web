@@ -1,8 +1,9 @@
 class Post < ActiveRecord::Base
   HOT_LIKES_COUNT = 3
 
-  actable as: :postable
+  acts_as_paranoid
   acts_as_taggable
+  actable as: :postable
   paginates_per 20
 
   belongs_to :issue, counter_cache: true

@@ -16,6 +16,7 @@ gem 'recursive-open-struct', '~> 1.0', '>= 1.0.1'
 gem 'time_difference', '~> 0.4.2'
 gem 'by_star', '~> 2.2', '>= 2.2.1'
 gem 'naught', '~> 1.1'
+gem 'paranoia', '~> 2.1', '>= 2.1.5'
 
 # auth
 gem 'cancancan', '~> 1.10'
