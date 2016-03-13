@@ -15,7 +15,7 @@
         %h4
           댓글
 
-    - if @issue
+    - if @issue && !@issue.is_all?
       %li{role: 'presentation', class: (params[:f] == 'opinions' ? 'active' : '')}
         = link_to url_for(current_params.merge(f: :opinions)) do
           %h4
