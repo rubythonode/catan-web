@@ -1,5 +1,5 @@
 .post-inline {
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom: 1px solid $gray-lighter;
 
   .posts--past-day &:last-child {
@@ -48,10 +48,12 @@
     margin-right: 5px;
   }
   .post-inline__title {
+    margin-top: 0;
+    margin-bottom: 5px;
   }
   .post-inline__body {
     font-size: $font-size-small;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
   }
   .post-inline__info {
     font-size: $font-size-small;
