@@ -88,7 +88,6 @@
   padding-top: 50px;
 
   .post__title {
-    font-weight: bold;
     margin: 10px 0;
     text-align: center;
     word-break: keep-all;
@@ -150,38 +149,32 @@
   }
 }
 
-.post-type-filter {
-  .nav-pills {
-    & > .active > a,
-    & > .active > a:hover,
-    & > li > a:hover {
-      text-decoration: none;
-      border-radius:0px;
-      border-bottom-width: 4px;
-      border-bottom-style: solid;
-      color: #000 !important;
-      background-color: transparent !important;
+#issue-posts-filter-section {
+  .nav-tabs > li {
+    a {
+      color: $gray;
+      padding: 5px 20px;
     }
-    & > .active > a,
-    & > .active > a:hover {
-      border-bottom-color: #ccc;
+    &.active > a {
+      color: #000;
     }
-    & > li {
-      &:first-child {
-        padding-left: 0;
+  }
+  .post-type-filter {
+    .nav-pills {
+      a {
+        color: $gray;
       }
-      padding: 0 10px;
-      border-right: 1px solid #eee;
-      &:last-child {
-        border-right: none;
+      & > .active > a,
+      & > .active > a:hover,
+      & > li > a:hover {
+        text-decoration: none;
+        color: #000 !important;
+        background-color: transparent !important;
       }
-      & > a:hover {
-        border-bottom-color: #eee;
-      }
-      & > a {
-        border-radius:0px;
-        padding: 0;
+      .count {
+        color: $brand-primary;
       }
     }
   }
+
 }
