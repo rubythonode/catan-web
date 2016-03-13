@@ -3,6 +3,8 @@
   .media
     .media-left
       = render 'likes/like_inline', post: post
+    .post-icon.media-left.valign.text-center
+      %i.fa.fa-commenting-o.fa-fw
     .media-body
       .hidden-xs.pull-right
         .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}

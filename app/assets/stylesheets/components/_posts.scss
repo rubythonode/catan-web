@@ -15,7 +15,13 @@
   }
 
   .media-left {
-    min-width: 60px;
+
+  }
+  .post-icon {
+    min-width: 50px;
+    i {
+      font-size: 20px;
+    }
   }
 
   &__issue-label {
@@ -31,7 +37,6 @@
   }
   .post-inline__info {
     font-size: $font-size-small;
-    color: $gray;
     line-height: 14px;
     img {
       vertical-align: top;
@@ -89,9 +94,11 @@
 
 .post-section {
   padding-top: 50px;
+  padding-bottom: 50px;
 
   .post__title {
-    margin: 10px 0;
+    color: #000;
+    margin: 10px 0 30px;
     text-align: center;
     word-break: keep-all;
   }
@@ -146,7 +153,7 @@
   line-height: 150%;
   a {
     margin-right: 5px;
-    color: $gray-light;
+    color: $gray;
     font-weight: normal;
     display: inline-block;
   }

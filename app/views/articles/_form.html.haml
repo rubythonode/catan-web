@@ -4,15 +4,19 @@
       = label_tag :issue_title, Issue.model_name.human, class: 'required'
       = text_field_tag :issue_title, @article.issue.try(:title), class: 'form-control typeahead', placeholder: '이슈 제목', autocomplete: 'off', data: { 'provider': 'typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title', 'title' => @article.issue.try(:title) }
       %p.help-block
-    .form-group
-      = f.label :title, class: 'required'
-      = f.text_field :title, class: 'form-control input-lg'
-    .form-group
-      = f.label :body, class: 'required'
-      = f.text_area :body, class: 'form-control redactor'
+
     .form-group
       = f.label :link
       = f.text_field :link, class: 'form-control'
+
+    .form-group
+      = f.label :title, class: 'required'
+      = f.text_field :title, class: 'form-control input-lg'
+
+    .form-group
+      = f.label :body, class: 'required'
+      = f.text_area :body, class: 'form-control redactor'
+
     .form-group
       = f.label :tag_list
       = f.text_field :tag_list, value: f.object.tag_list.to_s, class: 'form-control', data: { toggle: 'tag-input-helper' }

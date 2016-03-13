@@ -1,7 +1,7 @@
 %div.post-section__header.clearfix
   .post-section__header__meta
     = byline post.user
-    %span.post-section__header__meta__date.text-muted
+    %span.post-section__header__meta__date
       = date_f post.created_at
       - if can? :update, post.specific
         = link_to '수정', [:edit, post.specific]

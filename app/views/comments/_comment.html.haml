@@ -4,16 +4,15 @@
       %a(href="#")
         = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:50px;height:50px;'
     .media-body
-      .text-muted
-        %strong= comment.user.nickname
-        %i.fa.fa-clock-o
-        = date_f comment.created_at
-        - if can? :update, comment
-          = link_to [:edit, comment] do
-            %i.fa.fa-edit>
-        - if can? :destroy, comment
-          = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
-            %i.fa.fa-trash-o>
+      %strong= comment.user.nickname
+      %i.fa.fa-clock-o
+      = date_f comment.created_at
+      - if can? :update, comment
+        = link_to [:edit, comment] do
+          %i.fa.fa-edit>
+      - if can? :destroy, comment
+        = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
+          %i.fa.fa-trash-o>
       .comment__body
         %p
           = simple_format auto_link(comment.body)
@@ -23,7 +22,7 @@
       = simple_format auto_link(comment.body), nil, wrapper_tag: 'span'
       ⏤
       = byline comment.user
-      = link_to '#', class: 'text-muted', style: 'font-size: 11px;' do
+      = link_to '#', style: 'font-size: 11px;' do
         %i.fa.fa-clock-o
         = date_f comment.created_at
       - if can? :update, comment

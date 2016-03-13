@@ -3,6 +3,8 @@
   .media
     .media-left
       = render 'likes/like_inline', post: post
+    .post-icon.media-left.valign.text-center
+      %i.fa.fa-question.fa-fw
     .media-body
       .hidden-xs.pull-right
         .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
@@ -11,7 +13,7 @@
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to question, target: 'parti_detail_view' do
-          질문 : “#{question.title}”
+          #{question.title}
 
       %p.post-inline__body
         - first_answer = question.answers.sort_by_vote_point.first
