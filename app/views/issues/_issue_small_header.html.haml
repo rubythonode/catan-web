@@ -14,9 +14,9 @@
                 %span
                   - unless issue.is_all?
                     - if can? :update, issue
-                      = link_to '수정', [:edit, issue], class: 'text-muted'
+                      = link_to '수정', [:edit, issue]
                     - if can? :destroy, issue
-                      = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+                      = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }
 
           - if local_assigns[:show_social_share]
             - if issue.is_all?
