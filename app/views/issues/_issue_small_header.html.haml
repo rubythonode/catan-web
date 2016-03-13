@@ -1,63 +1,57 @@
 - issue ||= @issue
-%section.issue-header-section( style="background-size: cover; background-image: url('#{issue.cover_url}'); margin-top: -8px;" )
+%section.issue-header-section( style="margin-top: -8px;" )
   %section#issue
     .container{ style: 'position: relative;' }
       .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding-left: 0; padding-right: 0;' }
         .clearfix
           = link_to issue_home_path(issue), style: 'text-decoration: none' do
-            .pull-left(style='margin-right: 30px;')
-              = image_tag issue.logo_url, style: 'width: 100px; height: 100px'
-          %h3
+            .pull-left
+              = image_tag issue.logo_url, class: 'issue-logo'
+          %h4.issue-title
             = link_to issue_home_path(issue), style: 'text-decoration: none' do
-              %span{ style: 'font-weight: bold; color:white;' }>
-                %i.fa.fa-hashtag>
-                = issue.title
-            %span.issue__count{ style: 'color: white; font-size: 60%; margin: 0 5px' }
-              %i.fa.fa-archive
-              %strong= issue.posts.count
-              - if issue.posts.latest.any?
-                %small{ style: 'color: white' }>= "+#{issue.posts.latest.count}"
-              - if issue.is_all?
-                = link_to users_path, style: 'color: white; text-decoration: none; margin-left: 5px;' do
-                  %i.fa.fa-at
-                  %strong= User.count
-                - if issue.watches.latest.any?
-                  %small{ style: 'color: white' }>= "+#{User.latest.count}"
-              - else
-                = link_to users_issue_path(issue), style: 'color: white; text-decoration: none; margin-left: 5px;' do
-                  %i.fa.fa-at
-                  %strong= issue.contributors.count
-                - if issue.watches.latest.any?
-                  %small{ style: 'color: white' }>= "+#{issue.watches.latest.count}"
-            %span
-              - unless issue.is_all?
-                %small{ style: 'vertical-align: middle' }
-                  - if can? :update, issue
-                    = link_to '수정', [:edit, issue], class: 'text-muted'
-                  - if can? :destroy, issue
-                    = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+              %span= issue.title
+              %small
+                %span
+                  - unless issue.is_all?
+                    - if can? :update, issue
+                      = link_to '수정', [:edit, issue], class: 'text-muted'
+                    - if can? :destroy, issue
+                      = link_to '삭제', issue, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' }, class: 'text-muted'
+
           - if local_assigns[:show_social_share]
             - if issue.is_all?
-              %ul.list-inline
-                %li#share-facebook-page(style='padding: 0')
-                %li#share-twitter
+              %span#share-facebook-page(style='padding: 0')
+              %span#share-twitter
             - else
               #share
 
+          %div.issue-count
+            %span.post-count
+              = link_to issue_home_path(issue) do
+                글
+                %span= issue.posts.count
+                - if issue.posts.latest.any?
+                  %small>= "+#{issue.posts.latest.count}"
+            %span.user-count
+              - if issue.is_all?
+                = link_to users_path do
+                  구독자
+                  %span= User.count
+                - if issue.watches.latest.any?
+                  %small>= "+#{User.latest.count}"
+              - else
+                = link_to users_issue_path(issue) do
+                  구독자
+                  %span= issue.contributors.count
+                - if issue.watches.latest.any?
+                  %small>= "+#{issue.watches.latest.count}"
+          %div
+            - unless issue.is_all?
+              %strong{ style: 'margin-right: 15px;' }
+                %span(id="#{dom_id(issue)}-watch")
+                  = render 'watches/watch', issue: issue
 
-%section.post-belt-section{ style: 'background-color: #fafafa; padding: 10px 0' }
+%section.post-belt-section
   .container
-    .row
-      .col-sm-6{ class: ('hidden-xs' unless issue.is_all?) }
-        .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light", "data-width" => "255", 'style': 'margin-top: 8px;'}
-      - unless issue.is_all?
-        .col-sm-6.text-right.hidden-xs
-          %strong{ style: 'margin-right: 15px;' }
-            %span(id="#{dom_id(issue)}-watch")
-              = render 'watches/watch', issue: issue
-        .col-sm-6.text-center.visible-xs-block
-          %strong{ style: 'margin-right: 15px;' }
-            %span(id="#{dom_id(issue)}-watch")
-              = render 'watches/watch', issue: issue
-
-
+    %div{ class: ('hidden-xs' unless issue.is_all?) }
+      .fb-like{"data-action" => "like", "data-href" => "https://www.facebook.com/parti-xyz", "data-layout" => "standard", "data-share" => "false", "data-show-faces" => "false", "colorscheme" => "light", "data-width" => "255", 'style': 'margin-top: 8px;'}

@@ -1,20 +1,9 @@
-= link_to users_issue_path(issue) do
-  %i.fa.fa-eye
-  - if user_signed_in? && issue.watched_by?(current_user)
-    - if issue.watches.count > 1
-      나와 #{issue.watches.count - 1 }명이
-    - else
-      나만
+- if user_signed_in?
+  - if issue.watched_by?(current_user)
+    = link_to cancel_issue_watches_path(issue), method: :delete do
+      구독끊기
   - else
-    #{issue.watches.count}명이
-구독 중입니다 &middot;
-%strong
-  - if user_signed_in?
-    - if issue.watched_by?(current_user)
-      = link_to cancel_issue_watches_path(issue), method: :delete do
-        구독끊기
-    - else
-      = link_to issue_watches_path(issue), method: :post do
-        구독하기
-  - else
-    = link_to '구독하기', '#', data: { toggle: 'parti-login-overlay', label: '구독', 'after-login': h({action: :issue_watch, id: issue.id}.to_json) }
+    = link_to issue_watches_path(issue), method: :post, class: 'btn btn-primary btn-ghost btn-sm' do
+      구독하기
+- else
+  = link_to '구독하기', '#', data: { toggle: 'parti-login-overlay', label: '구독', 'after-login': h({action: :issue_watch, id: issue.id}.to_json) }, class: 'btn btn-primary btn-ghost btn-sm'

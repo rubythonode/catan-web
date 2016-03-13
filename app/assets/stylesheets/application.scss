@@ -30,6 +30,11 @@
 @import 'components/comments';
 @import 'components/users';
 
+// etc
+.post-belt-section {
+  padding: $padding-base-vertical 0;
+}
+
 // pages
 .popover-static .popover {
   position: relative;

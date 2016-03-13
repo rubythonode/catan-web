@@ -86,3 +86,13 @@ label.required:after {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+.btn-ghost.btn-primary {
+  border: 1px solid $brand-primary;
+  background-color: transparent;
+  color: $brand-primary;
+  &:hover {
+    background-color: $brand-primary;
+    color: #fff;
+  }
+}

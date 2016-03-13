@@ -47,10 +47,24 @@
 }
 
 .issue-header-section {
-  .issue-header__body {
+  background-color: $gray-lighter;
+  .issue-logo {
+    width: 90px;
+    height: 90px;
+    margin-right: 20px;
+  }
+  .issue-title {
+    margin: 0 0 5px 0;
+  }
+  .issue-count {
+    padding: 5px 0 10px;
     a {
-      color: #A287F9;
+      color: $gray;
+      margin-right: 5px;
     }
+  }
+  #share {
+    float: right;
   }
 }
 

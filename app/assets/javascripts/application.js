@@ -131,7 +131,7 @@ $(function(){
   $("#share").jsSocials({
     showCount: true,
     showLabel: false,
-    shares: ["facebook", "twitter"]
+    shares: ["twitter", "facebook"]
   });
 
   $('[data-provider="parti-issue-share"]').each(function(i, elm) {
