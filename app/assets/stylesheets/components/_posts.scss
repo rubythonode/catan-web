@@ -13,12 +13,31 @@
   &:hover {
     background-color: #fafafa;
   }
-
   .media-left {
-
+    min-width: 30px;
+    padding: 0;
+  }
+  .post-like {
+    vertical-align: middle;
+    .like-button {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      a {
+        color: $gray;
+        &:hover {
+          color: #000;
+        }
+      }
+      i {
+        display: block;
+        color: $brand-primary;
+      }
+    }
   }
   .post-icon {
     min-width: 50px;
+    padding-right: 10px;
     i {
       font-size: 20px;
     }
@@ -29,7 +48,6 @@
     margin-right: 5px;
   }
   .post-inline__title {
-    font-weight: normal;
   }
   .post-inline__body {
     font-size: $font-size-small;
@@ -69,25 +87,24 @@
   }
 }
 
-.post-inline {
-  .like-button {
-    margin-top: 10px;
-    text-align: center;
-  }
-}
-
 .post-inline,
 .post-card {
   .like-button {
     a {
+      font-size: $font-size-small;
       display: block;
+      &:hover {
+        text-decoration: none;
+      }
+      &.like-button--liked {
+        color: #000;
+      }
+      &.like-button--not-yet {
+        color: #999;
+      }
     }
-    a:hover {
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .like-button--not-yet {
-      color: #999;
+    i {
+      font-size: $font-size-large;
     }
   }
 }

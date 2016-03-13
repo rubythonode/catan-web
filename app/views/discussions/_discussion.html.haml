@@ -1,7 +1,7 @@
 - post = discussion.acting_as
 .post-inline.discussion-inline[post]
   .media
-    .media-left
+    .post-like.media-left
       = render 'likes/like_inline', post: post
     .post-icon.media-left.valign.text-center
       %i.fa.fa-hand-paper-o.fa-fw
@@ -9,7 +9,7 @@
       .hidden-xs.pull-right
         .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
-      %h4.post-inline__title
+      %h5.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to discussion, target: 'parti_detail_view' do
