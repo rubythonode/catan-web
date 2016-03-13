@@ -55,7 +55,6 @@
   }
   .post-inline__info {
     font-size: $font-size-small;
-    line-height: 14px;
     img {
       vertical-align: top;
     }
@@ -70,7 +69,6 @@
       margin-right: 4px;
       a {
         &:hover {
-          font-weight: bold;
           text-decoration: none;
         }
       }
@@ -167,11 +165,9 @@
 
 .post__tags {
   margin: 20px 0;
-  line-height: 150%;
   a {
     margin-right: 5px;
     color: $gray;
-    font-weight: normal;
     display: inline-block;
   }
 }

@@ -4,8 +4,7 @@
     - if local_assigns[:show_issue]
       %span.post-inline__issue-label
         = link_to issue_home_path(post.issue) do
-          = image_tag post.issue.logo_url, style: 'width: 13px; height: 13px'
-          %i.fa.fa-hashtag(style='margin-left: 5px;')>
+          = image_tag post.issue.logo_url, style: 'width: 12px; height: 12px; vertical-align: bottom;'
           = post.issue.title
     = byline post.user, {hide_image: true}
     = link_to post.specific do
@@ -15,6 +14,6 @@
       %i.fa.fa-clock-o
       = date_f post.created_at
     - if obj.tags.any?
-      %i.fa.fa-tag{ style: 'color: #aaa' }
+      %i.fa.fa-tag
     - obj.tags.each do |tag|
       = link_to "#{tag.name}", tag_home_path(tag), class: 'text-nowrap'
