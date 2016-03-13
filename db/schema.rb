@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312141935) do
+ActiveRecord::Schema.define(version: 20160313052602) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20160312141935) do
   end
 
   add_index "issues", ["deleted_at"], name: "index_issues_on_deleted_at"
-  add_index "issues", ["slug"], name: "index_issues_on_slug", unique: true
+  add_index "issues", ["slug", "deleted_at"], name: "index_issues_on_slug_and_deleted_at", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -229,11 +229,11 @@ ActiveRecord::Schema.define(version: 20160312141935) do
     t.datetime "deleted_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["confirmation_token", "deleted_at"], name: "index_users_on_confirmation_token_and_deleted_at", unique: true
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at"
-  add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["nickname", "deleted_at"], name: "index_users_on_nickname_and_deleted_at", unique: true
+  add_index "users", ["provider", "uid", "deleted_at"], name: "index_users_on_provider_and_uid_and_deleted_at", unique: true
+  add_index "users", ["reset_password_token", "deleted_at"], name: "index_users_on_reset_password_token_and_deleted_at", unique: true
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",    null: false
