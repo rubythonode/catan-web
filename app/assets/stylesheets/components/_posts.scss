@@ -1,6 +1,7 @@
 .post-inline {
   padding: 15px 0;
   border-bottom: 1px solid $gray-lighter;
+  color: $gray;
 
   .posts--past-day &:last-child {
     border-bottom: none;
@@ -57,6 +58,7 @@
   }
   .post-inline__info {
     font-size: $font-size-small;
+    line-height: $font-size-base;
     img {
       vertical-align: top;
     }
