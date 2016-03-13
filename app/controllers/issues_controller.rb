@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   respond_to :json, :html
-  before_filter :authenticate_user!, except: [:show, :index, :slug, :users]
+  before_filter :authenticate_user!, except: [:show, :index, :slug, :users, :exist]
   load_and_authorize_resource
 
   def index
@@ -95,6 +95,12 @@ class IssuesController < ApplicationController
 
   def users
 
+  end
+
+  def exist
+    respond_to do |format|
+      format.json { render json: Issue.exists?(title: params[:title]) }
+    end
   end
 
   helper_method :fetch_issue

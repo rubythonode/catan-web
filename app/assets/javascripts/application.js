@@ -19,7 +19,7 @@ $(function(){
   UnobtrusiveFlash.flashOptions['timeout'] = 5000;
 
   // typeahead
-  $('[data-provider="typeahead"]').each(function(i, elm) {
+  $('[data-provider="parti-issue-typeahead"]').each(function(i, elm) {
     var $elm = $(elm);
     var url = $elm.data('typeahead-url');
     var displayField = $elm.data('typeahead-display-field');
@@ -31,12 +31,14 @@ $(function(){
             e.preventDefault();
         }
     });
+    var clear_error = function() {
+      $elm.closest('.form-group').removeClass('has-error')
+          .find('.help-block.typeahead-warning').empty().hide();
+    }
     $elm.typeahead({
       onSelect: function(item) {
         $elm.data('title', item.text );
-        $elm.closest('.form-group').removeClass('has-error')
-          .find('.help-block .text-danger').remove()
-        $elm.closest('.form-group').find('.help-block').hide();
+        clear_error();
       },
       ajax: {
         url: url,
@@ -50,14 +52,25 @@ $(function(){
       }
     }).on('blur', function(){
       if ( $(this).val() === $elm.data('title') ) {
-        $(this).closest('.form-group').removeClass('has-error')
-          .find('label .text-danger').remove();
+        clear_error();
       } else {
-        if (! $(this).closest('.form-group').hasClass('has-error')) {
-          $(this).closest('.form-group').addClass('has-error')
-            .find('.help-block').show().append('&nbsp;&nbsp;<span class="text-danger">자동 완성된 이슈를 선택해야 합니다.</span>');
-        }
-        $(this).focus();
+        jqxhr = $.ajax({
+          url: "/issues/exist.json",
+          type: "get",
+          data:{ title: $(this).val() },
+          success: function(data) {
+            if($.parseJSON(data)) {
+              clear_error();
+            } else {
+              $elm.closest('.form-group').addClass('has-error')
+                  .find('.help-block.typeahead-warning').show().append('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
+            }
+          },
+          error: function(xhr) {
+            //ignore server error
+            clear_error();
+          }
+        });
       }
     });
   });
@@ -236,6 +249,16 @@ $(function(){
     var url = $elm.data('form-url');
     $form.attr('action', url);
     $form.submit();
+  });
+
+  // form set value
+  $('[data-action="parti-form-set-vaule"]').on('click', function(e) {
+    e.preventDefault();
+    var $elm = $(e.currentTarget);
+    var $control = $($elm.data('form-control'));
+    var value = $elm.data('form-vaule');
+    $control.val(value);
+    $control.trigger("blur");
   });
 });
 

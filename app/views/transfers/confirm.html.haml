@@ -74,10 +74,10 @@
   .form{ style: 'margin-top:50px'}
     %h4 확인이 끝나셨으면 계속 합니다.
     %p
-      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {trigger: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :facebook_transfer) } do
+      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {action: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :facebook_transfer) } do
         %i.fa.fa-facebook
         페이스북아이디로
-      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {trigger: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :google_oauth2_transfer) } do
+      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {action: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :google_oauth2_transfer) } do
         %i.fa.fa-google-plus
         구글플러스아이디로
     #login

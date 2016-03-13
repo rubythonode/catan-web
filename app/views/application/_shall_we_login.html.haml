@@ -4,12 +4,12 @@
       %div{style: 'color: white;'}
         .clearfix{ style: 'margin-top:20px'}
           %p
-            = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
+            = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
               %i.fa.fa-facebook
               페이스북아이디로&nbsp;
               %span.login-overlay__label>
               하기
-            = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {trigger: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
+            = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
               %i.fa.fa-google-plus
               구글플러스아이디로&nbsp;
               %span.login-overlay__label>

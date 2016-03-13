@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get :users
       get :campaign
     end
+    collection do
+      get :exist
+    end
     resources :watches do
       delete :cancel, on: :collection
     end
