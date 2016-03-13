@@ -19,29 +19,22 @@
   }
 
   &__issue-label {
-    font-size: 13px;
+    font-size: $font-size-small;
     margin-right: 5px;
   }
-  .post-inline__title {
-    font-weight: bold;
-    small {
-      font-size: 13px;
-      color: $gray-light;
-    }
-  }
   .post-inline__body {
-    font-size: 13px;
+    font-size: $font-size-small;
     margin: 0 0 10px 0;
   }
   .post-inline__info {
-    font-size: 13px;
-    color: #bbb;
+    font-size: $font-size-small;
+    color: $gray;
     line-height: 14px;
     img {
       vertical-align: top;
     }
     a {
-      color: #bbb;
+      color: $gray;
       margin-right: 3px;
       text-decoration: none;
     }
