@@ -49,12 +49,10 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     get '/test/summary', to: "users#summary_test"
   end
-  (1..2).each do |num|
-    get "transfers/step#{num}", as: "step#{num}_transfers"
-  end
-  (3..4).each do |num|
-    post "transfers/step#{num}", as: "step#{num}_transfers"
-  end
+  get "transfers/start", as: "start_transfers"
+  post "transfers/confirm", as: "confirm_transfers"
+  get "transfers/final", as: "final_transfers"
+
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/devel/emails"
   end
