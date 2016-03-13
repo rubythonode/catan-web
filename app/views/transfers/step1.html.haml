@@ -1,0 +1,21 @@
+.well
+  %i.fa.fa-info-circle
+  먼저 페이스북아이디나 구글아이디로 로그인 해주세요.
+%div
+  .clearfix{ style: 'margin-top:20px'}
+    %p
+      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em;', data: {trigger: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
+        %i.fa.fa-facebook
+        페이스북아이디로
+      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {trigger: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
+        %i.fa.fa-google-plus
+        구글플러스아이디로
+    #login
+      = form_tag nil, method: :get do
+        = hidden_field_tag(:after_login)
+        .pull-right
+          %label{ style: 'font-weight: normal'}
+            = check_box_tag(:remember_me, '1', true)
+            로그인 유지
+
+

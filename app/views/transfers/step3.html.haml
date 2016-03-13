@@ -1,0 +1,82 @@
+.well
+  %p
+    %i.fa.fa-info-circle
+    마지막 단계입니다.
+  %p 아래 내용을 찬찬히 확인해 주세요.
+  확인되시면 다시 한 번 이메일회원 @#{@email_user.nickname}의 비밀번호를 넣고
+  %br
+  계속하기 버튼을 클릭해 주세요.
+%div
+  %h3.page-header
+    %i.fa.fa-copy
+    이렇게 복사합니다.
+  .panel.panel-default
+    .panel-body
+      .text-center
+        .col-xs-5
+          = byline @email_user
+        .col-xs-2
+          %i.fa.fa-arrow-right
+        .col-xs-5
+          = byline @current_user
+
+  %h5 복사할 이메일회원 @#{@email_user.nickname}의 글
+  %ul.list-group
+    - posts = Post.where(user: @email_user)
+    - posts.each do |post|
+      %li.list-group-item
+        = link_to "[##{post.issue.title}] #{post.specific.model_name.human} : #{truncate(strip_tags(post.specific.try(:title) || post.specific.try(:body)), length: 100)}", post.specific, target: '_blank'
+  %h5 복사할 이메일회원 @#{@email_user.nickname}의 댓글
+  %ul.list-group
+    - comments = Comment.where(user: @email_user)
+    - comments.each do |comment|
+      - post = comment.post
+      - if post.present?
+        %li.list-group-item
+          = link_to truncate(strip_tags(comment.body), length: 100), post.specific, target: '_blank'
+          %br
+          %p.text-muted{ style: 'font-size: 80%;' }
+            "[##{post.issue.title}] #{post.specific.model_name.human} : #{truncate(strip_tags(post.specific.try(:title) || post.specific.try(:body)), length: 50)}"에서
+  %h5
+    복사할 이메일회원 @#{@email_user.nickname}의
+    %i.fa.fa-arrow-circle-o-up
+  %ul.list-group
+    - likes = Like.where(user: @email_user)
+    - likes.each do |like|
+      - post = like.post
+      - if post.present?
+        %li.list-group-item
+          = link_to "[##{post.issue.title}] #{post.specific.model_name.human} : #{truncate(strip_tags(post.specific.try(:title) || post.specific.try(:body)), length: 50)}", post.specific, target: '_blank'
+  %h5
+    복사할 이메일회원 @#{@email_user.nickname}의
+    찬반 투표
+  %ul.list-group
+    - votes = Vote.where(user: @email_user)
+    - votes.each do |vote|
+      - post = vote.post
+      - if post.present?
+        %li.list-group-item
+          = link_to "[##{post.issue.title}] #{post.specific.model_name.human} : #{truncate(strip_tags(post.specific.try(:title) || post.specific.try(:body)), length: 50)}", post.specific, target: '_blank'
+  %h5
+    복사할 이메일회원 @#{@email_user.nickname}이
+    구독하는 이슈
+  %ul.list-group
+    - watches = Watch.where(user: @email_user)
+    - watches.each do |watch|
+      - issue = watch.issue
+      - if issue.present?
+        %li.list-group-item
+          = link_to "##{issue.title}", issue_home_path(issue), target: '_blank'
+  %h4
+    %i.fa.fa-trash
+    복사가 끝나면 이메일회원 @#{@email_user.nickname}을
+    %strong.text-danger{ style: 'font-size: 150%;' } 삭제
+    합니다.
+  %hr
+  .form{ style: 'margin-top:50px'}
+    %h4 확인이 끝났습니다. 계속합니다.
+    = form_tag step4_transfers_path do
+      = hidden_field_tag :email, params[:email]
+      .form-group
+        = password_field_tag :password, nil, placeholder: "이메일회원 @#{@email_user.nickname}의 비밀번호를 입력하세요", autocomplete: "off", class: 'form-control'
+      = submit_tag '계속하기', class: 'btn btn-danger btn-block', style: 'height: 100%; display: block; margin: 0'

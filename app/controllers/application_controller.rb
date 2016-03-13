@@ -28,9 +28,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    after_sign_in_path = super
-    after_sign_in_path = dashboard_path if after_sign_in_path == slug_issue_path(:all)
-    after_sign_in_path
+    path = super
+
+    return dashboard_path if path == slug_issue_path(:all)
+    return step2_transfers_path if resource.provider != 'email' and path == step1_transfers_path
+    path
   end
 
   private
