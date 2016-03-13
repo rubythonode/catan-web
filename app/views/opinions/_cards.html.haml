@@ -1,11 +1,10 @@
 %section.opinion-list{ style: 'padding: 50px 0;' }
-  %h4
+  %h4{ style: 'color:#000; margin-bottom: 10px;' }
     주장합니다!
     %small
       = opinions.count
       - if opinions.latest.any?
-        %span{ style: 'font-size: 60%;' }
-          + #{opinions.latest.count}
+        + #{opinions.latest.count}
   .owl-wrapper.opinion-cards
     .owl-carousel{data: {ride: 'parti-carousel', 'carousel-magin': 10}}
       - opinions.each do |opinion|
