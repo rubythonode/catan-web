@@ -24,21 +24,17 @@ class IssuesController < ApplicationController
   end
 
   def slug
-    if params[:slug] == 'all'
-      @issue = Issue::OF_ALL
-      @posts = Post.for_list
-    else
-      @issue = Issue.find_by slug: params[:slug]
-      if @issue.blank?
-        @issue_by_title = Issue.find_by(title: params[:slug].titleize)
-        if @issue_by_title.present?
-          redirect_to @issue_by_title and return
-        else
-          render_404 and return
-        end
+    @issue = Issue.find_by slug: params[:slug]
+    @issue = Issue::OF_ALL if params[:slug] == 'all'
+    if @issue.blank?
+      @issue_by_title = Issue.find_by(title: params[:slug].titleize)
+      if @issue_by_title.present?
+        redirect_to @issue_by_title and return
+      else
+        render_404 and return
       end
-      @posts = @issue.posts.for_list
     end
+    @posts = @issue.posts.for_list
 
     unless view_context.current_page?(root_url)
       prepare_meta_tags title: @issue.title,
@@ -51,6 +47,26 @@ class IssuesController < ApplicationController
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
     render template: 'issues/show'
+  end
+
+  def slug_comments
+    @issue = Issue.find_by slug: params[:slug]
+    @issue = Issue::OF_ALL if params[:slug] == 'all'
+    if @issue.blank?
+      @issue_by_title = Issue.find_by(title: params[:slug].titleize)
+      if @issue_by_title.present?
+        redirect_to @issue_by_title and return
+      else
+        render_404 and return
+      end
+    end
+    @comments = @issue.comments.page params[:page]
+    @posts = @issue.posts
+    unless view_context.current_page?(root_url)
+      prepare_meta_tags title: @issue.title,
+                        description: @issue.body,
+                        image: @issue.cover_url
+    end
   end
 
   def slug_campaign

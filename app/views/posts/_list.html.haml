@@ -16,5 +16,5 @@
     - if params[:f] == 'hottest' and params[:page].blank?
       .bg-default
         최근 추천을 많이 받은 글입니다.
-    - postables.each_with_index do |postable, index|
+    - postables.each do |postable|
       = render postable, show_issue: local_assigns[:show_issue]

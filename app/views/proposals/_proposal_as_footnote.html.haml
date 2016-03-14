@@ -1,0 +1,7 @@
+- proposal = proposal_as_footnote
+- discussion = proposal.discussion
+- post = proposal.acting_as
+= render customize_partial_path(discussion, 'discussion_as_footnote')
+.post-inline.proposal-inline[post]
+  %h5.post-inline__title
+    #{truncate(strip_tags(proposal.body), length: 40)}

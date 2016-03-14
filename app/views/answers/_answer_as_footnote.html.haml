@@ -1,0 +1,7 @@
+- answer = answer_as_footnote
+- question = answer.question
+- post = answer.acting_as
+= render customize_partial_path(question, 'question_as_footnote')
+.post-inline.answer-inline[post]
+  %h5.post-inline__title
+    #{truncate(strip_tags(answer.body), length: 40)}

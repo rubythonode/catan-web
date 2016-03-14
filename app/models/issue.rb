@@ -23,6 +23,9 @@ class Issue < ActiveRecord::Base
     def recommends
       (Issue.past_week + Issue.hottest.limit(10)).uniq.shuffle
     end
+    def comments
+      Comment.all
+    end
     def watches
       User.all
     end
@@ -39,6 +42,7 @@ class Issue < ActiveRecord::Base
   has_many :relateds
   has_many :related_issues, through: :relateds, source: :target
   has_many :posts, dependent: :destroy
+  has_many :comments, through: :posts
   has_many :articles, through: :posts, source: :postable, source_type: Article
   has_many :opinions, through: :posts, source: :postable, source_type: Opinion
   has_many :questions, through: :posts, source: :postable, source_type: Question

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: "pages#dashboard", as: 'dashboard'
   get '/about', to: "pages#about", as: 'about'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
+  get '/i/:slug/comments', to: "issues#slug_comments", as: 'slug_issue_comments'
   get '/i/:slug/campaign', to: "issues#slug_campaign", as: 'slug_issue_campaign'
   get '/u/:nickname', to: "users#gallery", as: 'nickname_user'
   get '/tags/:name', to: "tags#show", as: 'show_tag'

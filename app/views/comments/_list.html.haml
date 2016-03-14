@@ -1,0 +1,9 @@
+.comments
+  - if comments.empty?
+    .bg-default
+      %i.fa.fa-info-circle
+      해당되는 글이 없습니다.
+  - else
+    - comments.each do |comment|
+      = render customize_partial_path(comment, 'slug_comment'), show_issue: local_assigns[:show_issue]
+

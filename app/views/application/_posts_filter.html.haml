@@ -11,7 +11,7 @@
             - if posts.latest.any?
               + #{posts.latest.count}
     %li{role: 'presentation'}
-      = link_to '#' do
+      = link_to ( @issue ? issue_comments_path(@issue) : '#' ) do
         %h4
           댓글
 
