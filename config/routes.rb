@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  mount RedactorRails::Engine => '/redactor_rails'
+  mount Redactor2Rails::Engine => '/redactor2_rails'
+
   devise_for :users, controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   #sso_devise
 
