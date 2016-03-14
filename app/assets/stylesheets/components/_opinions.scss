@@ -7,8 +7,7 @@
   }
   .opinion__title {
     padding: 30px 0 50px;
-    word-break: break-word;
-    white-space: pre-wrap;
+    @include word-wrap();
   }
 }
 
@@ -66,7 +65,7 @@
   }
   &__title {
     font-weight: bold;
-    word-break: keep-all;
+    @include word-wrap();
     a {
       color: $gray-darker;
       line-height: 1.7;
