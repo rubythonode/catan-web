@@ -1,4 +1,5 @@
 // base
+@import "variables";
 
 body {
   margin: 0;
@@ -222,7 +223,7 @@ h4{
 @tip Set the background color and borders for your email's header area.
 */
 #templateHeader{
-/*@editable*/background-color:#002436;
+/*@editable*/background-color: $brand-primary;
 /*@editable*/border-top:0;
 /*@editable*/border-bottom:0;
 /*@editable*/padding-top:9px;
@@ -289,9 +290,9 @@ h4{
 @tip Set the background color and borders for your email's columns.
 */
 #templateColumns{
-/*@editable*/background-color:#002436;
+/*@editable*/background-color: $brand-primary;
 /*@editable*/border-top:0;
-/*@editable*/border-bottom:2px solid #EAEAEA;
+/*@editable*/border-bottom:2px solid  $brand-primary;
 /*@editable*/padding-top:0;
 /*@editable*/padding-bottom:9px;
 }
@@ -313,7 +314,7 @@ h4{
 @tip Set the styling for your email's column links. Choose a color that helps them stand out from your text.
 */
 #templateColumns .columnContainer .mcnTextContent a,#templateColumns .columnContainer .mcnTextContent p a{
-/*@editable*/color:#2BAADF;
+/*@editable*/color:#fff;
 /*@editable*/font-weight:normal;
 /*@editable*/text-decoration:underline;
 }
@@ -610,7 +611,7 @@ h4{
   margin: 2.5em 0;
   padding: .9em 3.3em;
   color: #fff;
-  background-color: #7f3786;
+  background-color: $brand-primary;
   display: inline-block;
   text-decoration: none;
 }
