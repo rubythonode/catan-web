@@ -75,6 +75,12 @@ $(function(){
     });
   });
 
+  //masonry
+  var $container = $('.masonry-container');
+  $container.masonry({
+    itemSelector: '.card'
+  });
+
   // tags
   $('input[data-toggle="tag-input-helper"]').selectize({
     delimiter: ',',
