@@ -36,6 +36,6 @@
             %span.label.label-default
               답변
           .answer-body
-            = simple_format auto_link(answer.body)
+            = smart_format(answer.body)
 
           = render 'comments/comments', postable: answer

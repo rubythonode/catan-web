@@ -7,7 +7,7 @@
 
     .post__body.question__body.post-bg-question-item
       .post-bg-content
-        = simple_format auto_link(@question.body)
+        = smart_format(@question.body)
 
     .question__tags.post__tags
       = render 'tags/collection', tags: @question.tags

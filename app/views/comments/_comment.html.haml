@@ -15,11 +15,11 @@
           %i.fa.fa-trash-o>
       .comment__body
         %p
-          = simple_format auto_link(comment.body)
+          = smart_format(comment.body)
 - else
   .comment--inline[comment]
     .comment__body{ style: 'margin: 10px 0;' }
-      = simple_format auto_link(comment.body), nil, wrapper_tag: 'span'
+      = smart_format comment.body, nil, wrapper_tag: 'span'
       ⏤
       = byline comment.user
       = link_to '#', style: 'font-size: 11px;' do

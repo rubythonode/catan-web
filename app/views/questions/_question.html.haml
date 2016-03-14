@@ -18,7 +18,7 @@
       %p.post-inline__body
         - first_answer = question.answers.sort_by_vote_point.first
         - if first_answer
-          = auto_link(truncate(strip_tags(first_answer.body), length: 100))
+          = truncate_html(striped_smart_format(first_answer.body).to_s, length: 70, word_boundary: false)
         - else
           %i.text-muted
             아직 답변이 없습니다

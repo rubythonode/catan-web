@@ -48,7 +48,7 @@
             %span.label.label-default
               제안
           .proposal-body
-            = simple_format auto_link(proposal.body)
+            = smart_format proposal.body
 
           = render 'comments/comments', postable: proposal
 

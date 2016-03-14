@@ -18,7 +18,7 @@
       %p.post-inline__body
         - first_proposal = discussion.proposals.sort_by_agree_count.first
         - if first_proposal
-          = auto_link(truncate(strip_tags(first_proposal.body), length: 100))
+          = truncate_html(striped_smart_format(first_proposal.body), length: 70, word_boundary: false)
         - else
           %i.text-muted
             아직 제안이 없습니다

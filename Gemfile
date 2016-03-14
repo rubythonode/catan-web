@@ -37,6 +37,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.5.1'
 gem 'bootswatch-rails'
 gem 'haml-rails', '~> 0.9.0'
 gem 'redactor2_rails', '~> 0.1.3'
+gem 'truncate_html', '~> 0.9.3'
 
 # tool
 gem 'envyable', '~> 0.2.0'

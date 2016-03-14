@@ -4,16 +4,22 @@ module ApplicationHelper
     raw render(partial: 'users/byline', locals: options.merge(user: user))
   end
 
-  def fa_icon(name)
-    content_tag(:i, nil, class: "fa fa-#{name}")
-  end
-
   def date_f(date)
     if date.today?
       date.strftime("%H:%M")
     else
       date.strftime("%Y.%m.%d")
     end
+  end
+
+  def striped_smart_format(text, html_options = {}, options = {})
+    smart_format(strip_tags(text), html_options, options)
+  end
+
+  def smart_format(text, html_options = {}, options = {})
+    auto_link(simple_format(text, html_options, options),
+      html: {class: 'auto_link', target: '_blank'},
+      link: :urls)
   end
 
   def asset_data_base64(path)
