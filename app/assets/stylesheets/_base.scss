@@ -5,14 +5,14 @@
 }
 
 html {
-  height: 100%;
+  min-height: 100%;
   position: relative;
 }
 
 body {
-  height: 100%;
   padding-top: 4em;
   background-color: #fff;
+  margin-bottom: $footer-height;
 }
 
 a.anchor {

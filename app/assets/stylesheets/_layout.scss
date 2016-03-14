@@ -5,7 +5,8 @@ aside {
 }
 
 footer#site-footer {
-  height: 254px;
+  position: absolute;
+  height: $footer-height;
   width: 100%;
   background-color: $navbar-inverse-bg;
   margin: 0;
