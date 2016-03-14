@@ -2,9 +2,10 @@
 
 %section#issue-comments
   .container
-    = render 'comments_filter', issue: @issue, posts: @posts
+    %section#content-tab-section
+      = render 'issues/content_tabs', active_tab: :comments, counts_container: @issue.counts_container
     .issue-comments
-      = render 'comments/list', comments: @comments, issue: @issue, show_issue: @issue.is_all?
+      = render 'comments/list', comments: @comments, show_issue: @issue.is_all?
       .text-center
         = paginate @comments, theme: 'twitter-bootstrap-3'
 

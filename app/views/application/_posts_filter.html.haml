@@ -1,48 +1,21 @@
 - current_params = params.except(:page, :f, :action, :controller)
-
-%section#issue-posts-filter-section
-  %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
-    %li{role: 'presentation', class: (params[:f] != 'opinions' ? 'active' : '')}
-      = link_to ( @issue ? issue_home_path(@issue) : '#' ) do
-        %h4
-          글
-          %small.count
-            = posts.count
-            - if posts.latest.any?
-              + #{posts.latest.count}
-    %li{role: 'presentation'}
-      = link_to ( @issue ? issue_comments_path(@issue) : '#' ) do
-        %h4
-          댓글
-
-    - if @issue && !@issue.is_all?
-      %li{role: 'presentation', class: (params[:f] == 'opinions' ? 'active' : '')}
-        = link_to url_for(current_params.merge(f: :opinions)) do
-          %h4
-            캠페인
-            %small.count
-              = issue.opinions.count
-              - if issue.opinions.latest.any?
-                + #{issue.opinions.latest.count}
-
-  - if params[:f] != 'opinions'
-    .post-type-filter
-      %ul.nav.nav-pills{role: 'tablist'}
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
-          = link_to url_for(current_params.merge(f: :hottest)) do
-            따끈한
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
-          = link_to url_for(current_params.merge(f: :recent)) do
-            전체
-            - if local_assigns[:posts]
-              %span.count= posts.for_list.count
-        %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
-          = link_to url_for(current_params.merge(f: :best)) do
-            최다
-        - if user_signed_in? and !local_assigns[:hide_like_tab]
-          %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
-            = link_to url_for(current_params.merge(f: :like)) do
-              내가 좋아하는
-              - if local_assigns[:posts]
-                %span.count= posts.only_like_by(current_user).count
+.post-type-filter
+  %ul.nav.nav-pills{role: 'tablist'}
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'hottest'}"}
+      = link_to url_for(current_params.merge(f: :hottest)) do
+        따끈한
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'recent'}"}
+      = link_to url_for(current_params.merge(f: :recent)) do
+        전체
+        - if local_assigns[:posts]
+          %span.count= posts.for_list.count
+    %li{role: 'presentation', class: "#{'active' if params[:f] == 'best'}"}
+      = link_to url_for(current_params.merge(f: :best)) do
+        최다
+    - if user_signed_in? and !local_assigns[:hide_like_tab]
+      %li{role: 'presentation', class: "#{'active' if params[:f] == 'like'}"}
+        = link_to url_for(current_params.merge(f: :like)) do
+          내가 좋아하는
+          - if local_assigns[:posts]
+            %span.count= posts.only_like_by(current_user).count
 

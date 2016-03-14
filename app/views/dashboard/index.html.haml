@@ -1,14 +1,10 @@
-%section#tag
-  .container
-    %h2
-      %i.fa.fa-home
-      내 홈
-      %small(style='font-size: 50%;')
-        구독하는 이슈의 글과 내
-        %i.fa.fa-arrow-up
+= render 'dashboard_header'
+
 %section#issue-posts
   .container
-    = render 'posts_filter', posts: @watched_posts_for_filter
+    %section#content-tab-section
+      = render 'dashboard/content_tabs', active_tab: :posts, counts_container: current_user.watched_counts
+      = render 'posts_filter', posts: @posts_for_filter
     = render 'posts/list', postables: @watched_postables, show_issue: true, past_day_postables: @past_day_postables
     .text-center
       = paginate @watched_posts, theme: 'twitter-bootstrap-3'

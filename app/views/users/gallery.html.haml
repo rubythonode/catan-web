@@ -4,8 +4,9 @@
   .container
     .row
       .col-sm-8
-        = render 'posts_filter', posts: @posts_for_filter, hide_like_tab: true
-        = render 'posts/list', postables: @postables, show_issue: true, past_day_postables: @past_day_postables
+        %section#content-tab-section
+          = render 'users/content_tabs', active_tab: :posts, counts_container: @user.writing_counts
+        = render 'posts/list', postables: @postables, show_issue: true
         .text-center
           = paginate @posts, theme: 'twitter-bootstrap-3'
       .col-sm-4

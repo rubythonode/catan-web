@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :issue, counter_cache: true
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :votes do
     def partial_included_with(someone)
       partial = recent.limit(10)

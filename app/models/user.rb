@@ -38,9 +38,11 @@ class User < ActiveRecord::Base
 
   # associations
   has_many :posts
+  has_many :comments
   has_many :watches
   has_many :watched_issues, through: :watches, source: :issue
   has_many :watched_posts, through: :watched_issues, source: :posts
+  has_many :watched_comments, through: :watched_posts, source: :comments
 
   ## uploaders
   # mount
@@ -90,6 +92,28 @@ class User < ActiveRecord::Base
       resource.provider = 'email'
     end
     resource
+  end
+
+  def watched_counts
+    counts = OpenStruct.new
+    counts.posts_count = watched_posts.count
+    counts.latest_posts_count = watched_posts.latest.count
+    counts.comments_count = watched_posts.sum(:comments_count)
+    counts.latest_comments_count = watched_comments.latest.count
+    counts.campaign_count = watched_posts.only_opinions.count
+    counts.latest_campaign_count = watched_posts.latest.only_opinions.count
+    counts
+  end
+
+  def writing_counts
+    counts = OpenStruct.new
+    counts.posts_count = posts.count
+    counts.latest_posts_count = posts.latest.count
+    counts.comments_count = comments.count
+    counts.latest_comments_count = comments.latest.count
+    counts.campaign_count = posts.only_opinions.count
+    counts.latest_campaign_count = posts.latest.only_opinions.count
+    counts
   end
 
   private

@@ -20,6 +20,9 @@ class Issue < ActiveRecord::Base
     def posts
       Post.all
     end
+    def opinions
+      Opinion.all
+    end
     def recommends
       (Issue.past_week + Issue.hottest.limit(10)).uniq.shuffle
     end
@@ -122,6 +125,17 @@ class Issue < ActiveRecord::Base
 
   def self.parti_issues
     Issue.where slug: %w(basic-income sewolho 20th-general-election)
+  end
+
+  def counts_container
+    counts = OpenStruct.new
+    counts.posts_count = posts_count
+    counts.latest_posts_count = posts.latest.count
+    counts.comments_count = posts.sum(:comments_count)
+    counts.latest_comments_count = posts.latest.sum(:comments_count)
+    counts.campaign_count = posts.only_opinions.count
+    counts.latest_campaign_count = posts.latest.only_opinions.count
+    counts
   end
 
   private

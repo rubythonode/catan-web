@@ -2,12 +2,13 @@
 
 %section#issue-posts
   .container
-    = render 'posts_filter', posts: @posts_for_filter, issue: @issue
+    %section#content-tab-section
+      = render 'issues/content_tabs', active_tab: (params[:f] == 'opinions' ? :campaign : :posts), posts: @posts_for_filter, counts_container: @issue.counts_container
     - if params[:f] == 'opinions'
       .issue-opinions
-        - if !@issue.is_all? and @issue.opinions.any?
-          = render 'opinions/cards', opinions: @issue.opinions, issue: @issue
+        = render 'opinions/cards', opinions: @issue.opinions, issue: @issue
     - else
+      = render 'posts_filter', posts: @posts_for_filter, issue: @issue
       .issue-posts
         = render 'posts/list', postables: @postables, issue: @issue, show_issue: @issue.is_all?, past_day_postables: @past_day_postables
         .text-center

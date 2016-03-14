@@ -29,3 +29,7 @@ http://parti.dev/devel/emails 에서 메일 발송을 확인 할 수 있습니�
 ```
 export POSTMARKER_API_KEY="키값"
 ```
+
+### 아래를 rails console에서 수행하면 지워진 글의 댓글을 삭제합니다
+
+Comment.all.each { |c| c.destroy if c.post.blank? }

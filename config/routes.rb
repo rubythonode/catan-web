@@ -43,13 +43,17 @@ Rails.application.routes.draw do
   end
   resources :relateds
 
+  get '/dashboard', to: "dashboard#index", as: 'dashboard'
+  get '/dashboard/comments', to: "dashboard#comments", as: 'dashboard_comments'
+
+
   get '/welcome', to: "pages#welcome", as: 'welcome'
-  get '/dashboard', to: "pages#dashboard", as: 'dashboard'
   get '/about', to: "pages#about", as: 'about'
   get '/i/:slug', to: "issues#slug", as: 'slug_issue'
   get '/i/:slug/comments', to: "issues#slug_comments", as: 'slug_issue_comments'
   get '/i/:slug/campaign', to: "issues#slug_campaign", as: 'slug_issue_campaign'
   get '/u/:nickname', to: "users#gallery", as: 'nickname_user'
+  get '/u/:nickname/comments', to: "users#comments", as: 'nickname_user_comments'
   get '/tags/:name', to: "tags#show", as: 'show_tag'
   authenticate :user, lambda { |u| u.admin? } do
     get '/test/summary', to: "users#summary_test"

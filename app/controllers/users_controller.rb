@@ -4,12 +4,14 @@ class UsersController < ApplicationController
   end
 
   def gallery
-    @user = User.find_by! nickname: params[:nickname].try(:downcase)
-    @posts = @user.posts.for_list.recent
-    @posts_for_filter = @posts
-    @past_day_postables = @posts.past_day.map &:postable
-    @posts = filter_posts(@posts)
+    fetch_user
+    @posts = @user.posts.for_list.recent.page params[:page]
     @postables = @posts.map &:postable
+  end
+
+  def comments
+    fetch_user
+    @comments = @user.comments.recent.page params[:page]
   end
 
   def summary_test
@@ -17,5 +19,11 @@ class UsersController < ApplicationController
       PartiMailer.summary_by_mailtrap(user).deliver_later
     end
     render text: 'ok'
+  end
+
+  private
+
+  def fetch_user
+    @user ||= User.find_by! nickname: params[:nickname].try(:downcase)
   end
 end

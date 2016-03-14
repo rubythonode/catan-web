@@ -1,0 +1,14 @@
+= render 'dashboard_header', show_social_share: true
+
+%section#issue-comments
+  .container
+    %section#content-tab-section
+      = render 'dashboard/content_tabs', active_tab: :comments, counts_container: current_user.watched_counts
+    .issue-comments
+      = render 'comments/list', comments: @comments, show_issue: true
+      .text-center
+        = paginate @comments, theme: 'twitter-bootstrap-3'
+
+%section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
+  .container
+    = render 'issues/recommends', issue: Issue::OF_ALL, exclude_watched: true

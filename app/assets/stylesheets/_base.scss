@@ -104,3 +104,33 @@ label.required:after {
 .valign {
   vertical-align: middle;
 }
+
+#content-tab-section {
+  .nav-tabs > li {
+    a {
+      color: $gray;
+      padding: 5px 20px;
+    }
+    &.active > a {
+      color: #000;
+    }
+  }
+  .post-type-filter {
+    .nav-pills {
+      a {
+        color: $gray;
+      }
+      & > .active > a,
+      & > .active > a:hover,
+      & > li > a:hover {
+        text-decoration: none;
+        color: #000 !important;
+        background-color: transparent !important;
+      }
+      .count {
+        color: $brand-primary;
+      }
+    }
+  }
+
+}
