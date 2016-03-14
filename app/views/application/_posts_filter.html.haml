@@ -3,7 +3,7 @@
 %section#issue-posts-filter-section
   %ul.nav.nav-tabs{role: 'tablist', style: 'margin-bottom: 20px;'}
     %li{role: 'presentation', class: (params[:f] != 'opinions' ? 'active' : '')}
-      = link_to ( @issue ? issue_home_path(issue) : '#' ) do
+      = link_to ( @issue ? issue_home_path(@issue) : '#' ) do
         %h4
           글
           %small.count
