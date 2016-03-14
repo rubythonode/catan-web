@@ -24,3 +24,22 @@ footer#site-footer {
     }
   }
 }
+
+@media(max-width:767px){
+  body {
+    margin-bottom: 125px;
+  }
+  footer#site-footer {
+    height: $footer-height - 125;
+    padding: 15px 0;
+      .site-footer__links {
+        line-height: 1.2;
+        text-align: left;
+        ul {
+          padding: 10px 0;
+          display: inline-block;
+        }
+      }
+  }
+
+}
