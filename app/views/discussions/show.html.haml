@@ -18,7 +18,7 @@
 
 %section.post-comments-section
   .container
-    = render 'comments/comments', postable: @discussion, hide_form: true
+    = render 'comments/comments', postable: @discussion
 
 %section.proposals-section
   = render @discussion.proposals.sort_by_agree_count

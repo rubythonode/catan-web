@@ -50,7 +50,7 @@
           .proposal-body
             = simple_format auto_link(proposal.body)
 
-          = render 'comments/comments', postable: proposal, hide_form: true
+          = render 'comments/comments', postable: proposal
 
           .proposal-section__voters{ class: "proposal-section__voters-#{proposal.id}" }
             .row

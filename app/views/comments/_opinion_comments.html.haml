@@ -34,7 +34,7 @@
           %i.fa.fa-info-circle
           찬성 의견이 없습니다.
       %ul.media-list(style='padding: 20px 0;')
-        = render postable.comments.agreed.recent, style: :opinion
+        = render postable.comments.agreed.recent, style: :media
     .tab-pane#disagree{class: ('active' if user_signed_in? and postable.disagreed_by? current_user) }
       - if user_signed_in? and postable.disagreed_by? current_user
         %div
@@ -53,4 +53,4 @@
           %i.fa.fa-info-circle
           반대 의견이 없습니다.
       %ul.media-list(style='padding: 20px 0;')
-        = render postable.comments.disagreed.recent, style: :opinion
+        = render postable.comments.disagreed.recent, style: :media
