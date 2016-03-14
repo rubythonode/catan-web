@@ -5,7 +5,6 @@
 //= require masonry.pkgd
 //= require bootstrap.offcanvas
 //= require selectize
-//= require redactor2_rails
 //= require redactor
 //= require redactor2_rails/config
 //= require jquery.oembed
