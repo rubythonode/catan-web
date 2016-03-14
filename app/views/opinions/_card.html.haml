@@ -11,7 +11,7 @@
         = post.comments.count
 
   .panel-body
-    %h3.opinion-card__title.text-center
+    %h4.opinion-card__title.text-center
       = link_to opinion, target: 'parti_detail_view' do
         “#{opinion.title}”
 
@@ -19,8 +19,8 @@
 
   .panel-footer
     .row
-      .col-xs-6
+      .col-xs-4
         = render 'likes/like_inline', post: post
-      .col-xs-6
+      .col-xs-8
         .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
