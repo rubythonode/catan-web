@@ -15,6 +15,14 @@
 //= require bootstrap-tabdrop
 
 $(function(){
+  // blank
+  $.is_blank = function (obj) {
+    if (!obj || $.trim(obj) === "") return true;
+    if (obj.length && obj.length > 0) return false;
+
+    for (var prop in obj) if (obj[prop]) return false;
+    return true;
+  };
 
   // unobtrusive_flash
   UnobtrusiveFlash.flashOptions['timeout'] = 5000;
@@ -55,7 +63,7 @@ $(function(){
       if ( $(this).val() === $elm.data('title') ) {
         clear_error();
       } else {
-        jqxhr = $.ajax({
+        $.ajax({
           url: "/issues/exist.json",
           type: "get",
           data:{ title: $(this).val() },
@@ -266,6 +274,29 @@ $(function(){
     var value = $elm.data('form-vaule');
     $control.val(value);
     $control.trigger("blur");
+  });
+
+  $('[data-action="parti-search-link"]').on('blur', function(e) {
+    var $elm = $(e.currentTarget);
+    var $group = $elm.closest('.form-group')
+    var $result_block = $group.find('.help-block__search-link')
+    if($elm.val().is_blank) {
+      $result_block.empty();
+    } else {
+      $.ajax({
+        url: "/articles/matched_link",
+        type: "get",
+        data:{ link: $elm.val() },
+        success: function(data) {
+          $result_block.html(data);
+        },
+        error: function(xhr) {
+          //ignore server error
+          $result_block.empty();
+        }
+      });
+    }
+
   });
 });
 

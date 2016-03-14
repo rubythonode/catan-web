@@ -12,7 +12,8 @@
 
     .form-group
       = f.label :link
-      = f.text_field :link, class: 'form-control'
+      = f.text_field :link, class: 'form-control', data: { action: 'parti-search-link' }
+      %p.help-block.help-block__search-link{ style: 'margin-top: 5px;'}
 
     .form-group
       = f.label :title, class: 'required'
