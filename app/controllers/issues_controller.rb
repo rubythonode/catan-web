@@ -60,7 +60,7 @@ class IssuesController < ApplicationController
         render_404 and return
       end
     end
-    @comments = @issue.comments.page params[:page]
+    @comments = @issue.comments.recent.page params[:page]
     @posts = @issue.posts
     unless view_context.current_page?(root_url)
       prepare_meta_tags title: @issue.title,

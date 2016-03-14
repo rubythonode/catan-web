@@ -11,6 +11,6 @@ class DashboardController < ApplicationController
   end
 
   def comments
-    @comments = current_user.watched_comments.page params[:page]
+    @comments = current_user.watched_comments.recent.page params[:page]
   end
 end
