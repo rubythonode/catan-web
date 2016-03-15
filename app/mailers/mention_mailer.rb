@@ -5,7 +5,7 @@ class MentionMailer < ApplicationMailer
     @comment = Comment.find subject_id
 
     truncated_body = truncate_html(view_context.strip_tags(@comment.body), length: 20, word_boundary: false)
-    mail(to: @sender.email,
-         subject: "[Parti] @#{@recipient.nickname}님이 멘션합니다 : #{truncated_body}")
+    mail(to: @recipient.email,
+         subject: "[Parti] @#{@sender.nickname}님이 멘션합니다 : #{truncated_body}")
   end
 end
