@@ -1,10 +1,11 @@
 - if local_assigns[:style] == :media
   %li.media
     .media-left
-      %a(href="#")
+      = link_to user_gallery_path(comment.user) do
         = image_tag comment.user.image_url, class: 'media-object img-circle', style: 'width:50px;height:50px;'
     .media-body
-      %strong= comment.user.nickname
+      = link_to user_gallery_path(comment.user) do
+        %strong= comment.user.nickname
       %i.fa.fa-clock-o
       = date_f comment.created_at
       - if can? :update, comment
