@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314090253) do
+ActiveRecord::Schema.define(version: 20160315040619) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(version: 20160314090253) do
   add_index "likes", ["post_id"], name: "index_likes_on_post_id"
   add_index "likes", ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "mentions", force: :cascade do |t|
+    t.integer  "user_id",          null: false
+    t.integer  "mentionable_id",   null: false
+    t.string   "mentionable_type", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "mentions", ["mentionable_type", "mentionable_id"], name: "index_mentions_on_mentionable_type_and_mentionable_id"
+  add_index "mentions", ["user_id", "mentionable_id", "mentionable_type"], name: "uniq_user_mention", unique: true
+  add_index "mentions", ["user_id"], name: "index_mentions_on_user_id"
 
   create_table "old_users", force: :cascade do |t|
     t.string   "email",      null: false

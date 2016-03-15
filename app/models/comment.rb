@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
   acts_as_paranoid
   include Choosable
+  include Mentionable
+  mentionable :body
 
   belongs_to :user
   belongs_to :post, counter_cache: true
