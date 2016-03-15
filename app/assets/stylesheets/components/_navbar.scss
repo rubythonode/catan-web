@@ -5,3 +5,18 @@
     margin: 10px 0;
   }
 }
+
+.navbar-issue {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  margin: auto;
+
+  img {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 20px;
+    height: 20px;
+  }
+}

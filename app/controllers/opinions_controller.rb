@@ -1,4 +1,5 @@
 class OpinionsController < ApplicationController
+  include OriginPostable
   before_filter :authenticate_user!, except: [:show, :social_card]
   load_and_authorize_resource
 

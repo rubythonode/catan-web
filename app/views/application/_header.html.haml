@@ -4,6 +4,11 @@
       %a.navbar-brand{ href: root_path }
         %img{ alt: 'parti', src: asset_path('parti_logo_purple.png'), style: ('max-height: 24px;')}
 
+    - if try(:origin_postable_controlling?)
+      = link_to issue_home_path(fetch_issue), class: 'navbar-brand navbar-issue' do
+        %i.fa.fa-hashtag>
+        = fetch_issue.title
+
     .navbar-header.navbar-right.pull-right
       %button.navbar-toggle.offcanvas-toggle{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "offcanvas", :type => "button", style: 'margin-left: 15px;'}
         %span.sr-only Toggle navigation
@@ -11,12 +16,10 @@
         %span.icon-bar
         %span.icon-bar
       - if user_signed_in?
-        %ul.nav.navbar-nav.pull-left
-          %li.pull-right
-            = link_to new_article_path(issue_id: try(:fetch_issue)) do
-              %i.fa.fa-edit
-              %span.hidden-xs
-                글쓰기
+        = link_to new_article_path(issue_id: try(:fetch_issue)), class: 'btn btn-default navbar-btn pull-left hidden-xs' do
+          %i.fa.fa-edit
+          %span.hidden-xs
+            글쓰기
       - else
         = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs' do
           %i.fa.fa-facebook

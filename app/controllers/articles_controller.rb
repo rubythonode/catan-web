@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  include OriginPostable
   before_filter :authenticate_user!, except: [:show, :matched]
   load_and_authorize_resource except: :matched
 
@@ -46,6 +47,10 @@ class ArticlesController < ApplicationController
   helper_method :fetch_issue
   def fetch_issue
     @issue ||= @article.try(:issue)
+  end
+
+  def postable_controller?
+    true
   end
 
   private

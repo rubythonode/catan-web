@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  include OriginPostable
   before_filter :authenticate_user!, except: :show
   load_and_authorize_resource
 
