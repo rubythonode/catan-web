@@ -4,6 +4,17 @@
   font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Source Sans Pro', 'Helvetica Neue', Helvetica, '돋움', dotum, Arial, sans-serif;
 }
 
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 html {
   min-height: 100%;
   position: relative;
@@ -15,11 +26,14 @@ body {
   margin-bottom: $footer-height;
 }
 
-a.anchor {
-  display: block;
-  position: relative;
-  top: -80px;
-  visibility: hidden;
+a {
+  @include word-wrap();
+  &.anchor {
+    display: block;
+    position: relative;
+    top: -80px;
+    visibility: hidden;
+  }
 }
 
 .brand {
@@ -72,17 +86,6 @@ ul.list-pipeline li:not(:last-child) {
 
 label.required:after {
   content: " *";
-}
-
-@mixin word-wrap() {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  -ms-word-break: break-all;
-  word-break: break-word;
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
 }
 
 .btn-ghost.btn-primary {

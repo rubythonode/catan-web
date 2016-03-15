@@ -60,14 +60,7 @@
   }
 }
 
-// jquery.oembed
-.oembedall-container {
-  a {
-    word-wrap: break-word;
-    white-space: pre-line;
-  }
-}
-
+// jquery.oembed video
 @media only screen and (min-width: 480px){
   .oembedall-container iframe {
     height: 347px !important;
