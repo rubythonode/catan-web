@@ -1,0 +1,11 @@
+안녕하세요. @<%= @recipient.nickname %>님!
+
+@<%= @sender.nickname %>님이 Parti에서 멘션합니다.
+---------------------------------------------------------
+
+<%= @comment.body %>
+
+<%= static_date_f @comment.created_at %>
+
+* 원글 [<%= @comment.post.specific.origin.class.model_name.human %>] <%= @comment.post.specific_desc %> ( <%=  url_for(@comment.post.specific.origin) %> )
+

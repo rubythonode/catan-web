@@ -5,7 +5,7 @@ class Answer < ActiveRecord::Base
   validates :question, presence: true
   validates :body, presence: true
 
-  def origin_post
+  def origin
     question
   end
 end

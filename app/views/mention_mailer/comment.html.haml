@@ -1,0 +1,13 @@
+- content_for(:head) do
+  %strong
+    안녕하세요. #{@recipient.nickname}님!
+    %br
+    \#{@sender.nickname}님이 Parti에서 멘션합니다.
+
+
+%table(width="100%" style="text-align: left;")
+  %tbody
+    %tr
+      %td
+        = render customize_partial_path(@comment, 'comment_in_email')
+

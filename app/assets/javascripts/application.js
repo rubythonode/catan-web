@@ -257,7 +257,7 @@ $(function(){
   });
 
   // form submit link
-  $('[data-trigger="parti-form-submit"]').on('click', function(e) {
+  $('[data-action="parti-form-submit"]').on('click', function(e) {
     e.preventDefault();
     var $elm = $(e.currentTarget);
     var $form = $($elm.data('form-target'));

@@ -9,4 +9,8 @@ class Question < ActiveRecord::Base
       sort { |a, b| b.votes.point <=> a.votes.point }
     end
   end
+
+  def origin
+    self
+  end
 end

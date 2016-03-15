@@ -95,6 +95,14 @@ class Post < ActiveRecord::Base
     likes.past_week.count > HOT_LIKES_COUNT
   end
 
+  def specific_desc
+    specific.try(:title) || specific.try(:body)
+  end
+
+  def origin
+    specific.origin.post
+  end
+
   def self.recommends_for_list(exclude)
     result = hottest.for_list.limit(5)
     if result.length < 5

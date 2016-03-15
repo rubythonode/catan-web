@@ -9,6 +9,9 @@
     text-indent: -999px;
     overflow: hidden;
   }
+  &__nickname--mentioned {
+    color: $brand-primary;
+  }
 }
 
 #user-header-section {

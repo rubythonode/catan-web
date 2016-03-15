@@ -16,14 +16,30 @@ module ApplicationHelper
     end
   end
 
+  def static_date_f(date)
+    date.strftime("%Y.%m.%d %H:%M")
+  end
+
   def striped_smart_format(text, html_options = {}, options = {})
     smart_format(strip_tags(text), html_options, options)
   end
 
   def smart_format(text, html_options = {}, options = {})
-    auto_link(simple_format(text, html_options, options),
+    parsed_text = simple_format(text, html_options, options).to_str
+    parsed_text = parsed_text.gsub(Mentionable::HTML_PATTERN_WITH_AT) do |m|
+      at_nickname = $1
+      nickname = at_nickname[1..-1]
+      user = User.find_by nickname: nickname
+      if user.present?
+        m.gsub($1, link_to($1, user_gallery_path(user), class: 'user__nickname--mentioned'))
+      else
+        m
+      end
+    end
+    raw(auto_link(parsed_text,
       html: {class: 'auto_link', target: '_blank'},
-      link: :urls)
+      link: :urls,
+      sanitize: false))
   end
 
   def asset_data_base64(path)

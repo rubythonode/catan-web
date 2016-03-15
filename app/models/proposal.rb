@@ -6,7 +6,7 @@ class Proposal < ActiveRecord::Base
   validates :discussion, presence: true
   validates :body, presence: true
 
-  def origin_post
+  def origin
     discussion
   end
 end

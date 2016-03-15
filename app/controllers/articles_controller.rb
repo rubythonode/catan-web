@@ -47,6 +47,7 @@ class ArticlesController < ApplicationController
   def fetch_issue
     @issue ||= @article.try(:issue)
   end
+
   private
 
   def article_params

@@ -8,17 +8,13 @@ class VotesController < ApplicationController
     @vote = service.send(params[:vote][:choice].to_sym)
     respond_to do |format|
       format.js
-      format.html { redirect_to_origin_post }
+      format.html { redirect_to_origin }
     end
   end
 
   private
 
-  def redirect_to_origin_post
-    if @vote.post.specific.respond_to? :origin_post
-      redirect_to @vote.post.specific.origin_post
-    else
-      redirect_to @vote.post.specific
-    end
+  def redirect_to_origin
+    redirect_to @vote.post.specific.origin
   end
 end

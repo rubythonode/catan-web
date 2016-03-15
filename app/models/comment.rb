@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   acts_as_paranoid
+
   include Choosable
   include Mentionable
   mentionable :body

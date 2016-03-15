@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CommentsTest < ActionDispatch::IntegrationTest
-  focus
   test '맨션을 해요' do
     sign_in(users(:one))
 

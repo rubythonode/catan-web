@@ -1,5 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
-  helper 'parti_url'
+  helper :application
+  helper :parti_url
+  include TruncateHtmlHelper
 
   default from: "feed@parti.xyz"
   layout 'email'

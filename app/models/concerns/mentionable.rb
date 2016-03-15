@@ -16,9 +16,13 @@ module Mentionable
   end
 
   def set_mentions
-    self.mentions.destroy_all
-    scan_users.each do |user|
-      self.mentions.build(user: user)
+    pervious = self.mentions.destroy_all
+    pervious_user = pervious.map &:user
+    scan_users.each do |mentioned_user|
+      self.mentions.create(user: mentioned_user)
+      unless pervious_user.include? mentioned_user
+        MentionMailer.send(self.class.to_s.underscore, self.user.id, mentioned_user.id, self.id).deliver_later
+      end
     end
   end
 
@@ -34,6 +38,7 @@ module Mentionable
 
   PATTERN = /(?:^|\s)@([\w]+)/
   PATTERN_WITH_AT = /(?:^|\s)(@[\w]+)/
+  HTML_PATTERN_WITH_AT = /(?:^|\s|>)(@[\w]+)/
 
   def parse(field)
     return [] if try(field).blank?

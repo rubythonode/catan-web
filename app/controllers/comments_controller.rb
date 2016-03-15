@@ -8,12 +8,12 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    redirect_to_origin_post
+    redirect_to_origin
   end
 
   def update
     if @comment.update_attributes(comment_params)
-      redirect_to_origin_post
+      redirect_to_origin
     else
       render 'edit'
     end
@@ -26,12 +26,8 @@ class CommentsController < ApplicationController
 
   private
 
-  def redirect_to_origin_post
-    if @comment.post.specific.respond_to? :origin_post
-      redirect_to @comment.post.specific.origin_post
-    else
-      redirect_to @comment.post.specific
-    end
+  def redirect_to_origin
+    redirect_to @comment.post.specific.origin
   end
 
   def comment_params

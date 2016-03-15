@@ -8,4 +8,8 @@ class Discussion < ActiveRecord::Base
       sort_by { |p| [p.votes.agreed.count, p.created_at] }.reverse
     end
   end
+
+  def origin
+    self
+  end
 end
