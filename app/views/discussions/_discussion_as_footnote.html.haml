@@ -4,4 +4,5 @@
   %h5.post-inline__title
     = link_to discussion, target: 'parti_detail_view' do
       #{discussion.title}
+    %i.fa.fa-lightbulb-o.text-muted
   = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]

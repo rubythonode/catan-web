@@ -4,4 +4,5 @@
   %h5.post-inline__title
     = link_to question, target: 'parti_detail_view' do
       #{question.title}
+    %i.fa.fa-question-circle.text-muted
   = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]

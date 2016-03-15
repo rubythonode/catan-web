@@ -1,7 +1,13 @@
 - answer = answer_as_footnote
 - question = answer.question
 - post = answer.acting_as
-= render customize_partial_path(question, 'question_as_footnote')
 .post-inline.answer-inline[post]
   %h5.post-inline__title
-    #{truncate(strip_tags(answer.body), length: 40)}
+    %div
+      = link_to question, target: 'parti_detail_view' do
+        #{question.title}
+      %i.fa.fa-question-circle.text-muted
+    %div
+      %i.fa.fa-level-up.fa-rotate-90.text-muted
+      #{truncate(strip_tags(answer.body), length: 40)}
+  = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
