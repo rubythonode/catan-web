@@ -3,16 +3,12 @@
 %section#issue-posts
   .container
     %section#content-tab-section
-      = render 'issues/content_tabs', active_tab: (params[:f] == 'opinions' ? :campaign : :posts), posts: @posts_for_filter, counts_container: @issue.counts_container
-    - if params[:f] == 'opinions'
-      .issue-opinions
-        = render 'opinions/cards', opinions: @issue.opinions, issue: @issue
-    - else
-      = render 'posts_filter', posts: @posts_for_filter, issue: @issue
-      .issue-posts
-        = render 'posts/list', postables: @postables, issue: @issue, show_issue: @issue.is_all?, past_day_postables: @past_day_postables
-        .text-center
-          = paginate @posts, theme: 'twitter-bootstrap-3'
+      = render 'issues/content_tabs', active_tab: :posts, posts: @posts_for_filter, counts_container: @issue.counts_container
+    = render 'posts_filter', posts: @posts_for_filter, issue: @issue
+    .issue-posts
+      = render 'posts/list', postables: @postables, issue: @issue, show_issue: @issue.is_all?, past_day_postables: @past_day_postables
+      .text-center
+        = paginate @posts, theme: 'twitter-bootstrap-3'
 
 %section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
   .container

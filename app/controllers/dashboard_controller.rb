@@ -13,4 +13,9 @@ class DashboardController < ApplicationController
   def comments
     @comments = current_user.watched_comments.recent.page params[:page]
   end
+
+  def campaign
+    @posts = current_user.watched_posts.only_opinions.recent.page params[:page]
+    @opinions = @posts.all.map &:postable
+  end
 end

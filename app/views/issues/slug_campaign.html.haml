@@ -1,11 +1,11 @@
-%section#issue-campaign-section{ style: "background-size: cover; background-image: url('#{@issue.cover_url}'); margin-top: -8px; height: 100%;" }
+= render 'issue_small_header', show_social_share: true
+
+%section#issue-posts
   .container
-    .jumbotron.jumbotron-transparent
-      %h2
-        %i.fa.fa-hashtag>
-        = issue.title
-
-
-  %section
-    .container
-      여러가지 포스트가 타입별로 구분되어 큼직큼직하게 나오면 어떨까?
+    %section#content-tab-section
+      = render 'issues/content_tabs', active_tab: :campaign, posts: @posts_for_filter, counts_container: @issue.counts_container
+    .issue-opinions
+      = render 'opinions/cards', opinions: @issue.opinions, issue: @issue
+%section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
+  .container
+    = render 'issues/recommends', issue: @issue

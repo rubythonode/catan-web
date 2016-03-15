@@ -1,6 +1,8 @@
 class IssuesController < ApplicationController
   respond_to :json, :html
-  before_filter :authenticate_user!, except: [:show, :index, :slug, :users, :exist, :slug_comments]
+  before_filter :authenticate_user!,
+    only: [:create, :update, :destroy]
+  before_filter :fetch_issue_by_slug, only: [:slug, :slug_comments, :slug_campaign]
   load_and_authorize_resource
 
   def index
@@ -24,17 +26,32 @@ class IssuesController < ApplicationController
   end
 
   def slug
-    @issue = Issue.find_by slug: params[:slug]
-    @issue = Issue::OF_ALL if params[:slug] == 'all'
-    if @issue.blank?
-      @issue_by_title = Issue.find_by(title: params[:slug].titleize)
-      if @issue_by_title.present?
-        redirect_to @issue_by_title and return
-      else
-        render_404 and return
-      end
-    end
     @posts = @issue.posts.for_list
+
+    unless view_context.current_page?(root_url)
+      prepare_meta_tags title: @issue.title,
+                        description: @issue.body,
+                        image: @issue.cover_url
+    end
+    @posts_for_filter = @posts
+    @past_day_postables = @posts.recent.past_day.map &:postable
+    @posts = filter_posts(@posts)
+    @postables = @posts.map &:postable
+    render template: 'issues/show'
+  end
+
+  def slug_comments
+    @comments = @issue.comments.recent.page params[:page]
+    @posts = @issue.posts
+    unless view_context.current_page?(root_url)
+      prepare_meta_tags title: @issue.title,
+                        description: @issue.body,
+                        image: @issue.cover_url
+    end
+  end
+
+  def slug_campaign
+    @posts = @issue.posts.for_list.only_opinions
 
     unless view_context.current_page?(root_url)
       prepare_meta_tags title: @issue.title,
@@ -46,45 +63,6 @@ class IssuesController < ApplicationController
     @past_day_postables = @posts.recent.past_day.map &:postable
     @posts = filter_posts(@posts)
     @postables = @posts.map &:postable
-    render template: 'issues/show'
-  end
-
-  def slug_comments
-    @issue = Issue.find_by slug: params[:slug]
-    @issue = Issue::OF_ALL if params[:slug] == 'all'
-    if @issue.blank?
-      @issue_by_title = Issue.find_by(title: params[:slug].titleize)
-      if @issue_by_title.present?
-        redirect_to @issue_by_title and return
-      else
-        render_404 and return
-      end
-    end
-    @comments = @issue.comments.recent.page params[:page]
-    @posts = @issue.posts
-    unless view_context.current_page?(root_url)
-      prepare_meta_tags title: @issue.title,
-                        description: @issue.body,
-                        image: @issue.cover_url
-    end
-  end
-
-  def slug_campaign
-    if params[:slug] == 'all'
-      @issue = Issue::OF_ALL
-      @posts = Post.for_list
-    else
-      @issue = Issue.find_by slug: params[:slug]
-      if @issue.blank?
-        @issue_by_title = Issue.find_by(title: params[:slug].titleize)
-        if @issue_by_title.present?
-          redirect_to @issue_by_title and return
-        else
-          render_404 and return
-        end
-      end
-      @posts = @issue.posts.for_list
-    end
   end
 
   def create
@@ -123,7 +101,21 @@ class IssuesController < ApplicationController
   def fetch_issue
     @issue
   end
+
   private
+
+  def fetch_issue_by_slug
+    @issue = Issue.find_by slug: params[:slug]
+    @issue = Issue::OF_ALL if params[:slug] == 'all'
+    if @issue.blank?
+      @issue_by_title = Issue.find_by(title: params[:slug].titleize)
+      if @issue_by_title.present?
+        redirect_to @issue_by_title and return
+      else
+        render_404 and return
+      end
+    end
+  end
 
   def issue_params
     params.require(:issue).permit(:title, :body, :logo, :cover, :slug)

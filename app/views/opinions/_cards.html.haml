@@ -20,4 +20,4 @@
 
     - opinions.each do |opinion|
       .card.col-sm-4
-        = render customize_partial_path(opinion, 'card')
+        = render 'opinions/card', card: opinion

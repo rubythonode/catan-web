@@ -12,6 +12,10 @@ module PartiUrlHelper
     slug_issue_comments_path(slug: issue.slug)
   end
 
+  def issue_campaign_path(issue)
+    slug_issue_campaign_path(slug: issue.slug)
+  end
+
   def user_gallery_path(user)
     nickname_user_path(nickname: user.nickname)
   end

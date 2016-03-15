@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "dashboard#index", as: 'dashboard'
   get '/dashboard/comments', to: "dashboard#comments", as: 'dashboard_comments'
-
+  get '/dashboard/campaign', to: "dashboard#campaign", as: 'dashboard_campaign'
 
   get '/welcome', to: "pages#welcome", as: 'welcome'
   get '/about', to: "pages#about", as: 'about'

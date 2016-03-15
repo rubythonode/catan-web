@@ -1,1 +1,1 @@
-= render 'application/content_tabs', local_assigns.merge(posts_tab_path: issue_home_path(@issue), comments_tab_path: issue_comments_path(@issue), campaign_tab_path: issue_home_path(@issue, f: :opinions))
+= render 'application/content_tabs', local_assigns.merge(posts_tab_path: issue_home_path(@issue), comments_tab_path: issue_comments_path(@issue), campaign_tab_path: issue_campaign_path(@issue))
