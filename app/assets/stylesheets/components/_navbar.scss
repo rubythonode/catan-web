@@ -13,6 +13,15 @@
   text-align: center;
   margin: auto;
 
+  a {
+    color: $navbar-default-brand-color;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    width: 50%;
+  }
+
   img {
     display: inline-block;
     vertical-align: bottom;
