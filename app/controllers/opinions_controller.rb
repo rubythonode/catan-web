@@ -36,7 +36,8 @@ class OpinionsController < ApplicationController
   end
 
   def show
-    prepare_meta_tags title: @opinion.title
+    prepare_meta_tags title: @opinion.title,
+      image: social_card_opinion_url(format: :png)
   end
 
   def social_card
