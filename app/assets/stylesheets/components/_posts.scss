@@ -20,6 +20,7 @@
   }
   .post-like {
     vertical-align: middle;
+    padding-right: 30px;
     .like-button {
       margin: 0;
       width: 100%;
@@ -58,9 +59,14 @@
   }
   .post-inline__info {
     font-size: $font-size-small;
-    line-height: $font-size-base;
-    img {
-      vertical-align: top;
+    line-height: $line-height-base;
+    .post-inline__issue-label {
+      img {
+        width: 12px;
+        height: 12px;
+        vertical-align: middle;
+        margin-bottom: 3px;
+      }
     }
     a {
       color: $gray;

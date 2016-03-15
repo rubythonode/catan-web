@@ -4,6 +4,10 @@ module ApplicationHelper
     raw render(partial: 'users/byline', locals: options.merge(user: user))
   end
 
+  def icon(classes)
+    content_tag(:i, nil, class: classes)
+  end
+
   def date_f(date)
     if date.today?
       date.strftime("%H:%M")

@@ -3,8 +3,6 @@
   .media
     .post-like.media-left
       = render 'likes/like_inline', post: post
-    .post-icon.media-left.valign.text-center
-      %i.fa.fa-volume-down.fa-fw
     .media-body
       .hidden-xs.pull-right
         .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
@@ -14,6 +12,7 @@
           %i.wi.wi-fire.text-danger
         = link_to opinion, target: 'parti_detail_view' do
           “#{opinion.title}”
+        %i.fa.fa-volume-down.text-muted
 
       %p.post-inline__body
         %i.fa.fa-bar-chart
