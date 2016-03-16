@@ -1,0 +1,16 @@
+- issue ||= @issue
+%section.issue-header-section( style="margin-top: -8px;" )
+  %section#issue
+    .container{ style: 'position: relative;' }
+      .jumbotron.jumbotron-transparent{ style: 'margin: 0; padding: 1em 0;' }
+        %a.btn.btn-primary.btn-lg.pull-right( style="margin-top: 30px;" href="/")
+          계속하기
+        %h2 우선, 눈길이 가는 빠띠를 구독해보세요.
+        %p.text-muted 더 많이 고를수록 빠띠빠띠!
+
+%section#issues{ style: 'padding-top: 2em; min-height: 400px;' }
+  .container
+    .row
+      - @issues.each do |issue|
+        .col-xs-12.col-sm-4
+          = render 'issues/card', issue: issue
