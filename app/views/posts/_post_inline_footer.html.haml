@@ -13,8 +13,3 @@
     = link_to post.specific do
       %i.fa.fa-clock-o
       = date_f post.created_at
-    .hidden-xs
-      - if obj.tags.any?
-        %i.fa.fa-tag
-      - obj.tags.each do |tag|
-        = link_to "#{tag.name}", tag_home_path(tag), class: 'text-nowrap'
