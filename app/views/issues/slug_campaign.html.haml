@@ -5,7 +5,7 @@
     %section#content-tab-section
       = render 'issues/content_tabs', active_tab: :campaign, posts: @posts_for_filter, counts_container: @issue.counts_container
     .issue-opinions
-      = render 'opinions/cards', opinions: @issue.opinions, issue: @issue
+      = render 'opinions/cards', opinions: @postables, issue: @issue
 %section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
   .container
     = render 'issues/recommends', issue: @issue
