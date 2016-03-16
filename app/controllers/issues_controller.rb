@@ -51,7 +51,7 @@ class IssuesController < ApplicationController
   end
 
   def slug_campaign
-    @posts = @issue.posts.for_list.only_opinions
+    @posts = @issue.posts.for_list.only_opinions.recent
 
     unless view_context.current_page?(root_url)
       prepare_meta_tags title: @issue.title,
@@ -60,8 +60,7 @@ class IssuesController < ApplicationController
     end
 
     @posts_for_filter = @posts
-    @past_day_postables = @posts.recent.past_day.map &:postable
-    @posts = filter_posts(@posts)
+    @past_day_postables = @posts.past_day.map &:postable
     @postables = @posts.map &:postable
   end
 
