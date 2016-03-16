@@ -72,7 +72,7 @@ $(function(){
               clear_error();
             } else {
               $elm.closest('.form-group').addClass('has-error')
-                  .find('.help-block.typeahead-warning').show().append('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
+                  .find('.help-block.typeahead-warning').show().html('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
             }
           },
           error: function(xhr) {
