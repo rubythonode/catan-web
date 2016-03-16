@@ -2,6 +2,7 @@ module AfterLogin
   extend ActiveSupport::Concern
 
   def after_omniauth_login
+    return unless user_signed_in?
     omniauth_params = request.env['omniauth.params'] || session["omniauth.params_data"] || {}
 
     return if omniauth_params['after_login'].blank?
