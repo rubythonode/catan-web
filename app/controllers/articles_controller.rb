@@ -40,7 +40,7 @@ class ArticlesController < ApplicationController
   end
 
   def matched_link
-    @articles = Article.where(link: params[:link]).recent.limit(3)
+    @matched_articles = Article.where(link: params[:link]).recent.limit(3) unless params[:link].blank?
     render layout: nil
   end
 

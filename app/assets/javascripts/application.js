@@ -278,9 +278,9 @@ $(function(){
 
   $('[data-action="parti-search-link"]').on('blur', function(e) {
     var $elm = $(e.currentTarget);
-    var $group = $elm.closest('.form-group')
-    var $result_block = $group.find('.help-block__search-link')
-    if($elm.val().is_blank) {
+    var $group = $elm.closest('.form-group');
+    var $result_block = $group.find('.help-block__search-link');
+    if($elm.val() == '') {
       $result_block.empty();
     } else {
       $.ajax({
