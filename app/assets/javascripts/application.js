@@ -22,7 +22,7 @@ $(function(){
 
     for (var prop in obj) if (obj[prop]) return false;
     return true;
-  };
+  }
 
   // unobtrusive_flash
   UnobtrusiveFlash.flashOptions['timeout'] = 5000;
@@ -280,7 +280,7 @@ $(function(){
     var $elm = $(e.currentTarget);
     var $group = $elm.closest('.form-group');
     var $result_block = $group.find('.help-block__search-link');
-    if($elm.val() == '') {
+    if($.is_blank($elm.val())) {
       $result_block.empty();
     } else {
       $.ajax({
