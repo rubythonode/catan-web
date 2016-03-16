@@ -2,10 +2,10 @@ class DashboardController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @issues = Issue.all
-    @issue = Issue::OF_ALL
-    @watched_issues = current_user.watched_issues
-    render 'intro' and return if need_to_watch
+    if need_to_watch
+      @unwatched_issues = current_user.unwatched_issues
+      render 'intro' and return
+    end
 
     watched_posts = Post.for_list.recent.watched_by(current_user)
     @watched_posts_for_filter = watched_posts
@@ -27,6 +27,6 @@ class DashboardController < ApplicationController
   private
 
   def need_to_watch
-    current_user.watched_issues.size < 2
+    ! current_user.watched_non_default_issues?
   end
 end

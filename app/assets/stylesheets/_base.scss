@@ -98,6 +98,13 @@ label.required:after {
   }
 }
 
+.btn-block-xs {
+  @media (max-width: $screen-xs-max) {
+    display: block;
+    width: 100%;
+  }
+}
+
 .bg-default {
   color: $gray;
   background-color: $gray-lighter;

@@ -116,6 +116,14 @@ class User < ActiveRecord::Base
     counts
   end
 
+  def watched_non_default_issues?
+    watched_issues.where.not(slug: Issue::SLUG_OF_ASK_PARTI).any?
+  end
+
+  def unwatched_issues
+    Issue.where.not(id: watched_issues)
+  end
+
   private
 
   def downcase_nickname
