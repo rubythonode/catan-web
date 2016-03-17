@@ -1,6 +1,6 @@
 %section.opinion-list
   .row.masonry-container
-    .card.col-sm-4
+    .card.col-sm-6.col-xs-12
       .panel.panel-default
         .panel-body{ style: 'height: 250px; display: table; width: 100%;' }
           %div{ style: ' display: table-cell; vertical-align: middle; text-align: center' }
@@ -19,5 +19,5 @@
                     주장하기
 
     - opinions.each do |opinion|
-      .card.col-sm-4
+      .card.col-sm-6.col-xs-12
         = render 'opinions/card', card: opinion
