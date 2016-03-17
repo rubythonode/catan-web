@@ -7,7 +7,6 @@
     .issue-opinions
       = render 'opinions/cards', opinions: @opinions, issue: Issue::OF_ALL
 
-%section#recommend-issue-section{ style: 'padding: 40px 0; background-color: #fafafa;' }
-  .container
-    = render 'issues/recommends', issue: Issue::OF_ALL, exclude_watched: true
+
+= render 'issues/recommends', issue: Issue::OF_ALL, exclude_watched: true
 

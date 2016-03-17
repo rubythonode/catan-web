@@ -13,6 +13,8 @@
 //= require unobtrusive_flash
 //= require unobtrusive_flash_bootstrap
 //= require bootstrap-tabdrop
+//= require rails-timeago
+//= require locales/jquery.timeago.ko
 
 $(function(){
   // blank

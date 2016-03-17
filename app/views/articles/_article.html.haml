@@ -1,8 +1,14 @@
 - post = article.acting_as
 .post-inline.article-inline[post]
-  .media
-    .media-body
-      %h5.post-inline__title
+  .post-inline__issue
+    - if local_assigns[:show_issue]
+      %span.post-inline__issue-label
+        = link_to issue_home_path(post.issue) do
+          = image_tag post.issue.logo_url
+          = post.issue.title
+  .row
+    .col-xs-12.col-md-10
+      .post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to article.title, article
@@ -10,12 +16,17 @@
           %small
             = link_to article.link, target: '_blank', class: 'text-muted' do
               %i.fa.fa-link
-      -#= render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
-    .media-right.post-inline__info{ style: 'min-width: 80px;'}
-      = link_to post.specific do
-        %i.fa.fa-arrow-circle-o-up
-        %span.text-primary
-          = post.likes.count
-        %i.fa.fa-comment-o
-        %span.text-primary
-          = post.comments_count
+      %span.hidden-xs
+        &nbsp;
+        = render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
+    .col-xs-12.col-md-2
+      %span.visible-xs-inline
+        = render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
+      .post-inline__activities
+        = link_to post.specific do
+          %i.fa.fa-arrow-circle-o-up
+          %span.text-primary
+            = post.likes.count
+          %i.fa.fa-comment-o
+          %span.text-primary
+            = post.comments_count
