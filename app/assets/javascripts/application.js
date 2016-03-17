@@ -15,6 +15,11 @@
 //= require bootstrap-tabdrop
 //= require rails-timeago
 //= require locales/jquery.timeago.ko
+//= require linkfy
+//= require linkify-jquery
+//= require autoresize
+//= require jquery.validate
+//= require messages_ko
 
 $(function(){
   // blank
@@ -45,6 +50,9 @@ $(function(){
     var clear_error = function() {
       $elm.closest('.form-group').removeClass('has-error')
           .find('.help-block.typeahead-warning').empty().hide();
+      // form validation
+      $elm.data('rule-extern-value', true);
+      $elm.trigger('parti-need-to-validate');
     }
     $elm.typeahead({
       onSelect: function(item) {
@@ -61,20 +69,29 @@ $(function(){
           return data;
         }
       }
+    }).on('keydown', function() {
+      $elm.data('rule-extern-value', false);
+      $elm.trigger('parti-need-to-validate');
     }).on('blur', function(){
+      if($(this).data('typeahead').shown) {
+        return;
+      }
       if ( $(this).val() === $elm.data('title') ) {
         clear_error();
       } else {
         $.ajax({
           url: "/issues/exist.json",
           type: "get",
-          data:{ title: $(this).val() },
+          data:{ title: $elm.val() },
           success: function(data) {
             if($.parseJSON(data)) {
               clear_error();
             } else {
               $elm.closest('.form-group').addClass('has-error')
                   .find('.help-block.typeahead-warning').show().html('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
+              // form validation
+              $elm.data('rule-extern-value', false);
+              $elm.trigger('parti-need-to-validate');
             }
           },
           error: function(xhr) {
@@ -141,6 +158,10 @@ $(function(){
 
     $elm.hide();
     $target.show();
+
+    var focus_id = $(e.target).data('focus');
+    $focus = $(focus_id);
+    $focus.focus();
   });
 
   // share
@@ -299,6 +320,103 @@ $(function(){
       });
     }
 
+  });
+
+  // parti-smart-placeholder
+  $('[data-action="parti-smart-placeholder"]').each(function(i, elm) {
+    var $elm = $(elm);
+    var placeholder = $elm.attr("placeholder");
+    var $previous = $($elm.data("previous-form-control"));
+    $elm.attr("placeholder", '');
+    $previous.on('input', function(e) {
+      var val = $(e.currentTarget).val();
+      if(!$.is_blank(val)) {
+        $elm.attr("placeholder", placeholder);
+      } else {
+        $elm.attr("placeholder", '');
+      }
+    });
+  });
+
+  // parti-smart-link
+  $('[data-action="parti-smart-link"]').each(function(i, elm) {
+    var $elm = $(elm);
+    var $control = $($elm.data("source-form-control"));
+    $control.on('input', function(e) {
+      var val = $(e.currentTarget).val();
+      var results = linkify.find(val);
+      var parsed_url = '';
+      $.each(results, function(i, e) {
+        if(e.type !== 'url' || /^(http)s?/.test(e.value)){
+          parsed_url = e.value;
+          return false;
+        }
+      });
+      switch ($elm.get(0).tagName) {
+        case 'A':
+          if($.is_blank(parsed_url)) {
+            $elm.empty();
+            $elm.attr('href', '');
+          } else {
+            $elm.attr('href', parsed_url)
+                .oembed(null, { 'embedMethod': 'fill', 'maxWidth': '100%', 'maxHeight': '100%' });
+          }
+          break;
+        case 'INPUT':
+          $elm.val(parsed_url);
+          break;
+      }
+    });
+  });
+
+  // autoresize toggle
+  autosize($('[data-ride="parti-autoresize"]'));
+
+  // form validation
+  $.validator.addMethod("extern", function(value, element) {
+    return this.optional(element) || $(element).data('rule-extern-value');
+  }, "");
+
+  $('[data-action="parti-form-validation"]').each(function(i, elm) {
+    var $elm = $(elm);
+    $form = $(elm);
+    $submit = $($elm.data("submit-form-control"));
+    $submit.prop('disabled', true);
+
+    $form.validate({
+      errorPlacement: function(error, element) {
+        return true;
+      },
+      invalidHandler: function(event, validator) {
+        // 'this' refers to the form
+        var errors = validator.numberOfInvalids();
+        if (errors) {
+          var message = errors == 1
+            ? 'You missed 1 field. It has been highlighted'
+            : 'You missed ' + errors + ' fields. They have been highlighted';
+          $("div.error span").html(message);
+          $("div.error").show();
+        } else {
+          $("div.error").hide();
+        }
+      }
+    });
+
+    $elm.find(':input').on('input', function(e) {
+      if($form.valid()) {
+        $submit.prop('disabled', false);
+      } else {
+        $submit.prop('disabled', true);
+      }
+    });
+
+    $elm.find(':input').on('parti-need-to-validate', function(e) {
+      if($form.valid()) {
+        $submit.prop('disabled', false);
+      } else {
+        $submit.prop('disabled', true);
+      }
+    });
   });
 });
 
