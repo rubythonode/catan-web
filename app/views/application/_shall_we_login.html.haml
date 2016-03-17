@@ -1,6 +1,9 @@
 #login-overlay
   .wrapper{style: 'position: relative; height: 100%; width: 100%;'}
     .content{style: 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'}
+      .pull-right{ style: "margin-top: -20px;"}
+        %a.text-muted{href: "#", "data-dismiss": "parti-login-overlay", type: "button"}
+          %i.fa.fa-times.fa-2x
       %div{style: 'color: $gray;'}
         .clearfix{ style: 'margin-top:20px'}
           %p
@@ -26,9 +29,4 @@
             이메일로 로그인 후&nbsp;
             %span.login-overlay__label>
             합니다
-        %hr{ style: 'border-color: #bb81d0;' }
-        %p.pull-right
-          %a{href: "#", "data-dismiss": "parti-login-overlay", type: "button"}
-            다음에 하겠습니다
-            %i.fa.fa-times
 
