@@ -1,18 +1,12 @@
 - post = question.acting_as
 .post-inline.question-inline[post]
   .media
-    .post-like.media-left
-      = render 'likes/like_inline', post: post
     .media-body
-      .hidden-xs.pull-right
-        .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
-
       %h5.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to question, target: 'parti_detail_view' do
           #{question.title}
-        %i.fa.fa-question-circle.text-muted
       %p.post-inline__body
         - first_answer = question.answers.sort_by_vote_point.first
         - if first_answer
@@ -23,4 +17,12 @@
           %i.text-muted
             아직 답변이 없습니다
 
-      = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
+      -#= render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
+    .media-right.post-inline__info{ style: 'min-width: 80px;'}
+      = link_to post.specific do
+        %i.fa.fa-arrow-circle-o-up
+        %span.text-primary
+          = post.likes.count
+        %i.fa.fa-comment-o
+        %span.text-primary
+          = post.comments_count

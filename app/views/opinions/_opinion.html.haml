@@ -1,22 +1,24 @@
 - post = opinion.acting_as
 .post-inline.opinion-inline[post]
   .media
-    .post-like.media-left
-      = render 'likes/like_inline', post: post
     .media-body
-      .hidden-xs.pull-right
-        .post-inline__buttons__shares{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
-
       %h5.post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to opinion, target: 'parti_detail_view' do
           “#{opinion.title}”
-        %i.fa.fa-volume-down.text-muted
 
       %p.post-inline__body
         %i.fa.fa-bar-chart
           %strong #{opinion.votes.count}
           명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
 
-      = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
+    -#= render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
+    .media-right.post-inline__info{ style: 'min-width: 80px;'}
+      = link_to post.specific do
+        %i.fa.fa-arrow-circle-o-up
+        %span.text-primary
+          = post.likes.count
+        %i.fa.fa-comment-o
+        %span.text-primary
+          = post.comments_count
