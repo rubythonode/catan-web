@@ -35,8 +35,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    prepare_meta_tags title: @article.title,
-                      description: @article.body
+    prepare_meta_tags title: @article.body
   end
 
   def matched_link

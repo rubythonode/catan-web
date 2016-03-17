@@ -1,0 +1,13 @@
+.well.clearfix
+  = form_for Article.new do |f|
+    .form-group
+      .input-group
+        .input-group-addon 이슈
+        = text_field_tag :issue_title, (issue.try(:title) unless issue.is_all?), class: 'form-control typeahead', placeholder: '이슈를 입력하세요.', autocomplete: 'off', data: { 'provider': 'parti-issue-typeahead', 'typeahead-url': issues_path, 'typeahead-display-field': 'title', 'title' => issue.try(:title) }, style: 'width: 200px'
+
+    .form-group
+      = f.text_area :body, class: 'form-control'
+
+    .form-group
+      .pull-right
+        = f.submit '이야기하기', class: 'btn btn-primary'

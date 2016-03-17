@@ -11,7 +11,7 @@
       .post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
-        = link_to article.title, article
+        = truncate_html(striped_smart_format(article.body, nil, wrapper_tag: 'span'), length: 300, word_boundary: false)
         - if link_to article.link.present?
           %small
             = link_to article.link, target: '_blank', class: 'text-muted' do
