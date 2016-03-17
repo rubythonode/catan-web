@@ -38,7 +38,9 @@ class OpinionsController < ApplicationController
 
   def show
     prepare_meta_tags title: @opinion.title,
-      image: social_card_opinion_url(format: :png)
+      description: '어떻게 생각하시나요?',
+      image: social_card_opinion_url(format: :png),
+      twitter_card_type: 'summary_large_image'
   end
 
   def social_card

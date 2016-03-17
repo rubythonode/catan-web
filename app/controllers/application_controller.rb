@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
       twitter: {
         site_name: options[:site_name],
         site: '@parti_xyz',
-        card: 'summary',
+        card: options[:twitter_card_type],
         description: twitter_description(options),
         image: view_context.asset_url(options[:image])
       },
@@ -86,7 +86,8 @@ class ApplicationController < ActionController::Base
       title: "유쾌한 민주주의 플랫폼",
       description: "더 나은 민주주의의 기반요소를 통합한 기민하고, 섬세하고, 일상적인 민주주의 플랫폼, 빠띠!",
       keywords: "정치, 민주주의, 조직, 투표, 모임, 의사결정, 일상 민주주의, 토의, 토론, 논쟁, 논의, 회의",
-      image: view_context.asset_url("parti_seo.png")
+      image: view_context.asset_url("parti_seo.png"),
+      twitter_card_type: "summary_card"
     }
   end
 
