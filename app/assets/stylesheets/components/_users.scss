@@ -34,8 +34,9 @@
   left: 0;
   right: 0;
   margin: auto;
-  background: rgba(142,68,173,.95);
+  background: $gray-lighter;
   z-index: 9999;
+  opacity: .95;
 }
 
 #user-gallery {
