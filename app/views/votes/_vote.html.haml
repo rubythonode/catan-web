@@ -49,25 +49,26 @@
           %i.fa.fa-thumbs-down
           반대
 
-  %p.text-center{ style: 'padding-top: 20px' }
-    %i.fa.fa-info-circle
-    - if opinion.votes.any?
-      현재
-      %strong
-        #{opinion.votes.count}
-      명이 투표에 참여했습니다.
+  %div.opinion__vote__info
+    %p.text-center{ style: 'padding-top: 20px' }
+      %i.fa.fa-info-circle
+      - if opinion.votes.any?
+        현재
+        %strong
+          #{opinion.votes.count}
+        명이 투표에 참여했습니다.
 
-  %p.text-center
-    %i.fa.fa-info-circle
-    - if user_signed_in? && opinion.voted_by?(current_user)
-      투표를 다음으로 변경합니다.
-      - if opinion.agreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}), method: :post, remote: true do
-          %i.fa.fa-thumbs-down
-          반대
-      - if opinion.disagreed_by? current_user
-        = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}), method: :post, remote: true do
-          %i.fa.fa-thumbs-up
-          찬성
-    - else
-      투표를 하면 현재 결과를 볼 수 있습니다.
+    %p.text-center
+      - if user_signed_in? && opinion.voted_by?(current_user)
+        투표를
+        - if opinion.agreed_by? current_user
+          = link_to post_votes_path(opinion.acting_as, vote: {choice: :disagree}), method: :post, remote: true do
+            반대
+          로
+        - if opinion.disagreed_by? current_user
+          = link_to post_votes_path(opinion.acting_as, vote: {choice: :agree}), method: :post, remote: true do
+            찬성
+          으로
+        변경합니다.
+      - else
+        투표를 하면 현재 결과를 볼 수 있습니다.

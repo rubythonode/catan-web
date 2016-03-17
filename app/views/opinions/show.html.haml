@@ -6,13 +6,6 @@
     .opinion__tags.post__tags
       = render 'tags/collection', tags: @opinion.tags
 
-    .row
-      .col-xs-9
-        = render 'likes/like_inline', post: @opinion.acting_as
-
-      .col-xs-3
-        #share.pull-right
-
 %section.post-comments-section
   .container
     = render 'comments/comments', postable: @opinion, style: :opinion

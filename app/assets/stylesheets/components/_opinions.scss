@@ -14,7 +14,12 @@
 .opinion__vote-section {
   background: #fafafa;
   padding: 40px;
-  margin: 20px 0;
+  margin: 20px -50px;
+
+  .opinion__vote__info {
+    font-size: $font-size-small;
+    color: $gray;
+  }
 }
 
 .vote__results {
@@ -26,9 +31,14 @@
     }
   }
   .voters {
-    padding: 10px;
+    padding: 10px 0;
+    img {
+      width: 15px;
+      height: 15px;
+    }
     a {
-      color: $gray-light;
+      color: $gray;
+      font-size: $font-size-small;
     }
   }
 }
