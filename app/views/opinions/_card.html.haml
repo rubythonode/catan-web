@@ -12,7 +12,7 @@
 
   .panel-body
     %h4.opinion-card__title.text-center
-      = link_to opinion, target: 'parti_detail_view' do
+      = link_to opinion do
         “#{opinion.title}”
 
     = render 'votes/vote_inline', specific: opinion

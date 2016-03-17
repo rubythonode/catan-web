@@ -2,7 +2,7 @@
 - post = question.acting_as
 .post-inline.question-inline[post]
   %h5.post-inline__title
-    = link_to question, target: 'parti_detail_view' do
+    = link_to question do
       #{question.title}
     %i.fa.fa-question-circle.text-muted
   = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
