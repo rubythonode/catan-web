@@ -20,7 +20,7 @@
         = link_to new_article_path(issue_id: try(:fetch_issue)), class: 'btn btn-default navbar-btn pull-left hidden-xs' do
           %i.fa.fa-edit
           %span.hidden-xs
-            글쓰기
+            쓰기
       - else
         = link_to omniauth_authorize_path(User, :facebook), class: 'btn btn-danger navbar-btn pull-left hidden-xs' do
           %i.fa.fa-facebook

@@ -2,25 +2,27 @@
   %li{role: 'presentation', class: ('active' if active_tab == :posts)}
     = link_to posts_tab_path do
       %h4
-        글
+        이야기
         %small.count
           = counts_container.posts_count
           - if counts_container.latest_posts_count > 0
-            + #{counts_container.latest_posts_count}
+            +#{counts_container.latest_posts_count}
   %li{role: 'presentation', class: ('active' if active_tab == :comments)}
     = link_to comments_tab_path do
       %h4
         댓글
         %small.count
-          = counts_container.comments_count
+          %span<>
+            = counts_container.comments_count
           - if counts_container.latest_comments_count > 0
-            + #{counts_container.latest_comments_count}
+            %span.text-primary<>
+              +#{counts_container.latest_comments_count}
   - if local_assigns[:campaign_tab_path]
     %li{role: 'presentation', class: ('active' if active_tab == :campaign)}
       = link_to campaign_tab_path do
         %h4
-          캠페인
+          주장
           %small.count
             = counts_container.campaign_count
             - if counts_container.latest_campaign_count > 0
-              + #{counts_container.latest_campaign_count}
+              +#{counts_container.latest_campaign_count}
