@@ -8,3 +8,8 @@
           님의 대시보드
       %p
         구독 중인 이슈의 #{Article.model_name.human}, #{Opinion.model_name.human}을 모았습니다.
+
+      - current_user.watched_issues.each do |issue|
+        %span.label.label-default
+          = image_tag issue.logo_url, style: 'width: 15px; height: 15px'
+          = link_to issue.title, issue_home_path(issue)
