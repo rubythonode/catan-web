@@ -1,11 +1,11 @@
 = link_to '#', data: {'switch-target': "#article-form-widget", toggle: "parti-switch", type: "button", focus: 'input#article_title'}, class: 'btn btn-default btn-block', style: 'color: #aaaaaf' do
 
   - if local_assigns[:issue] and !issue.is_all?
-    %i.fa.fa-hashtag
-    #{issue.title}을
+    %strong
+      #{issue.title}
   - else
     %i.fa.fa-edit
-  이야기하기...
+  글 쓰기
 #article-form-widget.well.clearfix{ style: 'background: none; display: none;' }
   = form_for Article.new, html: { novalidate: true, data: {action: 'parti-form-validation', 'submit-form-control': '#article-form-widget form input[type=submit]' } } do |f|
 
@@ -34,4 +34,4 @@
 
     .form-group
       .pull-right
-        = f.submit '이야기하기', class: 'btn btn-primary'
+        = f.submit '글 쓰기', class: 'btn btn-primary'

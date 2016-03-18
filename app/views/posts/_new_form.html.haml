@@ -10,10 +10,10 @@
     %ul.nav.nav-tabs{ role: 'tablist' }
       %li{class: ('active' if postable_type == :article), role: 'presentation'}
         = link_to new_article_path(issue_id: try(:fetch_issue)) do
-          이야기
+          = Article.model_name.human
       %li{class: ('active' if postable_type == :opinion), role: 'presentation'}
         = link_to new_opinion_path(issue_id: try(:fetch_issue)) do
-          주장
+          = Opinion.model_name.human
       %li{class: ('active' if postable_type == :question), role: 'presentation'}
         = link_to new_question_path(issue_id: try(:fetch_issue)) do
           %small
