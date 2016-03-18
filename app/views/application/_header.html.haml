@@ -28,6 +28,10 @@
     #navbar.navbar-offcanvas.navbar-offcanvas-right
       %ul.nav.navbar-nav(style="width: 300px;")
         %li
+          = link_to new_article_path(issue_id: try(:fetch_issue)), class: 'btn btn-primary btn-ghost visible-xs' do
+            %i.fa.fa-edit
+            글쓰기
+        %li
           = link_to issues_path do
             모든 이슈
             %small (#{Issue.count})
@@ -79,10 +83,10 @@
               로그아웃
         - else
           %li
-            = link_to '#', class: 'btn btn-default', style: 'background: #222222; border-width: 2px; margin: 10px 15px;', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
+            = link_to '#', class: 'btn btn-primary btn-ghost', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
               %i.fa.fa-facebook
               페이스북아이디로 빠띠하기
-            = link_to '#', class: 'btn btn-default', style: 'background: #222222; border-width: 2px; margin: 10px 15px;', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
+            = link_to '#', class: 'btn btn-primary btn-ghost', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
               %i.fa.fa-google-plus
               구글플러스아이디로 빠띠하기
             = form_tag nil, method: :get, style: 'margin: 10px 15px;' do
