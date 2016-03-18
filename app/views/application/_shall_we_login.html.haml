@@ -1,11 +1,11 @@
 #login-overlay
-  .wrapper{style: 'position: relative; height: 100%; width: 100%;'}
-    .content{style: 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'}
-      .pull-right{ style: "margin-top: -20px;"}
-        %a.text-muted{href: "#", "data-dismiss": "parti-login-overlay", type: "button"}
-          %i.fa.fa-times.fa-2x
-      %div{style: 'color: $gray;'}
-        .clearfix{ style: 'margin-top:20px'}
+  .wrapper{style: 'height: 100%; width: 100%;'}
+    .pull-right{ style: "font-size: 300%; margin: 5px 20px;"}
+      %a.text-muted{href: "#", "data-dismiss": "parti-login-overlay", type: "button"}
+        %i.fa.fa-times
+    .content{style: 'text-align: center; margin: auto; width: 250px; height: 100%;'}
+      %div{style: 'position: absolute; top: 30%;'}
+        .clearfix
           %p
             = link_to '#', class: 'btn btn-primary btn-lg btn-block', style: 'margin-top: 0.5em;', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :facebook) } do
               %i.fa.fa-facebook
