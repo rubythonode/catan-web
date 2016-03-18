@@ -1,15 +1,6 @@
 - opinion = card
 - post = card.acting_as
 .post-card.opinion-card.panel.panel-default[post]
-  .panel-heading
-    .row
-      .col-xs-6
-        .opinion-card__byline
-          = byline post.user
-      .col-xs-6.text-right
-        %i.fa.fa-comment-o
-        = post.comments.count
-
   .panel-body
     %h4.opinion-card__title.text-center
       = link_to opinion do
@@ -20,7 +11,13 @@
   .panel-footer
     .row
       .col-xs-4
-        = render 'likes/like_inline', post: post
+        %span.like-count{ style: 'margin-right: 5px' }
+          %i.fa.fa-arrow-circle-up
+          = post.likes.count
+        %span.comment-count
+          %i.fa.fa-comment-o
+          = post.comments.count
+
       .col-xs-8
         .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
 
