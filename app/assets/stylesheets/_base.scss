@@ -105,13 +105,15 @@ label.required:after {
   content: " *";
 }
 
-.btn-ghost.btn-primary {
-  border: 1px solid $brand-primary;
-  background-color: transparent;
-  color: $brand-primary;
-  &:hover {
-    background-color: $brand-primary;
-    color: #fff;
+.btn-ghost {
+  &.btn-primary {
+    border: 1px solid $brand-primary;
+    background-color: transparent;
+    color: $brand-primary;
+    &:hover {
+      background-color: $brand-primary;
+      color: #fff;
+    }
   }
 }
 

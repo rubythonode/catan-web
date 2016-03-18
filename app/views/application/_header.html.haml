@@ -43,13 +43,12 @@
           %li
             = link_to issue_home_path(issue) do
               .clearfix
-                .pull-left(style='width: 60px; margin-right: 10px')
+                .pull-left(style='width: 40px; margin-right: 10px')
                   .issue--related
                     .issue__logo{style: "background-image: url(#{issue.logo_url});"}
                       = issue.title
                 %div
                   %strong
-                    %i.fa.fa-hashtag>
                     = issue.title
                   .issue__count.text-muted
                     %span
@@ -69,12 +68,7 @@
             = byline current_user
           %li
             = link_to dashboard_path do
-              %i.fa.fa-home
-              내 홈
-          %li
-            = link_to dashboard_path(f: :like) do
-              내
-              %i.fa.fa-arrow-up.text-danger(style='font-size: 125%')
+              대시보드
           %li
             = link_to edit_user_registration_path do
               프로필 수정

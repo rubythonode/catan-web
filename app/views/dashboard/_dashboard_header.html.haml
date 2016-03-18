@@ -9,7 +9,9 @@
       %p
         구독 중인 이슈의 #{Article.model_name.human}, #{Opinion.model_name.human}을 모았습니다.
 
-      - current_user.watched_issues.each do |issue|
-        %span.label.label-default
-          = image_tag issue.logo_url, style: 'width: 15px; height: 15px'
-          = link_to issue.title, issue_home_path(issue)
+      .issues
+        - current_user.watched_issues.each do |issue|
+          = link_to issue_home_path(issue), class: 'btn btn-default btn-sm' do
+            = image_tag issue.logo_url
+            = issue.title
+
