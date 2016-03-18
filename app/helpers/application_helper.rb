@@ -46,7 +46,7 @@ module ApplicationHelper
     raw(auto_link(parsed_text,
       html: {class: 'auto_link', target: '_blank'},
       link: :urls,
-      sanitize: false)) + options.inspect
+      sanitize: false))
   end
 
   def asset_data_base64(path)
