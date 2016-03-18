@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :votes do
     def partial_included_with(someone)
-      partial = recent.limit(10)
+      partial = recent.limit(100)
       if !partial.map(&:user).include?(someone)
         (partial.all << find_by(user: someone)).compact
       else
