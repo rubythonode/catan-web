@@ -1,8 +1,10 @@
-%section#tag
+%section#dashboard-header-section
   .container
-    %h2
-      %i.fa.fa-home
-      내 홈
-      %small(style='font-size: 50%;')
-        구독하는 이슈의 글과 내
-        %i.fa.fa-arrow-up
+    .jumbotron.jumbotron-transparent
+      %h4
+        %i.fa.fa-at>
+        = current_user.nickname
+        %span{ style: 'font-weight: 100'}
+          님의 대시보드
+      %p
+        구독 중인 이슈의 이야기와 주장을 모았습니다.
