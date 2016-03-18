@@ -13,8 +13,13 @@
 
 .opinion__vote-section {
   background: #fafafa;
-  padding: 40px;
-  margin: 20px -50px;
+  padding: 40px 15px;
+  margin: 20px 0;
+
+  .opinion__title {
+    @include word-wrap();
+    word-break: keep-all;
+  }
 
   .opinion__vote__info {
     font-size: $font-size-small;
