@@ -10,6 +10,7 @@ ko:
       not_saved: 저장되지 않았습니다
       blank: 값을 입력해 주세요
       taken: 이미 사용 중 입니다
+      invalid_auth_token: 로그인한지 너무 오래 되셨네요. 다시 시도해 주세요.
     models:
       user:
         attributes:
@@ -86,3 +87,5 @@ ko:
       next: "다음"
       previous: "이전"
       truncate: "&hellip;"
+  unauthorized:
+    default: "권한이 없습니다."

@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
     rescue_from ActiveRecord::RecordNotFound do |exception|
       render_404
     end
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to root_url, :alert => exception.message
+    end
+    rescue_from ActionController::InvalidAuthenticityToken do |exception|
+      redirect_to root_url, :alert => I18n.t('errors.messages.invalid_auth_token')
+    end
   end
 
   def render_404

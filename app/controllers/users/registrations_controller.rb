@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   include AfterLogin
   after_filter :after_omniauth_login, only: :create
+  skip_before_filter :verify_authenticity_token, :only => :create
 
   # Overwrite update_resource to let users to update their user without giving their password
   def update_resource(resource, params)
