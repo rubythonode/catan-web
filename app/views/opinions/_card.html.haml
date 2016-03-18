@@ -7,17 +7,3 @@
         “#{opinion.title}”
 
     = render 'votes/vote_inline', specific: opinion
-
-  .panel-footer
-    .row
-      .col-xs-4
-        %span.like-count{ style: 'margin-right: 5px' }
-          %i.fa.fa-arrow-circle-up
-          = post.likes.count
-        %span.comment-count
-          %i.fa.fa-comment-o
-          = post.comments.count
-
-      .col-xs-8
-        .opinion-card__shares.pull-right{ data: { provider: 'parti-issue-share', share: { url: polymorphic_url(post.specific), text: post.specific.title} }}
-
