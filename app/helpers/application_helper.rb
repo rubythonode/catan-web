@@ -25,6 +25,13 @@ module ApplicationHelper
   end
 
   def smart_format(text, html_options = {}, options = {})
+    default_options = {sanitize: false}
+    unless options.nil?
+      options.compact!
+      options.reverse_merge! default_options
+    else
+      options = default_options
+    end
     parsed_text = simple_format(text, html_options, options).to_str
     parsed_text = parsed_text.gsub(Mentionable::HTML_PATTERN_WITH_AT) do |m|
       at_nickname = $1
@@ -39,7 +46,7 @@ module ApplicationHelper
     raw(auto_link(parsed_text,
       html: {class: 'auto_link', target: '_blank'},
       link: :urls,
-      sanitize: false))
+      sanitize: false)) + options.inspect
   end
 
   def asset_data_base64(path)
