@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
 
   def nickname_exclude_pattern
     unless self.nickname !~ /\Aparti.*\z/i
-      errors.add(:nickname, "predefined")
+      errors.add(:nickname, I18n.t('errors.messages.taken'))
     end
   end
 

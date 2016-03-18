@@ -12,4 +12,10 @@ module OmniAuth::Strategies
     end
   end
 
+  class TwitterTransfer < Twitter
+    def name
+      :twitter_transfer
+    end
+  end
+
 end
