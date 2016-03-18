@@ -20,13 +20,14 @@
         &nbsp;
         = render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
     .col-xs-12.col-md-2
-      %span.visible-xs-inline
-        = render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
-      .post-inline__activities
-        = link_to post.specific do
-          %i.fa.fa-arrow-circle-o-up
-          %span.text-primary
-            = post.likes.count
-          %i.fa.fa-comment-o
-          %span.text-primary
-            = post.comments_count
+      .text-right
+        %span.visible-xs-inline
+          = render 'posts/post_inline_footer', obj: article, show_issue: local_assigns[:show_issue]
+        .post-inline__activities
+          = link_to post.specific do
+            %i.fa.fa-arrow-circle-o-up
+            %span.text-primary
+              = post.likes.count
+            %i.fa.fa-comment-o
+            %span.text-primary
+              = post.comments_count

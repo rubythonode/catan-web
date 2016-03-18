@@ -27,13 +27,14 @@
           %i.text-muted
             아직 제안이 없습니다
     .col-xs-12.col-md-2
-      %span.visible-xs-inline
-        = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]
-      .post-inline__activities
-        = link_to post.specific do
-          %i.fa.fa-arrow-circle-o-up
-          %span.text-primary
-            = post.likes.count
-          %i.fa.fa-comment-o
-          %span.text-primary
-            = post.comments_count
+      .text-right
+        %span.visible-xs-inline
+          = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]
+        .post-inline__activities
+          = link_to post.specific do
+            %i.fa.fa-arrow-circle-o-up
+            %span.text-primary
+              = post.likes.count
+            %i.fa.fa-comment-o
+            %span.text-primary
+              = post.comments_count
