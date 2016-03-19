@@ -166,8 +166,8 @@
       display: block;
     }
     p {
-      max-height: 100px;
-      overflow: scroll;
+      max-height: 150px;
+      overflow-y: scroll;
     }
   }
 }
