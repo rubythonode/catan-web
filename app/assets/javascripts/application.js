@@ -133,7 +133,6 @@ $(function(){
     }
   });
 
-  // $("a.embed").oembed();
   $("a.embed").oembed(null, { 'maxWidth': '100%', 'maxHeight': '100%' });
 
   // toggle

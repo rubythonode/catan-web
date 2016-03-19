@@ -153,7 +153,23 @@
       }
     }
   }
-
+  .oembedall-container {
+    .oembedall-closehide, .embed, br {
+      display: none;
+    }
+    img {
+      width: 20%;
+      float: left;
+      margin-right: 20px;
+    }
+    b {
+      display: block;
+    }
+    p {
+      max-height: 100px;
+      overflow: scroll;
+    }
+  }
 }
 
 .post__body {
