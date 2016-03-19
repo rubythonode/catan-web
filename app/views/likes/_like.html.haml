@@ -1,6 +1,6 @@
 %span{class: "#{dom_id(post)}-like"}
   - if !user_signed_in?
-    = link_to '#', class: 'btn btn-primary', data: { toggle: 'parti-login-overlay', label: '<i class="fa fa-arrow-circle-o-up">', 'after-login': h({action: :post_like, id: post.id}.to_json) } do
+    = link_to '#', class: 'btn btn-primary btn-ghost', data: { toggle: 'parti-login-overlay', label: '<i class="wi wi-fre">', 'after-login': h({action: :post_like, id: post.id}.to_json) } do
       %i.wi.wi-fire
       = post.likes.count
   - elsif post.liked_by? current_user
@@ -8,6 +8,6 @@
       %i.wi.wi-fire
       = post.likes.count
   - else
-    = link_to post_likes_path(post, partial: 'likes/like'), method: :post, remote: true, class: 'btn btn-default'  do
+    = link_to post_likes_path(post, partial: 'likes/like'), method: :post, remote: true, class: 'btn btn-primary btn-ghost'  do
       %i.wi.wi-fire
       = post.likes.count
