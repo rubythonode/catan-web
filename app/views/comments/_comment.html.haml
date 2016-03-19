@@ -20,7 +20,7 @@
 - else
   .comment--inline[comment]
     .comment__body{ style: 'margin: 10px 0;' }
-      = smart_format comment.body, nil, wrapper_tag: 'span', sanitize: false
+      = smart_format h(comment.body), nil, wrapper_tag: 'span'
       ⏤
       = byline comment.user
       = link_to '#', style: 'font-size: 11px;' do
