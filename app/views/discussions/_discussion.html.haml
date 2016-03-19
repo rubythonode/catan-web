@@ -7,15 +7,19 @@
           = image_tag post.issue.logo_url
           = post.issue.title
   .row
-    .col-xs-12.col-md-10
+    .col-xs-12.col-md-9
       .post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to discussion do
           #{discussion.title}
-      %span.hidden-xs
-        &nbsp;
-        = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]
+        %small
+          %span.text-primary
+            = post.comments_count
+          %i.wi.wi-fire
+          %span.text-primary
+            = post.likes.count
+
       %p.post-inline__body
         - first_proposal = discussion.proposals.sort_by_agree_count.first
         - if first_proposal
@@ -26,15 +30,9 @@
           %i.fa.fa-level-up.fa-rotate-90.text-muted
           %i.text-muted
             아직 제안이 없습니다
-    .col-xs-12.col-md-2
+    .col-xs-12.col-md-3
       .text-right
         %span.visible-xs-inline
           = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]
         .post-inline__activities
-          = link_to post.specific do
-            %i.fa.fa-arrow-circle-o-up
-            %span.text-primary
-              = post.likes.count
-            %i.fa.fa-comment-o
-            %span.text-primary
-              = post.comments_count
+          = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]

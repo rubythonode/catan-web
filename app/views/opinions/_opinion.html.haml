@@ -7,28 +7,26 @@
           = image_tag post.issue.logo_url
           = post.issue.title
   .row
-    .col-xs-12.col-md-10
+    .col-xs-12.col-md-9
       .post-inline__title
         - if post.hot?
           %i.wi.wi-fire.text-danger
         = link_to opinion do
           “#{opinion.title}”
-      %span.hidden-xs
-        &nbsp;
-        = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
+        %small
+          %span.text-primary
+            = post.comments_count
+          %i.wi.wi-fire
+          %span.text-primary
+            = post.likes.count
+
       %p.post-inline__body
         %i.fa.fa-bar-chart
           %strong #{opinion.votes.count}
           명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
-    .col-xs-12.col-md-2
+    .col-xs-12.col-md-3
       .text-right
         %span.visible-xs-inline
           = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
         .post-inline__activities
-          = link_to post.specific do
-            %i.fa.fa-arrow-circle-o-up
-            %span.text-primary
-              = post.likes.count
-            %i.fa.fa-comment-o
-            %span.text-primary
-              = post.comments_count
+          = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
