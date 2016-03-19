@@ -1,6 +1,7 @@
 - opinion = card
 - post = card.acting_as
-.post-card.opinion-card.panel.panel-default[post]
+- voted = user_signed_in? && opinion.voted_by?(current_user)
+.post-card.opinion-card.panel.panel-default[post]{ class: voted ? 'opinion-card--voted' : '' }
   .panel-body
     %h4.opinion-card__title.text-center
       = link_to opinion do

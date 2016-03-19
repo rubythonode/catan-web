@@ -48,26 +48,6 @@
   }
 }
 
-.opinion-cards {
-  .owl-carousel {
-    .owl-controls {
-      height: 0;
-      .owl-nav {
-        .owl-prev {
-          position: absolute;
-          top: -40px;
-          right: 30px;
-        }
-        .owl-next {
-          position: absolute;
-          top: -40px;
-          right: -5px;
-        }
-      }
-    }
-  }
-}
-
 .opinion-inline,
 .opinion-card {
   img.user-image {
@@ -114,14 +94,18 @@
 }
 
 .opinion-card {
-  .panel-heading, .panel-footer {
+  .panel-heading, .panel-footer, .opinion__vote-section {
     background-color: #fff;
   }
-  .panel-body {
-    background-color: #fafafa;
-  }
-  .like-button div {
-    display: inline;
+  &--voted {
+    .opinion-card__title {
+      a {
+        color: $gray-dark;
+      }
+    }
+    .panel-body, .opinion__vote-section {
+      background-color: $gray-lighter;
+    }
   }
 }
 
