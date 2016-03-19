@@ -128,7 +128,7 @@
 
 .post-section {
   padding-top: 50px;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 
   .post__title {
     color: #000;
@@ -180,14 +180,12 @@
 }
 
 .post__likes {
-  text-align: center;
-  margin: 20px 0;
+  margin: 10px 0;
 
   .recent_likes {
     display: block;
     margin-top: 10px;
     padding-left: 10px;
-    text-align: center;
     span {
       margin-left: -10px;
     }

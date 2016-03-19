@@ -17,8 +17,11 @@
       = render 'tags/collection', tags: @article.tags
 
     .post__likes
-      = render 'likes/like', post: @article.acting_as
-      = render 'likes/like_detail', post: @article.acting_as
+      .media
+        .media-left
+          = render 'likes/like', post: @article.acting_as
+        .media-body
+          = render 'likes/like_detail', post: @article.acting_as
 
 %section.post-comments-section
   .container
