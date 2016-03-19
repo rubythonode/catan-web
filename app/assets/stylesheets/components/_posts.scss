@@ -44,7 +44,9 @@
       font-size: 20px;
     }
   }
-
+  &__issue {
+    display: inline-block;
+  }
   &__issue-label {
     font-size: $font-size-small;
     margin-right: 5px;

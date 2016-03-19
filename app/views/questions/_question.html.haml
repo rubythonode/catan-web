@@ -1,37 +1,32 @@
 - post = question.acting_as
 .post-inline.question-inline[post]
-  .post-inline__issue
-    - if local_assigns[:show_issue]
-      %span.post-inline__issue-label
-        = link_to issue_home_path(post.issue) do
-          = image_tag post.issue.logo_url
-          = post.issue.title
-  .row
-    .col-xs-12.col-md-9
-      .post-inline__title
-        - if post.hot?
-          %i.wi.wi-fire.text-danger
-        = link_to question do
-          #{question.title}
-        %small
-          %span.text-primary
-            = post.comments_count
-          %i.wi.wi-fire
-          %span.text-primary
-            = post.likes.count
-      %p.post-inline__body
-        - first_answer = question.answers.sort_by_vote_point.first
-        - if first_answer
-          %i.fa.fa-level-up.fa-rotate-90.text-muted
-          &nbsp;
-          = truncate_html(striped_smart_format(first_answer.body, nil, wrapper_tag: 'span'), length: 70, word_boundary: false)
-        - else
-          %i.fa.fa-level-up.fa-rotate-90.text-muted
-          %i.text-muted
-            아직 답변이 없습니다
-    .col-xs-12.col-md-3
-      .text-right
-        %span.visible-xs-inline
-          = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
-        .post-inline__activities
-          = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]
+  .post-inline__title
+    - if post.hot?
+      %i.wi.wi-fire.text-danger
+    = link_to question do
+      #{question.title}
+    %small
+      %span.text-primary
+        = post.comments_count
+      %i.wi.wi-fire
+      %span.text-primary
+        = post.likes.count
+  %p.post-inline__body
+    - first_answer = question.answers.sort_by_vote_point.first
+    - if first_answer
+      %i.fa.fa-level-up.fa-rotate-90.text-muted
+      &nbsp;
+      = truncate_html(striped_smart_format(first_answer.body, nil, wrapper_tag: 'span'), length: 70, word_boundary: false)
+    - else
+      %i.fa.fa-level-up.fa-rotate-90.text-muted
+      %i.text-muted
+        아직 답변이 없습니다
+
+  .post-inline__footer
+    .post-inline__issue
+      - if local_assigns[:show_issue]
+        %span.post-inline__issue-label
+          = link_to issue_home_path(post.issue) do
+            = image_tag post.issue.logo_url
+            = post.issue.title
+    = render 'posts/post_inline_footer', obj: question, show_issue: local_assigns[:show_issue]

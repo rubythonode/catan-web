@@ -1,32 +1,27 @@
 - post = opinion.acting_as
 .post-inline.opinion-inline[post]
-  .post-inline__issue
-    - if local_assigns[:show_issue]
-      %span.post-inline__issue-label
-        = link_to issue_home_path(post.issue) do
-          = image_tag post.issue.logo_url
-          = post.issue.title
-  .row
-    .col-xs-12.col-md-9
-      .post-inline__title
-        - if post.hot?
-          %i.wi.wi-fire.text-danger
-        = link_to opinion do
-          “#{opinion.title}”
-        %small
-          %span.text-primary
-            = post.comments_count
-          %i.wi.wi-fire
-          %span.text-primary
-            = post.likes.count
+  .post-inline__title
+    - if post.hot?
+      %i.wi.wi-fire.text-danger
+    = link_to opinion do
+      “#{opinion.title}”
+    %small
+      %span.text-primary
+        = post.comments_count
+      %i.wi.wi-fire
+      %span.text-primary
+        = post.likes.count
 
-      %p.post-inline__body
-        %i.fa.fa-bar-chart
-          %strong #{opinion.votes.count}
-          명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
-    .col-xs-12.col-md-3
-      .text-right
-        %span.visible-xs-inline
-          = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
-        .post-inline__activities
-          = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
+  %p.post-inline__body
+    %i.fa.fa-bar-chart
+      %strong #{opinion.votes.count}
+      명이 이 주장에 투표했습니다. 지금 투표에 참가해 보세요.
+
+  .post-inline__footer
+    .post-inline__issue
+      - if local_assigns[:show_issue]
+        %span.post-inline__issue-label
+          = link_to issue_home_path(post.issue) do
+            = image_tag post.issue.logo_url
+            = post.issue.title
+    = render 'posts/post_inline_footer', obj: opinion, show_issue: local_assigns[:show_issue]
