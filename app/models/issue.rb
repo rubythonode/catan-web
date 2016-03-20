@@ -57,7 +57,7 @@ class Issue < ActiveRecord::Base
   end
 
   # validations
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: { case_sensitive: false }
   VALID_SLUG = /\A[a-z0-9_-]+\z/i
   validates :slug,
     presence: true,

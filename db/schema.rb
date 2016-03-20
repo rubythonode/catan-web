@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160315040619) do
+ActiveRecord::Schema.define(version: 20160320142423) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160315040619) do
 
   add_index "issues", ["deleted_at"], name: "index_issues_on_deleted_at"
   add_index "issues", ["slug", "deleted_at"], name: "index_issues_on_slug_and_deleted_at", unique: true
+  add_index "issues", ["title", "deleted_at"], name: "index_issues_on_title_and_deleted_at", unique: true
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id",    null: false
