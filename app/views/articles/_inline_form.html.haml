@@ -3,10 +3,11 @@
 - else
   - write_button_data = {toggle: "parti-login-overlay"}
 
-= link_to '#', data: write_button_data, class: 'btn btn-default btn-block', style: 'color: #aaaaaf' do
+= link_to '#', data: write_button_data, class: 'btn btn-primary btn-ghost btn-block' do
   - if local_assigns[:issue] and !issue.is_all?
     %strong
       #{issue.title}
+    글 쓰기
   - else
     %i.fa.fa-edit
     글 쓰기
