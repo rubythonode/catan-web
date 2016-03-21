@@ -4,7 +4,7 @@ class LikesTest < ActionDispatch::IntegrationTest
   test '뉴스컬럼을 좋아해요' do
     sign_in(users(:one))
 
-    post post_likes_path(post_id: articles(:article1).acting_as.id, partial: 'likes/like'), format: :js
+    post post_likes_path(post_id: articles(:article4).acting_as.id, partial: 'likes/like'), format: :js
 
     assert assigns(:like).persisted?
     assert_equal users(:one), assigns(:like).user

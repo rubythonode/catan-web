@@ -19,6 +19,10 @@ post_answer1:
   user: two
   issue: issue1
   postable: answer1 (Answer)
+post_article3:
+  user: one
+  issue: issue1
+  postable: article3 (Article)
 
 # issue2
 post_article2:
@@ -37,3 +41,7 @@ post_question2:
   user: one
   issue: issue2
   postable: question2 (Question)
+post_article4:
+  user: two
+  issue: issue2
+  postable: article4 (Article)
