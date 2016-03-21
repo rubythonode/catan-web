@@ -7,3 +7,6 @@ watch2:
 watch3:
   user: recipient
   issue: issue2
+watch4:
+  user: one
+  issue: issue1

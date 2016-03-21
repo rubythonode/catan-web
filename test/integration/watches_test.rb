@@ -1,13 +1,14 @@
 require 'test_helper'
 
 class WatchesTest < ActionDispatch::IntegrationTest
+
   test '만들어요' do
     sign_in(users(:one))
 
-    post issue_watches_path(issue_id: issues(:issue1).id)
+    post issue_watches_path(issue_id: issues(:issue3).id)
 
     assert assigns(:watch).persisted?
-    assert_equal issues(:issue1), assigns(:watch).issue
+    assert_equal issues(:issue3), assigns(:watch).issue
     assert_equal users(:one), assigns(:watch).user
   end
 
@@ -24,7 +25,7 @@ class WatchesTest < ActionDispatch::IntegrationTest
   test '구독한 글만 구경해요' do
     sign_in(users(:one))
 
-    assert_equal 0, Post.watched_by(users(:one)).count
+    assert_equal 6, Post.watched_by(users(:one)).count
 
     post issue_watches_path(issue_id: issues(:issue1).id)
     assert_equal issues(:issue1).posts.count, Post.watched_by(users(:one)).count

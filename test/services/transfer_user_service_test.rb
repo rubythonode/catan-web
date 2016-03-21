@@ -1,10 +1,12 @@
 require 'test_helper'
 
 class TransferUserServiceTest < ActiveSupport::TestCase
-  focus
+
   test '소스 사용자의 글을 타켓 사용자의 글로 바꿉니다!' do
     source_user = users(:one)
     target_user = users(:two)
+
+    previous_target_user_vote_choice = opinions(:opinion3).voted_by(target_user).choice
 
     source_posts_count = Post.where(user: source_user).count
     source_comments_count = Comment.where(user: source_user).count
@@ -36,6 +38,8 @@ class TransferUserServiceTest < ActiveSupport::TestCase
     assert_equal(estimated_likes_count, final_likes_count)
     assert_equal(estimated_votes_count, final_votes_count)
     assert_equal(estimated_watches_count, final_watches_count)
+
+    assert_equal previous_target_user_vote_choice, opinions(:opinion3).voted_by(target_user).choice
 
     refute User.exists?(nickname: users(:one).nickname)
   end

@@ -41,3 +41,7 @@ post_question2:
   user: one
   issue: issue2
   postable: question2 (Question)
+post_article4:
+  user: two
+  issue: issue2
+  postable: article4 (Article)

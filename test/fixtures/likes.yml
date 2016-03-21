@@ -11,5 +11,5 @@ like3:
   post: post_article2
 
 like4:
-  user: one
-  post: post_article3
+  user: two
+  post: post_article4
