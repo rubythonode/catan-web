@@ -33,3 +33,10 @@ export POSTMARKER_API_KEY="키값"
 ### 아래를 rails console에서 수행하면 지워진 글의 댓글을 삭제합니다
 
 Comment.all.each { |c| c.destroy if c.post.blank? }
+
+### 계정 이전
+
+```
+$ bundle exec rake transfer_user[{SOURCE_USER_NICKNAME},{TARGET_USER_NICKNAME}]
+$ vi log/{SOURCE_USER_NICKNAME}_{TARGET_USER_NICKNAME}_{DATETIME}.log
+```
