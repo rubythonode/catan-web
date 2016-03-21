@@ -81,6 +81,9 @@
             = link_to '#', class: 'btn btn-primary btn-ghost', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :google_oauth2) } do
               %i.fa.fa-google-plus
               구글플러스아이디로 빠띠하기
+            = link_to omniauth_authorize_path(:user, :kakao), class: 'btn btn-primary btn-ghost' do
+              = inline_svg 'kakaotalk.svg', id: 'btn-kakaotalk'
+              카카오로 빠띠하기
             = form_tag nil, method: :get, style: 'margin: 10px 15px;' do
               = hidden_field_tag(:after_login)
               %label{ style: 'font-weight: normal; color: #949494;'}

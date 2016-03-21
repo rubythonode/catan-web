@@ -40,6 +40,7 @@ gem 'haml-rails', '~> 0.9.0'
 gem 'redactor2_rails', '~> 0.1.3'
 gem 'truncate_html', '~> 0.9.3'
 gem 'rails-timeago', '~> 2.13'
+gem 'inline_svg', '~> 0.6.2'
 
 # tool
 gem 'envyable', '~> 0.2.0'

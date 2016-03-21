@@ -14,6 +14,9 @@
           = link_to omniauth_authorize_path(resource_name, :google_oauth2), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
             %i.fa.fa-google-plus
             구글플러스아이디로
+          = link_to omniauth_authorize_path(resource_name, :kakao), class: 'btn btn-primary btn-lg', style: 'margin-top: 0.5em; width: 100%' do
+            = inline_svg 'kakaotalk.svg', id: 'btn-kakaotalk'
+            카카오아이디로
 
           %div{style: "margin: 30px 0; position: relative;"}
             %div{style: "position: absolute; top: -10px; left: 48%; color: #bbb; background-color: #fff;"} 또는

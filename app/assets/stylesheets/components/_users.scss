@@ -66,3 +66,10 @@
 #user-gallery {
   padding: 50px 0;
 }
+
+#btn-kakaotalk {
+  height: 14px;
+  & path {
+    fill: currentColor;
+  }
+}

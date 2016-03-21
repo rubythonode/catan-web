@@ -83,6 +83,9 @@
       = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {action: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :google_oauth2_transfer) } do
         %i.fa.fa-google-plus
         구글플러스아이디로
+      = link_to '#', class: 'btn btn-danger btn-lg btn-block', style: 'margin-top: 0.5em', data: {action: 'parti-form-submit', 'form-target':'#login form', 'form-url': omniauth_authorize_path(:user, :kakao_transfer) } do
+        = inline_svg 'kakaotalk.svg', id: 'btn-kakaotalk'
+        카카오아이디로
 
     #login
       = form_tag nil, method: :get do

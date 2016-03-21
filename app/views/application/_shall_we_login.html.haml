@@ -22,6 +22,11 @@
               구글플러스아이디로&nbsp;
               %span.login-overlay__label>
               하기
+            = link_to '#', class: 'btn btn-primary btn-lg btn-block', style: 'margin-top: 0.5em', data: {action: 'parti-form-submit', 'form-target':'#login-overlay form', 'form-url': omniauth_authorize_path(:user, :kakao) } do
+              = inline_svg 'kakaotalk.svg', id: 'btn-kakaotalk'
+              카카오아이디로&nbsp;
+              %span.login-overlay__label>
+              하기
           = form_tag nil, method: :get do
             = hidden_field_tag(:after_login)
             .pull-right
