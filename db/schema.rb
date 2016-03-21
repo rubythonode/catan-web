@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320142423) do
+ActiveRecord::Schema.define(version: 20160321022042) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -86,6 +86,21 @@ ActiveRecord::Schema.define(version: 20160320142423) do
   add_index "likes", ["post_id"], name: "index_likes_on_post_id"
   add_index "likes", ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "links", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.text     "metadata"
+    t.string   "image"
+    t.string   "page_type"
+    t.string   "url"
+    t.string   "crawling_status", default: "not_yet", null: false
+    t.datetime "crawled_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "links", ["url"], name: "index_links_on_url", unique: true
 
   create_table "mentions", force: :cascade do |t|
     t.integer  "user_id",          null: false
