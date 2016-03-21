@@ -246,6 +246,8 @@ Devise.setup do |config|
   config.omniauth :twitter_transfer, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
   config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH2_APP_ID'], ENV['GOOGLE_OAUTH2_APP_SECRET'], scope: "email,profile,offline", prompt: "consent", skip_jwt: true
   config.omniauth :google_oauth2_transfer, ENV['GOOGLE_OAUTH2_APP_ID'], ENV['GOOGLE_OAUTH2_APP_SECRET'], scope: "email,profile,offline", prompt: "consent", skip_jwt: true
+  config.omniauth :kakao, ENV['KAKAO_CLIENT_ID'], {:redirect_path => ENV['KAKAO_REDIRECT_PATH']}
+  config.omniauth :kakao_transfer, ENV['KAKAO_CLIENT_ID'], {:redirect_path => ENV['KAKAO_REDIRECT_PATH']}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

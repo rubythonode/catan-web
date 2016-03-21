@@ -25,6 +25,7 @@ gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 gem 'omniauth-google-oauth2', '~> 0.3.1'
+gem 'omniauth-kakao', '~> 0.1.2'
 gem 'twitter', '~> 5.16'
 gem 'google-api-client', '~> 0.9.2'
 

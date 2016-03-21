@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   include AfterLogin
-  prepend_before_filter :require_no_authentication, only: [:facebook, :google_oauth2, :twitter]
-  before_filter :authenticate_user!, only: [:facebook_transfer, :google_oauth2_transfer]
+  prepend_before_filter :require_no_authentication, only: [:facebook, :google_oauth2, :twitter, :kakao]
+  before_filter :authenticate_user!, only: [:facebook_transfer, :google_oauth2_transfer, :twitter_transfer, :kakao_transfer]
 
   def facebook
     if request.env["omniauth.auth"].info.email.blank?
@@ -19,6 +19,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     run_omniauth
   end
 
+  def kakao
+    run_omniauth
+  end
 
   def failure
     redirect_to root_path
@@ -36,12 +39,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     transfer
   end
 
+  def twitter_transfer
+    transfer
+  end
+
+  def kakao_transfer
+    transfer
+  end
+
   private
 
   def run_omniauth
     parsed_data = User.parse_omniauth(request.env["omniauth.auth"])
     remember_me = request.env["omniauth.params"].try(:fetch, "remember_me", false)
     parsed_data[:remember_me] = remember_me
+    logger.info parsed_data
     @user = User.find_for_omniauth(parsed_data)
     if @user.present?
       @user.remember_me = remember_me

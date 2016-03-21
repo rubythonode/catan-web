@@ -18,4 +18,10 @@ module OmniAuth::Strategies
     end
   end
 
+  class KakaoTransfer < Kakao
+    def name
+      :kakao_transfer
+    end
+  end
+
 end
