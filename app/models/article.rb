@@ -12,16 +12,20 @@ class Article < ActiveRecord::Base
   end
 
   def auto_title
-    return if self.title.present? and self.title != self.link
+    @auto_title_from_body = auto_title_from_body
 
-    if self.link.present?
+    if self.link.present? and (self.title.blank? or (self.title == @auto_title_from_body))
       crawling_link = Link.find_or_create_by!(url: self.link)
       crawling_link.crawl_async
       self.title = crawling_link.title
-      return if self.title.present?
     end
-    return if self.body.blank?
+
+    self.title ||= @auto_title_from_body
+  end
+
+  def auto_title_from_body
+    return '' if self.body.blank?
     first_line = self.body.split("\n")[0]
-    self.title ||= (first_line.scan(/[^\.!?]+[\.!?]/).first || first_line).strip
+    (first_line.scan(/[^\.!?]+[\.!?]/).first || first_line).strip
   end
 end
