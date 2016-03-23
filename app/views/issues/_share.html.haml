@@ -1,0 +1,9 @@
+- if @issue.is_all?
+  - data = {action: 'parti-share', 'share-url': 'http://parti.xyz', 'share-text': '유쾌한 정치 플랫폼! 빠띠에서 파티하자!'}
+- else
+  - data = {action: 'parti-share', 'share-url': issue_home_url(@issue), 'share-text': "#{@issue.title} | 빠띠" }
+
+- map = { facebook: data.merge({'share-url': ('https://www.facebook.com/parti.xyz/' if @issue.is_all?)}.compact) }
+- map.update twitter: data, 'kakao-link': data, 'kakao-story': data
+
+= render 'application/share', map: map

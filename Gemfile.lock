@@ -57,6 +57,7 @@ GEM
       sass (>= 3.3.4)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
+    browser (2.0.2)
     buftok (0.2.0)
     builder (3.2.2)
     by_star (2.2.1)
@@ -417,6 +418,7 @@ DEPENDENCIES
   bootstrap-kaminari-views (~> 0.0.5)
   bootstrap-sass (~> 3.3, >= 3.3.5.1)
   bootswatch-rails
+  browser (~> 2.0, >= 2.0.2)
   by_star (~> 2.2, >= 2.2.1)
   byebug
   cancancan (~> 1.10)
