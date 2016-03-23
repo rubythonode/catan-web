@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321022042) do
+ActiveRecord::Schema.define(version: 20160323074220) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id", null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20160321022042) do
   add_index "likes", ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
-  create_table "links", force: :cascade do |t|
+  create_table "link_sources", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.text     "metadata"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160321022042) do
     t.datetime "updated_at",                          null: false
   end
 
-  add_index "links", ["url"], name: "index_links_on_url", unique: true
+  add_index "link_sources", ["url"], name: "index_link_sources_on_url", unique: true
 
   create_table "mentions", force: :cascade do |t|
     t.integer  "user_id",          null: false

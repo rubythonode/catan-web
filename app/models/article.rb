@@ -15,9 +15,9 @@ class Article < ActiveRecord::Base
     @auto_title_from_body = auto_title_from_body
 
     if self.link.present? and (self.title.blank? or (self.title == @auto_title_from_body))
-      crawling_link = Link.find_or_create_by!(url: self.link)
-      crawling_link.crawl_async
-      self.title = crawling_link.title
+      source = LinkSource.find_or_create_by!(url: self.link)
+      source.crawl_async
+      self.title = source.title
     end
 
     self.title ||= @auto_title_from_body

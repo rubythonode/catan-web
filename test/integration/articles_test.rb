@@ -27,9 +27,9 @@ class ArticlesTest < ActionDispatch::IntegrationTest
     post articles_path(article: { body: "title\n body", link: 'link' }, issue_title: issues(:issue1).title)
     assert_equal 'title', assigns(:article).title
 
-    url = links(:link1).url
+    url = link_sources(:link1).url
     post articles_path(article: { body: "title\n body", link: url }, issue_title: issues(:issue1).title)
-    assert_equal links(:link1).title, assigns(:article).title
+    assert_equal link_sources(:link1).title, assigns(:article).title
 
     url = "htt://new_link"
     post articles_path(article: { body: "title\n body", link: url }, issue_title: issues(:issue1).title)

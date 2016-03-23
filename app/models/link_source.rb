@@ -1,4 +1,4 @@
-class Link < ActiveRecord::Base
+class LinkSource < ActiveRecord::Base
   extend Enumerize
 
   validates :url, uniqueness: {case_sensitive: false}
