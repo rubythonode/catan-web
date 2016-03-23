@@ -11,11 +11,11 @@
             %p{ style: 'margin-top: 20px;' }
               - if user_signed_in?
                 = link_to new_opinion_path(issue_id: issue.id), class: 'btn btn-primary btn-ghost' do
-                  %i.fa.fa-bar-chart
+                  %i.fa.fa-microphone
                   #{Opinion.model_name.human}하기
               - else
                 = link_to '#', data: { toggle: 'parti-login-overlay', label: Opinion.model_name.human } do
-                  %i.fa.fa-bar-chart
+                  %i.fa.fa-microphone
                     #{Opinion.model_name.human}하기
 
     - opinions.each do |opinion|

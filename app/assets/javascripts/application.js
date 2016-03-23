@@ -72,8 +72,16 @@ $(function(){
     }).on('keydown', function() {
       $elm.data('rule-extern-value', false);
       $elm.trigger('parti-need-to-validate');
-    }).on('blur', function(){
+    }).on('blur', function(e){
+      if($(e.relatedTarget).data('disabled-typeahead-validation')) {
+        return true;
+      }
       if($(this).data('typeahead').shown) {
+        return;
+      }
+      if ( $.is_blank($(this).val()) ) {
+        clear_error();
+        $elm.data('rule-extern-value', false);
         return;
       }
       if ( $(this).val() === $elm.data('title') ) {
@@ -88,7 +96,9 @@ $(function(){
               clear_error();
             } else {
               $elm.closest('.form-group').addClass('has-error')
-                  .find('.help-block.typeahead-warning').show().html('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
+              var $help_block = $elm.closest('.form-group').find('.help-block.typeahead-warning')
+
+              $help_block.show().html('<span class="text-danger">자동 완성된 이슈나 추천하는 이슈를 선택해야 합니다.</span>');
               // form validation
               $elm.data('rule-extern-value', false);
               $elm.trigger('parti-need-to-validate');
@@ -147,6 +157,9 @@ $(function(){
   //switch
   $('[data-toggle="parti-switch"]').each(function(i, elm) {
     var $elm = $(elm);
+    if ($elm.is(":hidden")) {
+      return;
+    }
     var $target = $($elm.data('switch-target'));
     $target.hide();
   });
@@ -154,11 +167,15 @@ $(function(){
     e.preventDefault();
     var $elm = $(e.currentTarget);
     var $target = $($elm.data('switch-target'));
-
-    $elm.hide();
+    var $source = $($elm.data('switch-source'));
+    if($.is_blank($source)) {
+      $elm.hide();
+    } else {
+      $source.hide();
+    }
     $target.show();
 
-    var focus_id = $(e.target).data('focus');
+    var focus_id = $elm.data('focus');
     $focus = $(focus_id);
     $focus.focus();
   });
