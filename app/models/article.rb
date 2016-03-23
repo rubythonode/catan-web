@@ -19,7 +19,7 @@ class Article < ActiveRecord::Base
   end
 
   def has_image?
-    return true if link_source.try(:image).blank?
+    return false if link_source.try(:image).blank?
     link_source.image.file.exists?
   end
 
