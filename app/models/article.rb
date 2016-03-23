@@ -17,4 +17,27 @@ class Article < ActiveRecord::Base
   def body
     link_source.present? ? link_source.body : read_attribute(:body)
   end
+
+  def has_image?
+    return true if link_source.try(:image).blank?
+    link_source.image.file.exists?
+  end
+
+  def image
+    link_source.try(:image)
+  end
+
+  def self.merge_by_link!(article)
+    ActiveRecord::Base.transaction do
+      post = article.acting_as
+      targets = post.issue.articles.where(link: article.link).order(created_at: :asc)
+      oldest = targets.first
+      targets.each do |target|
+        next if target == oldest or target.link_source.blank?
+        target.comments.update_all(post_id: oldest.acting_as.id)
+        target.likes.where.not(user: oldest.likes).update_all(post_id: oldest.acting_as.id)
+        target.destroy
+      end
+    end
+  end
 end

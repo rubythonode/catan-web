@@ -1,19 +1,14 @@
 class LinkSource < ActiveRecord::Base
   extend Enumerize
 
+  has_many :articles
+
   validates :url, uniqueness: {case_sensitive: false}
   enumerize :crawling_status, in: [:not_yet, :completed], predicates: true, scope: true
 
   ## uploaders
   # mount
   mount_uploader :image, ImageUploader
-
-  def crawl_async
-    if crawling_status.not_yet?
-      CrawlingJob.perform_async(self.id)
-      self.reload
-    end
-  end
 
   def set_crawling_data(data)
     self.metadata = data.metadata.to_json || self.metadata

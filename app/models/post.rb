@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
     end
   end
   has_many :likes, counter_cache: true
+  has_many :like_users, through: :likes, source: :user
 
   # validations
   validates :issue, presence: true

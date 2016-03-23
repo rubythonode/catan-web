@@ -14,14 +14,18 @@ class ArticlesController < ApplicationController
     redirect_to root_path and return if fetch_issue.blank?
     redirect_to issue_home_path(@issue) and return if fetch_source.blank?
     @comment = build_comment
-    @article.save and ( @comment.blank? or @comment.save)
+    if @article.save and ( @comment.blank? or @comment.save)
+      crawl
+    end
     redirect_to issue_home_path(@issue)
   end
 
   def update
     redirect_to root_path and return if fetch_issue.blank?
     redirect_to issue_home_path(@issue) and return if fetch_source.blank?
-    @article.update_attributes(article_params)
+    if @article.update_attributes(article_params)
+      crawl
+    end
     redirect_to issue_home_path(@issue)
   end
 
@@ -66,8 +70,6 @@ class ArticlesController < ApplicationController
     @article = fetch_issue.articles.find_by(link: @article.link) || @article
 
     source = LinkSource.find_or_create_by! url: @article.link
-    source.crawl_async
-
     @article.link_source = source
     @article.user ||= current_user
   end
@@ -76,5 +78,11 @@ class ArticlesController < ApplicationController
     body = params[:comment_body]
     return if body.blank?
     @article.acting_as.comments.build(body: body, user: current_user)
+  end
+
+  def crawl
+    if @article.link_source.crawling_status.not_yet?
+      CrawlingJob.perform_async(@article.link_source.id)
+    end
   end
 end

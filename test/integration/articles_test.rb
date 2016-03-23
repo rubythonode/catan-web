@@ -5,7 +5,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
     Sidekiq::Testing.inline! do
       CrawlingJob.any_instance
         .stubs(:fetch_data)
-        .returns(OpenStruct.new(title: 'page title', description: 'page body'))
+        .returns(OpenStruct.new(url: 'http://stub', title: 'page title', description: 'page body'))
       yield
     end
   end
@@ -17,10 +17,11 @@ class ArticlesTest < ActionDispatch::IntegrationTest
       post articles_path(article: { link: 'link' }, comment_body: 'body', issue_title: issues(:issue1).title)
 
       assert assigns(:article).persisted?
+      assigns(:article).reload
       assert_equal 'page title', assigns(:article).title
       assert_equal 'page body', assigns(:article).body
       assert_equal users(:one), assigns(:article).user
-      assert_equal LinkSource.find_by(url: 'link'), assigns(:article).link_source
+      assert_equal LinkSource.find_by(url: 'http://stub'), assigns(:article).link_source
       assert_equal issues(:issue1).title, assigns(:article).issue.title
 
       comment = assigns(:article).comments.first
@@ -37,6 +38,7 @@ class ArticlesTest < ActionDispatch::IntegrationTest
       put article_path(articles(:article1), article: { link: 'link x' }, issue_title: issues(:issue2).title)
 
       refute assigns(:article).errors.any?
+      assigns(:article).reload
       assert_equal 'page title', assigns(:article).title
       assert_equal 'page body', assigns(:article).body
       assert_equal users(:one), assigns(:article).user
