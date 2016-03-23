@@ -6,6 +6,7 @@
         = image_tag post.issue.logo_url
         = post.issue.title
 %span.post-inline__info
-  = byline post.user, {hide_image: true}
+  - unless post.specific.is_a? Article
+    = byline post.user, {hide_image: true}
   = link_to post.specific do
     = timeago_tag post.created_at, :lang => :ko, :limit => nil
