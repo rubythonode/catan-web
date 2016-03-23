@@ -417,6 +417,17 @@ $(function(){
       }
     });
   });
+
+  // mention
+  $('[data-action="parti-mention"]').on('click', function(e) {
+    e.preventDefault();
+    var $elm = $(e.currentTarget);
+    var $control = $($elm.data('mention-form-control'));
+    var nickname = $elm.data('mention-nickname');
+    var value = $control.val();
+    $control.val('@' + nickname + ' ' + value);
+    $control.focus();
+  });
 });
 
 

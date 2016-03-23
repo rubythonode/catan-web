@@ -6,7 +6,6 @@
     .media-body
       = link_to user_gallery_path(comment.user) do
         %strong= comment.user.nickname
-      %i.fa.fa-clock-o
       = date_f comment.created_at
       - if can? :update, comment
         = link_to [:edit, comment] do
@@ -14,6 +13,10 @@
       - if can? :destroy, comment
         = link_to comment, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } do
           %i.fa.fa-trash-o>
+      - if user_signed_in? and current_user != comment.user and local_assigns[:mention_form_contorl]
+        %a{ href: '#', data: { action: 'parti-mention', 'mention-nickname': comment.user.nickname, 'mention-form-control': mention_form_contorl } }
+          %i.fa.fa-at>
+          맨션
       .comment__body
         %p
           = smart_format(h(comment.body))
