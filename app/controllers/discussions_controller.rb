@@ -39,8 +39,8 @@ class DiscussionsController < ApplicationController
                       description: @discussion.body
   end
 
-  helper_method :fetch_issue
-  def fetch_issue
+  helper_method :current_issue
+  def current_issue
     @issue ||= @discussion.try(:issue)
   end
   private

@@ -6,6 +6,6 @@ module OriginPostable
   end
 
   def origin_postable_controlling?
-    try(:fetch_issue).present?
+    try(:current_issue).present?
   end
 end

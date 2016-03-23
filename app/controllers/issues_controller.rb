@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   respond_to :json, :html
   before_filter :authenticate_user!,
     only: [:create, :update, :destroy]
-  before_filter :fetch_issue_by_slug, only: [:slug, :slug_comments, :slug_campaign]
+  before_filter :fetch_issue_by_slug, only: [:slug, :slug_posts, :slug_comments, :slug_campaign]
   load_and_authorize_resource
 
   def index
@@ -26,6 +26,11 @@ class IssuesController < ApplicationController
   end
 
   def slug
+    slug_comments
+    render template: 'issues/slug_comments'
+  end
+
+  def slug_posts
     @posts = @issue.posts.for_list
 
     unless view_context.current_page?(root_url)
@@ -96,8 +101,8 @@ class IssuesController < ApplicationController
     end
   end
 
-  helper_method :fetch_issue
-  def fetch_issue
+  helper_method :current_issue
+  def current_issue
     @issue
   end
 

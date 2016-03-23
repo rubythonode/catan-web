@@ -31,10 +31,10 @@
             \/
 
     .form-group
-      = f.text_area :body, placeholder: '이야기 해주세요.', class: 'form-control', style: 'border: none; box-shadow: none; padding: 0;', data: { ride: 'parti-autoresize', 'rule-required': true}, required: true
+      = f.text_field :link, placeholder: '링크를 넣어주세요.', class: 'form-control', style: 'border: none; box-shadow: none; padding: 0;', data: { 'rule-required': true}
 
-    %a.embed{ target: '_blank', data: { 'action': 'parti-smart-link', 'source-form-control':'textarea#article_body'} }
-    = f.hidden_field :link, data: { 'action': 'parti-smart-link', 'source-form-control':'textarea#article_body'}
+    .form-group
+      = text_area_tag :comment_body, '', placeholder: '이야기 해주세요.', class: 'form-control', style: 'border: none; box-shadow: none; padding: 0;', data: { ride: 'parti-autoresize', 'rule-required': true}
 
     .form-group
       .pull-right

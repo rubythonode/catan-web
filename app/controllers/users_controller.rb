@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   end
 
   def gallery
+    comments
+    render 'comments'
+  end
+
+  def posts
     fetch_user
     @posts = @user.posts.for_list.recent.page params[:page]
     @postables = @posts.map &:postable

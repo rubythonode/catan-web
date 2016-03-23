@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CommentsTest < ActionDispatch::IntegrationTest
-  test '뉴스컬럼에 만들어요' do
+  test '글에 만들어요' do
     sign_in(users(:one))
 
     post post_comments_path(post_id: articles(:article1).acting_as.id, comment: { body: 'body' })
@@ -9,6 +9,15 @@ class CommentsTest < ActionDispatch::IntegrationTest
     assert assigns(:comment).persisted?
     assert_equal 'body', assigns(:comment).body
     assert_equal users(:one), assigns(:comment).user
+  end
+
+  test '내용을 수정해요' do
+    sign_in(users(:one))
+
+    put comment_path(comments(:comment1), comment: { body: 'body x' })
+
+    refute assigns(:comment).errors.any?
+    assert_equal 'body x', assigns(:comment).body
   end
 
   test '찬성하는 주장에 만들어요' do

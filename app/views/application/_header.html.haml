@@ -2,9 +2,9 @@
   .container
     - if try(:origin_postable_controlling?)
       .navbar-brand.navbar-issue
-        = link_to issue_home_path(fetch_issue) do
+        = link_to issue_home_path(current_issue) do
           %i.fa.fa-hashtag>
-          = fetch_issue.title
+          = current_issue.title
 
     .navbar-header.pull-left{ style: 'position: relative' }
       %a.navbar-brand{ href: root_path }
@@ -23,7 +23,7 @@
     #navbar.navbar-offcanvas.navbar-offcanvas-right
       %ul.nav.navbar-nav(style="width: 300px;")
         %li
-          = link_to new_article_path(issue_id: try(:fetch_issue)), class: 'btn btn-primary btn-ghost visible-xs' do
+          = link_to new_article_path(issue_id: try(:current_issue)), class: 'btn btn-primary btn-ghost visible-xs' do
             %i.fa.fa-edit
             글쓰기
         %li

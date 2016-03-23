@@ -8,6 +8,10 @@ module PartiUrlHelper
     slug_issue_url(slug: issue.slug)
   end
 
+  def issue_posts_path(issue)
+    slug_issue_posts_path(slug: issue.slug)
+  end
+
   def issue_comments_path(issue)
     slug_issue_comments_path(slug: issue.slug)
   end
@@ -22,6 +26,10 @@ module PartiUrlHelper
 
   def user_gallery_url(user)
     nickname_user_url(nickname: user.nickname)
+  end
+
+  def user_posts_path(user)
+    nickname_user_posts_path(nickname: user.nickname)
   end
 
   def user_comments_path(user)

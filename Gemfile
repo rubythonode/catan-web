@@ -86,6 +86,7 @@ group :development, :test do
   gem 'guard-minitest',     '~> 2.4.4'
   gem 'timecop', '~> 0.8.0'
   gem 'spring'
+  gem 'mocha', '~> 1.1'
 end
 
 group :development do

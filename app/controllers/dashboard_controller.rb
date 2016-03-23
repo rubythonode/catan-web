@@ -6,7 +6,11 @@ class DashboardController < ApplicationController
       @unwatched_issues = current_user.unwatched_issues
       render 'intro' and return
     end
+    comments
+    render 'comments'
+  end
 
+  def posts
     watched_posts = Post.for_list.recent.watched_by(current_user)
     @watched_posts_for_filter = watched_posts
     @past_day_postables = @watched_posts_for_filter.past_day.map &:postable

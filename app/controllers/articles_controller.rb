@@ -11,26 +11,22 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    set_issue
-    @article.user = current_user
-    if @article.save
-      redirect_to @article
-    else
-      render 'new'
-    end
+    redirect_to root_path and return if fetch_issue.blank?
+    redirect_to issue_home_path(@issue) and return if fetch_source.blank?
+    @comment = build_comment
+    @article.save and ( @comment.blank? or @comment.save)
+    redirect_to issue_home_path(@issue)
   end
 
   def update
-    set_issue
-    if @article.update_attributes(article_params)
-      redirect_to @article
-    else
-      render 'edit'
-    end
+    redirect_to root_path and return if fetch_issue.blank?
+    redirect_to issue_home_path(@issue) and return if fetch_source.blank?
+    @article.update_attributes(article_params)
+    redirect_to issue_home_path(@issue)
   end
 
   def destroy
-    @article.destroy
+    @article.destroy if @article.comments.any?
     redirect_to issue_home_path(@article.issue)
   end
 
@@ -44,8 +40,8 @@ class ArticlesController < ApplicationController
     render layout: nil
   end
 
-  helper_method :fetch_issue
-  def fetch_issue
+  helper_method :current_issue
+  def current_issue
     @issue ||= @article.try(:issue)
   end
 
@@ -56,11 +52,29 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :link, :tag_list)
+    params.require(:article).permit(:link)
   end
 
-  def set_issue
+  def fetch_issue
     @issue ||= Issue.find_by title: params[:issue_title]
-    @article.issue = @issue
+    @article.issue = @issue.presence || @article.issue
+  end
+
+  def fetch_source
+    return if @article.link.blank?
+
+    @article = fetch_issue.articles.find_by(link: @article.link) || @article
+
+    source = LinkSource.find_or_create_by! url: @article.link
+    source.crawl_async
+
+    @article.link_source = source
+    @article.user ||= current_user
+  end
+
+  def build_comment
+    body = params[:comment_body]
+    return if body.blank?
+    @article.acting_as.comments.build(body: body, user: current_user)
   end
 end
