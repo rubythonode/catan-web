@@ -395,26 +395,13 @@ $(function(){
 
   $('[data-action="parti-form-validation"]').each(function(i, elm) {
     var $elm = $(elm);
-    $form = $(elm);
-    $submit = $($elm.data("submit-form-control"));
+    var $form = $(elm);
+    var $submit = $($elm.data("submit-form-control"));
     $submit.prop('disabled', true);
 
     $form.validate({
       errorPlacement: function(error, element) {
         return true;
-      },
-      invalidHandler: function(event, validator) {
-        // 'this' refers to the form
-        var errors = validator.numberOfInvalids();
-        if (errors) {
-          var message = errors == 1
-            ? 'You missed 1 field. It has been highlighted'
-            : 'You missed ' + errors + ' fields. They have been highlighted';
-          $("div.error span").html(message);
-          $("div.error").show();
-        } else {
-          $("div.error").hide();
-        }
       }
     });
 
