@@ -1,4 +1,10 @@
 - post = obj.acting_as
+.post-inline__issue
+  - if local_assigns[:show_issue]
+    %span.post-inline__issue-label
+      = link_to issue_home_path(post.issue) do
+        = image_tag post.issue.logo_url
+        = post.issue.title
 %span.post-inline__info
   = byline post.user, {hide_image: true}
   = link_to post.specific do

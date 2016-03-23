@@ -1,4 +1,4 @@
-- comment = slug_comment
+- comment = comment_in_list
 .media{id: dom_id(comment) }
   .media-left
     = link_to user_gallery_path(comment.user) do
@@ -18,4 +18,4 @@
       %p
         = smart_format(comment.body)
     .comment__footer.text-muted
-      = render customize_partial_path(comment.post.specific, ->(model) { "#{model.class.model_name.plural}/#{model.class.model_name.singular}_as_footnote" })
+      = render customize_partial_path(comment.post.specific, ->(model) { "#{model.class.model_name.plural}/#{model.class.model_name.singular}_as_footnote" }), show_issue: local_assigns[:show_issue]

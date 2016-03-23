@@ -24,10 +24,4 @@
         아직 제안이 없습니다
 
   .post-inline__footer
-    .post-inline__issue
-      - if local_assigns[:show_issue]
-        %span.post-inline__issue-label
-          = link_to issue_home_path(post.issue) do
-            = image_tag post.issue.logo_url
-            = post.issue.title
     = render 'posts/post_inline_footer', obj: discussion, show_issue: local_assigns[:show_issue]
