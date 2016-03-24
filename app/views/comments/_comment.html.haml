@@ -16,7 +16,7 @@
       - if user_signed_in? and current_user != comment.user and local_assigns[:mention_form_contorl]
         %a{ href: '#', data: { action: 'parti-mention', 'mention-nickname': comment.user.nickname, 'mention-form-control': mention_form_contorl } }
           %i.fa.fa-at>
-          맨션
+          멘션
       .comment__body
         %p
           = smart_format(h(comment.body))
