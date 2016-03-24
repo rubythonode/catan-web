@@ -52,8 +52,12 @@ class OpenGraph
 
   def load_fallback
     if @doc.present? and @doc.respond_to?(:xpath)
-      if @title.to_s.empty? && @doc.xpath("//head//title").size > 0
-        @title = @doc.xpath("//head//title").first.text.to_s.strip
+      if @title.to_s.empty?
+        if @doc.title.present?
+          @title = @doc.title
+        elsif @doc.xpath("//head//title").size > 0
+          @title = @doc.xpath("//head//title").first.text.to_s.strip
+        end
       end
 
       @url = @src if @url.to_s.empty?
