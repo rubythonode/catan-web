@@ -29,6 +29,7 @@
 @import 'components/discussions';
 @import 'components/comments';
 @import 'components/users';
+@import 'components/shares';
 
 // pages
 .popover-static .popover {
@@ -36,23 +37,6 @@
   display: block;
   margin: 20px 0;
   z-index: 0;
-}
-
-.jssocials-shares {
-  margin: 5px 0;
-}
-.jssocials-share-link {
-  padding: 0.2em 0.3em;
-}
-.jssocials-share-count-box {
-  height: 1.6em;
-  padding: 0 .4em;
-  &:after {
-    top: 0.45em;
-  }
-  .jssocials-share-count {
-    line-height: 1.6em;
-  }
 }
 
 // jquery.oembed video

@@ -20,6 +20,7 @@
 //= require autoresize
 //= require jquery.validate
 //= require messages_ko
+//= require kakao
 
 $(function(){
   // blank
@@ -181,37 +182,52 @@ $(function(){
   });
 
   // share
-  $("#share-twitter").jsSocials({
-    showCount: true,
-    showLabel: false,
-    shares: ["twitter"]
-  });
-
-  $("#share-facebook-page").jsSocials({
-    showCount: true,
-    showLabel: false,
-    shares: ["facebook"],
-    text: '유쾌한 정치 플랫폼! 빠띠에서 파티하자!',
-    url: 'https://www.facebook.com/parti.xyz/'
-  });
-
-  $("#share").jsSocials({
-    showCount: true,
-    showLabel: false,
-    shares: ["twitter", "facebook"]
-  });
-
-  $('[data-provider="parti-issue-share"]').each(function(i, elm) {
+  Kakao.init('6cd2725534444560cb5fe8c77b020bd6');
+  $('[data-action="parti-share"]').each(function(i, elm){
     var $elm = $(elm);
     var url = $elm.data('share-url');
     var text = $elm.data('share-text');
-    $elm.jsSocials({
-      showCount: true,
-      showLabel: false,
-      shares: ["facebook", "twitter"],
-      text: text,
-      url: url
-    });
+    var share = $elm.data('share-provider');
+    if ($.is_blank(share)) return;
+    var image_url = $elm.data('share-image');
+    if ($.is_blank(image_url)) image_url = location.protocol + "//" + location.hostname + "/images/parti_seo.png";
+    var image_width = $elm.data('share-image-width');
+    if ($.is_blank(image_width)) image_width = '300';
+    var image_height = $elm.data('share-image-height');
+    if ($.is_blank(image_height)) image_height = '155';
+
+    switch(share) {
+      case 'kakao-link':
+        Kakao.Link.createTalkLinkButton({
+          container: elm,
+          label: text,
+          image: {
+            src: image_url,
+            width: image_width,
+            height: image_height
+          },
+          webLink: {
+            text: '빠띠에서 보기',
+            url: url
+          }
+        });
+      break
+      case 'kakao-story':
+        Kakao.Story.createShareButton({
+          container: elm,
+          url: url,
+          text: text
+        });
+      break
+      default:
+        $elm.jsSocials({
+          showCount: true,
+          showLabel: false,
+          shares: [share],
+          text: text,
+          url: url
+        });
+    }
   });
 
   // modal
@@ -433,5 +449,4 @@ $(function(){
     $control.focus();
   });
 });
-
 
