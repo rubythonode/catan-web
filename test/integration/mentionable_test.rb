@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CommentsTest < ActionDispatch::IntegrationTest
-  test '맨션을 해요' do
+  test '멘션을 해요' do
     sign_in(users(:one))
 
     post post_comments_path(post_id: articles(:article1).acting_as.id, comment: { body: '@nick2 mention' })
