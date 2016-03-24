@@ -1,3 +1,4 @@
+require 'mechanize'
 require 'nokogiri'
 require 'addressable/uri'
 require 'uri'
@@ -27,12 +28,11 @@ class OpenGraph
       agent.redirection_limit = 5
       @doc = agent.get(@src)
     rescue
-      byebug
       @title = @url = @src
       return
     end
 
-    if @doc
+    if @doc.present? and @doc.respond_to?(:css)
       attrs_list = %w(title url type description)
       @doc.css('meta').each do |m|
         if m.attribute('property') && m.attribute('property').to_s.match(/^og:(.+)$/i)
@@ -51,7 +51,7 @@ class OpenGraph
   end
 
   def load_fallback
-    if @doc
+    if @doc.present? and @doc.respond_to?(:xpath)
       if @title.to_s.empty? && @doc.xpath("//head//title").size > 0
         @title = @doc.xpath("//head//title").first.text.to_s.strip
       end

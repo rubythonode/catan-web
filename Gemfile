@@ -50,6 +50,8 @@ gem 'identicon', '~> 0.0.5'
 gem 'rails_autolink', '~> 1.1', '>= 1.1.6'
 gem 'partial_path_customizer', '~> 0.1.0'
 gem 'unobtrusive_flash', '~> 3.1'
+
+# crawling
 gem 'mechanize', '~> 2.7', '>= 2.7.4'
 
 # SEO
